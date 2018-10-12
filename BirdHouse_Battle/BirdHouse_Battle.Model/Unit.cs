@@ -2,7 +2,7 @@
 
 namespace BirdHouse_Battle.Model
 {
-    public class Units
+    public class Unit
     {
     }
 }

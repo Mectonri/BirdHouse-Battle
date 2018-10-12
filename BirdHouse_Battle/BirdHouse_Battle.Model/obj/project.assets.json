@@ -687,11 +687,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\ClassLibrary1\\BirdHouse_Battle.Model.csproj",
+      "projectUniqueName": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
       "projectName": "BirdHouse_Battle.Model",
-      "projectPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\ClassLibrary1\\BirdHouse_Battle.Model.csproj",
+      "projectPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
       "packagesPath": "C:\\Users\\aef52\\.nuget\\packages\\",
-      "outputPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\ClassLibrary1\\obj\\",
+      "outputPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

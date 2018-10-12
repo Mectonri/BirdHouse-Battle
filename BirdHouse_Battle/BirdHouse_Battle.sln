@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdHouse_Battle.Model", "ClassLibrary1\BirdHouse_Battle.Model.csproj", "{B4E705B1-04E5-41FA-997B-D4B9951E24D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdHouse_Battle.Model", "BirdHouse_Battle.Model\BirdHouse_Battle.Model.csproj", "{964579B0-0063-442F-85BB-AB794C52ABBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B4E705B1-04E5-41FA-997B-D4B9951E24D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B4E705B1-04E5-41FA-997B-D4B9951E24D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B4E705B1-04E5-41FA-997B-D4B9951E24D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B4E705B1-04E5-41FA-997B-D4B9951E24D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{964579B0-0063-442F-85BB-AB794C52ABBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964579B0-0063-442F-85BB-AB794C52ABBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964579B0-0063-442F-85BB-AB794C52ABBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964579B0-0063-442F-85BB-AB794C52ABBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
