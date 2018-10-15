@@ -42,7 +42,7 @@ namespace BirdHouse_Battle.Model
 
         public Vector Soustract(Vector vector)
         {
-            
+
             return new Vector(_x - vector._x, _y - vector._y);
         }
 
