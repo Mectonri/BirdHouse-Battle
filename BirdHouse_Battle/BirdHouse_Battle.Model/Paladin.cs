@@ -6,8 +6,12 @@ namespace BirdHouse_Battle.Model
 {
     class Paladin : Unit
     {
-        public Paladin()
+        public Paladin(Team team, Arena arena)
         {
+            _team = team;
+            _arena = arena;
+            _isDead = false;
+            _inRange = false;
             _life = 5.0;
             _speed = 1.0;
             _range = 2.0;

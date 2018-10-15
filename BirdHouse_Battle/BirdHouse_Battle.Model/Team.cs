@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
 {
-    class Team
+    public class Team
     {
 
 
@@ -12,20 +13,20 @@ namespace BirdHouse_Battle.Model
         int _teamNumber;
         int _unitCount;
         int _typeCount;
-        int _gold;
+        double _gold;
         int _limitNbUnit;
-        //Arena _context; // Rajputer le contexte des equipes qui est l'arene
-        Dictionary<string, Unit> _units;
+        Arena _arena; // Rajputer le contexte des equipes qui est l'arene
+        internal Dictionary<Guid, Unit> _units;
 
-        internal Team(string Name, int LimitNbUntit)
+        internal Team(Arena Context, string Name, int LimitNbUntit)
         {
             _name = Name;
             _teamNumber = TeamNumber;
             _unitCount = UnitCount;
             _typeCount = TypeCount;
-         //_ctx = Context;
+            _arena = Context;
             _limitNbUnit = LimitNbUntit;
-            _units = new Dictionary<string, Unit>();
+            _units = new Dictionary<Guid, Unit>();
         }
 
         public string Name
@@ -48,42 +49,41 @@ namespace BirdHouse_Battle.Model
             get { return _typeCount; }
         }
 
-        //public Arena Context
-        //{
-        //    get { return _context; }
-        //}
-       
-
-        //void AddUnit( Team c, Archer, UnitCount)
-        //{
-        //    Archer archer = new Archer(this, UnitCount);
-        //    _teams.Add(archer);
-        //}
-
-        //void AddUnit(Team c, Goblelin, UnitCount)
-        //{
-        //    Gobelin goblin = new Gobelin(this, UnitCount);
-        //    _teams.Add(goblin);
-        //}
-
-        //void AddUnit( Team c, Paladin, UnitCount)
-        //{
-        //    Paladin paladin = New Paladin(this, UnitCount);
-        //    _teams.Add(paladin);
-        //}
+        public Arena Context
+        {
+            get { return _arena; }
+        }
 
 
-        //void RemoveUnit(Unit name)
-        //{
+        void AddArcher(int UnitCount)
+        {
+            Archer archer = new Archer(this, _arena);
+            _units.Add(archer.Name, archer);
+        }
 
-        //   _units.Remove(name);
-        //}
+        void AddGobelin(int UnitCount)
+        {
+            Gobelin gobelin = new Gobelin(this, _arena);
+            _units.Add(gobelin.Name, gobelin);
+        }
+
+        void AddPaladin(int UnitCount)
+        {
+            Paladin paladin = new Paladin(this, _arena);
+            _units.Add(paladin.Name, paladin);
+        }
 
 
-        //void GoldCalculation( int Gold)
-        //{
-        //    return _gold = Gold - UnitPrice * UnitCount;
-        //}
+        void RemoveUnit(Unit unit)
+        {
+
+            _units.Remove(unit.Name);
+        }
+
+        double GoldCalculation(Unit unit, double Gold)
+        {
+            return _gold = Gold - unit.UnitPrice * UnitCount;
+        }
 
     }
 }

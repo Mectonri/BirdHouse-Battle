@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
 {
     public class Unit
     {
-        //Team _team;
-        //readonly Arena _arena;
+        internal Team _team;
+        internal Arena _arena;
         Unit _target;
         internal double _life;
         internal double _speed;
@@ -13,24 +14,16 @@ namespace BirdHouse_Battle.Model
         internal double _unitPrice;
         internal int _strength;
         internal int _armor;
-        readonly string _name;
+        readonly Guid _name = Guid.NewGuid();
         internal string _disposition;
         Vector _location;
         Vector _direction;
-        bool _isDead;
-        bool _inRange;
+        internal bool _isDead;
+        internal bool _inRange;
 
-        public Unit(/*Team team, Arena arena,*/)
-        {
-            //_team = team;
-            //_arena = arena;
-            _isDead = false;
-            _inRange = false;
-        }
+        public Team Team { get { return _team; } }
 
-        //public Team Team { get { return _team; } }
-
-        //public Arena Arena { get { return _arena; } }
+        public Arena Arena { get { return _arena; } }
 
         public Unit Target
         {
@@ -55,7 +48,7 @@ namespace BirdHouse_Battle.Model
 
         public int Armor { get { return _armor; } }
 
-        public string Name { get { return _name; } }
+        public Guid Name { get { return _name; } }
 
         public string Disposition { get { return _disposition; } }
 
@@ -89,29 +82,48 @@ namespace BirdHouse_Battle.Model
             set { _inRange = value; }
         }
 
+        /// <summary>
+        /// Loose life point(s).
+        /// </summary>
+        /// <param name="damages"></param>
+        /// <returns></returns>
         public double TakeDamages(double damages)
         {
             _life = _life - Math.Max(damages - _armor, 0);
             return _life;
         }
 
-        /*public Unit SearchTarget()
+        /// <summary>
+        /// Search the nearest enemy.
+        /// </summary>
+        /// <returns></returns>
+        public Unit SearchTarget()
         {
             Unit newTarget = _arena.NearestEnemy(this);
             return newTarget;
-        }*/
+        }
 
+        /// <summary>
+        /// Get new Direction.
+        /// </summary>
+        /// <returns></returns>
         public Vector NewDirection()
         {
             Vector newDirection = _location.Soustract(Target.Location);
             return newDirection;
         }
 
-        /*public void DieNullContext()
+        /// <summary>
+        /// When a Unit Die.
+        /// </summary>
+        public void DieNullContext()
         {
             _team = null;
-        }*/
+        }
 
+        /// <summary>
+        /// Game Loop in Unit
+        /// </summary>
         public void Update()
         {
             throw new ArgumentNullException();

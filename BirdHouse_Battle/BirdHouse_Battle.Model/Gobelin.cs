@@ -6,8 +6,12 @@ namespace BirdHouse_Battle.Model
 {
     class Gobelin : Unit
     {
-        public Gobelin()
+        public Gobelin(Team team, Arena arena)
         {
+            _team = team;
+            _arena = arena;
+            _isDead = false;
+            _inRange = false;
             _life = 1.0;
             _speed = 4.0;
             _range = 1.0;

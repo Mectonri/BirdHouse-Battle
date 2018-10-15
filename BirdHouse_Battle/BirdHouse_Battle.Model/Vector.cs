@@ -25,6 +25,9 @@ namespace BirdHouse_Battle.Model
             get { return _y; }
         }
 
+        /// <summary>
+        /// Get size of the vector.
+        /// </summary>
         public double Magnitude
         {
             get { return Math.Sqrt(_x * _x + _y * _y); }
@@ -46,6 +49,12 @@ namespace BirdHouse_Battle.Model
             return new Vector(_x - vector._x, _y - vector._y);
         }
 
+        /// <summary>
+        /// Limit values of X and Y.
+        /// </summary>
+        /// <param name="min"></param>
+        /// <param name="max"></param>
+        /// <returns></returns>
         public Vector Limit(double min, double max)
         {
             return new Vector(Math.Min(max, Math.Max(min, _x)), Math.Min(max, Math.Max(min, _y)));
