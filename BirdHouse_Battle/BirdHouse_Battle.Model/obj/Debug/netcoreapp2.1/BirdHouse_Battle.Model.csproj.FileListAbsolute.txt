@@ -1,0 +1,9 @@
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\netcoreapp2.1\BirdHouse_Battle.Model.deps.json
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\netcoreapp2.1\BirdHouse_Battle.Model.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\netcoreapp2.1\BirdHouse_Battle.Model.pdb
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\netcoreapp2.1\BirdHouse_Battle.Model.csprojAssemblyReference.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\netcoreapp2.1\BirdHouse_Battle.Model.csproj.CoreCompileInputs.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\netcoreapp2.1\BirdHouse_Battle.Model.AssemblyInfoInputs.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\netcoreapp2.1\BirdHouse_Battle.Model.AssemblyInfo.cs
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\netcoreapp2.1\BirdHouse_Battle.Model.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\netcoreapp2.1\BirdHouse_Battle.Model.pdb
