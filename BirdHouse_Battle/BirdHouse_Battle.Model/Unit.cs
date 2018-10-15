@@ -4,43 +4,40 @@ namespace BirdHouse_Battle.Model
 {
     public class Unit
     {
-        Team _team;
-        readonly Arena _arena;
-        double _life;
-        readonly double _speed;
-        readonly double _range;
-        readonly double _unitPrice;
-        readonly int _strength;
-        readonly int _armor;
-        readonly char _disposition;
+        //Team _team;
+        //readonly Arena _arena;
+        Unit _target;
+        internal double _life;
+        internal double _speed;
+        internal double _range;
+        internal double _unitPrice;
+        internal int _strength;
+        internal int _armor;
+        readonly string _name;
+        internal string _disposition;
         Vector _location;
         Vector _direction;
-        Vector _targetLocation;
         bool _isDead;
         bool _inRange;
 
-        public Unit(Team team, Arena arena, double life,
-                    double speed, double range, double unitPrice,
-                    int strength, int armor, char disposition,
-                    Vector location, bool isDead, bool inRange)
+        public Unit(/*Team team, Arena arena,*/)
         {
-            _team = team;
-            _arena = arena;
-            _life = life;
-            _speed = speed;
-            _range = range;
-            _unitPrice = unitPrice;
-            _strength = strength;
-            _armor = armor;
-            _disposition = disposition;
-            _location = location;
-            _isDead = isDead;
-            _inRange = inRange;
+            //_team = team;
+            //_arena = arena;
+            _isDead = false;
+            _inRange = false;
         }
 
-        public Team Team { get { return _team; } }
+        //public Team Team { get { return _team; } }
 
-        public Arena Arena { get { return _arena; } }
+        //public Arena Arena { get { return _arena; } }
+
+        public Unit Target
+        {
+            get { return _target; }
+            set { _target = value; }
+        }
+
 
         public double Life
         {
@@ -58,7 +55,9 @@ namespace BirdHouse_Battle.Model
 
         public int Armor { get { return _armor; } }
 
-        public char Disposition { get { return _disposition; } }
+        public string Name { get { return _name; } }
+
+        public string Disposition { get { return _disposition; } }
 
         public Vector Location
         {
@@ -70,12 +69,6 @@ namespace BirdHouse_Battle.Model
         {
             get { return _direction; }
             set { _direction = value; }
-        }
-
-        public Vector TargetLocation
-        {
-            get { return _targetLocation; }
-            set { _targetLocation = value; }
         }
 
         public bool IsDead
@@ -91,7 +84,7 @@ namespace BirdHouse_Battle.Model
         {
             get
             {
-                return Math.Max(Location.Magnitude, TargetLocation.Magnitude) - Math.Min(Location.Magnitude, TargetLocation.Magnitude) < Range;
+                return Math.Max(Location.Magnitude, Target.Location.Magnitude) - Math.Min(Location.Magnitude, Target.Location.Magnitude) < Range;
             }
             set { _inRange = value; }
         }
@@ -102,21 +95,22 @@ namespace BirdHouse_Battle.Model
             return _life;
         }
 
-        public Vector SearchTarget()
+        /*public Unit SearchTarget()
         {
-            Vector newTarget = _arena.NearestEnemy(this);
+            Unit newTarget = _arena.NearestEnemy(this);
             return newTarget;
-        }
+        }*/
 
         public Vector NewDirection()
         {
-            throw new ArgumentNullException();
+            Vector newDirection = _location.Soustract(Target.Location);
+            return newDirection;
         }
 
-        public void DieNullContext()
+        /*public void DieNullContext()
         {
             _team = null;
-        }
+        }*/
 
         public void Update()
         {

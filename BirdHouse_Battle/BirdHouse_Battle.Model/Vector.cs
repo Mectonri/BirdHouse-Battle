@@ -40,6 +40,12 @@ namespace BirdHouse_Battle.Model
             return new Vector(_x + vector._x, _y + vector._y);
         }
 
+        public Vector Soustract(Vector vector)
+        {
+            
+            return new Vector(_x - vector._x, _y - vector._y);
+        }
+
         public Vector Limit(double min, double max)
         {
             return new Vector(Math.Min(max, Math.Max(min, _x)), Math.Min(max, Math.Max(min, _y)));
