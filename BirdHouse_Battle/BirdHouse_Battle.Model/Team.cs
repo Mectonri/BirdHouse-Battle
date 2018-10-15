@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
 {
     class Team
     {
+
+
+        //Team number is associated with a color, so creating a team take the color as argument.
         //Couleur de Team à rajouter
         string _name;
         int _teamNumber;
-        int _troupsCount;
+        int _unitCount;
         int _typeCount;
-        Dictionary<string, Unit> _teams;
+        int _gold;
+        int _limitNbUnit;
+        //Arena _context; // Rajputer le contexte des equipes qui est l'arene
+        Dictionary<string, Unit> _units;
 
-        internal Team(string Name)
+        internal Team(string Name, int LimitNbUntit)
         {
             _name = Name;
             _teamNumber = TeamNumber;
-            _troupsCount = TroupsCount;
+            _unitCount = UnitCount;
             _typeCount = TypeCount;
-            _teams = new Dictionary<string, Unit>();
+         //_ctx = Context;
+            _limitNbUnit = LimitNbUntit;
+            _units = new Dictionary<string, Unit>();
         }
 
         public string Name
@@ -31,27 +37,53 @@ namespace BirdHouse_Battle.Model
             get { return _teamNumber; }
         }
 
-        public int TroupsCount
+        public int UnitCount
         {
-            get { return _troupsCount; }
+            get { return _unitCount; }
         }
+       
 
         public int TypeCount
         {
             get { return _typeCount; }
         }
 
+        //public Arena Context
+        //{
+        //    get { return _context; }
+        //}
+       
+
+        //void AddUnit( Team c, Archer, UnitCount)
+        //{
+        //    Archer archer = new Archer(this, UnitCount);
+        //    _teams.Add(archer);
+        //}
+
+        //void AddUnit(Team c, Goblelin, UnitCount)
+        //{
+        //    Gobelin goblin = new Gobelin(this, UnitCount);
+        //    _teams.Add(goblin);
+        //}
+
+        //void AddUnit( Team c, Paladin, UnitCount)
+        //{
+        //    Paladin paladin = New Paladin(this, UnitCount);
+        //    _teams.Add(paladin);
+        //}
 
 
-        void AddFighter()
-        {
-            throw new NotImplementedException();
-        }
+        //void RemoveUnit(Unit name)
+        //{
 
-        void RemoveFighter()
-        {
-            throw new NotImplementedException();
-        }
+        //   _units.Remove(name);
+        //}
+
+
+        //void GoldCalculation( int Gold)
+        //{
+        //    return _gold = Gold - UnitPrice * UnitCount;
+        //}
 
     }
 }
