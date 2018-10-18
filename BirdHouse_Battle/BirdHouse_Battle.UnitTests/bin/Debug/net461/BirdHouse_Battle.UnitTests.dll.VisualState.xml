@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ShowCheckBoxes="false">
+  <TopNode>[0-1023]C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll</TopNode>
+  <SelectedNode>[0-1023]C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1023]C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1024]BirdHouse_Battle" Expanded="true" />
+    <Node UniqueName="[0-1025]BirdHouse_Battle.UnitTests" Expanded="true" />
+    <Node UniqueName="[0-1000]BirdHouse_Battle.UnitTests.UnitTests_Archer" Expanded="true" />
+    <Node UniqueName="[0-1005]BirdHouse_Battle.UnitTests.UnitTests_Gobelin" Expanded="true" />
+    <Node UniqueName="[0-1010]BirdHouse_Battle.UnitTests.UnitTests_Paladin" Expanded="true" />
+    <Node UniqueName="[0-1015]BirdHouse_Battle.UnitTests.UnitTests_Unit" Expanded="true" />
+    <Node UniqueName="[0-1017]BirdHouse_Battle.UnitTests.UnitTests_Vector" Expanded="true" />
+  </Nodes>
+</VisualState>

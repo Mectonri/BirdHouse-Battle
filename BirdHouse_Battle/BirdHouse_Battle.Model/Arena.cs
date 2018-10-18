@@ -86,7 +86,7 @@ namespace BirdHouse_Battle.Model
                             distance = Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2));
                             ennemyUnit = kv2.Value;
                         }
-                      
+
                     }
                 }
             }
