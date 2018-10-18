@@ -4,4 +4,12 @@
     <TargetFramework>net461</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="2.6.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BirdHouse_Battle.Model\BirdHouse_Battle.Model.csproj" />
+  </ItemGroup>
+
 </Project>
