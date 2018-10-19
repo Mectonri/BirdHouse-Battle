@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BirdHouse_Battle.Model
 {
-    class Gobelin : Unit
+    public class Gobelin : Unit
     {
         public Gobelin(Team team, Arena arena)
         {
