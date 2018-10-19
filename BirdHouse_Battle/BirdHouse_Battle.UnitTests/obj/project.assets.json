@@ -11,12 +11,21 @@
           "lib/nunit.framework.dll": {}
         }
       },
+<<<<<<< HEAD
       "NUnit.Runners.Net4/2.6.4": {
         "type": "package"
       },
       "BirdHouse_Battle.Model/1.0.0": {
         "type": "project",
         "framework": ".NETFramework,Version=v4.6.1",
+=======
+      "BirdHouse_Battle.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "NUnit": "2.6.4"
+        },
+>>>>>>> Develop
         "compile": {
           "bin/placeholder/BirdHouse_Battle.Model.dll": {}
         },
@@ -39,6 +48,7 @@
         "nunit.nuspec"
       ]
     },
+<<<<<<< HEAD
     "NUnit.Runners.Net4/2.6.4": {
       "sha512": "cy0yYjB3yKnBfI41ZYEhZd6I/IvLXCmSQANEYwrNdnjMCRsOPZ8/wlvHa2s6inK/e7PKTUnxATcxNSsg6cozgQ==",
       "type": "package",
@@ -103,6 +113,8 @@
         "tools/test.conf"
       ]
     },
+=======
+>>>>>>> Develop
     "BirdHouse_Battle.Model/1.0.0": {
       "type": "project",
       "path": "../BirdHouse_Battle.Model/BirdHouse_Battle.Model.csproj",
@@ -112,28 +124,48 @@
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.6.1": [
       "BirdHouse_Battle.Model >= 1.0.0",
+<<<<<<< HEAD
       "NUnit >= 2.6.4",
       "NUnit.Runners.Net4 >= 2.6.4"
     ]
   },
   "packageFolders": {
     "C:\\Users\\saxel\\.nuget\\packages\\": {},
+=======
+      "NUnit >= 2.6.4"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Thibault\\.nuget\\packages\\": {},
+>>>>>>> Develop
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
       "projectName": "BirdHouse_Battle.UnitTests",
       "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
       "packagesPath": "C:\\Users\\saxel\\.nuget\\packages\\",
       "outputPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
+=======
+      "projectUniqueName": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "projectName": "BirdHouse_Battle.UnitTests",
+      "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\Thibault\\.nuget\\packages\\",
+      "outputPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
+>>>>>>> Develop
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\saxel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\Thibault\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> Develop
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -146,8 +178,13 @@
       "frameworks": {
         "net461": {
           "projectReferences": {
+<<<<<<< HEAD
             "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
               "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
+=======
+            "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
+              "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
+>>>>>>> Develop
             }
           }
         }
@@ -164,10 +201,13 @@
           "NUnit": {
             "target": "Package",
             "version": "[2.6.4, )"
+<<<<<<< HEAD
           },
           "NUnit.Runners.Net4": {
             "target": "Package",
             "version": "[2.6.4, )"
+=======
+>>>>>>> Develop
           }
         }
       }

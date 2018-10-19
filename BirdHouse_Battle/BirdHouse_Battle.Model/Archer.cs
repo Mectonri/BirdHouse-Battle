@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BirdHouse_Battle.Model;
+using NUnit.Framework;
+
 
 namespace BirdHouse_Battle.Model
 {
