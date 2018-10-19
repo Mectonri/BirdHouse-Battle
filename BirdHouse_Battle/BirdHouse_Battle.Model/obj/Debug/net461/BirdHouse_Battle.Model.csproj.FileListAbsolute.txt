@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.dll
 D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.pdb
 D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csprojAssemblyReference.cache
@@ -19,3 +20,13 @@ C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net4
 C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.dll
 C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.pdb
 >>>>>>> Develop
+=======
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.dll
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.pdb
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csprojAssemblyReference.cache
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CoreCompileInputs.cache
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfoInputs.cache
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfo.cs
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.dll
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.pdb
+>>>>>>> Kheta_Remote

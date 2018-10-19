@@ -7,18 +7,16 @@ namespace BirdHouse_Battle.Model
     public class Paladin : Unit
     {
         public Paladin(Team team, Arena arena)
+            : base(team, arena, 5.0, 1.0, 2.0, 12.5, 5, 4, "Order")
         {
-            _team = team;
-            _arena = arena;
-            _isDead = false;
-            _inRange = false;
-            _life = 5.0;
-            _speed = 1.0;
-            _range = 2.0;
-            _unitPrice = 12.5;
-            _strength = 5;
-            _armor = 4;
-            _disposition = "Order";
+        }
+
+        /// <summary>
+        /// Game Loop in Unit
+        /// </summary>
+        public void Update()
+        {
+            throw new ArgumentNullException();
         }
     }
 }

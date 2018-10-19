@@ -10,18 +10,16 @@ namespace BirdHouse_Battle.Model
     public class Archer : Unit
     {
         public Archer(Team team, Arena arena)
+            : base(team, arena, 2.0, 2.0, 5.0, 10.0, 2, 1, "Order")
         {
-            _team = team;
-            _arena = arena;
-            _isDead = false;
-            _inRange = false;
-            _life = 2.0;
-            _speed = 2.0;
-            _range = 5.0;
-            _unitPrice = 10.0;
-            _strength = 2;
-            _armor = 1;
-            _disposition = "Order";
+        }
+
+        /// <summary>
+        /// Game Loop in Unit
+        /// </summary>
+        public void Update()
+        {
+            throw new ArgumentNullException();
         }
     }
 }

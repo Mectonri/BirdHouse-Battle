@@ -13,6 +13,9 @@
     <ProjectReference Include="..\BirdHouse_Battle.Model\BirdHouse_Battle.Model.csproj" />
   </ItemGroup>
 
+<<<<<<< HEAD
  
 
+=======
+>>>>>>> Kheta_Remote
 </Project>

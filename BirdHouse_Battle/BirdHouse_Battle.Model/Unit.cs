@@ -3,27 +3,46 @@ using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
 {
-    public class Unit
+    public abstract class Unit
     {
-        internal Team _team;
-        internal Arena _arena;
+        Team _team;
+        Arena _arena;
         Unit _target;
-        internal double _life;
-        internal double _speed;
-        internal double _range;
-        internal double _unitPrice;
-        internal int _strength;
-        internal int _armor;
         readonly Guid _name = Guid.NewGuid();
-        internal string _disposition;
         Vector _location;
         Vector _direction;
-        internal bool _isDead;
-        internal bool _inRange;
+
+        double _life;
+        double _speed;
+        double _range;
+        double _unitPrice;
+        int _strength;
+        int _armor;
+        string _disposition;
+        bool _isDead;
+        bool _inRange;
+
+        protected Unit(Team team, Arena arena, double life,
+                       double speed, double range, double unitPrice,
+                       int strength, int armor, string disposition)
+        {
+            _team = team;
+            _arena = arena;
+            _life = life;
+            _speed = speed;
+            _range = range;
+            _unitPrice = unitPrice;
+            _strength = strength;
+            _armor = armor;
+            _disposition = disposition;
+            _isDead = false;
+        }
 
         public Team Team { get { return _team; } }
 
         public Arena Arena { get { return _arena; } }
+
+        public Guid Name { get { return _name; } }
 
         public Unit Target
         {
@@ -31,12 +50,18 @@ namespace BirdHouse_Battle.Model
             set { _target = value; }
         }
 
-
-        public double Life
+        public Vector Location
         {
-            get { return _life; }
-            set { _life = value; }
+            get { return _location; }
+            set { _location = value; }
         }
+
+        public Vector Direction
+        {
+            get { return _direction; }
+        }
+
+        public double Life { get { return _life; } }
 
         public double Speed { get { return _speed; } }
 
@@ -48,69 +73,33 @@ namespace BirdHouse_Battle.Model
 
         public int Armor { get { return _armor; } }
 
-        public Guid Name { get { return _name; } }
-
         public string Disposition { get { return _disposition; } }
-
-        public Vector Location
-        {
-            get { return _location; }
-            set { _location = value; }
-        }
-
-        public Vector Direction
-        {
-            get { return _direction; }
-            set { _direction = value; }
-        }
 
         public bool IsDead
         {
             get
             {
-                return Life > 0;
+                return _life <= 0;
             }
-            set { _isDead = value; }
-        }
-
-        public bool InRange
-        {
-            get
-            {
-                return Math.Max(Location.Magnitude, Target.Location.Magnitude) - Math.Min(Location.Magnitude, Target.Location.Magnitude) < Range;
-            }
-            set { _inRange = value; }
-        }
-
-        /// <summary>
-        /// Loose life point(s).
-        /// </summary>
-        /// <param name="damages"></param>
-        /// <returns></returns>
-        public double TakeDamages(double damages)
-        {
-            _life = _life - Math.Max(damages - _armor, 0);
-            return _life;
         }
 
         /// <summary>
         /// Search the nearest enemy.
         /// </summary>
         /// <returns></returns>
-        public Unit SearchTarget()
-        {
-            Unit newTarget = _arena.NearestEnemy(this);
-            return newTarget;
-        }
+        //public void SearchTarget()
+        //{
+        //    Target = Arena.NearestEnemy(this);
+        //    NewDirection();
+        //}
 
         /// <summary>
         /// Get new Direction.
         /// </summary>
         /// <returns></returns>
-        public Vector NewDirection()
+        public void NewDirection()
         {
-            Vector newDirection = _location.Soustract(Target.Location);
-            return newDirection;
+            _direction = Location.Soustract(Target.Location);
         }
 
         /// <summary>
@@ -122,11 +111,26 @@ namespace BirdHouse_Battle.Model
         }
 
         /// <summary>
-        /// Game Loop in Unit
+        /// A corriger
         /// </summary>
-        public void Update()
+        public bool InRange
         {
-            throw new ArgumentNullException();
+            get
+            {
+                Vector newV = Location.Soustract(Target.Location);
+                return newV.Magnitude <= Range;
+            }
+        }
+
+        /// <summary>
+        /// Loose life point(s).
+        /// </summary>
+        /// <param name="damages"></param>
+        /// <returns></returns>
+        public void TakeDamages(double damages)
+        {
+            if (damages < 0) throw new ArgumentException("Couldn't take negative damages.");
+            _life = _life - Math.Max(damages - Armor, 0);
         }
     }
 }
