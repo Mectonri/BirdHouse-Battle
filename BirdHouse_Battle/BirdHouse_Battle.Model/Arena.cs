@@ -117,6 +117,13 @@ namespace BirdHouse_Battle.Model
             {
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {
+                    ennemyUnit = kv2.Value;
+                }
+            }
+                    foreach (KeyValuePair<string, Team> kv in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                {
                     if (distance == 0)
                     {
                         distance = Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2));
