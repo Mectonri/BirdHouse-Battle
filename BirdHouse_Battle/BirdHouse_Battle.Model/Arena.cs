@@ -88,6 +88,7 @@ namespace BirdHouse_Battle.Model
 
 
 
+
         private bool ValidSpawnLocation(Vector vector)
         {
             foreach (KeyValuePair<string, Team> kv in _teams)
