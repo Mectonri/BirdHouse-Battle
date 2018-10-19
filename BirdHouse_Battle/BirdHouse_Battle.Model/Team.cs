@@ -18,7 +18,7 @@ namespace BirdHouse_Battle.Model
         Arena _arena; // Rajputer le contexte des equipes qui est l'arene
         internal Dictionary<Guid, Unit> _units;
 
-        internal Team(Arena Context, string Name, int LimitNbUntit)
+        public Team(Arena Context, string Name, int LimitNbUntit)
         {
             _name = Name;
             _teamNumber = TeamNumber;

@@ -1,30 +1,74 @@
 {
   "version": 3,
   "targets": {
-    ".NETFramework,Version=v4.6.1": {}
+    ".NETFramework,Version=v4.6.1": {
+      "NUnit/2.6.4": {
+        "type": "package",
+        "compile": {
+          "lib/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/nunit.framework.dll": {}
+        }
+      },
+      "BirdHouse_Battle.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "dependencies": {
+          "NUnit": "2.6.4"
+        },
+        "compile": {
+          "bin/placeholder/BirdHouse_Battle.Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BirdHouse_Battle.Model.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "NUnit/2.6.4": {
+      "sha512": "cmSPvaCMRSP0DI19FP1Liw9DyJY3E/vOY1OrVaeJBZpZFWHkmT3fB9ngGWnZX/ftvA7zJEbghEaw3Yd+u4YFAw==",
+      "type": "package",
+      "path": "nunit/2.6.4",
+      "files": [
+        "lib/nunit.framework.dll",
+        "lib/nunit.framework.xml",
+        "license.txt",
+        "nunit.2.6.4.nupkg.sha512",
+        "nunit.nuspec"
+      ]
+    },
+    "BirdHouse_Battle.Model/1.0.0": {
+      "type": "project",
+      "path": "../BirdHouse_Battle.Model/BirdHouse_Battle.Model.csproj",
+      "msbuildProject": "../BirdHouse_Battle.Model/BirdHouse_Battle.Model.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETFramework,Version=v4.6.1": []
+    ".NETFramework,Version=v4.6.1": [
+      "BirdHouse_Battle.Model >= 1.0.0",
+      "NUnit >= 2.6.4"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\aef52\\.nuget\\packages\\": {},
+    "C:\\Users\\Thibault\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "projectUniqueName": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
       "projectName": "BirdHouse_Battle.UnitTests",
-      "projectPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\aef52\\.nuget\\packages\\",
-      "outputPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
+      "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\Thibault\\.nuget\\packages\\",
+      "outputPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\aef52\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Thibault\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -36,7 +80,11 @@
       },
       "frameworks": {
         "net461": {
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
+              "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -46,7 +94,14 @@
       }
     },
     "frameworks": {
-      "net461": {}
+      "net461": {
+        "dependencies": {
+          "NUnit": {
+            "target": "Package",
+            "version": "[2.6.4, )"
+          }
+        }
+      }
     }
   }
 }
