@@ -1,13 +1,5 @@
 {
   "version": 1,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "dgSpecHash": "5APm3eLQLQ/O59RKUOZPiCegOwzk69H3423WhZ73iHTfZA/AjNjlpNi71pfOayq18NfcvLEqWCPSLFAISE12Bw==",
-=======
-  "dgSpecHash": "RQ8+dfnD8riMqhUKJdZ1ZJpnC96IjiDewVsznjajo5V6ilT8ajlb2BSMa9lw9azMcjgI9L3/2zbXdXW5QURSPw==",
->>>>>>> Develop
-=======
-  "dgSpecHash": "bmRf70Tln4aZxzwtOPM3CN4Apszz32sddPOzaWLcmQFHev8PEuIXzyOpr1Q/DvsZ2F615Joc50Okqm16m4WBCQ==",
->>>>>>> Kheta_Remote
+  "dgSpecHash": "yMoGoeQAfNPnjsh0l+XKl4/ikZ0IUGY8/gJUFX2cfumQQ8ECbdVPbrrS3RDj3RJenncmlDAL6CuDNSdvpCqgAA==",
   "success": true
 }
