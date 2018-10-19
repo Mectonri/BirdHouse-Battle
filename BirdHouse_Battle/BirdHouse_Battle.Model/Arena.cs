@@ -88,6 +88,7 @@ namespace BirdHouse_Battle.Model
 
 
 
+
         private bool ValidSpawnLocation(Vector vector)
         {
             foreach (KeyValuePair<string, Team> kv in _teams)
@@ -113,6 +114,13 @@ namespace BirdHouse_Battle.Model
             double distance = 0;
             Unit ennemyUnit = new Unit();
             foreach (KeyValuePair<string, Team> kv in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                {
+                    ennemyUnit = kv2.Value;
+                }
+            }
+                    foreach (KeyValuePair<string, Team> kv in _teams)
             {
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {
