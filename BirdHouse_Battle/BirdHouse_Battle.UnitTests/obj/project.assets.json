@@ -1,30 +1,139 @@
 {
   "version": 3,
   "targets": {
-    ".NETFramework,Version=v4.6.1": {}
+    ".NETFramework,Version=v4.6.1": {
+      "NUnit/2.6.4": {
+        "type": "package",
+        "compile": {
+          "lib/nunit.framework.dll": {}
+        },
+        "runtime": {
+          "lib/nunit.framework.dll": {}
+        }
+      },
+      "NUnit.Runners.Net4/2.6.4": {
+        "type": "package"
+      },
+      "BirdHouse_Battle.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "compile": {
+          "bin/placeholder/BirdHouse_Battle.Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BirdHouse_Battle.Model.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "NUnit/2.6.4": {
+      "sha512": "cmSPvaCMRSP0DI19FP1Liw9DyJY3E/vOY1OrVaeJBZpZFWHkmT3fB9ngGWnZX/ftvA7zJEbghEaw3Yd+u4YFAw==",
+      "type": "package",
+      "path": "nunit/2.6.4",
+      "files": [
+        "lib/nunit.framework.dll",
+        "lib/nunit.framework.xml",
+        "license.txt",
+        "nunit.2.6.4.nupkg.sha512",
+        "nunit.nuspec"
+      ]
+    },
+    "NUnit.Runners.Net4/2.6.4": {
+      "sha512": "cy0yYjB3yKnBfI41ZYEhZd6I/IvLXCmSQANEYwrNdnjMCRsOPZ8/wlvHa2s6inK/e7PKTUnxATcxNSsg6cozgQ==",
+      "type": "package",
+      "path": "nunit.runners.net4/2.6.4",
+      "files": [
+        "license.txt",
+        "nunit.runners.net4.2.6.4.nupkg.sha512",
+        "nunit.runners.net4.nuspec",
+        "tools/agent.conf",
+        "tools/agent.log.conf",
+        "tools/launcher.log.conf",
+        "tools/lib/Images/Tree/Circles/Failure.jpg",
+        "tools/lib/Images/Tree/Circles/Ignored.jpg",
+        "tools/lib/Images/Tree/Circles/Inconclusive.jpg",
+        "tools/lib/Images/Tree/Circles/Skipped.jpg",
+        "tools/lib/Images/Tree/Circles/Success.jpg",
+        "tools/lib/Images/Tree/Classic/Failure.jpg",
+        "tools/lib/Images/Tree/Classic/Ignored.jpg",
+        "tools/lib/Images/Tree/Classic/Inconclusive.jpg",
+        "tools/lib/Images/Tree/Classic/Skipped.jpg",
+        "tools/lib/Images/Tree/Classic/Success.jpg",
+        "tools/lib/Images/Tree/Default/Failure.png",
+        "tools/lib/Images/Tree/Default/Ignored.png",
+        "tools/lib/Images/Tree/Default/Inconclusive.png",
+        "tools/lib/Images/Tree/Default/Skipped.png",
+        "tools/lib/Images/Tree/Default/Success.png",
+        "tools/lib/Images/Tree/Visual%20Studio/Failure.png",
+        "tools/lib/Images/Tree/Visual%20Studio/Ignored.png",
+        "tools/lib/Images/Tree/Visual%20Studio/Inconclusive.png",
+        "tools/lib/Images/Tree/Visual%20Studio/SeriousWarning.png",
+        "tools/lib/Images/Tree/Visual%20Studio/Skipped.png",
+        "tools/lib/Images/Tree/Visual%20Studio/Success.png",
+        "tools/lib/log4net.dll",
+        "tools/lib/nunit-console-runner.dll",
+        "tools/lib/nunit-gui-runner.dll",
+        "tools/lib/nunit.core.dll",
+        "tools/lib/nunit.core.interfaces.dll",
+        "tools/lib/nunit.uiexception.dll",
+        "tools/lib/nunit.uikit.dll",
+        "tools/lib/nunit.util.dll",
+        "tools/nunit-agent-x86.exe",
+        "tools/nunit-agent-x86.exe.config",
+        "tools/nunit-agent.exe",
+        "tools/nunit-agent.exe.config",
+        "tools/nunit-console-x86.exe",
+        "tools/nunit-console-x86.exe.config",
+        "tools/nunit-console.exe",
+        "tools/nunit-console.exe.config",
+        "tools/nunit-editor.exe",
+        "tools/nunit-x86.exe",
+        "tools/nunit-x86.exe.config",
+        "tools/nunit.exe",
+        "tools/nunit.exe.config",
+        "tools/nunit.framework.dll",
+        "tools/pnunit-agent.exe",
+        "tools/pnunit-agent.exe.config",
+        "tools/pnunit-launcher.exe",
+        "tools/pnunit-launcher.exe.config",
+        "tools/pnunit.framework.dll",
+        "tools/pnunit.tests.dll",
+        "tools/runpnunit.bat",
+        "tools/test.conf"
+      ]
+    },
+    "BirdHouse_Battle.Model/1.0.0": {
+      "type": "project",
+      "path": "../BirdHouse_Battle.Model/BirdHouse_Battle.Model.csproj",
+      "msbuildProject": "../BirdHouse_Battle.Model/BirdHouse_Battle.Model.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    ".NETFramework,Version=v4.6.1": []
+    ".NETFramework,Version=v4.6.1": [
+      "BirdHouse_Battle.Model >= 1.0.0",
+      "NUnit >= 2.6.4",
+      "NUnit.Runners.Net4 >= 2.6.4"
+    ]
   },
   "packageFolders": {
-    "C:\\Users\\aef52\\.nuget\\packages\\": {},
+    "C:\\Users\\saxel\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "projectUniqueName": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
       "projectName": "BirdHouse_Battle.UnitTests",
-      "projectPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\aef52\\.nuget\\packages\\",
-      "outputPath": "C:\\wamp64\\www\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
+      "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\saxel\\.nuget\\packages\\",
+      "outputPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\aef52\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\saxel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -36,7 +145,11 @@
       },
       "frameworks": {
         "net461": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
+              "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -46,7 +159,18 @@
       }
     },
     "frameworks": {
-      "net461": {}
+      "net461": {
+        "dependencies": {
+          "NUnit": {
+            "target": "Package",
+            "version": "[2.6.4, )"
+          },
+          "NUnit.Runners.Net4": {
+            "target": "Package",
+            "version": "[2.6.4, )"
+          }
+        }
+      }
     }
   }
 }

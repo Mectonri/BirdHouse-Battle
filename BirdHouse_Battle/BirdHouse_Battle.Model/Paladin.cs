@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BirdHouse_Battle.Model
 {
-    class Paladin : Unit
+    public class Paladin : Unit
     {
         public Paladin(Team team, Arena arena)
         {
