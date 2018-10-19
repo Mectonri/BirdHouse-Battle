@@ -3,14 +3,7 @@
     "Tests": {
       "commandName": "Executable",
       "executablePath": "%USERPROFILE%\\.nuget\\packages\\nunit.runners.net4\\2.6.4\\tools\\nunit.exe",
-<<<<<<< HEAD
-      "commandLineArgs": "ITI.MicroZoo.Tests.dll"
-    }
-  }
-}
-=======
       "commandLineArgs": "BirdHouse_Battle.UnitTests.dll"
     }
   }
 }
->>>>>>> Kheta_Remote

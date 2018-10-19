@@ -1,42 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csprojAssemblyReference.cache
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CoreCompileInputs.cache
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfoInputs.cache
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfo.cs
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.pdb
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\nunit.framework.dll
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.dll
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.pdb
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CopyComplete
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.dll
-D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.pdb
-=======
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csprojAssemblyReference.cache
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CoreCompileInputs.cache
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfoInputs.cache
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfo.cs
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.pdb
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\nunit.framework.dll
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.dll
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.pdb
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CopyComplete
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.dll
-C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.pdb
->>>>>>> Develop
-=======
-C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csprojAssemblyReference.cache
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CoreCompileInputs.cache
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfoInputs.cache
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfo.cs
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.pdb
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\nunit.framework.dll
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.dll
-C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.pdb
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CopyComplete
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.dll
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.pdb
->>>>>>> Kheta_Remote

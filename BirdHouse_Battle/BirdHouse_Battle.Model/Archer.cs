@@ -4,7 +4,6 @@ using System.Text;
 using BirdHouse_Battle.Model;
 using NUnit.Framework;
 
-
 namespace BirdHouse_Battle.Model
 {
     public class Archer : Unit

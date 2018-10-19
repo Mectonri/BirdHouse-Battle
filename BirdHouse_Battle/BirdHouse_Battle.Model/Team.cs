@@ -229,11 +229,11 @@ namespace BirdHouse_Battle.Model
             double result = 0.0;
             foreach (KeyValuePair<Guid, Unit> kv in _units)
             {
-                result = result + kv.Value._unitPrice;
+                result = result + kv.Value.UnitPrice;
                 if (result < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));   
             }
 
-            return _goldAmount = Gold - result; ;
+            return _goldAmount = Gold - result;
         }
 
     }   

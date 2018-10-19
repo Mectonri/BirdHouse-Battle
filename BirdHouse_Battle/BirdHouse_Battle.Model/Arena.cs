@@ -112,15 +112,9 @@ namespace BirdHouse_Battle.Model
             double x = unit.Location.X;
             double y = unit.Location.Y;
             double distance = 0;
-            Unit ennemyUnit = new Unit();
+            Unit ennemyUnit = null;
+            
             foreach (KeyValuePair<string, Team> kv in _teams)
-            {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
-                {
-                    ennemyUnit = kv2.Value;
-                }
-            }
-                    foreach (KeyValuePair<string, Team> kv in _teams)
             {
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {

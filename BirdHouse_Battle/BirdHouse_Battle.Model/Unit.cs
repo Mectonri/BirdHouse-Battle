@@ -8,7 +8,7 @@ namespace BirdHouse_Battle.Model
         Team _team;
         Arena _arena;
         Unit _target;
-        readonly Guid _name = Guid.NewGuid();
+        readonly Guid _name;
         Vector _location;
         Vector _direction;
 
@@ -36,6 +36,7 @@ namespace BirdHouse_Battle.Model
             _armor = armor;
             _disposition = disposition;
             _isDead = false;
+            _name = Guid.NewGuid();
         }
 
         public Team Team { get { return _team; } }
@@ -59,6 +60,7 @@ namespace BirdHouse_Battle.Model
         public Vector Direction
         {
             get { return _direction; }
+            set { _direction = value; }
         }
 
         public double Life { get { return _life; } }
