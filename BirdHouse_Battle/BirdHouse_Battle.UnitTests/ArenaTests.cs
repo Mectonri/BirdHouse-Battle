@@ -49,7 +49,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team firstTeam = arena.CreateTeam("firstTeam");
 
-           //firstTeam.AddArcher(1);
+
         }
 
         [Test]
@@ -59,10 +59,5 @@ namespace BirdHouse_Battle.UnitTests
         }
 
 
-        //[Test]
-        //public void Unit_cant_collide()
-        //{
-
-        //}
     }
 }
