@@ -41,5 +41,28 @@ namespace BirdHouse_Battle.UnitTests
             Assert.Throws<ArgumentException>(() => arena.RemoveTeam("firstTeam"));
 
         }
+
+
+        [Test]
+        public void Spawn_unit()
+        {
+            Arena arena = new Arena();
+            Team firstTeam = arena.CreateTeam("firstTeam");
+
+           //firstTeam.AddArcher(1);
+        }
+
+        [Test]
+        public void Aquire_a_target()
+        {
+
+        }
+
+
+        //[Test]
+        //public void Unit_cant_collide()
+        //{
+
+        //}
     }
 }

@@ -57,10 +57,52 @@ namespace BirdHouse_Battle.Model
             return doesCollide;
         }
 
+
+        //basic version i'll return on it later 
         public Unit SpawnUnit(Unit unit)
         {
-            throw new ArgumentNullException();
+            bool IsSpawnable = false;
+            Vector vector;
+            double x;
+            double y;
+            Random random = new Random();
+
+            //For later 
+            //random.NextDouble() * (maximum - minimum) + minimum;
+
+            do
+            {
+                x = random.NextDouble() * (_width);
+                y = random.NextDouble() * (_height);
+                vector = new Vector(x, y);
+                if (ValidSpawnLocation(vector) == true) {
+                    IsSpawnable = true;
+                }
+                
+            } while (IsSpawnable == false);
+
+            unit.Direction = vector;
+
+            return unit;
         }
+
+
+
+        private bool ValidSpawnLocation(Vector vector)
+        {
+            foreach (KeyValuePair<string, Team> kv in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                {
+                    if(kv2.Value.Location.X==vector.X && kv2.Value.Location.Y == vector.Y)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
 
 
 
@@ -92,10 +134,6 @@ namespace BirdHouse_Battle.Model
             }
             return ennemyUnit;
         }
-
-
-
-
 
 
 
