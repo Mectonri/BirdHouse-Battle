@@ -81,7 +81,7 @@ namespace BirdHouse_Battle.Model
                 
             } while (IsSpawnable == false);
 
-            unit.Direction = vector;
+            unit.Location = vector;
 
             return unit;
         }
