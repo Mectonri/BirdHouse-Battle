@@ -9,3 +9,4 @@ C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\D
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CopyComplete
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.dll
 C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.pdb
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.pdb
