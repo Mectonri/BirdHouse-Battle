@@ -81,12 +81,27 @@ namespace BirdHouse_Battle.Model
                 
             } while (IsSpawnable == false);
 
-            unit.Direction = vector;
+            unit.Location = vector;
 
             return unit;
         }
 
-
+        public Unit SpawnUnit(Unit unit, double x, double y)
+        {
+            bool isSpawnable;
+            Vector vector = new Vector(x, y);
+            isSpawnable = ValidSpawnLocation(vector);
+            if (isSpawnable == true)
+            {
+                unit.Location = vector;
+                return unit;
+            }
+            else
+            {
+                throw new ArgumentException("The coordinate are not valid");
+            }
+            
+        }
 
 
         private bool ValidSpawnLocation(Vector vector)
