@@ -128,10 +128,10 @@ namespace BirdHouse_Battle.Model
             double y = unit.Location.Y;
             double distance = 0;
             Unit ennemyUnit = null;
-            Team unitTeam = unit.Team;
+          
             foreach (KeyValuePair<string, Team> team in _teams)
             {
-                if (team.Value != unitTeam ) {
+                if (team.Value != unit.Team) {
                     foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
                     {
                         if (distance == 0)
