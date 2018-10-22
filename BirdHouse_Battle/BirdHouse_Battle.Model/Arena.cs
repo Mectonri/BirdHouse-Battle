@@ -98,7 +98,7 @@ namespace BirdHouse_Battle.Model
             }
             else
             {
-                throw new ArgumentException("The coordinate are not valid");
+                throw new ArgumentException("The given coordinates are not valid");
             }
             
         }
@@ -129,21 +129,21 @@ namespace BirdHouse_Battle.Model
             double distance = 0;
             Unit ennemyUnit = null;
             
-            foreach (KeyValuePair<string, Team> kv in _teams)
+            foreach (KeyValuePair<string, Team> team in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
                 {
                     if (distance == 0)
                     {
-                        distance = Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2));
-                        ennemyUnit = kv2.Value;
+                        distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
+                        ennemyUnit = units.Value;
                     }
                     else
                     {
-                        if (distance > Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2)))
+                        if (distance > Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2)))
                         {
-                            distance = Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2));
-                            ennemyUnit = kv2.Value;
+                            distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
+                            ennemyUnit = units.Value;
                         }
 
                     }
