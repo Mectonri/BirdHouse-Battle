@@ -77,6 +77,7 @@ namespace BirdHouse_Battle.UnitTests
 
             Unit[] tab2 = secondTeam.Find();
             Unit secondUnit = secondTeam.FindUnitByName(tab2[0].Name);
+            
 
             secondUnit = arena.SpawnUnit(secondUnit);
 
@@ -84,8 +85,20 @@ namespace BirdHouse_Battle.UnitTests
 
             Assert.That(testUnit, Is.EqualTo(secondUnit));
 
+
+            secondTeam.AddGobelin(1);
+            tab2 = secondTeam.Find();
+            Unit thirdUnit = secondTeam.FindUnitByName(tab2[1].Name);
+
+            Vector vector1 = new Vector(0, 0);
+            Vector vector2 = new Vector(0, 1);
+            Vector vector3 = new Vector(0, 2);
+            firstUnit.Location = vector1;
+            secondUnit.Location = vector2;
+            thirdUnit.Location = vector3;
+
+            Unit testUnit2 = arena.NearestEnemy(firstUnit);
+            Assert.That(testUnit2, Is.EqualTo(secondUnit));
         }
-
-
     }
 }
