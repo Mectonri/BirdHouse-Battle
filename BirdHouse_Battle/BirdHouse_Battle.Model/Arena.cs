@@ -128,31 +128,37 @@ namespace BirdHouse_Battle.Model
             double y = unit.Location.Y;
             double distance = 0;
             Unit ennemyUnit = null;
-            
+            Team unitTeam = unit.Team;
             foreach (KeyValuePair<string, Team> team in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
-                {
-                    if (distance == 0)
+                if (team.Value != unitTeam ) {
+                    foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
                     {
-                        distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
-                        ennemyUnit = units.Value;
-                    }
-                    else
-                    {
-                        if (distance > Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2)))
+                        if (distance == 0)
                         {
                             distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
                             ennemyUnit = units.Value;
                         }
+                        else
+                        {
+                            if (distance > Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2)))
+                            {
+                                distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
+                                ennemyUnit = units.Value;
+                            }
 
+                        }
                     }
                 }
             }
             return ennemyUnit;
         }
 
-
+        public Unit GiveDamage (Unit unit, double damage)
+        {
+            unit.TakeDamages(damage);
+            return unit;
+        }
 
 
         public void Update()
