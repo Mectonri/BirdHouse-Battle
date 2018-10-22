@@ -7,7 +7,7 @@ namespace BirdHouse_Battle.Model
     public class Gobelin : Unit
     {
         public Gobelin(Team team, Arena arena)
-            : base(team, arena, 1.0, 4.0, 1.0, 5.0, 3, 1, "Chaos")
+            : base(team, arena, 1.0, 1.9, 1.0, 5.0, 3, 1, "Chaos")
         {
         }
 

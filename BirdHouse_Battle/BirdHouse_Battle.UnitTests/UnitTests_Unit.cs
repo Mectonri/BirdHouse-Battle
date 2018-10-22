@@ -10,7 +10,33 @@ namespace BirdHouse_Battle.UnitTests
         [Test]
         public void Nearest_Enemy()
         {
-            throw new ArgumentNullException();
+            Arena arena = new Arena();
+            Team red = arena.CreateTeam("Red");
+            Team blue = arena.CreateTeam("Blue");
+            Team green = arena.CreateTeam("Green");
+
+            red.AddArcher(1);
+            blue.AddGobelin(2);
+            green.AddPaladin(1);
+
+            Unit[] t_red = red.Find();
+            Unit[] t_blue = blue.Find();
+            Unit[] t_green = green.Find();
+
+            t_red[0] = arena.SpawnUnit(t_red[0]/*, 0, 0*/);
+            t_blue[0] = arena.SpawnUnit(t_blue[0]/*, 5, 5*/);
+            t_blue[1] = arena.SpawnUnit(t_blue[1]/*, 7, 7*/);
+            t_green[0] = arena.SpawnUnit(t_green[0]/*, 11, 11*/);
+
+            t_red[0].SearchTarget();
+            t_blue[0].SearchTarget();
+            t_blue[1].SearchTarget();
+            t_green[0].SearchTarget();
+
+            Assert.That(t_red[0].Target, Is.EqualTo(t_blue[0]));
+            Assert.That(t_blue[0].Target, Is.EqualTo(t_red[0]));
+            Assert.That(t_blue[1].Target, Is.EqualTo(t_green[0]));
+            Assert.That(t_green[0].Target, Is.EqualTo(t_blue[1]));
         }
 
         [Test]

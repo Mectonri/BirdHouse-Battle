@@ -11,6 +11,7 @@ namespace BirdHouse_Battle.Model
         readonly Guid _name;
         Vector _location;
         Vector _direction;
+        Vector _mouvement;
 
         double _life;
         double _speed;
@@ -63,8 +64,14 @@ namespace BirdHouse_Battle.Model
             set { _direction = value; }
         }
 
-        public double Life { get { return _life; } }
+        public Vector Mouvement
+        {
+            get { return _mouvement; }
+            set { _mouvement = value; }
+        }
 
+        public double Life { get { return _life; } }
+        
         public double Speed { get { return _speed; } }
 
         public double Range { get { return _range; } }
@@ -88,12 +95,12 @@ namespace BirdHouse_Battle.Model
         /// <summary>
         /// Search the nearest enemy.
         /// </summary>
-        /// <returns></returns>
-        //public void SearchTarget()
-        //{
-        //    Target = Arena.NearestEnemy(this);
-        //    NewDirection();
-        //}
+        public void SearchTarget()
+        {
+            Target = Arena.NearestEnemy(this);
+            if (Target == null) throw new ArgumentNullException("A location couldn't be Null");
+            NewDirection();
+        }
 
         /// <summary>
         /// Get new Direction.
@@ -102,6 +109,7 @@ namespace BirdHouse_Battle.Model
         public void NewDirection()
         {
             _direction = Location.Soustract(Target.Location);
+            _mouvement = _direction.Move(Speed);
         }
 
         /// <summary>
