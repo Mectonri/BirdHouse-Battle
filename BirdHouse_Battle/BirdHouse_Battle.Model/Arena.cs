@@ -81,12 +81,27 @@ namespace BirdHouse_Battle.Model
                 
             } while (IsSpawnable == false);
 
-            unit.Direction = vector;
+            unit.Location = vector;
 
             return unit;
         }
 
-
+        public Unit SpawnUnit(Unit unit, double x, double y)
+        {
+            bool isSpawnable;
+            Vector vector = new Vector(x, y);
+            isSpawnable = ValidSpawnLocation(vector);
+            if (isSpawnable == true)
+            {
+                unit.Location = vector;
+                return unit;
+            }
+            else
+            {
+                throw new ArgumentException("The given coordinates are not valid");
+            }
+            
+        }
 
 
         private bool ValidSpawnLocation(Vector vector)
@@ -113,31 +128,37 @@ namespace BirdHouse_Battle.Model
             double y = unit.Location.Y;
             double distance = 0;
             Unit ennemyUnit = null;
-            
-            foreach (KeyValuePair<string, Team> kv in _teams)
+          
+            foreach (KeyValuePair<string, Team> team in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
-                {
-                    if (distance == 0)
+                if (team.Value != unit.Team) {
+                    foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
                     {
-                        distance = Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2));
-                        ennemyUnit = kv2.Value;
-                    }
-                    else
-                    {
-                        if (distance > Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2)))
+                        if (distance == 0)
                         {
-                            distance = Math.Sqrt(Math.Pow(x - kv2.Value.Location.X, 2) + Math.Pow(y - kv2.Value.Location.Y, 2));
-                            ennemyUnit = kv2.Value;
+                            distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
+                            ennemyUnit = units.Value;
                         }
+                        else
+                        {
+                            if (distance > Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2)))
+                            {
+                                distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
+                                ennemyUnit = units.Value;
+                            }
 
+                        }
                     }
                 }
             }
             return ennemyUnit;
         }
 
-
+        public Unit GiveDamage (Unit unit, double damage)
+        {
+            unit.TakeDamages(damage);
+            return unit;
+        }
 
 
         public void Update()
