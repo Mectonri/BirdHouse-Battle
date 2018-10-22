@@ -59,5 +59,25 @@ namespace BirdHouse_Battle.Model
         {
             return new Vector(Math.Min(max, Math.Max(min, _x)), Math.Min(max, Math.Max(min, _y)));
         }
+
+        public Vector Move(double Speed)
+        {
+            double x = X;
+            double y = Y;
+            double Rx = X / 100;
+            double Ry = Y / 100;
+
+            do
+            {
+                x = x - Rx;
+                y = y - Ry;
+            }
+            while (x + y > 2);
+
+            x = Math.Round(x * Speed, 2);
+            y = Math.Round(y * Speed, 2);
+
+            return new Vector(x, y);
+        }
     }
 }
