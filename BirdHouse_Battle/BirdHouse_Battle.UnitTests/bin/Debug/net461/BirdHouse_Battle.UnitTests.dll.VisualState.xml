@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ShowCheckBoxes="false">
   <TopNode>[0-1038]BirdHouse_Battle</TopNode>
-<<<<<<< HEAD
   <SelectedNode>[0-1037]C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
     <Node UniqueName="[0-1037]C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" Expanded="true" />
-=======
-  <SelectedNode>[0-1002]BirdHouse_Battle.UnitTests.ArenaTests.remove_team</SelectedNode>
-  <ExcludeCategories>false</ExcludeCategories>
-  <Nodes>
-    <Node UniqueName="[0-1037]C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" Expanded="true" />
->>>>>>> Develop
     <Node UniqueName="[0-1038]BirdHouse_Battle" Expanded="true" />
     <Node UniqueName="[0-1039]BirdHouse_Battle.UnitTests" Expanded="true" />
     <Node UniqueName="[0-1000]BirdHouse_Battle.UnitTests.ArenaTests" Expanded="true" />
