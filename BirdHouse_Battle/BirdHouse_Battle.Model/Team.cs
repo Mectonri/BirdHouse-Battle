@@ -27,15 +27,17 @@ namespace BirdHouse_Battle.Model
         int _pCount; // le nombre total de paladin dans une equipe
         int _gCount; // le nombre total de Gobelin dans une equipe.
 
-
+        
         double _goldAmount;
         readonly int _limitNbUnit;
         readonly Guid _unitName;
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
+        internal Dictionary<Guid, Unit> _deadUnits; 
         internal Dictionary<Guid, Unit> _units;
 
         public Team(Arena Context, string Name, int LimitNbUntit)
         {
+            bool IsWiped = false;
             _aToAdd = AToAdd;
             _aToAdd = GToAdd;
             _pToAdd = PToAdd;
@@ -53,6 +55,7 @@ namespace BirdHouse_Battle.Model
             _limitNbUnit = LimitNbUntit;
             _unitName = UnitName;
             _units = new Dictionary<Guid, Unit>();
+            _deadUnits = new Dictionary<Guid, Unit>();
         }
 
         public string Name
@@ -201,7 +204,7 @@ namespace BirdHouse_Battle.Model
 
 
         /// <summary>
-        ///Removes a unit from a team and change the UnitCount
+        ///Removes a unit from a team and decrement the UnitCount
         /// </summary>
         /// <param name="unit"></param>
         public void RemoveUnit(Unit u)
@@ -223,6 +226,11 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        /// <summary>
+        /// Calculate the amount of gold left. Can only be superieo or equals to 0
+        /// </summary>
+        /// <param name="Gold"></param>
+        /// <returns></returns>
         public double GoldCalculation( double Gold)
         {
             
@@ -232,13 +240,31 @@ namespace BirdHouse_Battle.Model
                 result = result + kv.Value.UnitPrice;
                 if (result < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));   
             }
-
             return _goldAmount = Gold - result;
         }
 
-    }   
+        /// <summary>
+        /// true if all units in the team died
+        /// </summary>
+        public bool IsWiped
+        {
+            get
+            {
+                if ( UnitCount == 0 || _units.Count == 0 ) return true;
+                return false;
+            }
+        }
 
-
+        public void Update()
+        {
+            // add dead units from _units to _deadUnits
+            foreach (Unit unit in _units.Values)
+            {
+                if (unit.IsDead) _deadUnits.Add(unit.Name, unit);
+            }
+            foreach (KeyValuePair<Guid, Unit> i in _deadUnits) RemoveUnit(i.Value);
+        }
+    }
 }
 
     
