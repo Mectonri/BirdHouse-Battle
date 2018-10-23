@@ -25,7 +25,9 @@ namespace BirdHouse_Battle.Model
                 else
                 {
                     Mouvement = Direction.Move(Speed);
-                    Location = Location.Add(Mouvement);
+                    Vector NewLocation = Location.Add(Mouvement);
+
+                    if (!Arena.Collision(NewLocation)) Location = NewLocation;
                 }
                 SearchTarget();
             }
