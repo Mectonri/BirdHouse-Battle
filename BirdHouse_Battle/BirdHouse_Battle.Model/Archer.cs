@@ -18,7 +18,21 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public void Update()
         {
-            throw new ArgumentNullException();
+            if (!IsDead)
+            {
+                if (InRange)
+                {
+                    Arena.GiveDamage(Target, Strength);
+                }
+                else
+                {
+                    Mouvement = Direction.Move(Speed);
+                    Vector NewLocation = Location.Add(Mouvement);
+
+                    if (!Arena.Collision(NewLocation)) Location = NewLocation;
+                }
+                SearchTarget();
+            }
         }
     }
 }
