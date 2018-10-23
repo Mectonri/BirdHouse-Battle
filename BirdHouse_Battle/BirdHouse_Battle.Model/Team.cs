@@ -27,17 +27,18 @@ namespace BirdHouse_Battle.Model
         int _pCount; // le nombre total de paladin dans une equipe
         int _gCount; // le nombre total de Gobelin dans une equipe.
 
+        bool _isWiped;
         
         double _goldAmount;
-        readonly int _limitNbUnit;
+        readonly int _limitNbUnit; // unit limit by team
         readonly Guid _unitName;
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
         internal Dictionary<Guid, Unit> _deadUnits; 
         internal Dictionary<Guid, Unit> _units;
 
-        public Team(Arena Context, string Name, int LimitNbUntit)
+        public Team ( Arena Context, string Name, int LimitNbUntit )
         {
-            bool IsWiped = false;
+            _isWiped = false;
             _aToAdd = AToAdd;
             _aToAdd = GToAdd;
             _pToAdd = PToAdd;
@@ -251,7 +252,7 @@ namespace BirdHouse_Battle.Model
             get
             {
                 if ( UnitCount == 0 || _units.Count == 0 ) return true;
-                return false;
+                return _isWiped;
             }
         }
 
@@ -263,6 +264,7 @@ namespace BirdHouse_Battle.Model
                 if (unit.IsDead) _deadUnits.Add(unit.Name, unit);
             }
             foreach (KeyValuePair<Guid, Unit> i in _deadUnits) RemoveUnit(i.Value);
+            Update();
         }
     }
 }

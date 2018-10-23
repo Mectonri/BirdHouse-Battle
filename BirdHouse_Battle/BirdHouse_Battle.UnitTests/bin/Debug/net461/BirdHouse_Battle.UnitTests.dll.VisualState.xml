@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ShowCheckBoxes="false">
+  <TopNode>[0-1039]BirdHouse_Battle</TopNode>
+  <SelectedNode>[0-1013]BirdHouse_Battle.UnitTests.TeamTests.team_is_wiped_when_there_is_no_unit_left</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1038]D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1039]BirdHouse_Battle" Expanded="true" />
+    <Node UniqueName="[0-1040]BirdHouse_Battle.UnitTests" Expanded="true" />
+    <Node UniqueName="[0-1000]BirdHouse_Battle.UnitTests.ArenaTests" Expanded="true" />
+    <Node UniqueName="[0-1005]BirdHouse_Battle.UnitTests.TeamTests" Expanded="true" />
+    <Node UniqueName="[0-1014]BirdHouse_Battle.UnitTests.UnitTests_Archer" Expanded="true" />
+    <Node UniqueName="[0-1019]BirdHouse_Battle.UnitTests.UnitTests_Gobelin" Expanded="true" />
+    <Node UniqueName="[0-1024]BirdHouse_Battle.UnitTests.UnitTests_Paladin" Expanded="true" />
+    <Node UniqueName="[0-1029]BirdHouse_Battle.UnitTests.UnitTests_Unit" Expanded="true" />
+    <Node UniqueName="[0-1032]BirdHouse_Battle.UnitTests.UnitTests_Vector" Expanded="true" />
+  </Nodes>
+</VisualState>
