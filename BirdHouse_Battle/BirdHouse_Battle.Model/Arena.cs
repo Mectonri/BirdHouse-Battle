@@ -57,6 +57,19 @@ namespace BirdHouse_Battle.Model
             return doesCollide;
         }
 
+        public bool Collision(Vector vector)
+        {
+            bool doesCollide = false;
+            foreach (KeyValuePair<string, Team> kv in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                {
+                    if (vector.X == kv2.Value.Location.X && vector.Y == kv2.Value.Location.Y) doesCollide = true;
+                }
+            }
+            return doesCollide;
+        }
+
 
         //basic version i'll return on it later 
         public Unit SpawnUnit(Unit unit)
@@ -98,7 +111,7 @@ namespace BirdHouse_Battle.Model
             }
             else
             {
-                throw new ArgumentException("The given coordinates are not valid");
+                throw new ArgumentException("The given coordinates are not valid, either they are equal to {0,0}, a unit is already on those coordonates or the given coordonates are outside the board");
             }
             
         }
@@ -110,7 +123,7 @@ namespace BirdHouse_Battle.Model
             {
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {
-                    if(kv2.Value.Location.X==vector.X && kv2.Value.Location.Y == vector.Y)
+                    if(kv2.Value.Location.X==vector.X && kv2.Value.Location.Y == vector.Y || vector.X==0 && vector.Y==0 || vector.X >_width || vector.Y>_height)
                     {
                         return false;
                     }
@@ -118,6 +131,7 @@ namespace BirdHouse_Battle.Model
             }
             return true;
         }
+
 
 
 
