@@ -212,8 +212,9 @@ namespace BirdHouse_Battle.Model
 
             if (_units.TryGetValue(u.Name, out u))
             {
+                u.DieNullContext();
                 _units.Remove(u.Name);
-               string s = u.GetType().ToString();
+                string s = u.GetType().ToString();
                 if (s == "BirdHouse_Battle.Model.Archer")
                 {
                     _aCount--;
@@ -244,7 +245,7 @@ namespace BirdHouse_Battle.Model
         }
 
         /// <summary>
-        /// true if all units in the team died
+        /// True if all units in the team died
         /// </summary>
         public bool IsWiped
         {
@@ -254,19 +255,19 @@ namespace BirdHouse_Battle.Model
                 return _isWiped;
             }
         }
-
+        
         public void Update()
         {
-            // add dead units from _units to _deadUnits
+            //update units and add dead units in deadunit dic 
             foreach (Unit unit in _units.Values)
             {
-                if (unit.IsDead) _deadUnits.Add(unit.Name, unit);
+                //unit.Update();
+               // if (unit.IsDead()) _deadUnits.Add(unit.Name, unit);
+            }//remove dead units only if they still exist
+            foreach (KeyValuePair<Guid, Unit> i in _deadUnits)
+            {
+                if( FindUnitByName(i.Key) != null ) RemoveUnit( i.Value );
             }
-            foreach (KeyValuePair<Guid, Unit> i in _deadUnits) RemoveUnit(i.Value);
-            Update();
         }
     }
 }
-
-    
-      
