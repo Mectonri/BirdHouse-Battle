@@ -23,10 +23,10 @@ namespace BirdHouse_Battle.UnitTests
             Unit[] t_blue = blue.Find();
             Unit[] t_green = green.Find();
 
-            t_red[0] = arena.SpawnUnit(t_red[0]/*, 0, 1*/);
-            t_blue[0] = arena.SpawnUnit(t_blue[0]/*, 5, 5*/);
-            t_blue[1] = arena.SpawnUnit(t_blue[1]/*, 7, 7*/);
-            t_green[0] = arena.SpawnUnit(t_green[0]/*, 11, 11*/);
+            t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
+            t_blue[0] = arena.SpawnUnit(t_blue[0], 5, 5);
+            t_blue[1] = arena.SpawnUnit(t_blue[1], 7, 7);
+            t_green[0] = arena.SpawnUnit(t_green[0], 11, 11);
 
             t_red[0].SearchTarget();
             t_blue[0].SearchTarget();
