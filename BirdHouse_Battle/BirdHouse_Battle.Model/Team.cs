@@ -261,8 +261,8 @@ namespace BirdHouse_Battle.Model
             //update units and add dead units in deadunit dic 
             foreach (Unit unit in _units.Values)
             {
-                //unit.Update();
-               // if (unit.IsDead()) _deadUnits.Add(unit.Name, unit);
+                unit.Update();
+                if (unit.IsDead()) _deadUnits.Add(unit.Name, unit);
             }//remove dead units only if they still exist
             foreach (KeyValuePair<Guid, Unit> i in _deadUnits)
             {
