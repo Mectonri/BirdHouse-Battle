@@ -57,7 +57,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.myget.org/F/intechinfo-preview/api/v3/index.json": {}
       },
       "frameworks": {
         "net461": {

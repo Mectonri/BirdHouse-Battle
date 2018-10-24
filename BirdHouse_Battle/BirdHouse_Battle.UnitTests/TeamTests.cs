@@ -12,12 +12,12 @@ namespace BirdHouse_Battle.UnitTests
         public void add_an_archer()
         {
             Arena arena = new Arena();
-            Team t = arena.CreateTeam("RED");
+            Team t1 = arena.CreateTeam("RED");
 
-            t.AddArcher(1);
+            t1.AddArcher(1);
 
-            Unit[] tab = t.Find();
-            Unit u = t.FindUnitByName(tab[0].Name);
+            Unit[] tab = t1.Find();
+            Unit u = t1.FindUnitByName(tab[0].Name);
 
             Assert.That(u, Is.SameAs(tab[0]));
         }
@@ -30,12 +30,12 @@ namespace BirdHouse_Battle.UnitTests
         {
 
             Arena arena = new Arena();
-            Team t = arena.CreateTeam("RED");
+            Team t1 = arena.CreateTeam("RED");
 
-            t.AddGobelin(1);
+            t1.AddGobelin(1);
 
-            Unit[] tab = t.Find();
-            Unit u = t.FindUnitByName(tab[0].Name);
+            Unit[] tab = t1.Find();
+            Unit u = t1.FindUnitByName(tab[0].Name);
 
             Assert.That(u, Is.SameAs(tab[0]));
         }

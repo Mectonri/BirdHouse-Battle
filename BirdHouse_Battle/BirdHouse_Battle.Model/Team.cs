@@ -5,16 +5,16 @@ namespace BirdHouse_Battle.Model
 {
     public class Team
     {
-
-
         /// <summary>
         /// Archer is a unit type same as Paladin and Goblin 
         /// </summary>
 
+
+            // IS TYPECOUNT REALLY NESSESAIRY ?
         //Team number is associated with a color, so creating a team take the color as argument.
         //Couleur de Team à rajouter
         readonly string _name;
-        readonly int _teamNumber;
+        readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
         int _typeCount; // les differents type d'unite dans une equipes
 
@@ -198,8 +198,7 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public Unit FindUnitByName(Guid name)
         {
-            Unit u;
-            if (!_units.TryGetValue(name, out u)) throw new ArgumentException("There is no Unit with this name", nameof(name));
+            if (!_units.TryGetValue(name, out Unit u)) throw new ArgumentException("There is no Unit with this name", nameof(name));
             return u;
         }
 
