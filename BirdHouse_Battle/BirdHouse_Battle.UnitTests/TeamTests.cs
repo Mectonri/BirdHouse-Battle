@@ -1,6 +1,5 @@
 ﻿using NUnit.Framework;
 using BirdHouse_Battle.Model;
-using System;
 
 namespace BirdHouse_Battle.UnitTests
 {
@@ -13,12 +12,12 @@ namespace BirdHouse_Battle.UnitTests
         public void add_an_archer()
         {
             Arena arena = new Arena();
-            Team t = arena.CreateTeam("RED");
+            Team t1 = arena.CreateTeam("RED");
 
-            t.AddArcher(1);
+            t1.AddArcher(1);
 
-            Unit[] tab = t.Find();
-            Unit u = t.FindUnitByName(tab[0].Name);
+            Unit[] tab = t1.Find();
+            Unit u = t1.FindUnitByName(tab[0].Name);
 
             Assert.That(u, Is.SameAs(tab[0]));
         }
@@ -31,12 +30,12 @@ namespace BirdHouse_Battle.UnitTests
         {
 
             Arena arena = new Arena();
-            Team t = arena.CreateTeam("RED");
+            Team t1 = arena.CreateTeam("RED");
 
-            t.AddGobelin(1);
+            t1.AddGobelin(1);
 
-            Unit[] tab = t.Find();
-            Unit u = t.FindUnitByName(tab[0].Name);
+            Unit[] tab = t1.Find();
+            Unit u = t1.FindUnitByName(tab[0].Name);
 
             Assert.That(u, Is.SameAs(tab[0]));
         }
@@ -117,6 +116,28 @@ namespace BirdHouse_Battle.UnitTests
 
             Assert.That(r1, Is.EqualTo(0.0));
             Assert.That(r2, Is.EqualTo(25.0));
+        }
+
+        [Test]
+        public void team_is_wiped_when_there_is_no_unit_left()
+        {
+            Arena a = new Arena();
+            Team t = a.CreateTeam("RED");
+            Team t2 = a.CreateTeam("BLUE");
+
+            t.AddArcher(0);
+            t.AddGobelin(1);
+            t2.AddArcher(1);
+            Unit[] tab = t.Find();
+            Unit u = t.FindUnitByName(tab[0].Name);
+            t.RemoveUnit(u);
+
+            Assert.That(t.UnitCount, Is.EqualTo(0));
+            Assert.That(t.IsWiped, Is.True);
+            Assert.That(t2.UnitCount, Is.EqualTo(t2.Acount));
+            Assert.That(t2.UnitCount, Is.EqualTo(1));
+            Assert.That(t2.IsWiped, Is.False);
+
         }
     }
 }

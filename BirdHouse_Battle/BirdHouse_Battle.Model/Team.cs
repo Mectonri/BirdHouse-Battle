@@ -5,16 +5,16 @@ namespace BirdHouse_Battle.Model
 {
     public class Team
     {
-
-
         /// <summary>
         /// Archer is a unit type same as Paladin and Goblin 
         /// </summary>
 
+
+            // IS TYPECOUNT REALLY NESSESAIRY ?
         //Team number is associated with a color, so creating a team take the color as argument.
         //Couleur de Team à rajouter
         readonly string _name;
-        readonly int _teamNumber;
+        readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
         int _typeCount; // les differents type d'unite dans une equipes
 
@@ -27,15 +27,18 @@ namespace BirdHouse_Battle.Model
         int _pCount; // le nombre total de paladin dans une equipe
         int _gCount; // le nombre total de Gobelin dans une equipe.
 
-
+        bool _isWiped;
+        
         double _goldAmount;
-        readonly int _limitNbUnit;
+        readonly int _limitNbUnit; // unit limit by team
         readonly Guid _unitName;
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
+        internal Dictionary<Guid, Unit> _deadUnits; 
         internal Dictionary<Guid, Unit> _units;
 
-        public Team(Arena Context, string Name, int LimitNbUntit)
+        public Team ( Arena Context, string Name, int LimitNbUntit )
         {
+            _isWiped = false;
             _aToAdd = AToAdd;
             _aToAdd = GToAdd;
             _pToAdd = PToAdd;
@@ -53,6 +56,7 @@ namespace BirdHouse_Battle.Model
             _limitNbUnit = LimitNbUntit;
             _unitName = UnitName;
             _units = new Dictionary<Guid, Unit>();
+            _deadUnits = new Dictionary<Guid, Unit>();
         }
 
         public string Name
@@ -194,14 +198,13 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public Unit FindUnitByName(Guid name)
         {
-            Unit u;
-            if (!_units.TryGetValue(name, out u)) throw new ArgumentException("There is no Unit with this name", nameof(name));
+            if (!_units.TryGetValue(name, out Unit u)) throw new ArgumentException("There is no Unit with this name", nameof(name));
             return u;
         }
 
 
         /// <summary>
-        ///Removes a unit from a team and change the UnitCount
+        ///Removes a unit from a team and decrement the UnitCount
         /// </summary>
         /// <param name="unit"></param>
         public void RemoveUnit(Unit u)
@@ -223,6 +226,11 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        /// <summary>
+        /// Calculate the amount of gold left. Can only be superieo or equals to 0
+        /// </summary>
+        /// <param name="Gold"></param>
+        /// <returns></returns>
         public double GoldCalculation( double Gold)
         {
             
@@ -232,13 +240,32 @@ namespace BirdHouse_Battle.Model
                 result = result + kv.Value.UnitPrice;
                 if (result < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));   
             }
-
             return _goldAmount = Gold - result;
         }
 
-    }   
+        /// <summary>
+        /// true if all units in the team died
+        /// </summary>
+        public bool IsWiped
+        {
+            get
+            {
+                if ( UnitCount == 0 || _units.Count == 0 ) return true;
+                return _isWiped;
+            }
+        }
 
-
+        public void Update()
+        {
+            // add dead units from _units to _deadUnits
+            foreach (Unit unit in _units.Values)
+            {
+                if (unit.IsDead) _deadUnits.Add(unit.Name, unit);
+            }
+            foreach (KeyValuePair<Guid, Unit> i in _deadUnits) RemoveUnit(i.Value);
+            Update();
+        }
+    }
 }
 
     

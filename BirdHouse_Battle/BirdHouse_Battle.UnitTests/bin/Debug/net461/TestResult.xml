@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
+<<<<<<< HEAD
 <test-results name="C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" total="1" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2018-10-23" time="11:04:07">
   <environment nunit-version="2.6.4.14350" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461" machine-name="DESKTOP-7Q13PTV" user="Thibault" user-domain="DESKTOP-7Q13PTV" />
   <culture-info current-culture="fr-FR" current-uiculture="fr-FR" />
@@ -15,6 +16,68 @@
                     <failure>
                       <message><![CDATA[  Expected: <BirdHouse_Battle.Model.Gobelin>
   But was:  <BirdHouse_Battle.Model.Paladin>
+=======
+<test-results name="D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" total="31" errors="0" failures="1" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2018-10-23" time="11:09:27">
+  <environment nunit-version="2.6.4.14350" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461" machine-name="LEGION-OF-LEXA" user="saxel" user-domain="LEGION-OF-LEXA" />
+  <culture-info current-culture="fr-FR" current-uiculture="fr-FR" />
+  <test-suite type="Assembly" name="D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" executed="True" result="Failure" success="False" time="0.349" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="BirdHouse_Battle" executed="True" result="Failure" success="False" time="0.338" asserts="0">
+        <results>
+          <test-suite type="Namespace" name="UnitTests" executed="True" result="Failure" success="False" time="0.338" asserts="0">
+            <results>
+              <test-suite type="TestFixture" name="ArenaTests" executed="True" result="Success" success="True" time="0.122" asserts="0">
+                <results>
+                  <test-case name="BirdHouse_Battle.UnitTests.ArenaTests.Aquire_a_target" executed="True" result="Success" success="True" time="0.010" asserts="0" />
+                  <test-case name="BirdHouse_Battle.UnitTests.ArenaTests.create_team" executed="True" result="Success" success="True" time="0.031" asserts="2" />
+                  <test-case name="BirdHouse_Battle.UnitTests.ArenaTests.remove_team" executed="True" result="Success" success="True" time="0.062" asserts="3" />
+                  <test-case name="BirdHouse_Battle.UnitTests.ArenaTests.Spawn_unit" executed="True" result="Success" success="True" time="0.000" asserts="0" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="TeamTests" executed="True" result="Success" success="True" time="0.026" asserts="0">
+                <results>
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.add_a_goblin" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.add_a_paladin" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.add_an_archer" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.archer_count_is_exact" executed="True" result="Success" success="True" time="0.003" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.gold_calculation" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.remove_unit_from_team" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.team_is_wiped_when_there_is_no_unit_left" executed="True" result="Success" success="True" time="0.001" asserts="5" />
+                  <test-case name="BirdHouse_Battle.UnitTests.TeamTests.unit_count_is_exact" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="UnitTests_Archer" executed="True" result="Success" success="True" time="0.038" asserts="0">
+                <results>
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Archer.Try_Die" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Archer.Try_InRange" executed="True" result="Success" success="True" time="0.002" asserts="42" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Archer.Try_New_Direction" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Archer.Try_Take_Damages" executed="True" result="Success" success="True" time="0.025" asserts="5" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="UnitTests_Gobelin" executed="True" result="Success" success="True" time="0.033" asserts="0">
+                <results>
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Gobelin.Try_Die" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Gobelin.Try_InRange" executed="True" result="Success" success="True" time="0.001" asserts="42" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Gobelin.Try_New_Direction" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Gobelin.Try_Take_Damages" executed="True" result="Success" success="True" time="0.025" asserts="5" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="UnitTests_Paladin" executed="True" result="Success" success="True" time="0.041" asserts="0">
+                <results>
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Paladin.Try_Die" executed="True" result="Success" success="True" time="0.000" asserts="3" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Paladin.Try_InRange" executed="True" result="Success" success="True" time="0.001" asserts="42" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Paladin.Try_New_Direction" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Paladin.Try_Take_Damages" executed="True" result="Success" success="True" time="0.025" asserts="5" />
+                </results>
+              </test-suite>
+              <test-suite type="TestFixture" name="UnitTests_Unit" executed="True" result="Failure" success="False" time="0.035" asserts="0">
+                <results>
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Unit.Die_Null_Context" executed="True" result="Success" success="True" time="0.000" asserts="6" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Unit.Nearest_Enemy" executed="True" result="Failure" success="False" time="0.031" asserts="1">
+                    <failure>
+                      <message><![CDATA[  Expected: <BirdHouse_Battle.Model.Gobelin>
+  But was:  <BirdHouse_Battle.Model.Gobelin>
+>>>>>>> Lexa_remote
 ]]></message>
                       <stack-trace><![CDATA[à BirdHouse_Battle.UnitTests.UnitTests_Unit.Nearest_Enemy()
 ]]></stack-trace>
@@ -22,6 +85,18 @@
                   </test-case>
                 </results>
               </test-suite>
+<<<<<<< HEAD
+=======
+              <test-suite type="TestFixture" name="UnitTests_Vector" executed="True" result="Success" success="True" time="0.010" asserts="0">
+                <results>
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Vector.Add_Test" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Vector.Effect_Var_To_X_And_Y" executed="True" result="Success" success="True" time="0.000" asserts="10" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Vector.Magnitude_Test" executed="True" result="Success" success="True" time="0.000" asserts="1" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Vector.Mutiply_Test" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                  <test-case name="BirdHouse_Battle.UnitTests.UnitTests_Vector.Soustract_Test" executed="True" result="Success" success="True" time="0.000" asserts="2" />
+                </results>
+              </test-suite>
+>>>>>>> Lexa_remote
             </results>
           </test-suite>
         </results>
