@@ -108,5 +108,30 @@ namespace BirdHouse_Battle.UnitTests
                 if (Pal.Location.Soustract(Pal.Target.Location).Magnitude > Pal.Range) Assert.That(Pal.InRange, Is.False);
             }
         }
+
+        [Test]
+        public void Try_Update()
+        {
+            Arena arena = new Arena();
+            Team red = arena.CreateTeam("red");
+            Team blue = arena.CreateTeam("blue");
+
+            red.AddPaladin(1);
+            blue.AddPaladin(1);
+
+            Unit[] t_red = red.Find();
+            Unit[] t_blue = blue.Find();
+
+            t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
+            t_blue[0] = arena.SpawnUnit(t_blue[0], 0, 11);
+
+            t_red[0].Update();
+
+            Assert.That(t_red[0].Location, !Is.EqualTo(new Vector(0, 1)));
+
+            t_blue[0].Update();
+
+            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(0, 11)));
+        }
     }
 }

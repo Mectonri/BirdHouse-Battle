@@ -20,8 +20,6 @@ namespace BirdHouse_Battle.Model
         int _strength;
         int _armor;
         string _disposition;
-        bool _isDead;
-        bool _inRange;
 
         protected Unit(Team team, Arena arena, double life,
                        double speed, double range, double unitPrice,
@@ -36,7 +34,6 @@ namespace BirdHouse_Battle.Model
             _strength = strength;
             _armor = armor;
             _disposition = disposition;
-            _isDead = false;
             _name = Guid.NewGuid();
         }
 
@@ -84,12 +81,9 @@ namespace BirdHouse_Battle.Model
 
         public string Disposition { get { return _disposition; } }
 
-        public bool IsDead
+        public bool IsDead()
         {
-            get
-            {
-                return _life <= 0;
-            }
+            return _life <= 0;
         }
 
         /// <summary>
@@ -123,13 +117,10 @@ namespace BirdHouse_Battle.Model
         /// <summary>
         /// A corriger
         /// </summary>
-        public bool InRange
+        public bool InRange()
         {
-            get
-            {
-                Vector newV = Location.Soustract(Target.Location);
-                return newV.Magnitude <= Range;
-            }
+            Vector newV = Location.Soustract(Target.Location);
+            return newV.Magnitude <= Range;
         }
 
         /// <summary>
@@ -141,6 +132,28 @@ namespace BirdHouse_Battle.Model
         {
             if (damages < 0) throw new ArgumentException("Couldn't take negative damages.");
             _life = _life - Math.Max(damages - Armor, 0);
+        }
+
+        /// <summary>
+        /// Game Loop in Unit
+        /// </summary>
+        public virtual void Update()
+        {
+            if (!IsDead())
+            {
+                if (InRange())
+                {
+                    Arena.GiveDamage(Target, Strength);
+                }
+                else
+                {
+                    Mouvement = Direction.Move(Speed);
+                    Vector NewLocation = Location.Add(Mouvement);
+
+                    if (!Arena.Collision(NewLocation)) Location = NewLocation;
+                }
+                SearchTarget();
+            }
         }
     }
 }

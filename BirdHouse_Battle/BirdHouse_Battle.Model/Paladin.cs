@@ -14,11 +14,11 @@ namespace BirdHouse_Battle.Model
         /// <summary>
         /// Game Loop in Unit
         /// </summary>
-        public void Update()
+        public override void Update()
         {
-            if (!IsDead)
+            if (!IsDead())
             {
-                if (InRange)
+                if (InRange())
                 {
                     Arena.GiveDamage(Target, Strength);
                 } 
