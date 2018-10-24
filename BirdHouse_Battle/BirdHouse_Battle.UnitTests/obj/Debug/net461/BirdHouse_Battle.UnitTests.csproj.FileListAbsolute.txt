@@ -33,3 +33,15 @@ D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTes
 D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CopyComplete
 D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.dll
 D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\nunit.framework.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.Model.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csprojAssemblyReference.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CoreCompileInputs.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfoInputs.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.AssemblyInfo.cs
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.csproj.CopyComplete
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\obj\Debug\net461\BirdHouse_Battle.UnitTests.pdb

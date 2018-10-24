@@ -120,23 +120,39 @@
     ]
   },
   "packageFolders": {
+<<<<<<< HEAD
     "C:\\Users\\saxel\\.nuget\\packages\\": {},
+=======
+    "C:\\Users\\aef52\\.nuget\\packages\\": {},
+>>>>>>> Develop
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
       "projectName": "BirdHouse_Battle.UnitTests",
       "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
       "packagesPath": "C:\\Users\\saxel\\.nuget\\packages\\",
       "outputPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
+=======
+      "projectUniqueName": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "projectName": "BirdHouse_Battle.UnitTests",
+      "projectPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\BirdHouse_Battle.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\aef52\\.nuget\\packages\\",
+      "outputPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\",
+>>>>>>> Develop
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
+<<<<<<< HEAD
         "C:\\Users\\saxel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+        "C:\\Users\\aef52\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> Develop
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -144,14 +160,18 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://www.myget.org/F/intechinfo-preview/api/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net461": {
           "projectReferences": {
+<<<<<<< HEAD
             "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
               "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
+=======
+            "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
+              "projectPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
+>>>>>>> Develop
             }
           }
         }
@@ -182,7 +202,11 @@
       "code": "Undefined",
       "level": "Warning",
       "warningLevel": 1,
+<<<<<<< HEAD
       "message": "Problem reading the cache file D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\BirdHouse_Battle.UnitTests.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+=======
+      "message": "Problem reading the cache file F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UnitTests\\obj\\BirdHouse_Battle.UnitTests.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+>>>>>>> Develop
     }
   ]
 }
