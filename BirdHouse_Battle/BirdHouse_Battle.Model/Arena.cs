@@ -10,22 +10,20 @@ namespace BirdHouse_Battle.Model
         readonly Dictionary<string, Team> _deadTeams;
         readonly int _height;
         readonly int _width;
-        readonly int _teamLimit;
 
-        public Arena(int teamLimit)
-        {
-            if (teamLimit <= 0) throw new ArgumentException("The team limit can't be inferior or equal to 0");
+
+        public Arena()
+        {          
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
             _height = 100;
             _width = 100;
-            _teamLimit = teamLimit;
         }
 
         public Team CreateTeam(string name)
         {
             if (_teams.ContainsKey(name)) throw new ArgumentException("A team with this name already exists.", nameof(name));
-            if (_teams.Count >= _teamLimit) throw new Exception("You already have 4 team and cannot create any more");
+            if (_teams.Count >= 4) throw new Exception("You already have 4 team and cannot create any more");
             Team team = new Team(this, name, 250);//POUR L'INSTANT AXEL
             _teams.Add(name, team);
             return team;

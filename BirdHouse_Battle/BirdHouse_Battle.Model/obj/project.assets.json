@@ -33,50 +33,31 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\saxel\\.nuget\\packages\\": {},
-=======
     "C:\\Users\\Thibault\\.nuget\\packages\\": {},
->>>>>>> Mectonri_remote
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
-      "projectName": "BirdHouse_Battle.Model",
-      "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
-      "packagesPath": "C:\\Users\\saxel\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\",
-=======
       "projectUniqueName": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
       "projectName": "BirdHouse_Battle.Model",
       "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
       "packagesPath": "C:\\Users\\Thibault\\.nuget\\packages\\",
       "outputPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\",
->>>>>>> Mectonri_remote
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-        "D:\\NuGet.Config",
-        "C:\\Users\\saxel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
         "C:\\Users\\Thibault\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> Mectonri_remote
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net461"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://www.myget.org/F/intechinfo-ci/api/v3/index.json": {},
-        "https://www.myget.org/F/intechinfo-preview/api/v3/index.json": {},
-        "https://www.myget.org/F/intechinfo-release/api/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net461": {
@@ -99,5 +80,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\BirdHouse_Battle.Model.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
