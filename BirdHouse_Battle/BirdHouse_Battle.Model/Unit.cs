@@ -102,7 +102,7 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public void NewDirection()
         {
-            _direction = Location.Soustract(Target.Location);
+            _direction = Target.Location.Soustract(Location);
             _mouvement = _direction.Move(Speed);
         }
 
