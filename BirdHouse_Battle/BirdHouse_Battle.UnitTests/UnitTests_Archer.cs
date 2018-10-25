@@ -77,7 +77,7 @@ namespace BirdHouse_Battle.UnitTests
             Arc.Target = target;
 
             Arc.NewDirection();
-            Assert.That(Arc.Direction, Is.EqualTo(new Vector(x - x2, y - y2)));
+            Assert.That(Arc.Direction, Is.EqualTo(new Vector(x2 - x, y2 - y)));
         }
 
         [Test]

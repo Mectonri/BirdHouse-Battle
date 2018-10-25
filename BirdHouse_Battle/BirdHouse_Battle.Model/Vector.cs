@@ -72,7 +72,7 @@ namespace BirdHouse_Battle.Model
                 x = x - Rx;
                 y = y - Ry;
             }
-            while (x + y > 2);
+            while (Math.Sqrt(x * x) + Math.Sqrt(y * y) > 2);
 
             x = Math.Round(x * Speed, 2);
             y = Math.Round(y * Speed, 2);
