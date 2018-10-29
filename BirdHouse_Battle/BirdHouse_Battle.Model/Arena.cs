@@ -199,6 +199,9 @@ namespace BirdHouse_Battle.Model
             } while (loop == true);
         }
 
-
+        public Dictionary<string, Team> Teams
+        {
+            get { return _teams; }
+        }
     }
 }
