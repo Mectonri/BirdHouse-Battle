@@ -10,7 +10,7 @@ namespace BirdHouse_Battle.Model
         /// </summary>
 
 
-            // IS TYPECOUNT REALLY NESSESAIRY ?
+        
         //Team number is associated with a color, so creating a team take the color as argument.
         //Couleur de Team à rajouter
         readonly string _name;
@@ -49,7 +49,7 @@ namespace BirdHouse_Battle.Model
 
             _goldAmount = GoldAmount;
             _name = Name;
-            _teamNumber = TeamNumber;
+            //_teamNumber = Context.TeamCount;
             _unitCount = UnitCount;
             _typeCount = TypeCount;
             _arena = Context;
@@ -268,6 +268,11 @@ namespace BirdHouse_Battle.Model
             {
                 if( FindUnitByName(i.Key) != null ) RemoveUnit( i.Value );
             }
+        }
+
+        public Dictionary<Guid, Unit> Unit
+        {
+            get { return _units; }
         }
     }
 }
