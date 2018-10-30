@@ -33,25 +33,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\saxel\\.nuget\\packages\\": {},
+    "C:\\Users\\aef52\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
+      "projectUniqueName": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
       "projectName": "BirdHouse_Battle.Model",
-      "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
-      "packagesPath": "C:\\Users\\saxel\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\",
+      "projectPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
+      "packagesPath": "C:\\Users\\aef52\\.nuget\\packages\\",
+      "outputPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
-        "D:\\NuGet.Config",
-        "C:\\Users\\saxel\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
+        "C:\\Users\\aef52\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

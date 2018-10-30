@@ -177,7 +177,7 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public Unit FindUnitByName(Guid name)
         {
-            if (!_units.TryGetValue(name, out Unit u)) throw new ArgumentException("There is no Unit with this name", nameof(name));
+            _units.TryGetValue(name, out Unit u);
             return u;
         }
 

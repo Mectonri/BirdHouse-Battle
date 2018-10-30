@@ -133,6 +133,14 @@ namespace BirdHouse_Battle.Model
                     kv2.Value.Location = vector;
                 }
             }
+
+            foreach (KeyValuePair<string, Team> kv in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                {
+                    kv2.Value.SearchTarget();
+                }
+            }
         }
 
         public Unit SpawnUnit(Unit unit, double x, double y)

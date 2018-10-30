@@ -18,7 +18,7 @@ namespace BirdHouse_Battle.UI
             SFML.WindowNative.Load();
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
-            window = new RenderWindow(new VideoMode(10000, 10000), "SFML window");
+            window = new RenderWindow(new VideoMode(1080, 700), "SFML window");
         }
 
         //Close the window when the On close event is received
@@ -28,7 +28,7 @@ namespace BirdHouse_Battle.UI
             window.Close();
         }
 
-        static void DisplayPaladin( Unit unit)
+        static CircleShape DisplayPaladin( Unit unit)
         {
             CircleShape palDis = new CircleShape(3);
             palDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
@@ -50,7 +50,7 @@ namespace BirdHouse_Battle.UI
                     palDis.FillColor = new Color(Color.Green);
                     break;
             }
-
+            return palDis;
         }
 
 
@@ -58,9 +58,9 @@ namespace BirdHouse_Battle.UI
         /// Displays Goblin and color it in function of the team
         /// </summary>
         /// <param name="unit"></param>
-        static void DisplayGoblin( Unit unit)
+        static CircleShape DisplayGobelin( Unit unit)
         {
-            CircleShape gobDis = new CircleShape(80, 3);
+            CircleShape gobDis = new CircleShape(80, 4);
             gobDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
 
             switch (unit.Team.TeamNumber)
@@ -78,32 +78,34 @@ namespace BirdHouse_Battle.UI
                     gobDis.FillColor = new Color(Color.Green);
                     break;
             }
+            return gobDis;
         }
 
         /// <summary>
         /// Display archer with the coresponding color
         /// </summary>
         /// <param name="unit"></param>
-        static void DisplayArcher(Unit unit )
+        static CircleShape DisplayArcher(Unit unit )
         {
                 CircleShape archDis = new CircleShape(80, 3);
                 archDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
 
-                switch (unit.Team.TeamNumber)
-                {
-                    case 1:
-                        archDis.FillColor = new Color(Color.Yellow);
-                        break;
-                    case 2:
-                        archDis.FillColor = new Color(Color.Blue);
-                        break;
-                    case 3:
-                        archDis.FillColor = new Color(Color.Red);
-                        break;
-                    case 4:
-                        archDis.FillColor = new Color(Color.Green);
-                        break;
-                }
+            switch (unit.Team.TeamNumber)
+            {
+                case 1:
+                    archDis.FillColor = new Color(Color.Yellow);
+                    break;
+                case 2:
+                    archDis.FillColor = new Color(Color.Blue);
+                    break;
+                case 3:
+                    archDis.FillColor = new Color(Color.Red);
+                    break;
+                case 4:
+                    archDis.FillColor = new Color(Color.Green);
+                    break;
+            }
+            return archDis;
         }
 
         /// <summary>
@@ -112,14 +114,18 @@ namespace BirdHouse_Battle.UI
         /// <param name="arena"></param>
         public void UnitDisplay(Arena arena)
         {
+            CircleShape Shape;
+
             foreach (KeyValuePair<string, Team> team in arena.Teams)
             {
                 foreach (KeyValuePair<Guid, Unit> u in team.Value.Unit)
                 {
                     string s = u.GetType().ToString();
-                    if (s == "BirdHouse_Battle.Model.Archer") DisplayArcher(u.Value);
-                    else if (s == "BirdHouse_Battle.Model.Goblinr") DisplayGoblin(u.Value);
-                    else { DisplayPaladin(u.Value); }                 
+                    if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);
+                    else if (s == "BirdHouse_Battle.Model.Gobelin") Shape = DisplayGobelin(u.Value);
+                    else { Shape = DisplayPaladin(u.Value); }
+
+                    window.Draw(Shape);
                 }
             }
         }
