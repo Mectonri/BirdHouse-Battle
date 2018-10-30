@@ -1,14 +1,26 @@
-﻿using SFML.System;
-using SFML.Graphics;
-using SFML.Window;
-using System;
+﻿using System;
 using BirdHouse_Battle.Model;
 using System.Collections.Generic;
+using SFML.Graphics;
+using SFML.Window;
+using SFML.System;
+using SFML.Audio;
 
 namespace BirdHouse_Battle.UI
 {
     public class GameScreen
     {
+        RenderWindow window;
+
+        public GameScreen()
+        {
+            SFML.SystemNative.Load();
+            SFML.WindowNative.Load();
+            SFML.GraphicsNative.Load();
+            SFML.AudioNative.Load();
+            window = new RenderWindow(new VideoMode(10000, 10000), "SFML window");
+        }
+
         //Close the window when the On close event is received
         static void OnClose(object sender, EventArgs e)
         {
@@ -98,7 +110,7 @@ namespace BirdHouse_Battle.UI
         /// Display Units 
         /// </summary>
         /// <param name="arena"></param>
-        static void UnitDisplay(Arena arena)
+        public void UnitDisplay(Arena arena)
         {
             foreach (KeyValuePair<string, Team> team in arena.Teams)
             {
@@ -110,16 +122,6 @@ namespace BirdHouse_Battle.UI
                     else { DisplayPaladin(u.Value); }                 
                 }
             }
-        }
-        static void render(Arena arena)
-        {
-            
-                    //Create a winwow
-                    RenderWindow window = new RenderWindow(new VideoMode(1000, 1000), "SFML window");
-                    UnitDisplay(arena);
-
-                    //window.Display();
-            
         }
     }
 }

@@ -8,15 +8,12 @@ namespace BirdHouse_Battle.Model
         /// <summary>
         /// Archer is a unit type same as Paladin and Goblin 
         /// </summary>
-
-
         
         //Team number is associated with a color, so creating a team take the color as argument.
         //Couleur de Team à rajouter
         readonly string _name;
         readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
-        int _typeCount; // les differents type d'unite dans une equipes
 
         int _aToAdd; // le nombre d' archer a ajouter a une equipe
         int _pToAdd;
@@ -31,7 +28,6 @@ namespace BirdHouse_Battle.Model
         
         double _goldAmount;
         readonly int _limitNbUnit; // unit limit by team
-        readonly Guid _unitName;
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
         internal Dictionary<Guid, Unit> _deadUnits; 
         internal Dictionary<Guid, Unit> _units;
@@ -39,22 +35,15 @@ namespace BirdHouse_Battle.Model
         public Team ( Arena Context, string Name, int LimitNbUntit )
         {
             _isWiped = false;
-            _aToAdd = AToAdd;
-            _aToAdd = GToAdd;
-            _pToAdd = PToAdd;
-
             _aCount = 0;
             _gCount = 0;
             _pCount = 0;
 
-            _goldAmount = GoldAmount;
             _name = Name;
-            //_teamNumber = Context.TeamCount;
-            _unitCount = UnitCount;
-            _typeCount = TypeCount;
+            
             _arena = Context;
+            _teamNumber = _arena.TeamCount;
             _limitNbUnit = LimitNbUntit;
-            _unitName = UnitName;
             _units = new Dictionary<Guid, Unit>();
             _deadUnits = new Dictionary<Guid, Unit>();
         }
@@ -75,19 +64,9 @@ namespace BirdHouse_Battle.Model
         }
 
 
-        public int TypeCount
-        {
-            get { return _typeCount; }
-        }
-
         public Arena Context
         {
             get { return _arena; }
-        }
-
-        public Guid UnitName
-        {
-            get { return _unitName; }
         }
 
         public int Acount

@@ -1,0 +1,11 @@
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.deps.json
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.runtimeconfig.json
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.runtimeconfig.dev.json
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.csprojAssemblyReference.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.csproj.CoreCompileInputs.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.AssemblyInfoInputs.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.AssemblyInfo.cs
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI2\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI2.pdb

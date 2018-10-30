@@ -20,9 +20,9 @@ namespace BirdHouse_Battle.UI
             arena.Update();
         }
 
-        static void render()
+        static void Render(GameScreen rend, Arena arena)
         {
-            throw new ArgumentException();
+            rend.UnitDisplay(arena);
         }
 
         static double MS_PER_UPDATE
@@ -32,8 +32,20 @@ namespace BirdHouse_Battle.UI
 
         static void Main(string[] args)
         {
+            //Preparation of the game.
 
             Arena arena = new Arena();
+
+            Team red = arena.CreateTeam("red");
+            Team blue = arena.CreateTeam("blue");
+
+            red.AddArcher(15);
+            blue.AddGobelin(20);
+
+            arena.SpawnUnit();
+            //End of Preparation.
+
+            GameScreen render = new GameScreen();
 
             //Nous affinerons cela plus tard, mais les bases sont ici.
             //processInput() gère toutes les entrées utilisateur intervenues depuis le dernier appel.
@@ -57,7 +69,7 @@ namespace BirdHouse_Battle.UI
                     lag -= MS_PER_UPDATE;
                 }
 
-                render();
+                Render(render, arena);
             }
         }
     }

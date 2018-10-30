@@ -43,7 +43,10 @@ namespace BirdHouse_Battle.Model
             return result;
         }
 
-
+        public int TeamCount
+        {
+            get { return _teams.Count; }
+        }
 
         public bool Collision(Unit unit)
         {
@@ -100,6 +103,36 @@ namespace BirdHouse_Battle.Model
             unit.Location = vector;
 
             return unit;
+        }
+
+        public void SpawnUnit()
+        {
+            Vector vector;
+            double x;
+            double y;
+            Random random = new Random();
+
+            foreach (KeyValuePair<string, Team> kv in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                {
+                    bool IsSpawnable = false;
+
+                    do
+                    {
+                        x = random.NextDouble() * (_width);
+                        y = random.NextDouble() * (_height);
+                        vector = new Vector(x, y);
+                        if (ValidSpawnLocation(vector) == true)
+                        {
+                            IsSpawnable = true;
+                        }
+
+                    } while (IsSpawnable == false);
+
+                    kv2.Value.Location = vector;
+                }
+            }
         }
 
         public Unit SpawnUnit(Unit unit, double x, double y)
