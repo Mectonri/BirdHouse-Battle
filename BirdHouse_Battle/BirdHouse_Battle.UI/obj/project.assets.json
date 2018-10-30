@@ -2,6 +2,52 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "ITI.SFML.Audio/0.1.0": {
+        "type": "package",
+        "dependencies": {
+          "ITI.SFML.System": "0.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/ITI.SFML.Audio.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ITI.SFML.Audio.dll": {}
+        }
+      },
+      "ITI.SFML.Graphics/0.1.0": {
+        "type": "package",
+        "dependencies": {
+          "ITI.SFML.System": "0.1.0",
+          "ITI.SFML.Window": "0.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/ITI.SFML.Graphics.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ITI.SFML.Graphics.dll": {}
+        }
+      },
+      "ITI.SFML.System/0.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/ITI.SFML.System.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ITI.SFML.System.dll": {}
+        }
+      },
+      "ITI.SFML.Window/0.1.0": {
+        "type": "package",
+        "dependencies": {
+          "ITI.SFML.System": "0.1.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/ITI.SFML.Window.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/ITI.SFML.Window.dll": {}
+        }
+      },
       "Microsoft.NETCore.App/2.1.0": {
         "type": "package",
         "dependencies": {
@@ -207,10 +253,70 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "BirdHouse_Battle.Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETFramework,Version=v4.6.1",
+        "compile": {
+          "bin/placeholder/BirdHouse_Battle.Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BirdHouse_Battle.Model.dll": {}
+        }
       }
     }
   },
   "libraries": {
+    "ITI.SFML.Audio/0.1.0": {
+      "sha512": "z8xKugCvc9iVgcWv/abgBN6jZZnbeHkD4bn1gPS7YBzVSRZAmC+NGg6JknHsSaQoqNxt3L7bv+0UApiyLwMxGA==",
+      "type": "package",
+      "path": "iti.sfml.audio/0.1.0",
+      "files": [
+        "iti.sfml.audio.0.1.0.nupkg.sha512",
+        "iti.sfml.audio.nuspec",
+        "lib/netstandard2.0/ITI.SFML.Audio.dll",
+        "lib/netstandard2.0/ITI.SFML.Audio.xml",
+        "lib/runtimes/win-x64/native/csfml-audio-2.4.0.dll",
+        "lib/runtimes/win-x64/native/libsndfile-1.dll",
+        "lib/runtimes/win-x64/native/openal32.dll"
+      ]
+    },
+    "ITI.SFML.Graphics/0.1.0": {
+      "sha512": "fp5u4g/GBvUe/S/QYvNhfXi3bNu6F4xUTAEwUnc6AKGMIYQ1BsxngED2QDP5K9n4lE+l0wZfrPboIZlrpq9/CQ==",
+      "type": "package",
+      "path": "iti.sfml.graphics/0.1.0",
+      "files": [
+        "iti.sfml.graphics.0.1.0.nupkg.sha512",
+        "iti.sfml.graphics.nuspec",
+        "lib/netstandard2.0/ITI.SFML.Graphics.dll",
+        "lib/netstandard2.0/ITI.SFML.Graphics.xml",
+        "lib/runtimes/win-x64/native/csfml-graphics-2.4.0.dll"
+      ]
+    },
+    "ITI.SFML.System/0.1.0": {
+      "sha512": "bwM0xmh5omxE3DWukLrb0cR0KAYJOkP8BA4lZPu1LXljwUr8C77VPP2FO5fvSgBtThKeVzwBcUutdYiUrGfg6w==",
+      "type": "package",
+      "path": "iti.sfml.system/0.1.0",
+      "files": [
+        "iti.sfml.system.0.1.0.nupkg.sha512",
+        "iti.sfml.system.nuspec",
+        "lib/netstandard2.0/ITI.SFML.System.dll",
+        "lib/netstandard2.0/ITI.SFML.System.xml",
+        "lib/runtimes/win-x64/native/csfml-system-2.4.0.dll"
+      ]
+    },
+    "ITI.SFML.Window/0.1.0": {
+      "sha512": "Fnejw7nGCr2YxoAUVgwwMTQWfhpPW01hahMjA73cKF71oDqHh5JwCLEKMJDorF4iGNKqbAV+wmh8i9VZLIZJ3g==",
+      "type": "package",
+      "path": "iti.sfml.window/0.1.0",
+      "files": [
+        "iti.sfml.window.0.1.0.nupkg.sha512",
+        "iti.sfml.window.nuspec",
+        "lib/netstandard2.0/ITI.SFML.Window.dll",
+        "lib/netstandard2.0/ITI.SFML.Window.xml",
+        "lib/runtimes/win-x64/native/csfml-window-2.4.0.dll"
+      ]
+    },
     "Microsoft.NETCore.App/2.1.0": {
       "sha512": "AvT774nTFgU8cYcGO9j1EMwuayKslxqYTurg32HGpWa2hEYNuW2+XgYVVNcZe6Ndbr84QX6fwaOZfd5n+1m2OA==",
       "type": "package",
@@ -673,32 +779,43 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "BirdHouse_Battle.Model/1.0.0": {
+      "type": "project",
+      "path": "../BirdHouse_Battle.Model/BirdHouse_Battle.Model.csproj",
+      "msbuildProject": "../BirdHouse_Battle.Model/BirdHouse_Battle.Model.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.1": [
+      "BirdHouse_Battle.Model >= 1.0.0",
+      "ITI.SFML.Audio >= 0.1.0",
+      "ITI.SFML.Graphics >= 0.1.0",
+      "ITI.SFML.System >= 0.1.0",
+      "ITI.SFML.Window >= 0.1.0",
       "Microsoft.NETCore.App >= 2.1.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\aef52\\.nuget\\packages\\": {},
+    "C:\\Users\\saxel\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI2\\BirdHouse_Battle.UI2.csproj",
-      "projectName": "BirdHouse_Battle.UI2",
-      "projectPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI2\\BirdHouse_Battle.UI2.csproj",
-      "packagesPath": "C:\\Users\\aef52\\.nuget\\packages\\",
-      "outputPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI2\\obj\\",
+      "projectUniqueName": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
+      "projectName": "BirdHouse_Battle.UI",
+      "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
+      "packagesPath": "C:\\Users\\saxel\\.nuget\\packages\\",
+      "outputPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
-        "C:\\Users\\aef52\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
+        "D:\\NuGet.Config",
+        "C:\\Users\\saxel\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -712,7 +829,11 @@
       },
       "frameworks": {
         "netcoreapp2.1": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
+              "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -724,6 +845,22 @@
     "frameworks": {
       "netcoreapp2.1": {
         "dependencies": {
+          "ITI.SFML.Audio": {
+            "target": "Package",
+            "version": "[0.1.0, )"
+          },
+          "ITI.SFML.Graphics": {
+            "target": "Package",
+            "version": "[0.1.0, )"
+          },
+          "ITI.SFML.System": {
+            "target": "Package",
+            "version": "[0.1.0, )"
+          },
+          "ITI.SFML.Window": {
+            "target": "Package",
+            "version": "[0.1.0, )"
+          },
           "Microsoft.NETCore.App": {
             "target": "Package",
             "version": "[2.1.0, )",
