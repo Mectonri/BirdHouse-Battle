@@ -9,7 +9,7 @@ namespace BirdHouse_Battle.Model
     public class Archer : Unit
     {
         public Archer(Team team, Arena arena)
-            : base(team, arena, 2.0, 1.5, 5.0, 10.0, 2, 1, "Order")
+            : base(team, arena, 2.0, 1.5, 30.0, 10.0, 2, 1, "Order")
         {
         }
 
