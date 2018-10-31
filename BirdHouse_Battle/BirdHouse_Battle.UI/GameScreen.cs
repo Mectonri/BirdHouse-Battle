@@ -10,7 +10,7 @@ namespace BirdHouse_Battle.UI
 {
     public class GameScreen
     {
-        RenderWindow window;
+        RenderWindow _window;
 
         public GameScreen()
         {
@@ -18,7 +18,12 @@ namespace BirdHouse_Battle.UI
             SFML.WindowNative.Load();
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
-            window = new RenderWindow(new VideoMode(1080, 700), "SFML window");
+            _window = new RenderWindow(new VideoMode(1080, 700), "SFML window");
+        }
+
+        public RenderWindow window {
+            get { return _window; }
+            private set { }
         }
 
         //Close the window when the On close event is received
@@ -30,7 +35,7 @@ namespace BirdHouse_Battle.UI
 
         static CircleShape DisplayPaladin( Unit unit)
         {
-            CircleShape palDis = new CircleShape(3);
+            CircleShape palDis = new CircleShape(5);
             palDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
 
             //Assign a defalut color to a unit in a team 
@@ -60,7 +65,7 @@ namespace BirdHouse_Battle.UI
         /// <param name="unit"></param>
         static CircleShape DisplayGobelin( Unit unit)
         {
-            CircleShape gobDis = new CircleShape(80, 4);
+            CircleShape gobDis = new CircleShape(5, 4);
             gobDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
 
             switch (unit.Team.TeamNumber)
@@ -81,13 +86,14 @@ namespace BirdHouse_Battle.UI
             return gobDis;
         }
 
+
         /// <summary>
         /// Display archer with the coresponding color
         /// </summary>
         /// <param name="unit"></param>
         static CircleShape DisplayArcher(Unit unit )
         {
-                CircleShape archDis = new CircleShape(80, 3);
+                CircleShape archDis = new CircleShape(5, 3);
                 archDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
 
             switch (unit.Team.TeamNumber)

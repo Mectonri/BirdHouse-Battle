@@ -28,3 +28,18 @@ F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\ob
 F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.csproj.CopyComplete
 F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.dll
 F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.pdb
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.csprojAssemblyReference.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.csproj.CoreCompileInputs.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.AssemblyInfoInputs.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.AssemblyInfo.cs
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.pdb
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI.dll.config
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI.deps.json
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI.runtimeconfig.json
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI.runtimeconfig.dev.json
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.UI.pdb
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.Model.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netcoreapp2.1\BirdHouse_Battle.Model.pdb
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\netcoreapp2.1\BirdHouse_Battle.UI.csproj.CopyComplete

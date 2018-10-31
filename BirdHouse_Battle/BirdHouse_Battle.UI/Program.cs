@@ -22,7 +22,9 @@ namespace BirdHouse_Battle.UI
 
         static void Render(GameScreen rend, Arena arena)
         {
+            rend.window.Clear();
             rend.UnitDisplay(arena);
+            rend.window.Display();
         }
 
         static double MS_PER_UPDATE
