@@ -12,6 +12,7 @@ namespace BirdHouse_Battle.Model
         readonly int _width;
 
 
+
         public Arena()
         {
             _teams = new Dictionary<string, Team>();
