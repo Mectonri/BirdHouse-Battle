@@ -18,7 +18,7 @@ namespace BirdHouse_Battle.UI
             SFML.WindowNative.Load();
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
-            _window = new RenderWindow(new VideoMode(1080, 700), "SFML window");
+            _window = new RenderWindow(new VideoMode(400, 400), "SFML window");
         }
 
         public RenderWindow window {
@@ -42,16 +42,16 @@ namespace BirdHouse_Battle.UI
             //That way, team 1 is yellow, 2 is blue, 3 is Red, 4 is green
             switch (unit.Team.TeamNumber)
             {
-                case 1:
+                case 0:
                     palDis.FillColor = new Color(Color.Yellow);
                     break;
-                case 2:
+                case 1:
                     palDis.FillColor = new Color(Color.Blue);
                     break;
-                case 3:
+                case 2:
                     palDis.FillColor = new Color(Color.Red);
                     break;
-                case 4:
+                case 3:
                     palDis.FillColor = new Color(Color.Green);
                     break;
             }
@@ -70,16 +70,16 @@ namespace BirdHouse_Battle.UI
 
             switch (unit.Team.TeamNumber)
             {
-                case 1:
+                case 0:
                     gobDis.FillColor = new Color(Color.Yellow);
                     break;
-                case 2:
+                case 1:
                     gobDis.FillColor = new Color(Color.Blue);
                     break;
-                case 3:
+                case 2:
                     gobDis.FillColor = new Color(Color.Red);
                     break;
-                case 4:
+                case 3:
                     gobDis.FillColor = new Color(Color.Green);
                     break;
             }
@@ -98,16 +98,16 @@ namespace BirdHouse_Battle.UI
 
             switch (unit.Team.TeamNumber)
             {
-                case 1:
+                case 0:
                     archDis.FillColor = new Color(Color.Yellow);
                     break;
-                case 2:
+                case 1:
                     archDis.FillColor = new Color(Color.Blue);
                     break;
-                case 3:
+                case 2:
                     archDis.FillColor = new Color(Color.Red);
                     break;
-                case 4:
+                case 3:
                     archDis.FillColor = new Color(Color.Green);
                     break;
             }

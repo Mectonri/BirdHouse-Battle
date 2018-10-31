@@ -13,11 +13,11 @@ namespace BirdHouse_Battle.Model
 
 
         public Arena()
-        {          
+        {
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
-            _height = 100;
-            _width = 100;
+            _height = 400;
+            _width = 400;
         }
 
         public Team CreateTeam(string name)
@@ -97,7 +97,7 @@ namespace BirdHouse_Battle.Model
                 if (ValidSpawnLocation(vector) == true) {
                     IsSpawnable = true;
                 }
-                
+
             } while (IsSpawnable == false);
 
             unit.Location = vector;
@@ -157,7 +157,7 @@ namespace BirdHouse_Battle.Model
             {
                 throw new ArgumentException("The given coordinates are not valid, either they are equal to {0,0}, a unit is already on those coordonates or the given coordonates are outside the board");
             }
-            
+
         }
 
 
@@ -167,7 +167,7 @@ namespace BirdHouse_Battle.Model
             {
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {
-                    if(kv2.Value.Location.X==vector.X && kv2.Value.Location.Y == vector.Y || vector.X==0 && vector.Y==0 || vector.X >_width || vector.Y>_height)
+                    if (kv2.Value.Location.X == vector.X && kv2.Value.Location.Y == vector.Y || vector.X == 0 && vector.Y == 0 || vector.X > _width || vector.Y > _height)
                     {
                         return false;
                     }
@@ -186,7 +186,7 @@ namespace BirdHouse_Battle.Model
             double y = unit.Location.Y;
             double distance = 0;
             Unit ennemyUnit = null;
-          
+
             foreach (KeyValuePair<string, Team> team in _teams)
             {
                 if (team.Value != unit.Team) {
@@ -212,7 +212,7 @@ namespace BirdHouse_Battle.Model
             return ennemyUnit;
         }
 
-        public Unit GiveDamage (Unit unit, double damage)
+        public Unit GiveDamage(Unit unit, double damage)
         {
             unit.TakeDamages(damage);
             return unit;
@@ -221,23 +221,19 @@ namespace BirdHouse_Battle.Model
 
         public void Update()
         {
-            bool loop = true;
-
-
-            
-            do
+            foreach (Team team in _teams.Values)
             {
-                foreach (Team team in _teams.Values)
-                {
-                    team.Update();
-                    if (team.IsWiped == true) _deadTeams.Add(team.Name, team);
-                }
-                foreach(KeyValuePair<string, Team> team in _deadTeams)
-                {
-                    if (FindTeam(team.Key) != null) RemoveTeam(team.Key);
-                }
-                if (_teams.Count >= 1) loop = false;
-            } while (loop == true);
+                team.Update();
+            }
+            foreach (Team team in _teams.Values)
+            {
+                team.UpdateDead();
+                if (team.IsWiped == true) _deadTeams.Add(team.Name, team);
+            }
+            foreach (KeyValuePair<string, Team> team in _deadTeams)
+            {
+                if (FindTeam(team.Key) != null) RemoveTeam(team.Key);
+            }
         }
 
         public Dictionary<string, Team> Teams

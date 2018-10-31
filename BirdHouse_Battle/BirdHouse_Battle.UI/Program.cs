@@ -12,7 +12,7 @@ namespace BirdHouse_Battle.UI
 
         static double getCurrentTime()
         {
-            return DateTime.Now.Millisecond;
+           return DateTime.Now.ToOADate();
         }
 
         static void update(Arena arena)
@@ -29,7 +29,7 @@ namespace BirdHouse_Battle.UI
 
         static double MS_PER_UPDATE
         {
-            get { return 60.0; }
+            get { return 0.0000006; }
         }
 
         static void Main(string[] args)
@@ -56,7 +56,7 @@ namespace BirdHouse_Battle.UI
 
             double previous = getCurrentTime();
             double lag = 0.0;
-            while (true)
+            while (arena.TeamCount > 1)
             {
                 double current = getCurrentTime();
                 double elapsed = current - previous;

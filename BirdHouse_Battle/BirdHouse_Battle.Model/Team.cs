@@ -242,10 +242,15 @@ namespace BirdHouse_Battle.Model
             {
                 unit.Update();
                 if (unit.IsDead()) _deadUnits.Add(unit.Name, unit);
-            }//remove dead units only if they still exist
+            }
+        }
+
+        public void UpdateDead()
+        {
+            //remove dead units only if they still exist
             foreach (KeyValuePair<Guid, Unit> i in _deadUnits)
             {
-                if( FindUnitByName(i.Key) != null ) RemoveUnit( i.Value );
+                if (FindUnitByName(i.Key) != null) RemoveUnit(i.Value);
             }
         }
 
