@@ -193,16 +193,19 @@ namespace BirdHouse_Battle.Model
                 if (team.Value != unit.Team) {
                     foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
                     {
+                        double dX = x - units.Value.Location.X;
+                        double dY = y - units.Value.Location.Y;
+
                         if (distance == 0)
                         {
-                            distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
+                            distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
                             ennemyUnit = units.Value;
                         }
                         else
                         {
-                            if (distance > Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2)))
+                            if (distance > Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY))
                             {
-                                distance = Math.Sqrt(Math.Pow(x - units.Value.Location.X, 2) + Math.Pow(y - units.Value.Location.Y, 2));
+                                distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
                                 ennemyUnit = units.Value;
                             }
 

@@ -8,6 +8,28 @@ namespace BirdHouse_Battle.UnitTests
     class UnitTests_Unit
     {
         [Test]
+        public void Distance_Error()
+        {
+            Arena arena = new Arena();
+            Team red = arena.CreateTeam("Red");
+            Team green = arena.CreateTeam("Green");
+
+            red.AddArcher(1);
+            green.AddPaladin(1);
+
+            Unit[] t_red = red.Find();
+            Unit[] t_green = green.Find();
+
+            t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
+            t_green[0] = arena.SpawnUnit(t_green[0], 110, 110);
+
+            t_red[0].SearchTarget();
+            t_green[0].SearchTarget();
+
+            for ( int i = 0; i < 10; i++ ) arena.Update();
+        }
+
+        [Test]
         public void Nearest_Enemy()
         {
             Arena arena = new Arena();

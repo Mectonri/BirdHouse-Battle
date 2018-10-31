@@ -77,6 +77,15 @@ namespace BirdHouse_Battle.Model
             x = Math.Round(x * Speed, 2);
             y = Math.Round(y * Speed, 2);
 
+            if ( x + y == 0)
+            {
+                x = x + Rx;
+                y = y + Ry;
+
+                x = Math.Round(x * Speed, 2);
+                y = Math.Round(y * Speed, 2);
+            }
+
             return new Vector(x, y);
         }
     }
