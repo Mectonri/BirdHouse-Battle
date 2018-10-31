@@ -43,7 +43,7 @@ namespace BirdHouse_Battle.Model
             
             _arena = Context;
             _teamNumber = _arena.TeamCount;
-            _limitNbUnit = LimitNbUntit;
+            _limitNbUnit = 250;
             _units = new Dictionary<Guid, Unit>();
             _deadUnits = new Dictionary<Guid, Unit>();
         }
@@ -60,7 +60,10 @@ namespace BirdHouse_Battle.Model
 
         public int UnitCount
         {
-            get { return _unitCount = _aCount + _gCount + _pCount; }
+            get
+            { 
+                return _unitCount = _aCount + _gCount + _pCount;
+            }
         }
 
 
@@ -100,7 +103,7 @@ namespace BirdHouse_Battle.Model
             get { return _aToAdd; }
             set
             {
-                if (_aToAdd < 0) throw new ArgumentException("Le nombre de troupe a rajouter doit etre positif", nameof(_aToAdd));
+                if (_aToAdd < 0 || _aToAdd > _limitNbUnit) throw new ArgumentException("Le nombre de troupe a rajouter doit etre positif", nameof(_aToAdd));
                 _aToAdd = value;
             }
         }
@@ -110,7 +113,7 @@ namespace BirdHouse_Battle.Model
             get { return _gToAdd; }
             set
             {
-                if (_gToAdd < 0) throw new ArgumentException("Le nombre de troupe a rajouter doit etre positif", nameof(_gToAdd));
+                if (_gToAdd < 0 || _gToAdd > _limitNbUnit) throw new ArgumentException("Le nombre de troupe a rajouter doit etre positif", nameof(_gToAdd));
                 _gToAdd = value;
             }
         }
@@ -120,16 +123,15 @@ namespace BirdHouse_Battle.Model
             get { return _pToAdd; }
             set
             {
-                if (_pToAdd < 0) throw new ArgumentException("The number of Troups must be positive", nameof(_pToAdd));
+                if (_pToAdd < 0 || _pToAdd > _limitNbUnit) throw new ArgumentException("The number of Troups must be positive", nameof(_pToAdd));
                 _pToAdd = value;
             }
         }
 
         // Add a Unit type to a team
-
         public void AddArcher(int AToAdd)
         {
-
+            if ( UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < AToAdd; i++)
             {
                 Archer archer = new Archer(this, _arena);
@@ -140,6 +142,7 @@ namespace BirdHouse_Battle.Model
 
         public void AddGobelin(int GToAdd)
         {
+            if ( UnitCount >= _limitNbUnit  || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < GToAdd; i++)
             {
                 Gobelin gobelin = new Gobelin(this, _arena);
@@ -150,6 +153,7 @@ namespace BirdHouse_Battle.Model
 
         public void AddPaladin(int PToAdd)
         {
+            if (PToAdd > _limitNbUnit || UnitCount >= _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < PToAdd; i++)
             {
                 Paladin paladin = new Paladin(this, _arena);

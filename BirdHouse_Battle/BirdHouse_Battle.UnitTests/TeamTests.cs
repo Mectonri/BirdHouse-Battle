@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using BirdHouse_Battle.Model;
+using System;
 
 namespace BirdHouse_Battle.UnitTests
 {
@@ -137,7 +138,19 @@ namespace BirdHouse_Battle.UnitTests
             Assert.That(t2.UnitCount, Is.EqualTo(t2.Acount));
             Assert.That(t2.UnitCount, Is.EqualTo(1));
             Assert.That(t2.IsWiped, Is.False);
+        }
 
+        [Test]
+        public void team_limit_is_effective()
+        {
+            Arena a = new Arena();
+            Team t = a.CreateTeam("RED");
+            Team t1 = a.CreateTeam("Green");
+            t1.AddGobelin(250);
+
+            Assert.Throws<ArgumentException>(() => t.AddArcher(260));
+            Assert.Throws<ArgumentException>(() => t1.AddGobelin(1));
+            Assert.Throws<ArgumentException>(() => t.AddPaladin(260));
         }
     }
 }
