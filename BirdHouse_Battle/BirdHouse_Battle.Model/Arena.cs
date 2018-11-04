@@ -108,31 +108,77 @@ namespace BirdHouse_Battle.Model
 
         public void SpawnUnit()
         {
-            Vector vector;
+            Vector vector =new Vector(0,0);
             double x;
             double y;
             Random random = new Random();
+            int i = 0;
+            
 
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
+
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {
                     bool IsSpawnable = false;
 
                     do
                     {
-                        x = random.NextDouble() * (_width);
-                        y = random.NextDouble() * (_height);
-                        vector = new Vector(x, y);
-                        if (ValidSpawnLocation(vector) == true)
+                        //x = random.NextDouble() * (_width);
+                        //y = random.NextDouble() * (_height);
+                        //vector = new Vector(x, y);
+                        //if (ValidSpawnLocation(vector) == true)
+                        //{
+                        //    IsSpawnable = true;
+                        //}
+
+                        if (i == 0)
                         {
-                            IsSpawnable = true;
+                            x = random.NextDouble() * (_width / 2);
+                            y = random.NextDouble() * (_height / 2);
+                            vector = new Vector(x, y);
+                            if (ValidSpawnLocation(vector) == true)
+                            {
+                                IsSpawnable = true;
+                            }
                         }
+                        else if (i == 1)
+                        {
+                            x = random.NextDouble() * (_width/2);
+                            y = random.NextDouble() * (_height/2) + _height/2;
+                            vector = new Vector(x, y);
+                            if (ValidSpawnLocation(vector) == true)
+                            {
+                                IsSpawnable = true;
+                            }
+                        }
+                        else if (i==2)
+                        {
+                            x = random.NextDouble() * (_width/2) + _width / 2;
+                            y = random.NextDouble() * (_height / 2) + _height / 2;
+                            vector = new Vector(x, y);
+                            if (ValidSpawnLocation(vector) == true)
+                            {
+                                IsSpawnable = true;
+                            }
+                        }
+                         else 
+                        {
+                            x = random.NextDouble() * (_width)+ _width/2;
+                            y = random.NextDouble() * (_height/2);
+                            vector = new Vector(x, y);
+                            if (ValidSpawnLocation(vector) == true)
+                            {
+                                IsSpawnable = true;
+                            }
+                        }
+
 
                     } while (IsSpawnable == false);
 
                     kv2.Value.Location = vector;
                 }
+                i++;
             }
 
             foreach (KeyValuePair<string, Team> kv in _teams)
