@@ -36,12 +36,16 @@ namespace BirdHouse_Battle.UI
         {
             //Preparation of the game.
 
+            
             Arena arena = new Arena();
 
-            Team red = arena.CreateTeam("red");
-            Team blue = arena.CreateTeam("blue");
-            Team green = arena.CreateTeam("green");
             Team yellow = arena.CreateTeam("yellow");
+            Team blue = arena.CreateTeam("blue");
+            Team red = arena.CreateTeam("red");
+            Team green = arena.CreateTeam("green");
+            
+            //Each unit is represented by a shape
+            //Archers are triagles, goblins by circles and paladin by rectangular shapes
 
             red.AddArcher(25);
             red.AddGobelin(50);
@@ -57,9 +61,12 @@ namespace BirdHouse_Battle.UI
             yellow.AddPaladin(50);
 
             arena.SpawnUnit();
-            //End of Preparation.
 
             GameScreen render = new GameScreen();
+
+            ////End of Preparation.
+
+
 
             //Nous affinerons cela plus tard, mais les bases sont ici.
             //processInput() gère toutes les entrées utilisateur intervenues depuis le dernier appel.
