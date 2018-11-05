@@ -1,13 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-<<<<<<< HEAD
-      "C:\\Users\\Thibault\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\Thibault\\.nuget\\packages",
-=======
       "C:\\Users\\aef52\\.dotnet\\store\\|arch|\\|tfm|",
       "C:\\Users\\aef52\\.nuget\\packages",
->>>>>>> Kheta_Remote
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
     ]
   }

@@ -17,7 +17,7 @@ namespace BirdHouse_Battle.UI
             SFML.WindowNative.Load();
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
-            _window = new RenderWindow(new VideoMode(420, 420), "SFML window");
+            _window = new RenderWindow(new VideoMode(512, 512), "SFML window");
         }
 
         public RenderWindow window
@@ -39,23 +39,23 @@ namespace BirdHouse_Battle.UI
         /// <param name="unit"></param>
         static Shape DisplayArcher(Unit unit)
         {
-            CircleShape archDis = new CircleShape(5);
+            CircleShape archDis = new CircleShape(7);
             archDis.SetPointCount(3);
-            palDis.Position = new Vector2f((float)unit.Location.X + 200, (float)unit.Location.Y + 200);
+            archDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
 
             switch (unit.Team.TeamNumber)
             {
                 case 0:
-                    archDis.FillColor = new Color(Color.Yellow);
-                    break;
-                case 1:
                     archDis.FillColor = new Color(Color.Blue);
                     break;
-                case 2:
+                case 1:
                     archDis.FillColor = new Color(Color.Red);
                     break;
-                case 3:
+                case 2:
                     archDis.FillColor = new Color(Color.Green);
+                    break;
+                case 3:
+                    archDis.FillColor = new Color(Color.Yellow); 
                     break;
             }
             return archDis;
@@ -67,22 +67,22 @@ namespace BirdHouse_Battle.UI
         /// <param name="unit"></param>
         static CircleShape DisplayGobelin( Unit unit)
         {
-            CircleShape gobDis = new CircleShape(5);
-            gobDis.Position = new Vector2f((float)unit.Location.X + 200, (float)unit.Location.Y + 200);
+            CircleShape gobDis = new CircleShape(6);
+            gobDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
 
             switch (unit.Team.TeamNumber)
             {
                 case 0:
-                    gobDis.FillColor = new Color(Color.Yellow);
-                    break;
-                case 1:
                     gobDis.FillColor = new Color(Color.Blue);
                     break;
-                case 2:
+                case 1:
                     gobDis.FillColor = new Color(Color.Red);
                     break;
-                case 3:
+                case 2:
                     gobDis.FillColor = new Color(Color.Green);
+                    break;
+                case 3:
+                    gobDis.FillColor = new Color(Color.Yellow);
                     break;
             }
             return gobDis;
@@ -90,25 +90,25 @@ namespace BirdHouse_Battle.UI
 
         static RectangleShape DisplayPaladin(Unit unit)
         {
-            Vector2f vect = new Vector2f(7, 5);
+            Vector2f vect = new Vector2f(10, 10);
             RectangleShape palDis = new RectangleShape(vect);
-                archDis.Position = new Vector2f((float)unit.Location.X + 200, (float)unit.Location.Y + 200);
+                palDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
 
             //Assign a defalut color to a unit in a team 
             //That way, team 1 is yellow, 2 is blue, 3 is Red, 4 is green
             switch (unit.Team.TeamNumber)
             {
                 case 0:
-                    palDis.FillColor = new Color(Color.Yellow);
-                    break;
-                case 1:
                     palDis.FillColor = new Color(Color.Blue);
                     break;
-                case 2:
+                case 1:
                     palDis.FillColor = new Color(Color.Red);
                     break;
-                case 3:
+                case 2:
                     palDis.FillColor = new Color(Color.Green);
+                    break;
+                case 3:
+                    palDis.FillColor = new Color(Color.Yellow);
                     break;
             }
             return palDis;

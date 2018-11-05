@@ -82,8 +82,14 @@ namespace BirdHouse_Battle.Model
 
             if ( x + y == 0)
             {
-                x = x + Rx;
-                y = y + Ry;
+                Rx = Rx / 10;
+                Ry = Ry / 10;
+
+                while (Math.Sqrt(x * x) + Math.Sqrt(y * y) < 2)
+                {
+                    x = x + Rx;
+                    y = y + Ry;
+                }
 
                 x = Math.Round(x * Speed, 2);
                 y = Math.Round(y * Speed, 2);
@@ -111,8 +117,14 @@ namespace BirdHouse_Battle.Model
 
             if (x + y == 0)
             {
-                x = x + Rx;
-                y = y + Ry;
+                Rx = Rx / 10;
+                Ry = Ry / 10;
+
+                while (Math.Sqrt(x * x) + Math.Sqrt(y * y) < 2)
+                {
+                    x = x + Rx;
+                    y = y + Ry;
+                }
 
                 x = Math.Round(x * Speed, 2);
                 y = Math.Round(y * Speed, 2);

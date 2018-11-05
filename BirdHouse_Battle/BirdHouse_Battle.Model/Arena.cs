@@ -17,8 +17,8 @@ namespace BirdHouse_Battle.Model
         {
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
-            _height = 200;
-            _width = 200;
+            _height = 250;
+            _width = 250;
         }
 
         public int Height
@@ -138,8 +138,8 @@ namespace BirdHouse_Battle.Model
                         {
                             if (i == 0)
                             {
-                                x = random.NextDouble() * (_width*2 )/2 -_width;
-                                y = random.NextDouble() * (_height*2) - _width;
+                                x = random.NextDouble() * _width -_width;
+                                y = random.NextDouble() * (_height*2) - _height;
                                 vector = new Vector(x, y);
                                 if (ValidSpawnLocation(vector) == true)
                                 {
@@ -148,8 +148,8 @@ namespace BirdHouse_Battle.Model
                             }
                             else
                             {
-                                x = random.NextDouble() * (_width *2)/2+_width/2-_width;
-                                y = random.NextDouble() * (_height/2)-_width ;
+                                x = random.NextDouble() * _width;
+                                y = random.NextDouble() * (_height*2)- _height;
                                 vector = new Vector(x, y);
                                 if (ValidSpawnLocation(vector) == true)
                                 {
@@ -161,8 +161,8 @@ namespace BirdHouse_Battle.Model
                         {
                             if (i == 0)
                             {
-                                x = random.NextDouble() * (_width *2) / 2 -_width;
-                                y = random.NextDouble() * (_height*2) / 2-_height;
+                                x = random.NextDouble() * _width - _width;
+                                y = random.NextDouble() * _height - _height;
                                 vector = new Vector(x, y);
                                 if (ValidSpawnLocation(vector) == true)
                                 {
@@ -171,8 +171,8 @@ namespace BirdHouse_Battle.Model
                             }
                             else if (i == 1)
                             {
-                                x = random.NextDouble() * (_width *2)/2 -_width;
-                                y = random.NextDouble() * (_height *2)/2 + _height / 2 - _height;
+                                x = random.NextDouble() * _width - _width;
+                                y = random.NextDouble() * _height;
                                 vector = new Vector(x, y);
                                 if (ValidSpawnLocation(vector) == true)
                                 {
@@ -181,8 +181,8 @@ namespace BirdHouse_Battle.Model
                             }
                             else if (i == 2)
                             {
-                                x = random.NextDouble() * (_width *2)/2 + _width / 2-_width;
-                                y = random.NextDouble() * (_height *2)/2 + _height / 2-_width;
+                                x = random.NextDouble() * _width;
+                                y = random.NextDouble() * _height - _height;
                                 vector = new Vector(x, y);
                                 if (ValidSpawnLocation(vector) == true)
                                 {
@@ -191,8 +191,8 @@ namespace BirdHouse_Battle.Model
                             }
                             else
                             {
-                                x = random.NextDouble() * (_width*2) + _width / 2-_width;
-                                y = random.NextDouble() * (_height *2)/2-_width;
+                                x = random.NextDouble() * _width;
+                                y = random.NextDouble() * _height;
                                 vector = new Vector(x, y);
                                 if (ValidSpawnLocation(vector) == true)
                                 {
