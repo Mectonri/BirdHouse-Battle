@@ -124,55 +124,72 @@ namespace BirdHouse_Battle.Model
 
                     do
                     {
-                        //x = random.NextDouble() * (_width);
-                        //y = random.NextDouble() * (_height);
-                        //vector = new Vector(x, y);
-                        //if (ValidSpawnLocation(vector) == true)
-                        //{
-                        //    IsSpawnable = true;
-                        //}
-
-                        if (i == 0)
+                        if (_teams.Count == 2)
                         {
-                            x = random.NextDouble() * (_width / 2);
-                            y = random.NextDouble() * (_height / 2);
-                            vector = new Vector(x, y);
-                            if (ValidSpawnLocation(vector) == true)
+                            if (i == 0)
                             {
-                                IsSpawnable = true;
+                                x = random.NextDouble() * (_width*2 )/2 -_width;
+                                y = random.NextDouble() * (_height*2) - _width;
+                                vector = new Vector(x, y);
+                                if (ValidSpawnLocation(vector) == true)
+                                {
+                                    IsSpawnable = true;
+                                }
+                            }
+                            else
+                            {
+                                x = random.NextDouble() * (_width *2)/2+_width/2-_width;
+                                y = random.NextDouble() * (_height/2)-_width ;
+                                vector = new Vector(x, y);
+                                if (ValidSpawnLocation(vector) == true)
+                                {
+                                    IsSpawnable = true;
+                                }
                             }
                         }
-                        else if (i == 1)
+                        else
                         {
-                            x = random.NextDouble() * (_width/2);
-                            y = random.NextDouble() * (_height/2) + _height/2;
-                            vector = new Vector(x, y);
-                            if (ValidSpawnLocation(vector) == true)
+                            if (i == 0)
                             {
-                                IsSpawnable = true;
+                                x = random.NextDouble() * (_width *2) / 2 -_width;
+                                y = random.NextDouble() * (_height*2) / 2-_height;
+                                vector = new Vector(x, y);
+                                if (ValidSpawnLocation(vector) == true)
+                                {
+                                    IsSpawnable = true;
+                                }
+                            }
+                            else if (i == 1)
+                            {
+                                x = random.NextDouble() * (_width *2)/2 -_width;
+                                y = random.NextDouble() * (_height *2)/2 + _height / 2 - _height;
+                                vector = new Vector(x, y);
+                                if (ValidSpawnLocation(vector) == true)
+                                {
+                                    IsSpawnable = true;
+                                }
+                            }
+                            else if (i == 2)
+                            {
+                                x = random.NextDouble() * (_width *2)/2 + _width / 2-_width;
+                                y = random.NextDouble() * (_height *2)/2 + _height / 2-_width;
+                                vector = new Vector(x, y);
+                                if (ValidSpawnLocation(vector) == true)
+                                {
+                                    IsSpawnable = true;
+                                }
+                            }
+                            else
+                            {
+                                x = random.NextDouble() * (_width*2) + _width / 2-_width;
+                                y = random.NextDouble() * (_height *2)/2-_width;
+                                vector = new Vector(x, y);
+                                if (ValidSpawnLocation(vector) == true)
+                                {
+                                    IsSpawnable = true;
+                                }
                             }
                         }
-                        else if (i==2)
-                        {
-                            x = random.NextDouble() * (_width/2) + _width / 2;
-                            y = random.NextDouble() * (_height / 2) + _height / 2;
-                            vector = new Vector(x, y);
-                            if (ValidSpawnLocation(vector) == true)
-                            {
-                                IsSpawnable = true;
-                            }
-                        }
-                         else 
-                        {
-                            x = random.NextDouble() * (_width)+ _width/2;
-                            y = random.NextDouble() * (_height/2);
-                            vector = new Vector(x, y);
-                            if (ValidSpawnLocation(vector) == true)
-                            {
-                                IsSpawnable = true;
-                            }
-                        }
-
 
                     } while (IsSpawnable == false);
 

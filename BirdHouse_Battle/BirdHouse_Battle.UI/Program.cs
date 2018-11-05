@@ -39,10 +39,10 @@ namespace BirdHouse_Battle.UI
             
             Arena arena = new Arena();
 
-            Team yellow = arena.CreateTeam("yellow");
+
             Team blue = arena.CreateTeam("blue");
             Team red = arena.CreateTeam("red");
-            Team green = arena.CreateTeam("green");
+;
             
             //Each unit is represented by a shape
             //Archers are triagles, goblins by circles and paladin by rectangular shapes
@@ -53,12 +53,7 @@ namespace BirdHouse_Battle.UI
             blue.AddArcher(25);
             blue.AddGobelin(50);
             blue.AddPaladin(50);
-            green.AddArcher(25);
-            green.AddGobelin(50);
-            green.AddPaladin(50);
-            yellow.AddArcher(25);
-            yellow.AddGobelin(50);
-            yellow.AddPaladin(50);
+
 
             arena.SpawnUnit();
 
