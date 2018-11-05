@@ -797,41 +797,24 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\Thibault\\.nuget\\packages\\": {},
-=======
-    "C:\\Users\\saxel\\.nuget\\packages\\": {},
->>>>>>> Lexa_remote
+    "C:\\Users\\aef52\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
+      "projectUniqueName": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
       "projectName": "BirdHouse_Battle.UI",
-      "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
-      "packagesPath": "C:\\Users\\Thibault\\.nuget\\packages\\",
-      "outputPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\obj\\",
-=======
-      "projectUniqueName": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
-      "projectName": "BirdHouse_Battle.UI",
-      "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
-      "packagesPath": "C:\\Users\\saxel\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\obj\\",
->>>>>>> Lexa_remote
+      "projectPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\BirdHouse_Battle.UI.csproj",
+      "packagesPath": "C:\\Users\\aef52\\.nuget\\packages\\",
+      "outputPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
-        "C:\\Users\\Thibault\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-        "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
-        "C:\\Users\\saxel\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> Lexa_remote
+        "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
+        "C:\\Users\\aef52\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -846,13 +829,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-<<<<<<< HEAD
-            "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
-              "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
-=======
-            "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
-              "projectPath": "D:\\Users\\saxel\\ITI\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
->>>>>>> Lexa_remote
+            "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj": {
+              "projectPath": "F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj"
             }
           }
         }
@@ -895,5 +873,13 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file F:\\INTECH\\SEMESTRE 3\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.UI\\obj\\BirdHouse_Battle.UI.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

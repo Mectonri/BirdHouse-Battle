@@ -43,18 +43,18 @@ namespace BirdHouse_Battle.UI
             Team green = arena.CreateTeam("green");
             Team yellow = arena.CreateTeam("yellow");
 
-            red.AddArcher(25);
-            red.AddGobelin(50);
-            red.AddPaladin(50);
-            blue.AddArcher(25);
-            blue.AddGobelin(50);
-            blue.AddPaladin(50);
-            green.AddArcher(25);
-            green.AddGobelin(50);
-            green.AddPaladin(50);
-            yellow.AddArcher(25);
-            yellow.AddGobelin(50);
-            yellow.AddPaladin(50);
+            red.AddArcher(15);
+            red.AddGobelin(55);
+            red.AddPaladin(55);
+            blue.AddArcher(15);
+            blue.AddGobelin(55);
+            blue.AddPaladin(55);
+            green.AddArcher(15);
+            green.AddGobelin(55);
+            green.AddPaladin(55);
+            yellow.AddArcher(15);
+            yellow.AddGobelin(55);
+            yellow.AddPaladin(55);
 
             arena.SpawnUnit();
             //End of Preparation.
