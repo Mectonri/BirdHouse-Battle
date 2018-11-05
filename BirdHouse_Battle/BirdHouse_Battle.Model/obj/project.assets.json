@@ -33,24 +33,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\AxelS\\.nuget\\packages\\": {},
+    "C:\\Users\\Thibault\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\AxelS\\Desktop\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
+      "projectUniqueName": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
       "projectName": "BirdHouse_Battle.Model",
-      "projectPath": "C:\\Users\\AxelS\\Desktop\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
-      "packagesPath": "C:\\Users\\AxelS\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\AxelS\\Desktop\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\",
+      "projectPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\BirdHouse_Battle.Model.csproj",
+      "packagesPath": "C:\\Users\\Thibault\\.nuget\\packages\\",
+      "outputPath": "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\AxelS\\Desktop\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
-        "C:\\Users\\AxelS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\repos\\BirdHouse-Battle\\BirdHouse_Battle\\NuGet.Config",
+        "C:\\Users\\Thibault\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -83,13 +83,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\AxelS\\Desktop\\PI\\BirdHouse-Battle\\BirdHouse_Battle\\BirdHouse_Battle.Model\\obj\\BirdHouse_Battle.Model.csproj.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }
