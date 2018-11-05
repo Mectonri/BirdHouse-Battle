@@ -7,7 +7,7 @@ namespace BirdHouse_Battle.Model
     public class Paladin : Unit
     {
         public Paladin(Team team, Arena arena)
-            : base(team, arena, 5.0, 1.1, 15.0, 12.5, 5, 4, "Order")
+            : base(team, arena, 18.0, 1.2, 15.0, 12.5, 5, 4, "Order")
         {
         }
 

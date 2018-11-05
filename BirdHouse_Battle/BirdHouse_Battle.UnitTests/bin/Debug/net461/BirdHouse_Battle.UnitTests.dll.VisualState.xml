@@ -1,22 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ShowCheckBoxes="false">
-<<<<<<< HEAD
-  <TopNode>[0-1047]D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll</TopNode>
-  <SelectedNode>[0-1018]BirdHouse_Battle.UnitTests.TeamTests.team_limit_is_effective</SelectedNode>
+  <TopNode>[0-1002]BirdHouse_Battle.UnitTests.ArenaTests.remove_team</TopNode>
+  <SelectedNode>[0-1041]BirdHouse_Battle.UnitTests.UnitTests_Unit.Try_Update_Diagonal_Negative</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1047]D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" Expanded="true" />
-    <Node UniqueName="[0-1048]BirdHouse_Battle" Expanded="true" />
-    <Node UniqueName="[0-1049]BirdHouse_Battle.UnitTests" Expanded="true" />
+    <Node UniqueName="[0-1048]F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" Expanded="true" />
+    <Node UniqueName="[0-1049]BirdHouse_Battle" Expanded="true" />
+    <Node UniqueName="[0-1050]BirdHouse_Battle.UnitTests" Expanded="true" />
+    <Node UniqueName="[0-1000]BirdHouse_Battle.UnitTests.ArenaTests" Expanded="true" />
+    <Node UniqueName="[0-1007]BirdHouse_Battle.UnitTests.GameScreenTests" Expanded="true" />
     <Node UniqueName="[0-1009]BirdHouse_Battle.UnitTests.TeamTests" Expanded="true" />
-=======
-  <TopNode>[0-1047]F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll</TopNode>
-  <SelectedNode>[0-1047]F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll</SelectedNode>
-  <ExcludeCategories>false</ExcludeCategories>
-  <Nodes>
-    <Node UniqueName="[0-1047]F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UnitTests\bin\Debug\net461\BirdHouse_Battle.UnitTests.dll" Expanded="true" />
-    <Node UniqueName="[0-1048]BirdHouse_Battle" Expanded="true" />
-    <Node UniqueName="[0-1049]BirdHouse_Battle.UnitTests" Expanded="true" />
->>>>>>> Kheta_Remote
+    <Node UniqueName="[0-1019]BirdHouse_Battle.UnitTests.UnitTests_Archer" Expanded="true" />
+    <Node UniqueName="[0-1024]BirdHouse_Battle.UnitTests.UnitTests_Gobelin" Expanded="true" />
+    <Node UniqueName="[0-1029]BirdHouse_Battle.UnitTests.UnitTests_Paladin" Expanded="true" />
+    <Node UniqueName="[0-1034]BirdHouse_Battle.UnitTests.UnitTests_Unit" Expanded="true" />
   </Nodes>
 </VisualState>

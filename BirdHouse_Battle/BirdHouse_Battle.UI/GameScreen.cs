@@ -17,7 +17,7 @@ namespace BirdHouse_Battle.UI
             SFML.WindowNative.Load();
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
-            _window = new RenderWindow(new VideoMode(400, 400), "SFML window");
+            _window = new RenderWindow(new VideoMode(420, 420), "SFML window");
         }
 
         public RenderWindow window
@@ -41,7 +41,7 @@ namespace BirdHouse_Battle.UI
         {
             CircleShape archDis = new CircleShape(5);
             archDis.SetPointCount(3);
-            archDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
+            palDis.Position = new Vector2f((float)unit.Location.X + 200, (float)unit.Location.Y + 200);
 
             switch (unit.Team.TeamNumber)
             {
@@ -68,7 +68,7 @@ namespace BirdHouse_Battle.UI
         static CircleShape DisplayGobelin( Unit unit)
         {
             CircleShape gobDis = new CircleShape(5);
-            gobDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
+            gobDis.Position = new Vector2f((float)unit.Location.X + 200, (float)unit.Location.Y + 200);
 
             switch (unit.Team.TeamNumber)
             {
@@ -92,7 +92,7 @@ namespace BirdHouse_Battle.UI
         {
             Vector2f vect = new Vector2f(7, 5);
             RectangleShape palDis = new RectangleShape(vect);
-            palDis.Position = new Vector2f((float)unit.Location.X, (float)unit.Location.Y);
+                archDis.Position = new Vector2f((float)unit.Location.X + 200, (float)unit.Location.Y + 200);
 
             //Assign a defalut color to a unit in a team 
             //That way, team 1 is yellow, 2 is blue, 3 is Red, 4 is green

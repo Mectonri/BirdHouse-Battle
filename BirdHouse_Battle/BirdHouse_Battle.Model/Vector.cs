@@ -55,9 +55,12 @@ namespace BirdHouse_Battle.Model
         /// <param name="min"></param>
         /// <param name="max"></param>
         /// <returns></returns>
-        public Vector Limit(double min, double max)
+        public void Limit(double min, double max)
         {
-            return new Vector(Math.Min(max, Math.Max(min, _x)), Math.Min(max, Math.Max(min, _y)));
+            if (_x < min) _x = min;
+            if (_x > max) _x = max;
+            if (_y < min) _y = min;
+            if (_y > max) _y = max;
         }
 
         public Vector Move(double Speed)
@@ -85,6 +88,38 @@ namespace BirdHouse_Battle.Model
                 x = Math.Round(x * Speed, 2);
                 y = Math.Round(y * Speed, 2);
             }
+
+            return new Vector(x, y);
+        }
+
+        public Vector MoveAndRunAway(double Speed)
+        {
+            double x = X;
+            double y = Y;
+            double Rx = X / 100;
+            double Ry = Y / 100;
+
+            do
+            {
+                x = x - Rx;
+                y = y - Ry;
+            }
+            while (Math.Sqrt(x * x) + Math.Sqrt(y * y) > 2);
+
+            x = Math.Round(x * Speed, 2);
+            y = Math.Round(y * Speed, 2);
+
+            if (x + y == 0)
+            {
+                x = x + Rx;
+                y = y + Ry;
+
+                x = Math.Round(x * Speed, 2);
+                y = Math.Round(y * Speed, 2);
+            }
+
+            x = -x;
+            y = -y;
 
             return new Vector(x, y);
         }

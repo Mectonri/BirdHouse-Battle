@@ -17,8 +17,18 @@ namespace BirdHouse_Battle.Model
         {
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
-            _height = 400;
-            _width = 400;
+            _height = 200;
+            _width = 200;
+        }
+
+        public int Height
+        {
+            get { return _height; }
+        }
+        
+        public int Width
+        {
+            get { return _width; }
         }
 
         public Team CreateTeam(string name)
@@ -58,7 +68,7 @@ namespace BirdHouse_Battle.Model
             {
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {
-                    if (x == kv2.Value.Location.X && y == kv2.Value.Location.Y && kv2.Value != unit) doesCollide = true;
+                    if (x == kv2.Value.Location.X && y == kv2.Value.Location.Y && kv2.Value.Name != unit.Name) doesCollide = true;
                 }
             }
             return doesCollide;
@@ -92,8 +102,8 @@ namespace BirdHouse_Battle.Model
 
             do
             {
-                x = random.NextDouble() * (_width);
-                y = random.NextDouble() * (_height);
+                x = random.NextDouble() * (_width * 2) - _width;
+                y = random.NextDouble() * (_height * 2) - _height;
                 vector = new Vector(x, y);
                 if (ValidSpawnLocation(vector) == true) {
                     IsSpawnable = true;
