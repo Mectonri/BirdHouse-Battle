@@ -1,0 +1,345 @@
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.exe.config
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.exe
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.pdb
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\Microsoft.Win32.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netstandard.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.AppContext.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.Concurrent.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.NonGeneric.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.Specialized.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.EventBasedAsync.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.TypeConverter.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Console.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Data.Common.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Contracts.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Debug.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Process.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.StackTrace.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.TextWriterTraceListener.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Tools.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.TraceSource.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Tracing.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Drawing.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Dynamic.Runtime.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.Calendars.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.Extensions.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Compression.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Compression.ZipFile.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.DriveInfo.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.Watcher.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.IsolatedStorage.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.MemoryMappedFiles.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Pipes.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.UnmanagedMemoryStream.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Expressions.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Parallel.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Queryable.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Http.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.NameResolution.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.NetworkInformation.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Ping.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Requests.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Security.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Sockets.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebHeaderCollection.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebSockets.Client.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebSockets.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ObjectModel.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.Extensions.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.Reader.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.ResourceManager.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.Writer.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.CompilerServices.VisualC.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Extensions.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Handles.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.InteropServices.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Numerics.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Formatters.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Json.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Xml.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Claims.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Algorithms.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Csp.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Encoding.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Primitives.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Principal.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.SecureString.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.Encoding.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.Encoding.Extensions.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.RegularExpressions.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Overlapped.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Tasks.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Tasks.Parallel.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Thread.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.ThreadPool.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Timer.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ValueTuple.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.ReaderWriter.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XDocument.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XmlDocument.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XmlSerializer.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XPath.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XPath.XDocument.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.Model.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Audio.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Graphics.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.System.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Window.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.Model.pdb
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Audio.xml
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Graphics.xml
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.System.xml
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Window.xml
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csprojAssemblyReference.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.exe.config
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csproj.CoreCompileInputs.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csproj.CopyComplete
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.exe
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.pdb
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.exe.config
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.exe
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.pdb
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\Microsoft.Win32.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netstandard.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.AppContext.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.Concurrent.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.NonGeneric.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.Specialized.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.EventBasedAsync.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.TypeConverter.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Console.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Data.Common.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Contracts.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Debug.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Process.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.StackTrace.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.TextWriterTraceListener.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Tools.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.TraceSource.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Tracing.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Drawing.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Dynamic.Runtime.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.Calendars.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.Extensions.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Compression.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Compression.ZipFile.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.DriveInfo.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.Watcher.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.IsolatedStorage.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.MemoryMappedFiles.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Pipes.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.UnmanagedMemoryStream.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Expressions.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Parallel.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Queryable.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Http.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.NameResolution.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.NetworkInformation.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Ping.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Requests.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Security.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Sockets.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebHeaderCollection.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebSockets.Client.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebSockets.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ObjectModel.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.Extensions.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.Reader.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.ResourceManager.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.Writer.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.CompilerServices.VisualC.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Extensions.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Handles.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.InteropServices.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Numerics.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Formatters.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Json.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Xml.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Claims.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Algorithms.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Csp.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Encoding.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Primitives.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Principal.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.SecureString.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.Encoding.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.Encoding.Extensions.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.RegularExpressions.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Overlapped.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Tasks.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Tasks.Parallel.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Thread.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.ThreadPool.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Timer.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ValueTuple.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.ReaderWriter.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XDocument.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XmlDocument.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XmlSerializer.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XPath.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XPath.XDocument.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.Model.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Audio.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Graphics.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.System.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Window.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.Model.pdb
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Audio.xml
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Graphics.xml
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.System.xml
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Window.xml
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csprojAssemblyReference.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.exe.config
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csproj.CoreCompileInputs.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csproj.CopyComplete
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.exe
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csprojAssemblyReference.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.exe.config
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csproj.CoreCompileInputs.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.exe
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.exe.config
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.exe
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.UI.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\Microsoft.Win32.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\netstandard.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.AppContext.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.Concurrent.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.NonGeneric.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Collections.Specialized.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.EventBasedAsync.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ComponentModel.TypeConverter.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Console.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Data.Common.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Contracts.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Debug.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.FileVersionInfo.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Process.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.StackTrace.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.TextWriterTraceListener.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Tools.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.TraceSource.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Diagnostics.Tracing.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Drawing.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Dynamic.Runtime.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.Calendars.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Globalization.Extensions.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Compression.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Compression.ZipFile.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.DriveInfo.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.FileSystem.Watcher.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.IsolatedStorage.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.MemoryMappedFiles.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.Pipes.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.IO.UnmanagedMemoryStream.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Expressions.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Parallel.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Linq.Queryable.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Http.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.NameResolution.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.NetworkInformation.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Ping.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Requests.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Security.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.Sockets.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebHeaderCollection.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebSockets.Client.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Net.WebSockets.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ObjectModel.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.Extensions.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Reflection.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.Reader.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.ResourceManager.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Resources.Writer.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.CompilerServices.VisualC.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Extensions.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Handles.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.InteropServices.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Numerics.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Formatters.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Json.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Runtime.Serialization.Xml.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Claims.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Algorithms.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Csp.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Encoding.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.Primitives.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Cryptography.X509Certificates.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.Principal.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Security.SecureString.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.Encoding.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.Encoding.Extensions.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Text.RegularExpressions.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Overlapped.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Tasks.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Tasks.Parallel.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Thread.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.ThreadPool.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Threading.Timer.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.ValueTuple.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.ReaderWriter.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XDocument.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XmlDocument.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XmlSerializer.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XPath.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\System.Xml.XPath.XDocument.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.Model.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Audio.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Graphics.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.System.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Window.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\BirdHouse_Battle.Model.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Audio.xml
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Graphics.xml
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.System.xml
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\bin\Debug\ITI.SFML.Window.xml
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.UI\obj\Debug\BirdHouse_Battle.UI.csproj.CopyComplete

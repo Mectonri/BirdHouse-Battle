@@ -1,0 +1,44 @@
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csprojAssemblyReference.cache
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CoreCompileInputs.cache
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfoInputs.cache
+C:\wamp64\www\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfo.cs
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.pdb
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\nunit.framework.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csprojAssemblyReference.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CoreCompileInputs.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfoInputs.cache
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfo.cs
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CopyComplete
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.dll
+C:\repos\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.pdb
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.pdb
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\nunit.framework.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csprojAssemblyReference.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CoreCompileInputs.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfoInputs.cache
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfo.cs
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CopyComplete
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.dll
+D:\Users\saxel\ITI\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.pdb
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\nunit.framework.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csprojAssemblyReference.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CoreCompileInputs.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfoInputs.cache
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfo.cs
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CopyComplete
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.dll
+F:\INTECH\SEMESTRE 3\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.pdb
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.dll
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\BirdHouse_Battle.Model.pdb
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\bin\Debug\net461\nunit.framework.dll
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csprojAssemblyReference.cache
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CoreCompileInputs.cache
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfoInputs.cache
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.AssemblyInfo.cs
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.csproj.CopyComplete
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.dll
+C:\Users\AxelS\Desktop\PI\BirdHouse-Battle\BirdHouse_Battle\BirdHouse_Battle.Model\obj\Debug\net461\BirdHouse_Battle.Model.pdb
