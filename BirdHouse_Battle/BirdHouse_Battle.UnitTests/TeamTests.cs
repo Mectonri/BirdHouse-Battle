@@ -101,7 +101,7 @@ namespace BirdHouse_Battle.UnitTests
         [Test]
         public void gold_calculation()
         {
-            //prices archer = 10.0, Gob = 5.0, pal = 12.5
+            //prices archer = 10.0, Gob = 3.0, pal = 12.5
 
             Arena ag = new Arena();
             Team tb = ag.CreateTeam("Blue");
@@ -109,14 +109,14 @@ namespace BirdHouse_Battle.UnitTests
 
             tb.AddArcher(5);
             tr.AddArcher(5);//50.0
-            tr.AddGobelin(10);//50.0
+            tr.AddGobelin(10);//30.0
             tr.AddPaladin(6);//75.0
             double r1 = tb.GoldCalculation(50.0);
             double r2 = tr.GoldCalculation(200.0);
             double r3 = tb.GoldCalculation(0.0);
 
             Assert.That(r1, Is.EqualTo(0.0));
-            Assert.That(r2, Is.EqualTo(25.0));
+            Assert.That(r2, Is.EqualTo(45.0));
         }
 
         [Test]

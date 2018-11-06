@@ -8,28 +8,6 @@ namespace BirdHouse_Battle.UnitTests
     class UnitTests_Unit
     {
         [Test]
-        public void Distance_Error()
-        {
-            Arena arena = new Arena();
-            Team red = arena.CreateTeam("Red");
-            Team green = arena.CreateTeam("Green");
-
-            red.AddArcher(1);
-            green.AddPaladin(1);
-
-            Unit[] t_red = red.Find();
-            Unit[] t_green = green.Find();
-
-            t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
-            t_green[0] = arena.SpawnUnit(t_green[0], 110, 110);
-
-            t_red[0].SearchTarget();
-            t_green[0].SearchTarget();
-
-            for ( int i = 0; i < 10; i++ ) arena.Update();
-        }
-
-        [Test]
         public void Nearest_Enemy()
         {
             Arena arena = new Arena();
@@ -98,19 +76,19 @@ namespace BirdHouse_Battle.UnitTests
             Unit[] t_blue = blue.Find();
 
             t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
-            t_blue[0] = arena.SpawnUnit(t_blue[0], 0, 11);
+            t_blue[0] = arena.SpawnUnit(t_blue[0], 0, 31);
 
             t_red[0].SearchTarget();
             t_red[0].Update();
 
             Assert.That(t_red[0].Location, !Is.EqualTo(new Vector(0, 1)));
-            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(0, 3.09)));
+            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(0, 3.16)));
 
             t_blue[0].SearchTarget();
             t_blue[0].Update();
 
-            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(0, 11)));
-            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(0, 8.82)));
+            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(0, 31)));
+            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(0, 28.66)));
         }
 
         [Test]
@@ -127,19 +105,19 @@ namespace BirdHouse_Battle.UnitTests
             Unit[] t_blue = blue.Find();
 
             t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
-            t_blue[0] = arena.SpawnUnit(t_blue[0], 10, 1);
+            t_blue[0] = arena.SpawnUnit(t_blue[0], 30, 1);
 
             t_red[0].SearchTarget();
             t_red[0].Update();
 
             Assert.That(t_red[0].Location, !Is.EqualTo(new Vector(0, 1)));
-            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(2.09, 1)));
+            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(2.16, 1)));
 
             t_blue[0].SearchTarget();
             t_blue[0].Update();
 
-            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(10, 1)));
-            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(7.82, 1)));
+            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(30, 1)));
+            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(27.66, 1)));
         }
 
         [Test]
@@ -156,19 +134,19 @@ namespace BirdHouse_Battle.UnitTests
             Unit[] t_blue = blue.Find();
 
             t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
-            t_blue[0] = arena.SpawnUnit(t_blue[0], 5, 6);
+            t_blue[0] = arena.SpawnUnit(t_blue[0], 15, 16);
 
             t_red[0].SearchTarget();
             t_red[0].Update();
 
             Assert.That(t_red[0].Location, !Is.EqualTo(new Vector(0, 1)));
-            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(1.05, 2.05)));
+            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(1.08, 2.08)));
 
             t_blue[0].SearchTarget();
             t_blue[0].Update();
 
-            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(5, 6)));
-            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(3.91, 4.91)));
+            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(15, 16)));
+            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(13.83, 14.83)));
         }
 
         [Test]
@@ -185,19 +163,19 @@ namespace BirdHouse_Battle.UnitTests
             Unit[] t_blue = blue.Find();
 
             t_red[0] = arena.SpawnUnit(t_red[0], 0, 1);
-            t_blue[0] = arena.SpawnUnit(t_blue[0], -5, 6);
+            t_blue[0] = arena.SpawnUnit(t_blue[0], -15, 16);
 
             t_red[0].SearchTarget();
             t_red[0].Update();
 
             Assert.That(t_red[0].Location, !Is.EqualTo(new Vector(0, 1)));
-            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(-1.05, 2.05)));
+            Assert.That(t_red[0].Location, Is.EqualTo(new Vector(-1.3, 2.3)));
 
             t_blue[0].SearchTarget();
             t_blue[0].Update();
 
-            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(-5, 6)));
-            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(-3.91, 4.91)));
+            Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(-15, 16)));
+            Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(-13.620000000000001, 14.620000000000001)));
         }
     }
 }
