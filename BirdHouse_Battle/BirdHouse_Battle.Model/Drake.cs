@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using BirdHouse_Battle.Model;
-using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace BirdHouse_Battle.Model
 {
-    public class Archer : Unit
+    public class Drake : Unit
     {
-        public Archer(Team team, Arena arena)
-            : base(team, arena, 12.0, 1.8, 35.0, 10.0, 4, 1, "Order", false, true)
+        public Drake(Team team, Arena arena)
+            : base(team, arena, 10.0, 1.5, 10.0, 15.0, 7, 0, "Chaos", true, true)
         {
         }
 
@@ -22,7 +22,14 @@ namespace BirdHouse_Battle.Model
             {
                 if (InRange())
                 {
-                    Arena.GiveDamage(Target, Strength);
+                    if (new Random().NextDouble() < 0.5)
+                    {
+                        Arena.GiveDamage(Target, Strength);
+                    }
+                    else
+                    {
+                        Arena.GiveFire(Target, 2);
+                    }
                 }
                 else
                 {

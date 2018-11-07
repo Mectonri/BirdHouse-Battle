@@ -7,7 +7,7 @@ namespace BirdHouse_Battle.Model
     public class Gobelin : Unit
     {
         public Gobelin(Team team, Arena arena)
-            : base(team, arena, 8.0, 2.5, 4.0, 3.0, 15, 0, "Chaos")
+            : base(team, arena, 8.0, 2.5, 4.0, 3.0, 15, 0, "Chaos", false, false)
         {
         }
 
@@ -16,7 +16,7 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
-            if (!IsDead())
+            if (!IsDead() || DumpCantFly == false)
             {
                 if (Target.Life > Life && Life < 5)
                 {
@@ -40,7 +40,15 @@ namespace BirdHouse_Battle.Model
                         if (!Arena.Collision(NewLocation)) Location = NewLocation;
                     }
                 }
-                SearchTarget();
+
+                if (Burn > 0) Burning();
+
+                SearchTargetNotFlying();
+            }
+            else if (!IsDead())
+            {
+                DumpFlyAway();
+                SearchTargetNotFlying();
             }
         }
     }

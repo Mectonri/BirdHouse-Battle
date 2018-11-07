@@ -114,7 +114,33 @@ namespace BirdHouse_Battle.UI
             return palDis;
         }
 
+        /// <summary>
+        /// Display drake with the corresponding color
+        /// </summary>
+        /// <param name="unit"></param>
+        static Shape DisplayDrake(Unit unit)
+        {
+            CircleShape drakDis = new CircleShape(8);
+            drakDis.SetPointCount(5);
+            drakDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
 
+            switch (unit.Team.TeamNumber)
+            {
+                case 0:
+                    drakDis.FillColor = new Color(Color.Blue);
+                    break;
+                case 1:
+                    drakDis.FillColor = new Color(Color.Red);
+                    break;
+                case 2:
+                    drakDis.FillColor = new Color(Color.Green);
+                    break;
+                case 3:
+                    drakDis.FillColor = new Color(Color.Yellow);
+                    break;
+            }
+            return drakDis;
+        }
 
         /// <summary>
         /// Display Units 
@@ -132,6 +158,7 @@ namespace BirdHouse_Battle.UI
                     string s = u.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);
                     else if (s == "BirdHouse_Battle.Model.Gobelin") Shape = DisplayGobelin(u.Value);
+                    else if (s == "BirdHouse_Battle.Model.Drake") Shape = DisplayDrake(u.Value);
                     else { Shape = DisplayPaladin(u.Value); }
 
                     window.Draw(Shape);

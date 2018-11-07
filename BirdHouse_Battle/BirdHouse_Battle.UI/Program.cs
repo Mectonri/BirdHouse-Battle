@@ -49,19 +49,23 @@ namespace BirdHouse_Battle.UI
             //Each unit is represented by a shape
             //Archers are triagles, goblins by circles and paladin by rectangular shapes
 
-            red.AddArcher(15); // Part One
-            red.AddGobelin(55);
+            //red.AddArcher(15); // Part One
+            //red.AddGobelin(55);
             red.AddPaladin(55);
-            blue.AddArcher(15);
-            blue.AddGobelin(55);
+            red.AddDrake(5);
+            //blue.AddArcher(15);
+            //blue.AddGobelin(55);
             blue.AddPaladin(55);
+            blue.AddDrake(5);
 
-            green.AddArcher(15); // Part Two
-            green.AddGobelin(55);
+            //green.AddArcher(15); // Part Two
+            //green.AddGobelin(55);
             green.AddPaladin(55);
-            yellow.AddArcher(15);
-            yellow.AddGobelin(55);
+            green.AddDrake(5);
+            //yellow.AddArcher(15);
+            //yellow.AddGobelin(55);
             yellow.AddPaladin(55);
+            yellow.AddDrake(5);
 
 
             arena.SpawnUnit();

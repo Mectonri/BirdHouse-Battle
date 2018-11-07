@@ -212,7 +212,14 @@ namespace BirdHouse_Battle.Model
             {
                 foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
                 {
-                    kv2.Value.SearchTarget();
+                    if(kv2.Value.Fly == false && kv2.Value.Distance == false)
+                    {
+                        kv2.Value.SearchTargetNotFlying();
+                    }
+                    else
+                    {
+                        kv2.Value.SearchTarget();
+                    }
                 }
             }
         }
@@ -250,10 +257,6 @@ namespace BirdHouse_Battle.Model
             return true;
         }
 
-
-
-
-
         public Unit NearestEnemy(Unit unit)
         {
             double x = unit.Location.X;
@@ -289,13 +292,57 @@ namespace BirdHouse_Battle.Model
             return ennemyUnit;
         }
 
+        public Unit NearestEnemyNotFlying(Unit unit)
+        {
+            double x = unit.Location.X;
+            double y = unit.Location.Y;
+            double distance = 0;
+            Unit ennemyUnit = null;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                if (team.Value != unit.Team)
+                {
+                    foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                    {
+                        if (units.Value.Fly == false)
+                        {
+                            double dX = x - units.Value.Location.X;
+                            double dY = y - units.Value.Location.Y;
+
+                            if (distance == 0)
+                            {
+                                distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                ennemyUnit = units.Value;
+                            }
+                            else
+                            {
+                                if (distance > Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY))
+                                {
+                                    distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                    ennemyUnit = units.Value;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            return ennemyUnit;
+        }
+
         public Unit GiveDamage(Unit unit, double damage)
         {
             unit.TakeDamages(damage);
             return unit;
         }
 
-
+        public Unit GiveFire(Unit unit, int damage)
+        {
+            unit.Fired(damage);
+            return unit;
+        }
+        
         public void Update()
         {
             foreach (Team team in _teams.Values)
