@@ -19,11 +19,16 @@ namespace BirdHouse_Battle.Model
         double _unitPrice;
         int _strength;
         int _armor;
+        int _burn;
         string _disposition;
+
+        bool _fly;
+        bool _distance;
+        bool _dumpCantFly;
 
         protected Unit(Team team, Arena arena, double life,
                        double speed, double range, double unitPrice,
-                       int strength, int armor, string disposition)
+                       int strength, int armor, string disposition, bool fly, bool distance)
         {
             _team = team;
             _arena = arena;
@@ -35,6 +40,10 @@ namespace BirdHouse_Battle.Model
             _armor = armor;
             _disposition = disposition;
             _name = Guid.NewGuid();
+            _burn = 0;
+            _fly = fly;
+            _distance = distance;
+            _dumpCantFly = false;
         }
 
         public Team Team { get { return _team; } }
@@ -79,12 +88,20 @@ namespace BirdHouse_Battle.Model
 
         public int Armor { get { return _armor; } }
 
+        public int Burn { get { return _burn; } }
+
         public string Disposition { get { return _disposition; } }
 
         public bool IsDead()
         {
             return _life <= 0;
         }
+
+        public bool Fly { get { return _fly; } }
+
+        public bool Distance { get { return _distance; } }
+
+        public bool DumpCantFly { get { return _dumpCantFly; } }
 
         /// <summary>
         /// Search the nearest enemy.
@@ -94,6 +111,24 @@ namespace BirdHouse_Battle.Model
             Target = Arena.NearestEnemy(this);
             if (Target == null) throw new ArgumentNullException("A location couldn't be Null");
             NewDirection();
+        }
+
+        public void SearchTargetNotFlying()
+        {
+            Target = Arena.NearestEnemyNotFlying(this);
+            if (Target == null)
+            {
+                _dumpCantFly = true;
+            }
+            else
+            {
+                NewDirection();
+            }
+        }
+
+        public void DumpFlyAway()
+        {
+            _dumpCantFly = false;
         }
 
         /// <summary>
@@ -134,26 +169,26 @@ namespace BirdHouse_Battle.Model
             _life = _life - Math.Max(damages - Armor, 0);
         }
 
+        public void Fired(int fire)
+        {
+            if (fire <= 0) throw new ArgumentException("fire can't be negative or null");
+            _burn = _burn + fire;
+        }
+
+        public void Burning()
+        {
+            _life = _life - 3;
+            _burn--;
+        }
+
+        public void SpecialEffect()
+        {
+            if (Burn > 0) Burning();
+        }
+
         /// <summary>
         /// Game Loop in Unit
         /// </summary>
-        public virtual void Update()
-        {
-            if (!IsDead())
-            {
-                if (InRange())
-                {
-                    Arena.GiveDamage(Target, Strength);
-                }
-                else
-                {
-                    Mouvement = Direction.Move(Speed);
-                    Vector NewLocation = Location.Add(Mouvement);
-
-                    if (!Arena.Collision(NewLocation)) Location = NewLocation;
-                }
-                SearchTarget();
-            }
-        }
+        public virtual void Update() { }
     }
 }

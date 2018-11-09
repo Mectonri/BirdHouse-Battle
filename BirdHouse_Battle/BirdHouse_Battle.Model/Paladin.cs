@@ -7,7 +7,7 @@ namespace BirdHouse_Battle.Model
     public class Paladin : Unit
     {
         public Paladin(Team team, Arena arena)
-            : base(team, arena, 18.0, 1.2, 15.0, 12.5, 5, 4, "Order")
+            : base(team, arena, 18.0, 1.2, 15.0, 12.5, 5, 4, "Order", false, false)
         {
         }
 
@@ -16,7 +16,9 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
-            if (!IsDead())
+            SearchTargetNotFlying();
+
+            if (!IsDead() && DumpCantFly == false)
             {
                 if (InRange())
                 {
@@ -29,9 +31,13 @@ namespace BirdHouse_Battle.Model
 
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
                 }
-                SearchTarget();
+
+                SpecialEffect();
+            }
+            else if (!IsDead())
+            {
+                DumpFlyAway();
             }
         }
-
     }
 }

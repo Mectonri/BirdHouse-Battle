@@ -8,9 +8,26 @@ namespace BirdHouse_Battle.Model
 {
     public class Archer : Unit
     {
+
+        int _callDown;
+
         public Archer(Team team, Arena arena)
-            : base(team, arena, 12.0, 1.8, 35.0, 10.0, 4, 1, "Order")
+            : base(team, arena, 12.0, 1.8, 135.0, 10.0, 4, 1, "Order", false, true)
         {
+            _callDown = 0;
+        }
+
+        public int CallDown
+        {
+            get { return _callDown; }
+        }
+
+        public void BowAttack()
+        {
+            Vector End = Target.Location.Add(Target.Mouvement.Multiply(3));
+            End.Limit(-Arena.Height, Arena.Height);
+            Arena.InitArrow(Location, End);
+            _callDown = 3;
         }
 
         /// <summary>
@@ -18,11 +35,20 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
-            if (!IsDead())
+            SearchTarget();
+
+            if (!IsDead() && DumpCantFly == false)
             {
                 if (InRange())
                 {
-                    Arena.GiveDamage(Target, Strength);
+                    if (_callDown == 0)
+                    {
+                        BowAttack();
+                    }
+                    else
+                    {
+                        _callDown--;
+                    }
                 }
                 else
                 {
@@ -31,7 +57,12 @@ namespace BirdHouse_Battle.Model
 
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
                 }
-                SearchTarget();
+
+                SpecialEffect();
+            }
+            else if (!IsDead())
+            {
+                DumpFlyAway();
             }
         }
     }

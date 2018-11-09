@@ -135,5 +135,13 @@ namespace BirdHouse_Battle.Model
 
             return new Vector(x, y);
         }
+
+        public Vector MoveProjectile(int NbFram)
+        {
+            double x = Math.Round(X / NbFram, 0);
+            double y = Math.Round(Y / NbFram, 0);
+
+            return new Vector(x, y);
+        }
     }
 }
