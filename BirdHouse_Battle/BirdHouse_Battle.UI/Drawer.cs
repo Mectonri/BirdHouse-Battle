@@ -1,38 +1,36 @@
-﻿using System;
-using BirdHouse_Battle.Model;
-using System.Collections.Generic;
+﻿using BirdHouse_Battle.Model;
 using SFML.Graphics;
-using SFML.Window;
 using SFML.System;
+using SFML.Window;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace BirdHouse_Battle.UI
 {
-    public class GameScreen
+
+    /// <summary>
+    ///  This class will be used to only draw units
+    /// </summary>
+    public class Drawer
     {
-        RenderWindow _window;
-
-        public GameScreen()
+        Game _ctx;
+        RenderWindow _win;
+        public Drawer(RenderWindow win)
         {
-            SFML.SystemNative.Load();
-            SFML.WindowNative.Load();
-            SFML.GraphicsNative.Load();
-            SFML.AudioNative.Load();
-            _window = new RenderWindow(new VideoMode(512, 512), "SFML window");
+            _ctx = ctx;
+            _win = win;
         }
 
-        public RenderWindow window
+        public Game ctx
         {
-            get { return _window; }
-            private set { }
+            get { return _ctx; }
         }
 
-        //Close the window when the On close event is received
-        static void OnClose(object sender, EventArgs e)
+        public RenderWindow win
         {
-            RenderWindow window = (RenderWindow)sender;
-            window.Close();
+            get { return _win; }
         }
-
         /// <summary>
         /// Display archer with the corresponding color
         /// </summary>
@@ -55,7 +53,7 @@ namespace BirdHouse_Battle.UI
                     archDis.FillColor = new Color(Color.Green);
                     break;
                 case 3:
-                    archDis.FillColor = new Color(Color.Yellow); 
+                    archDis.FillColor = new Color(Color.Yellow);
                     break;
             }
             return archDis;
@@ -65,7 +63,7 @@ namespace BirdHouse_Battle.UI
         /// Displays Gobelin and color it in function of the team
         /// </summary>
         /// <param name="unit"></param>
-        static CircleShape DisplayGobelin( Unit unit)
+        static CircleShape DisplayGobelin(Unit unit)
         {
             CircleShape gobDis = new CircleShape(6);
             gobDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
@@ -92,7 +90,7 @@ namespace BirdHouse_Battle.UI
         {
             Vector2f vect = new Vector2f(10, 10);
             RectangleShape palDis = new RectangleShape(vect);
-                palDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
+            palDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
 
             //Assign a defalut color to a unit in a team 
             //That way, team 1 is yellow, 2 is blue, 3 is Red, 4 is green
@@ -114,29 +112,28 @@ namespace BirdHouse_Battle.UI
             return palDis;
         }
 
-
-
         /// <summary>
         /// Display Units 
         /// </summary>
         /// <param name="arena"></param>
         public void UnitDisplay(Arena arena)
         {
-            Shape Shape; 
+            Shape Shape;
 
             foreach (KeyValuePair<string, Team> team in arena.Teams)
             {
                 foreach (KeyValuePair<Guid, Unit> u in team.Value.Unit)
                 {
-                    
+
                     string s = u.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);
                     else if (s == "BirdHouse_Battle.Model.Gobelin") Shape = DisplayGobelin(u.Value);
                     else { Shape = DisplayPaladin(u.Value); }
 
-                    window.Draw(Shape);
+                    win.Draw(Shape);
                 }
             }
         }
     }
 }
+
