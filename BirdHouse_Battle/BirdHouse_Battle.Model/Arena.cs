@@ -8,17 +8,31 @@ namespace BirdHouse_Battle.Model
     {
         readonly Dictionary<string, Team> _teams;
         readonly Dictionary<string, Team> _deadTeams;
+        readonly Dictionary<int, Projectile> _projectiles;
+        readonly Dictionary<int, Projectile> _deadProjectiles;
         readonly int _height;
         readonly int _width;
-
-
-
+        int _counter;
+        
         public Arena()
         {
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
+            _projectiles = new Dictionary<int, Projectile>();
+            _deadProjectiles = new Dictionary<int, Projectile>();
             _height = 250;
             _width = 250;
+            _counter = 0;
+        }
+
+        public Dictionary<string, Team> Teams
+        {
+            get { return _teams; }
+        }
+
+        public Dictionary<int, Projectile> Projectiles
+        {
+            get { return _projectiles; }
         }
 
         public int Height
@@ -29,6 +43,11 @@ namespace BirdHouse_Battle.Model
         public int Width
         {
             get { return _width; }
+        }
+
+        public int Counter
+        {
+            get { return _counter; }
         }
 
         public Team CreateTeam(string name)
@@ -207,21 +226,6 @@ namespace BirdHouse_Battle.Model
                 }
                 i++;
             }
-
-            foreach (KeyValuePair<string, Team> kv in _teams)
-            {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
-                {
-                    if(kv2.Value.Fly == false && kv2.Value.Distance == false)
-                    {
-                        kv2.Value.SearchTargetNotFlying();
-                    }
-                    else
-                    {
-                        kv2.Value.SearchTarget();
-                    }
-                }
-            }
         }
 
         public Unit SpawnUnit(Unit unit, double x, double y)
@@ -342,8 +346,59 @@ namespace BirdHouse_Battle.Model
             unit.Fired(damage);
             return unit;
         }
+
+        public void InitArrow(Vector start, Vector end)
+        {
+            Arrow arrow = new Arrow(this, start, end, Counter);
+            _projectiles.Add(Counter, arrow);
+            _counter++;
+        }
+
+        public void IsUnitInRangeAoe(Projectile projectile, int damages)
+        {
+            Vector UnitPosition;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                {
+                    UnitPosition = units.Value.Location;
+
+                    if (projectile.Position.Soustract(UnitPosition).Magnitude <= projectile.Range)
+                    {
+                        units.Value.TakeDamages(damages);
+                    }
+                }
+            }
+        }
+
+        public bool IsUnitInRange(Projectile projectile, int damages)
+        {
+            Vector UnitPosition;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                {
+                    UnitPosition = units.Value.Location;
+                    Vector location = projectile.Position.Soustract(UnitPosition);
+
+                    if (location.Magnitude <= projectile.Range)
+                    {
+                        units.Value.TakeDamages(damages);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
         
-        public void Update()
+        private bool FindProjectile(int name)
+        {
+            return _projectiles.TryGetValue(name, out Projectile projectile);
+        }
+
+        public void UpdateTeams()
         {
             foreach (Team team in _teams.Values)
             {
@@ -354,15 +409,38 @@ namespace BirdHouse_Battle.Model
                 team.UpdateDead();
                 if (team.IsWiped == true) _deadTeams.Add(team.Name, team);
             }
+        }
+
+        public void UpdateProjectiles()
+        {
+            foreach (Projectile projectile in _projectiles.Values)
+            {
+                projectile.Update();
+
+                if (projectile.Arrived)
+                {
+                    _deadProjectiles.Add(projectile.Name, projectile);
+                }
+            }
+            foreach (Projectile projectile in _deadProjectiles.Values)
+                {
+                if (FindProjectile(projectile.Name))
+                {
+                    _projectiles.Remove(projectile.Name);
+                    projectile.Dispose();
+                }
+            }
+        }
+
+        public void Update()
+        {
+            UpdateTeams();
+            UpdateProjectiles();
+            
             foreach (KeyValuePair<string, Team> team in _deadTeams)
             {
                 if (FindTeam(team.Key) != null) RemoveTeam(team.Key);
             }
-        }
-
-        public Dictionary<string, Team> Teams
-        {
-            get { return _teams; }
         }
     }
 }

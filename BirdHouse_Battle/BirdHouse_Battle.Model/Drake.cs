@@ -9,7 +9,7 @@ namespace BirdHouse_Battle.Model
     public class Drake : Unit
     {
         public Drake(Team team, Arena arena)
-            : base(team, arena, 10.0, 1.5, 10.0, 15.0, 7, 0, "Chaos", true, true)
+            : base(team, arena, 10.0, 1.5, 18.0, 15.0, 7, 0, "Chaos", true, true)
         {
         }
 
@@ -18,7 +18,9 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
-            if (!IsDead() || DumpCantFly == false)
+            SearchTarget();
+
+            if (!IsDead() && DumpCantFly == false)
             {
                 if (InRange())
                 {
@@ -39,14 +41,11 @@ namespace BirdHouse_Battle.Model
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
                 }
 
-                if (Burn > 0) Burning();
-
-                SearchTarget();
+                SpecialEffect();
             }
             else if (!IsDead())
             {
                 DumpFlyAway();
-                SearchTarget();
             }
         }
     }

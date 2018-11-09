@@ -16,7 +16,9 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
-            if (!IsDead() || DumpCantFly == false)
+            SearchTargetNotFlying();
+
+            if (!IsDead() && DumpCantFly == false)
             {
                 if (Target.Life > Life && Life < 5)
                 {
@@ -41,14 +43,11 @@ namespace BirdHouse_Battle.Model
                     }
                 }
 
-                if (Burn > 0) Burning();
-
-                SearchTargetNotFlying();
+                SpecialEffect();
             }
             else if (!IsDead())
             {
                 DumpFlyAway();
-                SearchTargetNotFlying();
             }
         }
     }

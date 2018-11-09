@@ -16,7 +16,9 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
-            if (!IsDead() || DumpCantFly == false)
+            SearchTargetNotFlying();
+
+            if (!IsDead() && DumpCantFly == false)
             {
                 if (InRange())
                 {
@@ -30,14 +32,11 @@ namespace BirdHouse_Battle.Model
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
                 }
 
-                if (Burn > 0) Burning();
-
-                SearchTargetNotFlying();
+                SpecialEffect();
             }
             else if (!IsDead())
             {
                 DumpFlyAway();
-                SearchTargetNotFlying();
             }
         }
     }

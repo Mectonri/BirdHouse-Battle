@@ -181,34 +181,14 @@ namespace BirdHouse_Battle.Model
             _burn--;
         }
 
+        public void SpecialEffect()
+        {
+            if (Burn > 0) Burning();
+        }
+
         /// <summary>
         /// Game Loop in Unit
         /// </summary>
-        public virtual void Update()
-        {
-            if (!IsDead() || DumpCantFly == false)
-            {
-                if (InRange())
-                {
-                    Arena.GiveDamage(Target, Strength);
-                }
-                else
-                {
-                    Mouvement = Direction.Move(Speed);
-                    Vector NewLocation = Location.Add(Mouvement);
-
-                    if (!Arena.Collision(NewLocation)) Location = NewLocation;
-                }
-
-                if (Burn > 0) Burning();
-
-                SearchTarget();
-            }
-            else if (!IsDead())
-            {
-                _dumpCantFly = false;
-                SearchTarget();
-            }
-        }
+        public virtual void Update() { }
     }
 }

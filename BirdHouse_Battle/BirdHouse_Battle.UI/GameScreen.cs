@@ -142,19 +142,27 @@ namespace BirdHouse_Battle.UI
             return drakDis;
         }
 
+        static Shape DisplayArrow(Projectile projectile)
+        {
+            CircleShape arrDis = new CircleShape(2);
+            arrDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
+
+            return arrDis;
+        }
+
         /// <summary>
         /// Display Units 
         /// </summary>
         /// <param name="arena"></param>
         public void UnitDisplay(Arena arena)
         {
-            Shape Shape; 
+            Shape Shape;
 
             foreach (KeyValuePair<string, Team> team in arena.Teams)
             {
                 foreach (KeyValuePair<Guid, Unit> u in team.Value.Unit)
                 {
-                    
+
                     string s = u.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);
                     else if (s == "BirdHouse_Battle.Model.Gobelin") Shape = DisplayGobelin(u.Value);
@@ -163,6 +171,13 @@ namespace BirdHouse_Battle.UI
 
                     window.Draw(Shape);
                 }
+            }
+            foreach (KeyValuePair<int, Projectile> u in arena.Projectiles)
+            {
+                string s = u.Value.ToString();
+                /*if (s == "BirdHouse_Battle.Model.Arrow")*/ Shape = DisplayArrow(u.Value);
+
+                window.Draw(Shape);
             }
         }
     }
