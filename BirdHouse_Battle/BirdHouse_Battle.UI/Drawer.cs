@@ -14,23 +14,20 @@ namespace BirdHouse_Battle.UI
     /// </summary>
     public class Drawer
     {
-        Game _ctx;
-        RenderWindow _win;
+        RenderWindow _window;
+
         public Drawer(RenderWindow win)
         {
-            _ctx = ctx;
-            _win = win;
+            _window = win;
         }
 
-        public Game ctx
+        //Close the window when the On close event is received
+        static void OnClose(object sender, EventArgs e)
         {
-            get { return _ctx; }
+            RenderWindow window = (RenderWindow)sender;
+            window.Close();
         }
 
-        public RenderWindow win
-        {
-            get { return _win; }
-        }
         /// <summary>
         /// Display archer with the corresponding color
         /// </summary>
@@ -113,6 +110,42 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
+        /// Display drake with the corresponding color
+        /// </summary>
+        /// <param name="unit"></param>
+        static Shape DisplayDrake(Unit unit)
+        {
+            CircleShape drakDis = new CircleShape(8);
+            drakDis.SetPointCount(5);
+            drakDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
+
+            switch (unit.Team.TeamNumber)
+            {
+                case 0:
+                    drakDis.FillColor = new Color(Color.Blue);
+                    break;
+                case 1:
+                    drakDis.FillColor = new Color(Color.Red);
+                    break;
+                case 2:
+                    drakDis.FillColor = new Color(Color.Green);
+                    break;
+                case 3:
+                    drakDis.FillColor = new Color(Color.Yellow);
+                    break;
+            }
+            return drakDis;
+        }
+
+        static Shape DisplayArrow(Projectile projectile)
+        {
+            CircleShape arrDis = new CircleShape(2);
+            arrDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
+
+            return arrDis;
+        }
+
+        /// <summary>
         /// Display Units 
         /// </summary>
         /// <param name="arena"></param>
@@ -128,10 +161,19 @@ namespace BirdHouse_Battle.UI
                     string s = u.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);
                     else if (s == "BirdHouse_Battle.Model.Gobelin") Shape = DisplayGobelin(u.Value);
+                    else if (s == "BirdHouse_Battle.Model.Drake") Shape = DisplayDrake(u.Value);
                     else { Shape = DisplayPaladin(u.Value); }
 
-                    win.Draw(Shape);
+                    _window.Draw(Shape);
                 }
+            }
+            foreach (KeyValuePair<int, Projectile> u in arena.Projectiles)
+            {
+                string s = u.Value.ToString();
+                /*if (s == "BirdHouse_Battle.Model.Arrow")*/
+                Shape = DisplayArrow(u.Value);
+
+                _window.Draw(Shape);
             }
         }
     }
