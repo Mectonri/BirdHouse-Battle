@@ -10,6 +10,7 @@ namespace BirdHouse_Battle.UI
     {
         RenderWindow _window;
         Arena _arena;
+
         public Game()
         {
             SFML.SystemNative.Load();
@@ -18,9 +19,8 @@ namespace BirdHouse_Battle.UI
             SFML.AudioNative.Load();
 
             _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
-
-            InputHandler inputHandler = new InputHandler(this);
-
+            //InputHandler inputHandler = new InputHandler(this); 
+            // IL NE FAUT JAMAIS FAIRE D'INITIALISATION DANS UN CONSTRUCTUER.
             _arena = new Arena();
         }
 
@@ -34,28 +34,21 @@ namespace BirdHouse_Battle.UI
             get { return _window; }
         }
 
-        void Render(Arena arena)
-        {
-            Window.Clear();
-            Drawer d = new Drawer(Window);
-            d.UnitDisplay(arena);
-            Window.Display();
-        }
-
+        /// <summary>
+        /// C'EST QUOI CE TRUC ?
+        /// </summary>
         void InitGUI()
         {
 
         }
 
+        /// <summary>
+        /// C'EST QUOI CE TRUC ?
+        /// </summary>
         void ProcessEvents()
         {
 
-
-
         }
-
-
-
 
         /// <summary>
         ///Asks for a YES/NO confirmation  Game
@@ -85,43 +78,13 @@ namespace BirdHouse_Battle.UI
             get { return 0.0000006; }
         }
 
-        void Update(Arena arena)
-        {
-            Window.DispatchEvents();
-
-            //GameLoop;
-            double previous = getCurrentTime();
-            double lag = 0.0;
-            while (arena.TeamCount > 1)
-            {
-                double current = getCurrentTime();
-                double elapsed = current - previous;
-                previous = current;
-                lag += elapsed;
-
-                while (lag >= MS_PER_UPDATE)
-                {
-                    update(arena);
-                    lag -= MS_PER_UPDATE;
-                }
-
-                Render(arena);
-            }
-        }
-
-
-
         public void Prep(Arena arena)
         {
-            //Preparation of the game.
-
-
-
             Team blue = arena.CreateTeam("blue"); // Part One
             Team red = arena.CreateTeam("red");
 
-            //Team green = arena.CreateTeam("green"); // Part Two
-            //Team yellow = arena.CreateTeam("yellow");
+            Team green = arena.CreateTeam("green"); // Part Two
+            Team yellow = arena.CreateTeam("yellow");
 
             //Each unit is represented by a shape
             //Archers are triagles, goblins by circles and paladin by rectangular shapes
@@ -129,33 +92,75 @@ namespace BirdHouse_Battle.UI
             red.AddArcher(15); // Part One
             red.AddGobelin(55);
             red.AddPaladin(55);
+            red.AddDrake(10);
             blue.AddArcher(15);
             blue.AddGobelin(55);
             blue.AddPaladin(55);
+            blue.AddDrake(10);
 
-            //green.AddArcher(15); // Part Two
-            //green.AddGobelin(55);
-            //green.AddPaladin(55);
-            //yellow.AddArcher(15);
-            //yellow.AddGobelin(55);
-            //yellow.AddPaladin(55);
+            green.AddArcher(15); // Part Two
+            green.AddGobelin(55);
+            green.AddPaladin(55);
+            green.AddDrake(10);
+            yellow.AddArcher(15);
+            yellow.AddGobelin(55);
+            yellow.AddPaladin(55);
+            yellow.AddDrake(10);
 
             arena.SpawnUnit();
-            //End of Preparation            
+        }
+
+        public void TimeLaps(double Lag, double Previous, out double current, out double elapsed, out double previous, out double lag)
+        {
+            lag = Lag;
+            previous = Previous;
+            current = getCurrentTime();
+            elapsed = current - previous;
+            previous = current;
+            lag += elapsed;
+        }
+
+        public void GameLoop(Arena arena)
+        {
+            //Window.DispatchEvents();
+            
+            double previous = getCurrentTime();
+            double lag = 0.0;
+            double current;
+            double elapsed;
+
+            while (arena.TeamCount > 1)
+            {
+                TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
+
+                update(arena);
+
+                while (lag <= MS_PER_UPDATE)
+                {
+                    TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
+                }
+                lag -= MS_PER_UPDATE;
+
+                Render(arena);
+            }
+        }
+
+        public void Render(Arena arena)
+        {
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            draw.UnitDisplay(arena);
+            Window.Display();
         }
 
         public void Run()
         {
             Window.DispatchEvents();
 
-            while (Window.IsOpen)
-            {
+            Prep(Arena);
+            GameLoop(Arena);
 
-                //inputHandler.Handler();
-                Prep(Arena);
-                Update(Arena); // ceci contien la gameloop
-                Render(Arena);
-            }
+            //WindowClosed(); // INCOMPLET
         }
     }
 }
