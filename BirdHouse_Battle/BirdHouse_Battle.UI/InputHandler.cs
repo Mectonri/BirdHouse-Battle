@@ -14,7 +14,7 @@ namespace BirdHouse_Battle.UI
             this.game = game;
         }
 
-        void Handler()
+        public void Handler()
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {

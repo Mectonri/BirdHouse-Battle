@@ -10,17 +10,15 @@ namespace BirdHouse_Battle.UI
     {
         RenderWindow _window;
         Arena _arena;
-
+        InputHandler iHandler;
         public Game()
         {
             SFML.SystemNative.Load();
             SFML.WindowNative.Load();
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
-
+            iHandler = new InputHandler(this);
             _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
-            //InputHandler inputHandler = new InputHandler(this); 
-            // IL NE FAUT JAMAIS FAIRE D'INITIALISATION DANS UN CONSTRUCTUER.
             _arena = new Arena();
         }
 
@@ -35,7 +33,7 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        /// C'EST QUOI CE TRUC ?
+        /// Init the main menu
         /// </summary>
         void InitGUI()
         {
@@ -43,7 +41,7 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        /// C'EST QUOI CE TRUC ?
+        /// Process events
         /// </summary>
         void ProcessEvents()
         {
@@ -56,11 +54,6 @@ namespace BirdHouse_Battle.UI
         void ExitConf()
         {
 
-        }
-
-        private void WindowClosed(object sender, EventArgs e)
-        {
-            _window.Close();
         }
 
         static double getCurrentTime()
@@ -92,20 +85,20 @@ namespace BirdHouse_Battle.UI
             red.AddArcher(15); // Part One
             red.AddGobelin(55);
             red.AddPaladin(55);
-            red.AddDrake(10);
+            //red.AddDrake(10);
             blue.AddArcher(15);
             blue.AddGobelin(55);
             blue.AddPaladin(55);
-            blue.AddDrake(10);
+            //blue.AddDrake(10);
 
             green.AddArcher(15); // Part Two
             green.AddGobelin(55);
             green.AddPaladin(55);
-            green.AddDrake(10);
+            //green.AddDrake(10);
             yellow.AddArcher(15);
             yellow.AddGobelin(55);
             yellow.AddPaladin(55);
-            yellow.AddDrake(10);
+            //yellow.AddDrake(10);
 
             arena.SpawnUnit();
         }
@@ -121,14 +114,19 @@ namespace BirdHouse_Battle.UI
         }
 
         public void GameLoop(Arena arena)
-        {
-            //Window.DispatchEvents();
+        {    
             
             double previous = getCurrentTime();
             double lag = 0.0;
             double current;
             double elapsed;
 
+            //! 
+           
+            Window.DispatchEvents();
+            this.iHandler.Handler();
+            //while (_window.IsOpen)
+           
             while (arena.TeamCount > 1)
             {
                 TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
@@ -141,8 +139,21 @@ namespace BirdHouse_Battle.UI
                 }
                 lag -= MS_PER_UPDATE;
 
+                this.iHandler.Handler();
+                if (!_window.IsOpen) break;
                 Render(arena);
+                
             }
+        }
+
+        private void WindowEscaping(object sender, KeyEventArgs e)
+        {
+            if (e.Code == Keyboard.Key.Escape) Window.Close();
+        }
+
+        private void WindowClosed(object sender, EventArgs e)
+        {
+            _window.Close();
         }
 
         public void Render(Arena arena)
@@ -155,11 +166,9 @@ namespace BirdHouse_Battle.UI
 
         public void Run()
         {
-            Window.DispatchEvents();
-
+            
             Prep(Arena);
             GameLoop(Arena);
-
             //WindowClosed(); // INCOMPLET
         }
     }
