@@ -11,6 +11,8 @@ namespace BirdHouse_Battle.UI
         RenderWindow _window;
         Arena _arena;
         InputHandler iHandler;
+        string _status;
+
         public Game()
         {
             SFML.SystemNative.Load();
@@ -20,8 +22,14 @@ namespace BirdHouse_Battle.UI
             iHandler = new InputHandler(this);
             _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
             _arena = new Arena();
-        }
+            _status = "main";
 
+        }
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value; }
+        }
         public Arena Arena
         {
             get { return _arena; }
@@ -32,13 +40,6 @@ namespace BirdHouse_Battle.UI
             get { return _window; }
         }
 
-        /// <summary>
-        /// Init the main menu
-        /// </summary>
-        void InitGUI()
-        {
-
-        }
 
         /// <summary>
         /// Process events
@@ -164,6 +165,22 @@ namespace BirdHouse_Battle.UI
             Window.Display();
         }
 
+
+        /// <summary>
+        /// Init the main menu
+        /// </summary>
+        public void InitGUI()
+        {
+
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            draw.MenuDisplay();
+            Window.Display();
+
+
+        }
+
+
         public void Run()
         {
             
@@ -171,5 +188,18 @@ namespace BirdHouse_Battle.UI
             GameLoop(Arena);
             //WindowClosed(); // INCOMPLET
         }
+
+
+
+        public void MainMenu()
+        {
+            while (Window.IsOpen)
+            {
+                Window.DispatchEvents();
+                this.iHandler.Handler();
+                InitGUI();
+            }
+        }
+
     }
 }

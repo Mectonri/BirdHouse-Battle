@@ -176,6 +176,15 @@ namespace BirdHouse_Battle.UI
                 _window.Draw(Shape);
             }
         }
+
+
+        public void MenuDisplay()
+        {
+            RectangleShape button = new RectangleShape(new Vector2f(100, 25));
+            button.Position = new Vector2f(200, 200);
+            _window.Draw(button);
+
+        }
     }
 }
 
