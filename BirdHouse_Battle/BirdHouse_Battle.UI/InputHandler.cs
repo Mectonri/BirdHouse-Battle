@@ -30,8 +30,7 @@ namespace BirdHouse_Battle.UI
             {
                 game.Window.Close();
             }
-            //else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition().X, Mouse.GetPosition().Y)==false && Mouse.IsButtonPressed(Mouse.Button.Left))     
-            else if(Keyboard.IsKeyPressed(Keyboard.Key.A))
+            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))     
             {
                 game.Status = "game";
             }
