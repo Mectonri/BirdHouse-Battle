@@ -4,19 +4,26 @@
     {
         static void Main(string[] args)
         {
+            bool run = true;
             Game game = new Game();
             //game.Run();
-            switch (game.Status)
+            while (run == true)
             {
-                case "main":
-                    game.MainMenu();
-                    break;
-                case "game":
-                    game.Run();
-                    break;
-
-                default:
-                    break;
+                switch (game.Status)
+                {
+                    case "main":
+                        game.MainMenu();
+                        break;
+                    case "game":
+                        game.Run();
+                        break;
+                    case "close":
+                        run = false;
+                        break;
+                    default:
+                        game.MainMenu();
+                        break;
+                }
             }
         }
     }

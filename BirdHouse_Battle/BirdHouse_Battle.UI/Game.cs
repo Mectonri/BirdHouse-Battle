@@ -145,6 +145,7 @@ namespace BirdHouse_Battle.UI
                 Render(arena);
                 
             }
+            Status = "main";
         }
 
         private void WindowEscaping(object sender, KeyEventArgs e)
@@ -169,15 +170,16 @@ namespace BirdHouse_Battle.UI
         /// <summary>
         /// Init the main menu
         /// </summary>
-        public void InitGUI()
+        public RectangleShape[] InitGUI()
         {
 
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            draw.MenuDisplay();
+            RectangleShape[] buttons = draw.MenuDisplay();
             Window.Display();
 
 
+            return buttons;
         }
 
 
@@ -193,11 +195,11 @@ namespace BirdHouse_Battle.UI
 
         public void MainMenu()
         {
-            while (Window.IsOpen)
+            while (Window.IsOpen && Status=="main")
             {
+                RectangleShape[] buttons = InitGUI();
                 Window.DispatchEvents();
-                this.iHandler.Handler();
-                InitGUI();
+                this.iHandler.HandlerMain(buttons);
             }
         }
 
