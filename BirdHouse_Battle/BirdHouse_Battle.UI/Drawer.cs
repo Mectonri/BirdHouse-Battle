@@ -180,14 +180,28 @@ namespace BirdHouse_Battle.UI
 
         public RectangleShape[] MenuDisplay()
         {
-            RectangleShape[] buttons = new RectangleShape[1];
+            RectangleShape[] buttons = new RectangleShape[4];
 
             RectangleShape buttonGame = new RectangleShape(new Vector2f(100, 25));
             buttonGame.Position = new Vector2f(200, 50);
             _window.Draw(buttonGame);
 
+            RectangleShape buttonHistory = new RectangleShape(new Vector2f(100, 25));
+            buttonHistory.Position = new Vector2f(200, 100);
+            _window.Draw(buttonHistory);
+
+            RectangleShape buttonParameter = new RectangleShape(new Vector2f(100, 25));
+            buttonParameter.Position = new Vector2f(200, 150);
+            _window.Draw(buttonParameter);
+
+            RectangleShape buttonCredit = new RectangleShape(new Vector2f(100, 25));
+            buttonCredit.Position = new Vector2f(200, 200);
+            _window.Draw(buttonCredit);
 
             buttons[0] = buttonGame;
+            buttons[1] = buttonHistory;
+            buttons[2] = buttonParameter;
+            buttons[3] = buttonCredit;
             return buttons;
         }
     }
