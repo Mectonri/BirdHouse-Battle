@@ -1,6 +1,5 @@
 ﻿using BirdHouse_Battle.Model;
 using SFML.Graphics;
-using SFML.System;
 using SFML.Window;
 using System;
 
@@ -8,19 +7,25 @@ namespace BirdHouse_Battle.UI
 {
     public class Game
     {
+        #region Fields
         RenderWindow _window;
         Arena _arena;
         InputHandler iHandler;
+        public bool _paused = true; // track whether the game is paused or not
+        #endregion
+
         public Game()
-        {
-            SFML.SystemNative.Load();
-            SFML.WindowNative.Load();
-            SFML.GraphicsNative.Load();
-            SFML.AudioNative.Load();
+        { 
             iHandler = new InputHandler(this);
-            _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
+
             _arena = new Arena();
+
+            _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
+
+            _paused = Paused; // the game start paused so this bool = true
         }
+
+        #region Getter
 
         public Arena Arena
         {
@@ -32,6 +37,23 @@ namespace BirdHouse_Battle.UI
             get { return _window; }
         }
 
+        public bool Paused
+        {
+            get { return _paused; }
+            set { _paused = value; }
+        }
+
+        
+        #endregion
+
+        static void Load()
+        {
+            SFML.SystemNative.Load();
+            SFML.WindowNative.Load();
+            SFML.GraphicsNative.Load();
+            SFML.AudioNative.Load();
+        }
+
         /// <summary>
         /// Init the main menu
         /// </summary>
@@ -41,20 +63,15 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        /// Process events
-        /// </summary>
-        void ProcessEvents()
-        {
-
-        }
-
-        /// <summary>
         ///Asks for a YES/NO confirmation  Game
         /// </summary>
-        void ExitConf()
+        void ExitConfirm()
         {
-
+            
         }
+
+
+        #region Relevant to Gameloop
 
         static double getCurrentTime()
         {
@@ -69,6 +86,55 @@ namespace BirdHouse_Battle.UI
         static double MS_PER_UPDATE
         {
             get { return 0.0000006; }
+        }
+        
+        public void TimeLaps(double Lag, double Previous, out double current, out double elapsed, out double previous, out double lag)
+        {
+            lag = Lag;
+            previous = Previous;
+            current = getCurrentTime();
+            elapsed = current - previous;
+            previous = current;
+            lag += elapsed;
+        }
+
+        #endregion
+
+        
+        public void GameLoop(Arena arena)
+        {
+            double previous = getCurrentTime();
+            double lag = 0.0;
+            double current;
+            double elapsed;
+            
+            while (_window.IsOpen && arena.TeamCount > 1)
+            {
+
+                iHandler.Handler();
+                
+                if (!Paused)
+                {
+                    TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
+                    
+                    update(arena);
+
+                    while (lag <= MS_PER_UPDATE)
+                    {
+                        TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
+                    }
+                    lag -= MS_PER_UPDATE;
+
+                    Render(Arena);
+                }
+                else
+                {
+                    iHandler.Handler();
+                    previous = getCurrentTime();
+                }
+               
+                //if (!_window.IsOpen) break;
+            }
         }
 
         public void Prep(Arena arena)
@@ -102,60 +168,7 @@ namespace BirdHouse_Battle.UI
 
             arena.SpawnUnit();
         }
-
-        public void TimeLaps(double Lag, double Previous, out double current, out double elapsed, out double previous, out double lag)
-        {
-            lag = Lag;
-            previous = Previous;
-            current = getCurrentTime();
-            elapsed = current - previous;
-            previous = current;
-            lag += elapsed;
-        }
-
-        public void GameLoop(Arena arena)
-        {    
-            
-            double previous = getCurrentTime();
-            double lag = 0.0;
-            double current;
-            double elapsed;
-
-            //! 
-           
-            Window.DispatchEvents();
-            this.iHandler.Handler();
-            //while (_window.IsOpen)
-           
-            while (arena.TeamCount > 1)
-            {
-                TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
-
-                update(arena);
-
-                while (lag <= MS_PER_UPDATE)
-                {
-                    TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
-                }
-                lag -= MS_PER_UPDATE;
-
-                this.iHandler.Handler();
-                if (!_window.IsOpen) break;
-                Render(arena);
-                
-            }
-        }
-
-        private void WindowEscaping(object sender, KeyEventArgs e)
-        {
-            if (e.Code == Keyboard.Key.Escape) Window.Close();
-        }
-
-        private void WindowClosed(object sender, EventArgs e)
-        {
-            _window.Close();
-        }
-
+ 
         public void Render(Arena arena)
         {
             Window.Clear();
@@ -166,10 +179,9 @@ namespace BirdHouse_Battle.UI
 
         public void Run()
         {
-            
+            Load();
             Prep(Arena);
             GameLoop(Arena);
-            //WindowClosed(); // INCOMPLET
         }
     }
 }
