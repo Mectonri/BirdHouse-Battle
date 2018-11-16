@@ -1,8 +1,8 @@
 ﻿using BirdHouse_Battle.Model;
+using System.Collections.Generic;
+using System;
 using SFML.Graphics;
 using SFML.System;
-using System;
-using System.Collections.Generic;
 
 namespace BirdHouse_Battle.UI
 {
@@ -148,7 +148,20 @@ namespace BirdHouse_Battle.UI
             return arrDis;
         }
 
-            #endregion
+        #endregion
+
+        /// <summary>
+        /// This function will launch and draw the pause menu when the game is on pause.
+        /// </summary>
+        public void PauseMenu()
+        {
+            /*PauseMenu should have the difrenet options:
+                restart
+                quit
+                settings
+             */
+            throw new NotImplementedException();
+        }
 
         /// <summary>
         /// Display Units and projectiles
