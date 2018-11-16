@@ -84,21 +84,21 @@ namespace BirdHouse_Battle.UI
             //Archers are triagles, goblins by circles and paladin by rectangular shapes
 
             red.AddArcher(15); // Part One
-            red.AddGobelin(55);
-            red.AddPaladin(55);
+            //red.AddGobelin(55);
+            //red.AddPaladin(55);
             //red.AddDrake(10);
             blue.AddArcher(15);
-            blue.AddGobelin(55);
-            blue.AddPaladin(55);
+            //blue.AddGobelin(55);
+            //blue.AddPaladin(55);
             //blue.AddDrake(10);
 
             green.AddArcher(15); // Part Two
-            green.AddGobelin(55);
-            green.AddPaladin(55);
+            //green.AddGobelin(55);
+            //green.AddPaladin(55);
             //green.AddDrake(10);
             yellow.AddArcher(15);
-            yellow.AddGobelin(55);
-            yellow.AddPaladin(55);
+            //yellow.AddGobelin(55);
+            //yellow.AddPaladin(55);
             //yellow.AddDrake(10);
 
             arena.SpawnUnit();
@@ -146,6 +146,10 @@ namespace BirdHouse_Battle.UI
                 
             }
             Status = "main";
+            arena.Teams.Clear();
+            arena.Projectiles.Clear();
+            arena.DeadTeams.Clear();
+            arena.DeadProjectiles.Clear();
         }
 
         private void WindowEscaping(object sender, KeyEventArgs e)
