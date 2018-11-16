@@ -1,4 +1,6 @@
-﻿using SFML.Window;
+﻿using SFML.Graphics;
+using SFML.System;
+using SFML.Window;
 using System;
 using System.Threading;
 
@@ -35,6 +37,30 @@ namespace BirdHouse_Battle.UI
                 Console.WriteLine("P key is pressed");
                 game.Paused = !game.Paused;
                 Thread.Sleep(200);
+            }
+        }
+
+        public void HandlerMain(RectangleShape [] buttons)
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+            {
+                game.Window.Close();
+            }
+            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))     
+            {
+                game.Status = "game";
+            }
+            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "game";
+            }
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "game";
+            }
+            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "game";
             }
         }
     }

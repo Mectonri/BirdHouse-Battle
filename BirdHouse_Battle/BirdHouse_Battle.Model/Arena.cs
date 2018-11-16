@@ -13,7 +13,7 @@ namespace BirdHouse_Battle.Model
         readonly int _height;
         readonly int _width;
         int _counter;
-        
+
         public Arena()
         {
             _teams = new Dictionary<string, Team>();
@@ -35,6 +35,16 @@ namespace BirdHouse_Battle.Model
             get { return _projectiles; }
         }
 
+        public Dictionary<string, Team> DeadTeams
+        {
+            get { return _deadTeams; }
+        }
+
+        public Dictionary<int, Projectile> DeadProjectiles
+        {
+            get { return _deadProjectiles; }
+        }
+
         public int Height
         {
             get { return _height; }
@@ -54,7 +64,7 @@ namespace BirdHouse_Battle.Model
         {
             if (_teams.ContainsKey(name)) throw new ArgumentException("A team with this name already exists.", nameof(name));
             if (_teams.Count >= 4) throw new Exception("You already have 4 team and cannot create any more");
-            Team team = new Team(this, name, 250);//POUR L'INSTANT AXEL
+            Team team = new Team(this, name, 250);
             _teams.Add(name, team);
             return team;
         }

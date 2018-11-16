@@ -192,5 +192,43 @@ namespace BirdHouse_Battle.UI
                 _window.Draw(Shape);
             }
         }
+
+
+        public RectangleShape[] MenuDisplay()
+        {
+            RectangleShape[] buttons = new RectangleShape[4];
+
+            RectangleShape buttonGame = new RectangleShape(new Vector2f(100, 25));
+            buttonGame.Position = new Vector2f(200, 50);
+
+
+            RectangleShape buttonHistory = new RectangleShape(new Vector2f(100, 25));
+            buttonHistory.Position = new Vector2f(200, 100);
+
+
+            RectangleShape buttonParameter = new RectangleShape(new Vector2f(100, 25));
+            buttonParameter.Position = new Vector2f(200, 150);
+  
+
+            RectangleShape buttonCredit = new RectangleShape(new Vector2f(100, 25));
+            buttonCredit.Position = new Vector2f(200, 200);
+            
+
+           
+
+            buttons[0] = buttonGame;
+            buttons[1] = buttonHistory;
+            buttons[2] = buttonParameter;
+            buttons[3] = buttonCredit;
+
+
+
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                _window.Draw(buttons[i]);
+            }
+
+            return buttons;
+        }
     }
 }

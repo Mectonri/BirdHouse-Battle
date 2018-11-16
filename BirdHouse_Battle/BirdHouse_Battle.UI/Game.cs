@@ -14,6 +14,8 @@ namespace BirdHouse_Battle.UI
         public bool _paused = true; // track whether the game is paused or not
         #endregion
 
+        string _status;
+
         public Game()
         {
             Load();
@@ -25,10 +27,18 @@ namespace BirdHouse_Battle.UI
             _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
 
             _paused = Paused; // the game start paused so this bool = true
+            _arena = new Arena();
+            _status = "main";
+
         }
 
         #region Getter
 
+        public string Status
+        {
+            get { return _status; }
+            set { _status = value; }
+        }
         public Arena Arena
         {
             get { return _arena; }
@@ -151,26 +161,84 @@ namespace BirdHouse_Battle.UI
             //Archers are triagles, goblins by circles and paladin by rectangular shapes
 
             red.AddArcher(15); // Part One
-            red.AddGobelin(55);
-            red.AddPaladin(55);
+            //red.AddGobelin(55);
+            //red.AddPaladin(55);
             //red.AddDrake(10);
             blue.AddArcher(15);
-            blue.AddGobelin(55);
-            blue.AddPaladin(55);
+            //blue.AddGobelin(55);
+            //blue.AddPaladin(55);
             //blue.AddDrake(10);
 
             green.AddArcher(15); // Part Two
-            green.AddGobelin(55);
-            green.AddPaladin(55);
+            //green.AddGobelin(55);
+            //green.AddPaladin(55);
             //green.AddDrake(10);
             yellow.AddArcher(15);
-            yellow.AddGobelin(55);
-            yellow.AddPaladin(55);
+            //yellow.AddGobelin(55);
+            //yellow.AddPaladin(55);
             //yellow.AddDrake(10);
 
             arena.SpawnUnit();
         }
- 
+
+        public void TimeLaps(double Lag, double Previous, out double current, out double elapsed, out double previous, out double lag)
+        {
+            lag = Lag;
+            previous = Previous;
+            current = getCurrentTime();
+            elapsed = current - previous;
+            previous = current;
+            lag += elapsed;
+        }
+
+        public void GameLoop(Arena arena)
+        {    
+            
+            double previous = getCurrentTime();
+            double lag = 0.0;
+            double current;
+            double elapsed;
+
+            //! 
+           
+            Window.DispatchEvents();
+            iHandler.Handler();
+            //while (_window.IsOpen)
+           
+            while (arena.TeamCount > 1)
+            {
+                TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
+
+                update(arena);
+
+                while (lag <= MS_PER_UPDATE)
+                {
+                    TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
+                }
+                lag -= MS_PER_UPDATE;
+
+                iHandler.Handler();
+                if (!_window.IsOpen) break;
+                Render(arena);
+                
+            }
+            Status = "main";
+            arena.Teams.Clear();
+            arena.Projectiles.Clear();
+            arena.DeadTeams.Clear();
+            arena.DeadProjectiles.Clear();
+        }
+
+        private void WindowEscaping(object sender, KeyEventArgs e)
+        {
+            if (e.Code == Keyboard.Key.Escape) Window.Close();
+        }
+
+        private void WindowClosed(object sender, EventArgs e)
+        {
+            _window.Close();
+        }
+
         public void Render(Arena arena)
         {
             Window.Clear();
@@ -179,10 +247,40 @@ namespace BirdHouse_Battle.UI
             Window.Display();
         }
 
+
+        /// <summary>
+        /// Init the main menu
+        /// </summary>
+        public RectangleShape[] InitGUI()
+        {
+
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            RectangleShape[] buttons = draw.MenuDisplay();
+            Window.Display();
+
+
+            return buttons;
+        }
+
+
         public void Run()
         {
             Prep(Arena);
             GameLoop(Arena);
         }
+
+
+
+        public void MainMenu()
+        {
+            while (Window.IsOpen && Status=="main")
+            {
+                RectangleShape[] buttons = InitGUI();
+                Window.DispatchEvents();
+                iHandler.HandlerMain(buttons);
+            }
+        }
+
     }
 }
