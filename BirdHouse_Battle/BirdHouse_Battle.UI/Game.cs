@@ -67,14 +67,6 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        /// Init the main menu
-        /// </summary>
-        void InitGUI()
-        {
-
-        }
-
-        /// <summary>
         ///Asks for a YES/NO confirmation  Game
         /// </summary>
         void ExitConfirm()
@@ -112,120 +104,28 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
-        
+
+
+
         public void GameLoop(Arena arena)
         {
+
             double previous = getCurrentTime();
             double lag = 0.0;
             double current;
             double elapsed;
-            
-            while (_window.IsOpen && arena.TeamCount > 1)
+
+            Window.DispatchEvents();
+            iHandler.Handler();
+
+            while (arena.TeamCount > 1)
             {
-
-                iHandler.Handler();
-                
-                if (!Paused)
-                {
-                    TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
-                    
-                    update(arena);
-
-                    while (lag <= MS_PER_UPDATE)
-                    {
-                        TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
-                    }
-                    lag -= MS_PER_UPDATE;
-
-                    Render(Arena);
-                }
-                else
+                while(Paused)
                 {
                     iHandler.Handler();
                     previous = getCurrentTime();
                 }
-               
-                //if (!_window.IsOpen) break;
-            }
-        }
 
-        public void Prep(Arena arena)
-        {
-            Team blue = arena.CreateTeam("blue"); // Part One
-            Team red = arena.CreateTeam("red");
-
-            Team green = arena.CreateTeam("green"); // Part Two
-            Team yellow = arena.CreateTeam("yellow");
-
-            //Each unit is represented by a shape
-            //Archers are triagles, goblins by circles and paladin by rectangular shapes
-
-            red.AddArcher(15); // Part One
-<<<<<<< HEAD
-            //red.AddGobelin(55);
-            //red.AddPaladin(55);
-            //red.AddDrake(10);
-            blue.AddArcher(15);
-            //blue.AddGobelin(55);
-            //blue.AddPaladin(55);
-            //blue.AddDrake(10);
-
-            green.AddArcher(15); // Part Two
-            //green.AddGobelin(55);
-            //green.AddPaladin(55);
-            //green.AddDrake(10);
-            yellow.AddArcher(15);
-            //yellow.AddGobelin(55);
-            //yellow.AddPaladin(55);
-            //yellow.AddDrake(10);
-=======
-            red.AddGobelin(50);
-            red.AddPaladin(50);
-            red.AddDrake(10);
-            blue.AddArcher(15);
-            blue.AddGobelin(50);
-            blue.AddPaladin(50);
-            blue.AddDrake(10);
-
-            green.AddArcher(15); // Part Two
-            green.AddGobelin(50);
-            green.AddPaladin(50);
-            green.AddDrake(10);
-            yellow.AddArcher(15);
-            yellow.AddGobelin(50);
-            yellow.AddPaladin(50);
-            yellow.AddDrake(10);
->>>>>>> Kheta_Remote
-
-            arena.SpawnUnit();
-        }
-
-        public void TimeLaps(double Lag, double Previous, out double current, out double elapsed, out double previous, out double lag)
-        {
-            lag = Lag;
-            previous = Previous;
-            current = getCurrentTime();
-            elapsed = current - previous;
-            previous = current;
-            lag += elapsed;
-        }
-
-        public void GameLoop(Arena arena)
-        {    
-            
-            double previous = getCurrentTime();
-            double lag = 0.0;
-            double current;
-            double elapsed;
-
-            //! 
-           
-            Window.DispatchEvents();
-            iHandler.Handler();
-            //while (_window.IsOpen)
-           
-            while (arena.TeamCount > 1)
-            {
                 TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
 
                 update(arena);
@@ -239,13 +139,45 @@ namespace BirdHouse_Battle.UI
                 iHandler.Handler();
                 if (!_window.IsOpen) break;
                 Render(arena);
-                
+
             }
             Status = "main";
             arena.Teams.Clear();
             arena.Projectiles.Clear();
             arena.DeadTeams.Clear();
             arena.DeadProjectiles.Clear();
+        }
+
+        public void Prep(Arena arena)
+        {
+            Team blue = arena.CreateTeam("blue"); // Part One
+            Team red = arena.CreateTeam("red");
+
+            Team green = arena.CreateTeam("green"); // Part Two
+            Team yellow = arena.CreateTeam("yellow");
+
+            //Each unit is represented by a shape
+            //Archers are triagles, goblins by circles and paladin by rectangular shapes
+
+            red.AddArcher(10); // Part One
+            red.AddGobelin(55);
+            red.AddPaladin(55);
+            red.AddDrake(5);
+            blue.AddArcher(10);
+            blue.AddGobelin(55);
+            blue.AddPaladin(55);
+            blue.AddDrake(5);
+
+            green.AddArcher(10); // Part Two
+            green.AddGobelin(55);
+            green.AddPaladin(55);
+            green.AddDrake(5);
+            yellow.AddArcher(10);
+            yellow.AddGobelin(55);
+            yellow.AddPaladin(55);
+            yellow.AddDrake(5);
+
+            arena.SpawnUnit();
         }
 
         private void WindowEscaping(object sender, KeyEventArgs e)
