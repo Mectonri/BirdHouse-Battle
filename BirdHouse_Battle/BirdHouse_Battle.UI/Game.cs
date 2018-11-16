@@ -15,7 +15,9 @@ namespace BirdHouse_Battle.UI
         #endregion
 
         public Game()
-        { 
+        {
+            Load();
+
             iHandler = new InputHandler(this);
 
             _arena = new Arena();
@@ -179,7 +181,6 @@ namespace BirdHouse_Battle.UI
 
         public void Run()
         {
-            Load();
             Prep(Arena);
             GameLoop(Arena);
         }
