@@ -173,7 +173,7 @@ namespace BirdHouse_Battle.UI
 
             foreach (KeyValuePair<string, Team> team in arena.Teams)
             {
-                foreach (KeyValuePair<int, Unit> u in team.Value.Unit)
+                foreach (KeyValuePair<int, Unit> u in team.Value.Units)
                 {
                     string s = u.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);

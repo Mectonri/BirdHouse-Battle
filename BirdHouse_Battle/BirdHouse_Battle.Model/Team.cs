@@ -8,8 +8,7 @@ namespace BirdHouse_Battle.Model
         /// <summary>
         /// Archer is a unit type same as Paladin and Goblin 
         /// </summary>
-
-        #region Fields
+        
         //Team number is associated with a color, so creating a team take the color as argument
         readonly string _name;
         readonly int _teamNumber; //number is used to assign a color to a team
@@ -27,11 +26,11 @@ namespace BirdHouse_Battle.Model
         int _dCount; // le nombre total de Dragons dans une equipe.
 
         bool _isWiped;
-        
+
         double _goldAmount;
         readonly int _limitNbUnit; // unit limit by team
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
-        internal Dictionary<int, Unit> _deadUnits; 
+        internal Dictionary<int, Unit> _deadUnits;
         internal Dictionary<int, Unit> _units;
 
         /// <summary>
@@ -40,20 +39,19 @@ namespace BirdHouse_Battle.Model
         /// <param name="Context"></param>
         /// <param name="Name"></param>
         /// <param name="LimitNbUntit"></param>
-        public Team ( Arena Context, string Name, int LimitNbUntit )
+        public Team(Arena Context, string Name, int LimitNbUntit)
         {
             _isWiped = false;
 
             _name = Name;
-            
+
             _arena = Context;
             _teamNumber = _arena.TeamCount;
             _limitNbUnit = 125;
             _units = new Dictionary<int, Unit>();
             _deadUnits = new Dictionary<int, Unit>();
         }
-
-        #region Getters & Setters
+        
         public string Name
         {
             get { return _name; }
@@ -69,9 +67,9 @@ namespace BirdHouse_Battle.Model
             get
             {
                 if (_unitCount > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of troops for this team");
-               
+
                 return _unitCount = _aCount + _gCount + _pCount + _dCount;
-               
+
             }
         }
 
@@ -105,7 +103,7 @@ namespace BirdHouse_Battle.Model
             get { return _goldAmount; }
             set
             {
-                if ( value < 0.0) throw new ArgumentException("You don't have enought gold", nameof(value));
+                if (value < 0.0) throw new ArgumentException("You don't have enought gold", nameof(value));
                 _goldAmount = value;
 
             }
@@ -150,13 +148,11 @@ namespace BirdHouse_Battle.Model
                 _dToAdd = value;
             }
         }
-        
-        public Dictionary<Guid, Unit> Unit
+
+        public Dictionary<int, Unit> Units
         {
             get { return _units; }
         }
-
-        #endregion
 
         /// <summary>
         /// Add an archer to a team
@@ -164,7 +160,7 @@ namespace BirdHouse_Battle.Model
         /// <param name="AToAdd"></param>
         public void AddArcher(int AToAdd)
         {
-            if ( UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
+            if (UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < AToAdd; i++)
             {
                 Archer archer = new Archer(this, _arena, UnitCount);
@@ -194,7 +190,7 @@ namespace BirdHouse_Battle.Model
         /// <param name="GToAdd"></param>
         public void AddGobelin(int GToAdd)
         {
-            if ( UnitCount >= _limitNbUnit  || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
+            if (UnitCount >= _limitNbUnit || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < GToAdd; i++)
             {
                 Gobelin gobelin = new Gobelin(this, _arena, UnitCount);
@@ -273,13 +269,13 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         /// <param name="Gold"></param>
         /// <returns></returns>
-        public double GoldCalculation( double Gold)
+        public double GoldCalculation(double Gold)
         {
             double result = 0.0;
             foreach (KeyValuePair<int, Unit> kv in _units)
             {
                 result = result + kv.Value.UnitPrice;
-                if (result < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));   
+                if (result < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));
             }
             return _goldAmount = Gold - result;
         }
@@ -291,11 +287,11 @@ namespace BirdHouse_Battle.Model
         {
             get
             {
-                if ( UnitCount == 0 || _units.Count == 0 ) return true;
+                if (UnitCount == 0 || _units.Count == 0) return true;
                 return _isWiped;
             }
         }
-        
+
         public void Update()
         {
             //update units and add dead units in deadunit dic 
@@ -313,11 +309,6 @@ namespace BirdHouse_Battle.Model
             {
                 if (FindUnitByName(i.Key) != null) RemoveUnit(i.Value);
             }
-        }
-
-        public Dictionary<int, Unit> Unit
-        {
-            get { return _units; }
         }
     }
 }
