@@ -70,14 +70,14 @@ namespace BirdHouse_Battle.Model
 
         public void SetDirection()
         {
-            _direction = End.Soustract(Position);
-            _mouvement = _direction.MoveProjectile(NbFram);
+            _direction = Vector.Soustract(Position, End);
+            _mouvement = Vector.MoveProjectile(NbFram, Direction);
             _nbFram--;
         }
 
         public void ProjectileCharge()
         {
-            _position = Position.Add(Mouvement);
+            _position = Vector.Add(Mouvement, Position);
         }
 
         public void DieNullContext()
@@ -94,6 +94,11 @@ namespace BirdHouse_Battle.Model
         public void GiveDamagesAoe()
         {
             Arena.IsUnitInRangeAoe(this, Damages);
+        }
+
+        public void FinalPosition()
+        {
+            _position = End;
         }
 
         public virtual void Update() { }

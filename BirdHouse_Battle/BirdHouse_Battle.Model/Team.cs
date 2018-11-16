@@ -31,9 +31,8 @@ namespace BirdHouse_Battle.Model
         double _goldAmount;
         readonly int _limitNbUnit; // unit limit by team
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
-        internal Dictionary<Guid, Unit> _deadUnits; 
-        internal Dictionary<Guid, Unit> _units;
-        #endregion
+        internal Dictionary<int, Unit> _deadUnits; 
+        internal Dictionary<int, Unit> _units;
 
         /// <summary>
         /// Team Constructor
@@ -44,18 +43,14 @@ namespace BirdHouse_Battle.Model
         public Team ( Arena Context, string Name, int LimitNbUntit )
         {
             _isWiped = false;
-            _aCount = 0;
-            _gCount = 0;
-            _pCount = 0;
-            _dCount = 0;
 
             _name = Name;
             
             _arena = Context;
             _teamNumber = _arena.TeamCount;
             _limitNbUnit = 125;
-            _units = new Dictionary<Guid, Unit>();
-            _deadUnits = new Dictionary<Guid, Unit>();
+            _units = new Dictionary<int, Unit>();
+            _deadUnits = new Dictionary<int, Unit>();
         }
 
         #region Getters & Setters
@@ -172,7 +167,7 @@ namespace BirdHouse_Battle.Model
             if ( UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < AToAdd; i++)
             {
-                Archer archer = new Archer(this, _arena);
+                Archer archer = new Archer(this, _arena, UnitCount);
                 _aCount++;
                 _units.Add(archer.Name, archer);
             }
@@ -187,7 +182,7 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || DToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < DToAdd; i++)
             {
-                Drake drake = new Drake(this, _arena);
+                Drake drake = new Drake(this, _arena, UnitCount);
                 _dCount++;
                 _units.Add(drake.Name, drake);
             }
@@ -202,7 +197,7 @@ namespace BirdHouse_Battle.Model
             if ( UnitCount >= _limitNbUnit  || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < GToAdd; i++)
             {
-                Gobelin gobelin = new Gobelin(this, _arena);
+                Gobelin gobelin = new Gobelin(this, _arena, UnitCount);
                 _gCount++;
                 _units.Add(gobelin.Name, gobelin);
             }
@@ -217,7 +212,7 @@ namespace BirdHouse_Battle.Model
             if (PToAdd > _limitNbUnit || UnitCount >= _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < PToAdd; i++)
             {
-                Paladin paladin = new Paladin(this, _arena);
+                Paladin paladin = new Paladin(this, _arena, UnitCount);
                 _pCount++;
                 _units.Add(paladin.Name, paladin);
             }
@@ -227,7 +222,7 @@ namespace BirdHouse_Battle.Model
         {
             Unit[] Tableau = new Unit[_units.Count];
             int z = 0;
-            foreach (KeyValuePair<Guid, Unit> i in _units)
+            foreach (KeyValuePair<int, Unit> i in _units)
             {
                 Tableau[z] = i.Value;
                 z++;
@@ -240,12 +235,11 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public Unit FindUnitByName(Guid name)
+        public Unit FindUnitByName(int name)
         {
             _units.TryGetValue(name, out Unit u);
             return u;
         }
-
 
         /// <summary>
         ///Removes a unit from a team and decrement the UnitCount
@@ -282,7 +276,7 @@ namespace BirdHouse_Battle.Model
         public double GoldCalculation( double Gold)
         {
             double result = 0.0;
-            foreach (KeyValuePair<Guid, Unit> kv in _units)
+            foreach (KeyValuePair<int, Unit> kv in _units)
             {
                 result = result + kv.Value.UnitPrice;
                 if (result < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));   
@@ -315,10 +309,15 @@ namespace BirdHouse_Battle.Model
         public void UpdateDead()
         {
             //remove dead units only if they still exist
-            foreach (KeyValuePair<Guid, Unit> i in _deadUnits)
+            foreach (KeyValuePair<int, Unit> i in _deadUnits)
             {
                 if (FindUnitByName(i.Key) != null) RemoveUnit(i.Value);
             }
+        }
+
+        public Dictionary<int, Unit> Unit
+        {
+            get { return _units; }
         }
     }
 }

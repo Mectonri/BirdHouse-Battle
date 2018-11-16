@@ -8,8 +8,9 @@ namespace BirdHouse_Battle.Model
 {
     public class Drake : Unit
     {
-        public Drake(Team team, Arena arena)
-            : base(team, arena, 10.0, 1.5, 18.0, 15.0, 7, 0, "Chaos", true, true)
+        public Drake(Team team, Arena arena, int NbUnit)
+            : base(team, arena, 10.0, 1.5, 18.0, 15.0, 7, 0, 
+                   "Chaos", true, true, NbUnit)
         {
         }
 
@@ -24,6 +25,7 @@ namespace BirdHouse_Battle.Model
             {
                 if (InRange())
                 {
+                    SetMouvementZero();
                     if (new Random().NextDouble() < 0.5)
                     {
                         Arena.GiveDamage(Target, Strength);
@@ -35,8 +37,8 @@ namespace BirdHouse_Battle.Model
                 }
                 else
                 {
-                    Mouvement = Direction.Move(Speed);
-                    Vector NewLocation = Location.Add(Mouvement);
+                    Mouvement = Vector.Move(Speed, Direction);
+                    Vector NewLocation = Vector.Add(Mouvement, Location);
 
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
                 }

@@ -18,11 +18,13 @@ namespace BirdHouse_Battle.Model
         public double X
         {
             get { return _x; }
+            set { _x = value; }
         }
 
         public double Y
         {
             get { return _y; }
+            set { _y = value; }
         }
 
         /// <summary>
@@ -33,20 +35,33 @@ namespace BirdHouse_Battle.Model
             get { return Math.Sqrt(_x * _x + _y * _y); }
         }
 
-        public Vector Multiply(double d)
+        public static Vector Multiply(double d, Vector vector)
         {
-            return new Vector(_x * d, _y * d);
+            vector.X *= d;
+            vector.Y *= d;
+            return vector;
         }
 
-        public Vector Add(Vector vector)
+        public Vector Add(Vector vector_two)
         {
-            return new Vector(_x + vector._x, _y + vector._y);
+            Vector vector = this;
+            vector.X = _x + vector_two.X;
+            vector.Y = _y + vector_two.Y;
+            return vector;
         }
 
-        public Vector Soustract(Vector vector)
+        public static Vector Add(Vector vector_two, Vector vector)
         {
+            vector.X += vector_two.X;
+            vector.Y += vector_two.Y;
+            return vector;
+        }
 
-            return new Vector(_x - vector._x, _y - vector._y);
+        public static Vector Soustract(Vector vector_two, Vector vector)
+        {
+            vector.X -= vector_two.X;
+            vector.Y -= vector_two.Y;
+            return vector;
         }
 
         /// <summary>
@@ -63,12 +78,12 @@ namespace BirdHouse_Battle.Model
             if (_y > max) _y = max;
         }
 
-        public Vector Move(double Speed)
+        public static Vector Move(double Speed, Vector vector)
         {
-            double x = X;
-            double y = Y;
-            double Rx = X / 100;
-            double Ry = Y / 100;
+            double x = vector.X;
+            double y = vector.Y;
+            double Rx = vector.X / 100;
+            double Ry = vector.Y / 100;
 
             do
             {
@@ -94,16 +109,18 @@ namespace BirdHouse_Battle.Model
                 x = Math.Round(x * Speed, 2);
                 y = Math.Round(y * Speed, 2);
             }
+            vector.X = x;
+            vector.Y = y;
 
-            return new Vector(x, y);
+            return vector;
         }
 
-        public Vector MoveAndRunAway(double Speed)
+        public static Vector MoveAndRunAway(double Speed, Vector vector)
         {
-            double x = X;
-            double y = Y;
-            double Rx = X / 100;
-            double Ry = Y / 100;
+            double x = vector.X;
+            double y = vector.Y;
+            double Rx = x / 100;
+            double Ry = y / 100;
 
             do
             {
@@ -130,18 +147,24 @@ namespace BirdHouse_Battle.Model
                 y = Math.Round(y * Speed, 2);
             }
 
-            x = -x;
-            y = -y;
+            vector.X = -x;
+            vector.Y = -y;
 
-            return new Vector(x, y);
+            return vector;
         }
 
-        public Vector MoveProjectile(int NbFram)
+        public static Vector MoveProjectile(int NbFram, Vector vector)
         {
-            double x = Math.Round(X / NbFram, 0);
-            double y = Math.Round(Y / NbFram, 0);
+            vector.X = Math.Round(vector.X / NbFram, 0);
+            vector.Y = Math.Round(vector.Y / NbFram, 0);
 
-            return new Vector(x, y);
+            return vector;
+        }
+
+        public void SetZero()
+        {
+            _x = 0;
+            _y = 0;
         }
     }
 }
