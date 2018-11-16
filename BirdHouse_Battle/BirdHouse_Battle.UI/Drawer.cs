@@ -1,33 +1,36 @@
 ﻿using BirdHouse_Battle.Model;
+using System.Collections.Generic;
+using System;
 using SFML.Graphics;
 using SFML.System;
-using SFML.Window;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BirdHouse_Battle.UI
 {
-
     /// <summary>
     ///  This class will be used to only draw units
     /// </summary>
     public class Drawer
     {
+            #region Fields
         RenderWindow _window;
-
+        Shape Bshape;
+            #endregion
+        
+            #region Properties
         public Drawer(RenderWindow win)
         {
+
             _window = win;
-        }
+            Texture terain = new Texture("../../../../res/terrain1.jpeg");
+            Vector2f size = new Vector2f(512, 512);
+            Bshape = new RectangleShape(size);
+            Bshape.Texture = terain;
+            win.Draw(Bshape);
 
-        //Close the window when the On close event is received
-        static void OnClose(object sender, EventArgs e)
-        {
-            RenderWindow window = (RenderWindow)sender;
-            window.Close();
         }
+        #endregion
 
+            #region
         /// <summary>
         /// Display archer with the corresponding color
         /// </summary>
@@ -145,8 +148,23 @@ namespace BirdHouse_Battle.UI
             return arrDis;
         }
 
+        #endregion
+
         /// <summary>
-        /// Display Units 
+        /// This function will launch and draw the pause menu when the game is on pause.
+        /// </summary>
+        public void PauseMenu()
+        {
+            /*PauseMenu should have the difrenet options:
+                restart
+                quit
+                settings
+             */
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Display Units and projectiles
         /// </summary>
         /// <param name="arena"></param>
         public void UnitDisplay(Arena arena)
@@ -157,7 +175,6 @@ namespace BirdHouse_Battle.UI
             {
                 foreach (KeyValuePair<Guid, Unit> u in team.Value.Unit)
                 {
-
                     string s = u.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);
                     else if (s == "BirdHouse_Battle.Model.Gobelin") Shape = DisplayGobelin(u.Value);
@@ -172,10 +189,8 @@ namespace BirdHouse_Battle.UI
                 string s = u.Value.ToString();
                 /*if (s == "BirdHouse_Battle.Model.Arrow")*/
                 Shape = DisplayArrow(u.Value);
-
                 _window.Draw(Shape);
             }
         }
     }
 }
-

@@ -8,9 +8,9 @@ namespace BirdHouse_Battle.Model
         /// <summary>
         /// Archer is a unit type same as Paladin and Goblin 
         /// </summary>
-        
-        //Team number is associated with a color, so creating a team take the color as argument.
-        //Couleur de Team à rajouter
+
+        #region Fields
+        //Team number is associated with a color, so creating a team take the color as argument
         readonly string _name;
         readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
@@ -33,7 +33,14 @@ namespace BirdHouse_Battle.Model
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
         internal Dictionary<Guid, Unit> _deadUnits; 
         internal Dictionary<Guid, Unit> _units;
+        #endregion
 
+        /// <summary>
+        /// Team Constructor
+        /// </summary>
+        /// <param name="Context"></param>
+        /// <param name="Name"></param>
+        /// <param name="LimitNbUntit"></param>
         public Team ( Arena Context, string Name, int LimitNbUntit )
         {
             _isWiped = false;
@@ -46,11 +53,12 @@ namespace BirdHouse_Battle.Model
             
             _arena = Context;
             _teamNumber = _arena.TeamCount;
-            _limitNbUnit = 250;
+            _limitNbUnit = 125;
             _units = new Dictionary<Guid, Unit>();
             _deadUnits = new Dictionary<Guid, Unit>();
         }
 
+        #region Getters & Setters
         public string Name
         {
             get { return _name; }
@@ -64,11 +72,13 @@ namespace BirdHouse_Battle.Model
         public int UnitCount
         {
             get
-            { 
+            {
+                if (_unitCount > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of troops for this team");
+               
                 return _unitCount = _aCount + _gCount + _pCount + _dCount;
+               
             }
         }
-
 
         public Arena Context
         {
@@ -111,7 +121,7 @@ namespace BirdHouse_Battle.Model
             get { return _aToAdd; }
             set
             {
-                if (_aToAdd < 0 || _aToAdd > _limitNbUnit) throw new ArgumentException("Le nombre de troupe a rajouter doit etre positif", nameof(_aToAdd));
+                if (_aToAdd < 0 || _aToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maxin4mun number for this team", nameof(_aToAdd));
                 _aToAdd = value;
             }
         }
@@ -121,7 +131,7 @@ namespace BirdHouse_Battle.Model
             get { return _gToAdd; }
             set
             {
-                if (_gToAdd < 0 || _gToAdd > _limitNbUnit) throw new ArgumentException("Le nombre de troupe a rajouter doit etre positif", nameof(_gToAdd));
+                if (_gToAdd < 0 || _gToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maxin4mun number for this team", nameof(_gToAdd));
                 _gToAdd = value;
             }
         }
@@ -145,11 +155,21 @@ namespace BirdHouse_Battle.Model
                 _dToAdd = value;
             }
         }
+        
+        public Dictionary<Guid, Unit> Unit
+        {
+            get { return _units; }
+        }
 
-        // Add a Unit type to a team
+        #endregion
+
+        /// <summary>
+        /// Add an archer to a team
+        /// </summary>
+        /// <param name="AToAdd"></param>
         public void AddArcher(int AToAdd)
         {
-            if ( UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
+            if ( UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < AToAdd; i++)
             {
                 Archer archer = new Archer(this, _arena);
@@ -158,9 +178,13 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        /// <summary>
+        /// Add Drake to a team
+        /// </summary>
+        /// <param name="DToAdd"></param>
         public void AddDrake(int DToAdd)
         {
-            if (UnitCount >= _limitNbUnit || DToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
+            if (UnitCount >= _limitNbUnit || DToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < DToAdd; i++)
             {
                 Drake drake = new Drake(this, _arena);
@@ -169,6 +193,10 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        /// <summary>
+        /// Add Gobelin to a team
+        /// </summary>
+        /// <param name="GToAdd"></param>
         public void AddGobelin(int GToAdd)
         {
             if ( UnitCount >= _limitNbUnit  || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
@@ -180,6 +208,10 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        /// <summary>
+        /// Ass a Palladin to a team
+        /// </summary>
+        /// <param name="PToAdd"></param>
         public void AddPaladin(int PToAdd)
         {
             if (PToAdd > _limitNbUnit || UnitCount >= _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
@@ -221,7 +253,6 @@ namespace BirdHouse_Battle.Model
         /// <param name="unit"></param>
         public void RemoveUnit(Unit u)
         {
-
             if (_units.TryGetValue(u.Name, out u))
             {
                 u.DieNullContext();
@@ -250,7 +281,6 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public double GoldCalculation( double Gold)
         {
-            
             double result = 0.0;
             foreach (KeyValuePair<Guid, Unit> kv in _units)
             {
@@ -289,11 +319,6 @@ namespace BirdHouse_Battle.Model
             {
                 if (FindUnitByName(i.Key) != null) RemoveUnit(i.Value);
             }
-        }
-
-        public Dictionary<Guid, Unit> Unit
-        {
-            get { return _units; }
         }
     }
 }

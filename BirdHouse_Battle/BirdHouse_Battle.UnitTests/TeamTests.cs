@@ -146,9 +146,9 @@ namespace BirdHouse_Battle.UnitTests
             Arena a = new Arena();
             Team t = a.CreateTeam("RED");
             Team t1 = a.CreateTeam("Green");
-            t1.AddGobelin(250);
+            t1.AddGobelin(125);
 
-            Assert.Throws<ArgumentException>(() => t.AddArcher(260));
+            Assert.Throws<ArgumentException>(() => t.AddArcher(126));
             Assert.Throws<ArgumentException>(() => t1.AddGobelin(1));
             Assert.Throws<ArgumentException>(() => t.AddPaladin(260));
         }
