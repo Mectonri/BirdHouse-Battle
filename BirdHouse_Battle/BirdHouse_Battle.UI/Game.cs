@@ -125,7 +125,7 @@ namespace BirdHouse_Battle.UI
             //! 
            
             Window.DispatchEvents();
-            this.iHandler.Handler();
+            iHandler.Handler();
             //while (_window.IsOpen)
            
             while (arena.TeamCount > 1)
@@ -140,7 +140,7 @@ namespace BirdHouse_Battle.UI
                 }
                 lag -= MS_PER_UPDATE;
 
-                this.iHandler.Handler();
+                iHandler.Handler();
                 if (!_window.IsOpen) break;
                 Render(arena);
                 
@@ -185,10 +185,8 @@ namespace BirdHouse_Battle.UI
 
         public void Run()
         {
-            
             Prep(Arena);
             GameLoop(Arena);
-            //WindowClosed(); // INCOMPLET
         }
 
 
@@ -199,7 +197,7 @@ namespace BirdHouse_Battle.UI
             {
                 RectangleShape[] buttons = InitGUI();
                 Window.DispatchEvents();
-                this.iHandler.HandlerMain(buttons);
+                iHandler.HandlerMain(buttons);
             }
         }
 

@@ -198,6 +198,8 @@ namespace BirdHouse_Battle.UI
             buttonCredit.Position = new Vector2f(200, 200);
             _window.Draw(buttonCredit);
 
+           
+
             buttons[0] = buttonGame;
             buttons[1] = buttonHistory;
             buttons[2] = buttonParameter;
