@@ -11,8 +11,9 @@ namespace BirdHouse_Battle.Model
 
         int _callDown;
 
-        public Archer(Team team, Arena arena)
-            : base(team, arena, 12.0, 1.8, 135.0, 10.0, 4, 1, "Order", false, true)
+        public Archer(Team team, Arena arena, int NbUnit)
+            : base(team, arena, 12.0, 1.8, 135.0, 10.0, 4, 1, 
+                   "Order", false, true, NbUnit)
         {
             _callDown = 0;
         }
@@ -22,12 +23,35 @@ namespace BirdHouse_Battle.Model
             get { return _callDown; }
         }
 
-        public void BowAttack()
+        public void BowAttack(int NbFram)
         {
-            Vector End = Target.Location.Add(Target.Mouvement.Multiply(3));
+            Vector End = Vector.Add(Vector.Multiply(NbFram, Target.Mouvement), Target.Location);
             End.Limit(-Arena.Height, Arena.Height);
-            Arena.InitArrow(Location, End);
-            _callDown = 3;
+
+            if (Vector.Soustract(Location, End).Magnitude < (Range / 2))
+            {
+                if (Vector.Soustract(Location, End).Magnitude < (Range / 4))
+                {
+                    End = Vector.Add(Vector.Multiply(0, Target.Mouvement), Target.Location);
+                    End.Limit(-Arena.Height, Arena.Height);
+
+                    Arena.InitArrow(Location, End, (NbFram / 4));
+                    _callDown = (NbFram / 4);
+                }
+                else
+                {
+                    End = Vector.Add(Vector.Multiply((NbFram / 2), Target.Mouvement), Target.Location);
+                    End.Limit(-Arena.Height, Arena.Height);
+
+                    Arena.InitArrow(Location, End, (NbFram / 2));
+                    _callDown = (NbFram / 2);
+                }
+            }
+            else
+            {
+                Arena.InitArrow(Location, End, NbFram);
+                _callDown = NbFram;
+            }
         }
 
         /// <summary>
@@ -41,9 +65,10 @@ namespace BirdHouse_Battle.Model
             {
                 if (InRange())
                 {
+                    SetMouvementZero();
                     if (_callDown == 0)
                     {
-                        BowAttack();
+                        BowAttack(24);
                     }
                     else
                     {
@@ -52,8 +77,8 @@ namespace BirdHouse_Battle.Model
                 }
                 else
                 {
-                    Mouvement = Direction.Move(Speed);
-                    Vector NewLocation = Location.Add(Mouvement);
+                    Mouvement = Vector.Move(Speed, Direction);
+                    Vector NewLocation = Vector.Add(Mouvement, Location);
 
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
                 }

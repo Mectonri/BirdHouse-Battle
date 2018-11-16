@@ -8,7 +8,7 @@ namespace BirdHouse_Battle.Model
         Team _team;
         Arena _arena;
         Unit _target;
-        readonly Guid _name;
+        readonly int _name;
         Vector _location;
         Vector _direction;
         Vector _mouvement;
@@ -28,7 +28,8 @@ namespace BirdHouse_Battle.Model
 
         protected Unit(Team team, Arena arena, double life,
                        double speed, double range, double unitPrice,
-                       int strength, int armor, string disposition, bool fly, bool distance)
+                       int strength, int armor, string disposition, 
+                       bool fly, bool distance, int NbUnit)
         {
             _team = team;
             _arena = arena;
@@ -39,7 +40,7 @@ namespace BirdHouse_Battle.Model
             _strength = strength;
             _armor = armor;
             _disposition = disposition;
-            _name = Guid.NewGuid();
+            _name = NbUnit;
             _burn = 0;
             _fly = fly;
             _distance = distance;
@@ -50,7 +51,7 @@ namespace BirdHouse_Battle.Model
 
         public Arena Arena { get { return _arena; } }
 
-        public Guid Name { get { return _name; } }
+        public int Name { get { return _name; } }
 
         public Unit Target
         {
@@ -137,8 +138,8 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public void NewDirection()
         {
-            _direction = Target.Location.Soustract(Location);
-            _mouvement = _direction.Move(Speed);
+            _direction = Vector.Soustract(Location, Target.Location);
+            _mouvement = Vector.Move(Speed, Direction);
         }
 
         /// <summary>
@@ -154,7 +155,7 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public bool InRange()
         {
-            Vector newV = Location.Soustract(Target.Location);
+            Vector newV = Vector.Soustract(Target.Location, Location);
             return newV.Magnitude <= Range;
         }
 
@@ -163,7 +164,7 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         /// <param name="damages"></param>
         /// <returns></returns>
-        public void TakeDamages(double damages)
+        public virtual void TakeDamages(double damages)
         {
             if (damages < 0) throw new ArgumentException("Couldn't take negative damages.");
             _life = _life - Math.Max(damages - Armor, 0);
@@ -184,6 +185,21 @@ namespace BirdHouse_Battle.Model
         public void SpecialEffect()
         {
             if (Burn > 0) Burning();
+        }
+
+        public void SetMouvementZero()
+        {
+            _mouvement.SetZero();
+        }
+
+        public void BoostArmor()
+        {
+            _armor += 100;
+        }
+
+        public void UnboostArmor()
+        {
+            _armor -= 100;
         }
 
         /// <summary>

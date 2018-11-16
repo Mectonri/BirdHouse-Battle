@@ -8,8 +8,8 @@ namespace BirdHouse_Battle.Model
 {
     class Arrow : Projectile
     {
-        public Arrow(Arena arena, Vector start, Vector end, int Name)
-            : base(arena, start, end, 3, 5, 10, Name)
+        public Arrow(Arena arena, Vector start, Vector end, int Name, int NbFram)
+            : base(arena, start, end, NbFram, 8, 10, Name)
         {
         }
 
@@ -20,6 +20,7 @@ namespace BirdHouse_Battle.Model
 
             if(NbFram == 0)
             {
+                FinalPosition();
                 GiveDamages();
                 DieNullContext();
             }

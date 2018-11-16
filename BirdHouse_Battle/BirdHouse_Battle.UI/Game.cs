@@ -90,21 +90,21 @@ namespace BirdHouse_Battle.UI
             //Archers are triagles, goblins by circles and paladin by rectangular shapes
 
             red.AddArcher(15); // Part One
-            red.AddGobelin(55);
-            red.AddPaladin(55);
+            red.AddGobelin(50);
+            red.AddPaladin(50);
             red.AddDrake(10);
             blue.AddArcher(15);
-            blue.AddGobelin(55);
-            blue.AddPaladin(55);
+            blue.AddGobelin(50);
+            blue.AddPaladin(50);
             blue.AddDrake(10);
 
             green.AddArcher(15); // Part Two
-            green.AddGobelin(55);
-            green.AddPaladin(55);
+            green.AddGobelin(50);
+            green.AddPaladin(50);
             green.AddDrake(10);
             yellow.AddArcher(15);
-            yellow.AddGobelin(55);
-            yellow.AddPaladin(55);
+            yellow.AddGobelin(50);
+            yellow.AddPaladin(50);
             yellow.AddDrake(10);
 
             arena.SpawnUnit();

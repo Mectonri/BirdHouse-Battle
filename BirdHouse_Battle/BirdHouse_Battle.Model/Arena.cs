@@ -85,7 +85,7 @@ namespace BirdHouse_Battle.Model
             bool doesCollide = false;
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     if (x == kv2.Value.Location.X && y == kv2.Value.Location.Y && kv2.Value.Name != unit.Name) doesCollide = true;
                 }
@@ -98,7 +98,7 @@ namespace BirdHouse_Battle.Model
             bool doesCollide = false;
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     if (vector.X == kv2.Value.Location.X && vector.Y == kv2.Value.Location.Y) doesCollide = true;
                 }
@@ -137,7 +137,7 @@ namespace BirdHouse_Battle.Model
 
         public void SpawnUnit()
         {
-            Vector vector =new Vector(0,0);
+            Vector vector = new Vector(0, 0);
             double x;
             double y;
             Random random = new Random();
@@ -147,7 +147,7 @@ namespace BirdHouse_Battle.Model
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
 
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     bool IsSpawnable = false;
 
@@ -250,7 +250,7 @@ namespace BirdHouse_Battle.Model
         {
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     if (kv2.Value.Location.X == vector.X && kv2.Value.Location.Y == vector.Y || vector.X == 0 && vector.Y == 0 || vector.X > _width || vector.Y > _height)
                     {
@@ -271,7 +271,7 @@ namespace BirdHouse_Battle.Model
             foreach (KeyValuePair<string, Team> team in _teams)
             {
                 if (team.Value != unit.Team) {
-                    foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
                     {
                         double dX = x - units.Value.Location.X;
                         double dY = y - units.Value.Location.Y;
@@ -307,7 +307,7 @@ namespace BirdHouse_Battle.Model
             {
                 if (team.Value != unit.Team)
                 {
-                    foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
                     {
                         if (units.Value.Fly == false)
                         {
@@ -347,9 +347,9 @@ namespace BirdHouse_Battle.Model
             return unit;
         }
 
-        public void InitArrow(Vector start, Vector end)
+        public void InitArrow(Vector start, Vector end, int NbFram)
         {
-            Arrow arrow = new Arrow(this, start, end, Counter);
+            Arrow arrow = new Arrow(this, start, end, Counter, NbFram);
             _projectiles.Add(Counter, arrow);
             _counter++;
         }
@@ -360,11 +360,11 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<string, Team> team in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                foreach (KeyValuePair<int, Unit> units in team.Value._units)
                 {
                     UnitPosition = units.Value.Location;
 
-                    if (projectile.Position.Soustract(UnitPosition).Magnitude <= projectile.Range)
+                    if (Vector.Soustract(UnitPosition, projectile.Position).Magnitude <= projectile.Range)
                     {
                         units.Value.TakeDamages(damages);
                     }
@@ -378,10 +378,10 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<string, Team> team in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                foreach (KeyValuePair<int, Unit> units in team.Value._units)
                 {
                     UnitPosition = units.Value.Location;
-                    Vector location = projectile.Position.Soustract(UnitPosition);
+                    Vector location = Vector.Soustract(UnitPosition, projectile.Position);
 
                     if (location.Magnitude <= projectile.Range)
                     {

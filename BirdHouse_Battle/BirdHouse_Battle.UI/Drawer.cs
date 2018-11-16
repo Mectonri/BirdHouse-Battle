@@ -155,9 +155,8 @@ namespace BirdHouse_Battle.UI
 
             foreach (KeyValuePair<string, Team> team in arena.Teams)
             {
-                foreach (KeyValuePair<Guid, Unit> u in team.Value.Unit)
+                foreach (KeyValuePair<int, Unit> u in team.Value.Unit)
                 {
-
                     string s = u.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") Shape = DisplayArcher(u.Value);
                     else if (s == "BirdHouse_Battle.Model.Gobelin") Shape = DisplayGobelin(u.Value);
