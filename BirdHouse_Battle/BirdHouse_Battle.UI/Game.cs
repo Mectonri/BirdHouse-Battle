@@ -2,6 +2,7 @@
 using SFML.Graphics;
 using SFML.Window;
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 namespace BirdHouse_Battle.UI
 {
@@ -10,8 +11,11 @@ namespace BirdHouse_Battle.UI
         #region Fields
         RenderWindow _window;
         Arena _arena;
-        InputHandler iHandler;
-        public bool _paused = true; // track whether the game is paused or not
+        InputHandler _iHandler;
+        bool _paused; // track whether the game is paused or not
+        bool _return;
+        double _previousP;
+
         #endregion
 
         string _status;
@@ -19,17 +23,11 @@ namespace BirdHouse_Battle.UI
         public Game()
         {
             Load();
-
-            iHandler = new InputHandler(this);
-
+            _iHandler = new InputHandler(this);
             _arena = new Arena();
-
             _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
-
-            _paused = Paused; // the game start paused so this bool = true
-            _arena = new Arena();
             _status = "main";
-
+            _previousP = GetCurrentTime();
         }
 
         #region Getter
@@ -77,75 +75,99 @@ namespace BirdHouse_Battle.UI
 
         #region Relevant to Gameloop
 
-        static double getCurrentTime()
+        static double GetCurrentTime()
         {
             return DateTime.Now.ToOADate();
         }
 
-        static void update(Arena arena)
+        static void Update(Arena arena)
         {
             arena.Update();
         }
 
-        static double MS_PER_UPDATE
+        static double MsPerUpdate
         {
             get { return 0.0000006; }
         }
-        
-        public void TimeLaps(double Lag, double Previous, out double current, out double elapsed, out double previous, out double lag)
+
+        private static double TimeP
         {
-            lag = Lag;
-            previous = Previous;
-            current = getCurrentTime();
-            elapsed = current - previous;
-            previous = current;
-            lag += elapsed;
+            get { return 0.00002; }
+        }
+
+        public double PreviousP
+        {
+            get { return _previousP; }
+        }
+
+        public bool Return
+        {
+            get { return _return; }
+        }
+
+        public void Switch(string input)
+        {
+            switch (input)
+            {
+                case "P":
+                    if (GetCurrentTime() - PreviousP >= TimeP)
+                    {
+                        Paused = !Paused;
+                        _previousP = GetCurrentTime();
+                        Console.WriteLine("P key is pressed");
+                    }
+                    break;
+
+                case "ESC":
+                    Window.Close();
+                    _status = "close";
+                    Console.WriteLine("ESC key is pressed");
+                    break;
+
+                case "RETURN":
+                    _return = false;
+                    break;
+            }
         }
 
         #endregion
 
-
-
-
-        public void GameLoop(Arena arena)
+        public bool GameLoop(Arena arena)
         {
-
-            double previous = getCurrentTime();
-            double lag = 0.0;
-            double current;
-            double elapsed;
-
-            Window.DispatchEvents();
-            iHandler.Handler();
+            _return = true;
+            double previous = GetCurrentTime();
+            
+            _iHandler.Handler();
 
             while (arena.TeamCount > 1)
             {
-                while(Paused)
+                _iHandler.Handler();
+                
+                if (GetCurrentTime() - previous >= MsPerUpdate && !Paused)
                 {
-                    iHandler.Handler();
-                    previous = getCurrentTime();
+                    Update(arena);
+                    previous = GetCurrentTime();
                 }
 
-                TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
-
-                update(arena);
-
-                while (lag <= MS_PER_UPDATE)
+                if (!_window.IsOpen || !Return)
                 {
-                    TimeLaps(lag, previous, out current, out elapsed, out previous, out lag);
+                    Status = "main";
+                    arena.Teams.Clear();
+                    arena.Projectiles.Clear();
+                    arena.DeadTeams.Clear();
+                    arena.DeadProjectiles.Clear();
                 }
-                lag -= MS_PER_UPDATE;
-
-                iHandler.Handler();
-                if (!_window.IsOpen) break;
                 Render(arena);
 
             }
+
             Status = "main";
             arena.Teams.Clear();
             arena.Projectiles.Clear();
             arena.DeadTeams.Clear();
             arena.DeadProjectiles.Clear();
+
+            return true;
         }
 
         public void Prep(Arena arena)
@@ -229,7 +251,7 @@ namespace BirdHouse_Battle.UI
             {
                 RectangleShape[] buttons = InitGUI();
                 Window.DispatchEvents();
-                iHandler.HandlerMain(buttons);
+                _iHandler.HandlerMain(buttons);
             }
         }
 

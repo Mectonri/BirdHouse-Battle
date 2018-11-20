@@ -13,6 +13,7 @@ namespace BirdHouse_Battle.Model
         readonly int _height;
         readonly int _width;
         int _counter;
+        Field _field;
 
         public Arena()
         {
@@ -23,6 +24,7 @@ namespace BirdHouse_Battle.Model
             _height = 250;
             _width = 250;
             _counter = 0;
+            _field = new Field(this, -_height, _height, -_width, _width);
         }
 
         public Dictionary<string, Team> Teams
@@ -58,6 +60,11 @@ namespace BirdHouse_Battle.Model
         public int Counter
         {
             get { return _counter; }
+        }
+
+        public Field Field
+        {
+            get { return _field; }
         }
 
         public Team CreateTeam(string name)

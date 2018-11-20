@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
 namespace BirdHouse_Battle.Model
 {
@@ -10,13 +10,16 @@ namespace BirdHouse_Battle.Model
     {
         Arena _arena;
         Dictionary<string, Tile> _tiles;
+        Dictionary<string, Tile> _elements;
 
         public Field(Arena arena, int startX, int endX, int startY, int endY)
         {
             _arena = arena;
             _tiles = new Dictionary<string, Tile>();
+            _elements = new Dictionary<string, Tile>();
             SpawnTiles(startX, endX, startY, endY);
             StartingGeneration();
+            AddElements();
         }
 
         public Arena Arena
@@ -29,30 +32,35 @@ namespace BirdHouse_Battle.Model
             get { return _tiles; }
         }
 
+        public Dictionary<string, Tile> Elements
+        {
+            get { return _elements; }
+        }
+
         internal void SpawnTiles(int startX, int endX, int startY, int endY)
         {
-            for ( int i = startX ; i < endX ; i++ )
+            for ( int i = startX ; i < endX+1 ; i++ )
             {
-                for (int j = startY; j < endY; j++)
+                for (int j = startY; j < endY+1; j++)
                 {
                     _tiles.Add(String.Format("{0}:{1}", i, j), new Tile(i, j));
                 }
             }
         }
 
-        public Tile findTile(int i, int j)
+        public Tile FindTile(int i, int j)
         {
-            if (i >= Arena.Height || i <= -Arena.Height ||
-                j >= Arena.Width  || j <= -Arena.Width) throw new ArgumentException("Location out of Arena");
+            if (i > Arena.Height || i < -Arena.Height ||
+                j > Arena.Width  || j < -Arena.Width) throw new ArgumentException("Location out of Arena");
 
-            Tiles.TryGetValue(String.Format("{0}:{1}", i, j), out Tile tile);
+            _tiles.TryGetValue(String.Format("{0}:{1}", i, j), out Tile tile);
 
             return tile;
         }
 
         internal void SpawnHeights( int i, int j, uint height )
         {
-            Tile tile = findTile(i, j);
+            Tile tile = FindTile(i, j);
 
             if (tile.Height <= height)
             {
@@ -97,11 +105,11 @@ namespace BirdHouse_Battle.Model
         internal void GenerationRock(int x, int y)
         {
             Tile[] tiles = new Tile[5];
-            tiles[0] = findTile(x, y);
-            tiles[1] = findTile(x - 1, y - 1);
-            tiles[1] = findTile(x + 1, y - 1);
-            tiles[1] = findTile(x - 1, y + 1);
-            tiles[1] = findTile(x + 1, y + 1);
+            tiles[0] = FindTile(x, y);
+            tiles[1] = FindTile(x - 1, y - 1);
+            tiles[2] = FindTile(x + 1, y - 1);
+            tiles[3] = FindTile(x - 1, y + 1);
+            tiles[4] = FindTile(x + 1, y + 1);
 
             foreach (Tile tile in tiles)
             {
@@ -113,15 +121,15 @@ namespace BirdHouse_Battle.Model
         internal void GenerationTree(int x, int y)
         {
             Tile[] tiles = new Tile[9];
-            tiles[0] = findTile(x, y);
-            tiles[0] = findTile(x - 1, y);
-            tiles[0] = findTile(x + 1, y);
-            tiles[0] = findTile(x, y - 1);
-            tiles[0] = findTile(x, y + 1);
-            tiles[1] = findTile(x - 1, y - 1);
-            tiles[1] = findTile(x + 1, y - 1);
-            tiles[1] = findTile(x - 1, y + 1);
-            tiles[1] = findTile(x + 1, y + 1);
+            tiles[0] = FindTile(x, y);
+            tiles[1] = FindTile(x - 1, y);
+            tiles[2] = FindTile(x + 1, y);
+            tiles[3] = FindTile(x, y - 1);
+            tiles[4] = FindTile(x, y + 1);
+            tiles[5] = FindTile(x - 1, y - 1);
+            tiles[6] = FindTile(x + 1, y - 1);
+            tiles[7] = FindTile(x - 1, y + 1);
+            tiles[8] = FindTile(x + 1, y + 1);
 
             foreach (Tile tile in tiles)
             {
@@ -141,7 +149,7 @@ namespace BirdHouse_Battle.Model
             {
                 x = random.Next(-Arena.Height+2, Arena.Height-2);
                 y = random.Next(-Arena.Width+2, Arena.Width-2);
-                obstacle = random.Next(1, 2);
+                obstacle = random.Next(1, 3);
 
                 if (obstacle == 1) { GenerationRock(x, y); }
                 else if (obstacle == 2) { GenerationTree(x, y); }
@@ -159,6 +167,17 @@ namespace BirdHouse_Battle.Model
 
             GenerationMountains(random);
             GenerationObstacles(random);
+        }
+
+        public void AddElements()
+        {
+            foreach (KeyValuePair<string, Tile> tile in Tiles)
+            {
+                if (tile.Value.Height > 0 || tile.Value.Obstacle != "None")
+                {
+                    _elements.Add(tile.Key, tile.Value);
+                }
+            }
         }
     }
 }
