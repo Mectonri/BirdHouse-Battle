@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace BirdHouse_Battle.UI
+﻿namespace BirdHouse_Battle.UI
 {
     class Program
     {

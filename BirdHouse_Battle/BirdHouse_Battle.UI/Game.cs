@@ -2,7 +2,6 @@
 using SFML.Graphics;
 using SFML.Window;
 using System;
-using System.Reflection.Metadata.Ecma335;
 
 namespace BirdHouse_Battle.UI
 {
@@ -12,22 +11,27 @@ namespace BirdHouse_Battle.UI
         RenderWindow _window;
         Arena _arena;
         InputHandler _iHandler;
+        private Drawer draw;
         bool _paused; // track whether the game is paused or not
         bool _return;
         double _previousP;
+        Color White;
 
         #endregion
 
         string _status;
+        
 
         public Game()
         {
             Load();
+            
             _iHandler = new InputHandler(this);
             _arena = new Arena();
             _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
             _status = "main";
             _previousP = GetCurrentTime();
+            draw = new Drawer(_window);
         }
 
         #region Getter
@@ -158,7 +162,6 @@ namespace BirdHouse_Battle.UI
                     arena.DeadProjectiles.Clear();
                 }
                 Render(arena);
-
             }
 
             Status = "main";
@@ -220,22 +223,30 @@ namespace BirdHouse_Battle.UI
             Window.Display();
         }
 
-
         /// <summary>
         /// Init the main menu
         /// </summary>
         public RectangleShape[] InitGUI()
         {
-
-            Window.Clear();
-            Drawer draw = new Drawer(Window);
+            Color color = new Color(255, 255, 255);
+            Window.Clear( color);
+            
+           //Drawer draw = new Drawer(Window);
             RectangleShape[] buttons = draw.MenuDisplay();
             Window.Display();
-
-
+            
             return buttons;
         }
 
+        public RectangleShape[] InitPause()
+        {
+            //throw new NotImplementedException();
+            Window.Clear();
+            RectangleShape[] buttons = draw.PauseMenu();
+            Window.Display();
+
+            return buttons;
+        }
 
         public void Run()
         {
@@ -250,7 +261,7 @@ namespace BirdHouse_Battle.UI
             while (Window.IsOpen && Status=="main")
             {
                 RectangleShape[] buttons = InitGUI();
-                Window.DispatchEvents();
+                
                 _iHandler.HandlerMain(buttons);
             }
         }

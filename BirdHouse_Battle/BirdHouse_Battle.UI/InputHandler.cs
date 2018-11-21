@@ -1,9 +1,5 @@
 ﻿using SFML.Graphics;
-using SFML.System;
 using SFML.Window;
-using System;
-using System.Diagnostics;
-using System.Threading;
 
 namespace BirdHouse_Battle.UI
 {
@@ -22,7 +18,7 @@ namespace BirdHouse_Battle.UI
             {
                 game.Switch("ESC");
             }
-            //Conditioon to start the game
+            //Condition to start the game
             if (Keyboard.IsKeyPressed(Keyboard.Key.Return))
             {
                 game.Switch("RETURN");
