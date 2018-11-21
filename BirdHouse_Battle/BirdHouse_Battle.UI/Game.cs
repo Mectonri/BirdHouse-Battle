@@ -87,7 +87,7 @@ namespace BirdHouse_Battle.UI
 
         static double MsPerUpdate
         {
-            get { return 0.0000006; }
+            get { return 0.0000004; }
         }
 
         private static double TimeP
@@ -216,6 +216,7 @@ namespace BirdHouse_Battle.UI
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
+            draw.BackGroundGame();
             draw.UnitDisplay(arena);
             Window.Display();
         }
