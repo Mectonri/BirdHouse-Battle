@@ -20,6 +20,10 @@
                     case "close":
                         run = false;
                         break;
+                    case "pause":
+                        game.PauseMenu();
+                  
+                        break;
                     default:
                         game.MainMenu();
                         break;

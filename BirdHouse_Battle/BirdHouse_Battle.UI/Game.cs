@@ -15,12 +15,14 @@ namespace BirdHouse_Battle.UI
         bool _paused; // track whether the game is paused or not
         bool _return;
         double _previousP;
-        Color White;
-
+        Color white;
+        private double MsPerUpdate = 0.0000006;
+        //double Accel;
+        string _status;
         #endregion
 
-        string _status;
-        
+
+
 
         public Game()
         {
@@ -28,10 +30,15 @@ namespace BirdHouse_Battle.UI
             
             _iHandler = new InputHandler(this);
             _arena = new Arena();
-            _window = new RenderWindow(new VideoMode(512, 512), "BirdHouseBattle", Styles.Default);
+            _window = new RenderWindow(new VideoMode(512, 712), "BirdHouseBattle", Styles.Default);
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
+
+            white = new Color(255, 255, 255);
+            string s = Keyboard.Key.Right.ToString();
+            Console.WriteLine(s);
+
         }
 
         #region Getter
@@ -67,16 +74,7 @@ namespace BirdHouse_Battle.UI
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
         }
-
-        /// <summary>
-        ///Asks for a YES/NO confirmation  Game
-        /// </summary>
-        void ExitConfirm()
-        {
-            
-        }
-
-
+        
         #region Relevant to Gameloop
 
         static double GetCurrentTime()
@@ -87,16 +85,13 @@ namespace BirdHouse_Battle.UI
         static void Update(Arena arena)
         {
             arena.Update();
+
         }
 
-        static double MsPerUpdate
-        {
-            get { return 0.0000006; }
-        }
 
         private static double TimeP
         {
-            get { return 0.00002; }
+            get { return 0.000002; }
         }
 
         public double PreviousP
@@ -119,6 +114,7 @@ namespace BirdHouse_Battle.UI
                         Paused = !Paused;
                         _previousP = GetCurrentTime();
                         Console.WriteLine("P key is pressed");
+                        _status = "pause";
                     }
                     break;
 
@@ -128,12 +124,38 @@ namespace BirdHouse_Battle.UI
                     Console.WriteLine("ESC key is pressed");
                     break;
 
+                case "Right":
+                    if (GetCurrentTime() - PreviousP >= TimeP)
+                    {
+                        _previousP = GetCurrentTime();
+                        Console.WriteLine("right arrow is pressed");
+                        if (MsPerUpdate >=0.000006/100)
+                        {
+
+                            MsPerUpdate = MsPerUpdate / 5;
+                        }
+                    }
+                    break;
+
+                case "Left":
+                    if (GetCurrentTime() - PreviousP >= TimeP)
+                    {
+                        _previousP = GetCurrentTime();
+                        Console.WriteLine("Left key is pressed");
+                        if (MsPerUpdate <= 0.000006*100)
+                        {
+                            MsPerUpdate = MsPerUpdate * 5;
+                        }
+                    }
+                    break;
+
                 case "RETURN":
                     _return = false;
                     break;
             }
         }
 
+        
         #endregion
 
         public bool GameLoop(Arena arena)
@@ -189,8 +211,8 @@ namespace BirdHouse_Battle.UI
             red.AddPaladin(55);
             red.AddDrake(5);
             blue.AddArcher(10);
-            blue.AddGobelin(55);
-            blue.AddPaladin(55);
+            blue.AddGobelin(5);
+            blue.AddPaladin(5);
             blue.AddDrake(5);
 
             green.AddArcher(10); // Part Two
@@ -205,15 +227,15 @@ namespace BirdHouse_Battle.UI
             arena.SpawnUnit();
         }
 
-        private void WindowEscaping(object sender, KeyEventArgs e)
-        {
-            if (e.Code == Keyboard.Key.Escape) Window.Close();
-        }
+        //private void WindowEscaping(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Code == Keyboard.Key.Escape) Window.Close();
+        //}
 
-        private void WindowClosed(object sender, EventArgs e)
-        {
-            _window.Close();
-        }
+        //private void WindowClosed(object sender, EventArgs e)
+        //{
+        //    _window.Close();
+        //}
 
         public void Render(Arena arena)
         {
@@ -228,8 +250,8 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public RectangleShape[] InitGUI()
         {
-            Color color = new Color(255, 255, 255);
-            Window.Clear( color);
+            
+            Window.Clear( white);
             
            //Drawer draw = new Drawer(Window);
             RectangleShape[] buttons = draw.MenuDisplay();
@@ -241,8 +263,10 @@ namespace BirdHouse_Battle.UI
         public RectangleShape[] InitPause()
         {
             //throw new NotImplementedException();
-            Window.Clear();
-            RectangleShape[] buttons = draw.PauseMenu();
+            
+            Window.Clear(white);
+            
+            RectangleShape[] buttons = draw.PauseDisplay();
             Window.Display();
 
             return buttons;
@@ -254,8 +278,30 @@ namespace BirdHouse_Battle.UI
             GameLoop(Arena);
         }
 
+        /// <summary>
+        ///Asks for a YES/NO confirmation  Game
+        /// </summary>
+        public void ExitMenu()
+        {
+
+        }
 
 
+        /// <summary>
+        /// Trigered xwhen the game is on pause
+        /// </summary>
+        public void PauseMenu()
+        {
+            while (Window.IsOpen && Status == "pause")
+            {
+                RectangleShape[] buttons = InitPause();
+                _iHandler.HandlerPause(buttons);
+            }
+        }
+        
+        /// <summary>
+        /// trigered when game start
+        /// </summary>
         public void MainMenu()
         {
             while (Window.IsOpen && Status=="main")

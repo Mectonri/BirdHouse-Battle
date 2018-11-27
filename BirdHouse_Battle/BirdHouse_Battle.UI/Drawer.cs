@@ -22,7 +22,10 @@ namespace BirdHouse_Battle.UI
         Texture _continueButton;
         Texture _restartButton;
         Texture _quitButton;
-        
+        Text _message;
+        Font _font;
+        RenderStates rs;
+
             #region Properties
         public Drawer(RenderWindow win)
         {
@@ -37,14 +40,27 @@ namespace BirdHouse_Battle.UI
             _continueButton = new Texture("../../../../res/button_continue.png");
             _restartButton = new Texture("../../../../res/button_restart.png");
             _quitButton = new Texture("../../../../res/button_quit.png");
-           
-           // _window = win;
-           
+
             
+
+            _window = win;
+           
             _size = new Vector2f(512, 512);
             _bShape = new RectangleShape(_size);
             _bShape.Texture = _terain;
             win.Draw(Bshape);
+
+            //rs = new RenderStates();
+            //_message = new Text("AXEL EST LA", _font, 100);
+
+            // _message.Draw(_window, rs );
+            //_message.Position = new Vector2f(200,200);
+            //_window.Draw(_message);
+
+            RectangleShape legend = new RectangleShape( new Vector2f(512,200));
+            legend.Texture = new Texture("../../../../res/Legende1.png");
+            legend.Position = new Vector2f(0,512);
+            win.Draw(legend);
         }
         #endregion
 
@@ -261,23 +277,21 @@ namespace BirdHouse_Battle.UI
 
         public RectangleShape[] MenuDisplay()
         {
-            RectangleShape[] buttons = new RectangleShape[4];
+            RectangleShape[] buttons = new RectangleShape[5];
 
             RectangleShape buttonGame = new RectangleShape(new Vector2f(100, 25));
             buttonGame.Texture = _startButton;
             buttonGame.Position = new Vector2f(200, 50);
             
             
-
-
             RectangleShape buttonHistory = new RectangleShape(new Vector2f(100, 25));
             buttonHistory.Texture = _historyButton;
             buttonHistory.Position = new Vector2f(200, 100);
 
 
-            RectangleShape buttonParameter = new RectangleShape(new Vector2f(100, 100));
+            RectangleShape buttonParameter = new RectangleShape(new Vector2f(100, 25));
             buttonParameter.Texture = _settingButton;
-            buttonParameter.Position = new Vector2f(0, 0);
+            buttonParameter.Position = new Vector2f(200, 150);
   
 
             RectangleShape buttonCredit = new RectangleShape(new Vector2f(100, 25));
@@ -285,10 +299,15 @@ namespace BirdHouse_Battle.UI
             buttonCredit.Texture = _creditButton;
             buttonCredit.Position = new Vector2f(200, 200);
 
+            RectangleShape buttonQuit = new RectangleShape(new Vector2f(100, 25));
+            buttonQuit.Texture = _quitButton;
+            buttonQuit.Position = new Vector2f(200, 250);
+
             buttons[0] = buttonGame;
             buttons[1] = buttonHistory;
             buttons[2] = buttonParameter;
             buttons[3] = buttonCredit;
+            buttons[4] = buttonQuit;
 
             foreach (var t in buttons)
             {
@@ -300,9 +319,9 @@ namespace BirdHouse_Battle.UI
         /// <summary>
         /// This function will launch and draw the pause menu when the game is on pause.
         /// </summary>
-        public RectangleShape[] PauseMenu()
+        public RectangleShape[] PauseDisplay()
         {
-            RectangleShape[] buttons = new RectangleShape[4];
+            RectangleShape[] button = new RectangleShape[4];
 
             Vector2f Bsize = new Vector2f(100, 25);
             RectangleShape buttonContinue = new RectangleShape(Bsize);
@@ -310,27 +329,27 @@ namespace BirdHouse_Battle.UI
             buttonContinue.Position = new Vector2f(200, 50);
 
             RectangleShape buttonRestart = new RectangleShape(Bsize);
-            buttonContinue.Texture = _restartButton;
-            buttonContinue.Position = new Vector2f(200, 100);
+            buttonRestart.Texture = _restartButton;
+            buttonRestart.Position = new Vector2f(200, 100);
 
             RectangleShape buttonSetting = new RectangleShape(Bsize);
-            buttonContinue.Texture = _settingButton;
-            buttonContinue.Position = new Vector2f();
+            buttonSetting.Texture = _settingButton;
+            buttonSetting.Position = new Vector2f(200, 150);
 
             RectangleShape buttonQuit = new RectangleShape(Bsize);
-            buttonContinue.Texture = _quitButton;
-            buttonContinue.Position = new Vector2f(200, 150);
+            buttonQuit.Texture = _quitButton;
+            buttonQuit.Position = new Vector2f(200, 200);
 
-            buttons[0] = buttonContinue;
-            buttons[1] = buttonRestart;
-            buttons[2] = buttonSetting;
-            buttons[3] = buttonQuit;
+            button[0] = buttonContinue;
+            button[1] = buttonRestart;
+            button[2] = buttonSetting;
+            button[3] = buttonQuit;
 
-            foreach (var t in buttons)
+            foreach (var t in button)
             {
                 _window.Draw(t);
             }
-            return buttons;
+            return button;
         }
     }
 }
