@@ -13,7 +13,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Gobelin Pal = new Gobelin(team, arena);
+            Gobelin Pal = new Gobelin(team, arena,1);
 
             Assert.Throws<ArgumentException>(() => Pal.TakeDamages(-1));
 
@@ -38,17 +38,17 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Gobelin Pal = new Gobelin(team, arena);
+            Gobelin Pal = new Gobelin(team, arena,1);
 
             Pal.TakeDamages(Pal.Life + Pal.Armor);
             Assert.That(Pal.IsDead, Is.True);
 
-            Pal = new Gobelin(team, arena);
+            Pal = new Gobelin(team, arena,1);
 
             Pal.TakeDamages(Pal.Life + Pal.Armor + 1);
             Assert.That(Pal.IsDead, Is.True);
 
-            Pal = new Gobelin(team, arena);
+            Pal = new Gobelin(team, arena,1);
 
             Pal.TakeDamages(Pal.Life + Pal.Armor - 1);
             Assert.That(Pal.IsDead, Is.False);
@@ -60,7 +60,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Gobelin Pal = new Gobelin(team, arena);
+            Gobelin Pal = new Gobelin(team, arena,1);
 
             Random rdm1 = new Random();
             double x = rdm1.NextDouble() * 2 - 1;
@@ -68,7 +68,7 @@ namespace BirdHouse_Battle.UnitTests
 
             Pal.Location = new Vector(x, y);
 
-            Gobelin target = new Gobelin(team, arena);
+            Gobelin target = new Gobelin(team, arena,1);
 
             double x2 = rdm1.NextDouble() * 2 - 1;
             double y2 = rdm1.NextDouble() * 2 - 1;
@@ -86,10 +86,10 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Gobelin Pal = new Gobelin(team, arena);
+            Gobelin Pal = new Gobelin(team, arena,1);
             Pal.Location = new Vector(0, 0);
 
-            Gobelin target = new Gobelin(team, arena);
+            Gobelin target = new Gobelin(team, arena,1);
             Random rdm = new Random();
             double x;
             double y;
@@ -104,8 +104,7 @@ namespace BirdHouse_Battle.UnitTests
 
                 Pal.NewDirection();
 
-                if (Pal.Location.Soustract(Pal.Target.Location).Magnitude <= Pal.Range) Assert.That(Pal.InRange, Is.True);
-                if (Pal.Location.Soustract(Pal.Target.Location).Magnitude > Pal.Range) Assert.That(Pal.InRange, Is.False);
+         
             }
         }
     }

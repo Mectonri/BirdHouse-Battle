@@ -8,13 +8,15 @@ namespace BirdHouse_Battle.UI
         {
             bool run = true;
             Game game = new Game();
-            //game.Run();
             while (run == true)
             {
                 switch (game.Status)
                 {
                     case "main":
                         game.MainMenu();
+                        break;
+                    case "preGame":
+                        game.PreGame();
                         break;
                     case "game":
                         game.Run();

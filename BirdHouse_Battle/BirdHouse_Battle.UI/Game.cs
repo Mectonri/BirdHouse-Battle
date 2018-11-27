@@ -243,7 +243,7 @@ namespace BirdHouse_Battle.UI
             GameLoop(Arena);
         }
 
-
+       
 
         public void MainMenu()
         {
@@ -252,6 +252,28 @@ namespace BirdHouse_Battle.UI
                 RectangleShape[] buttons = InitGUI();
                 Window.DispatchEvents();
                 _iHandler.HandlerMain(buttons);
+            }
+        }
+
+        public RectangleShape[] InitPreGame(string preGameStatus)
+        {
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            RectangleShape[] buttons = draw.PreGameDisplay(preGameStatus);
+            Window.Display();
+            return buttons;
+        }
+
+        public void PreGame()
+        {
+            string preGameStatus = "none";
+
+
+            while (Window.IsOpen && Status == "preGame")
+            {
+                RectangleShape[] buttons = InitPreGame(preGameStatus);
+                Window.DispatchEvents();
+                _iHandler.HandlerPreGame(buttons);
             }
         }
 
