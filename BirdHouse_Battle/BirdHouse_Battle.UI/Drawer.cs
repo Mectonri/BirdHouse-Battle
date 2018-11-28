@@ -277,7 +277,7 @@ namespace BirdHouse_Battle.UI
 
 
 
-        public RectangleShape[] PreGameDisplay(string[] status)
+        public RectangleShape[] PreGameDisplay(string[] status, int[,] teamComposition)
         {
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/GreatVibes-Regular.ttf");
@@ -369,6 +369,12 @@ namespace BirdHouse_Battle.UI
                 buttonAddTeam4.FillColor = new Color(255, 160, 122);
             }
 
+
+
+
+
+
+
             buttons[0] = buttonAddTeam1;
             buttons[1] = buttonAddTeam2;
             buttons[2] = buttonAddTeam3;
@@ -396,8 +402,6 @@ namespace BirdHouse_Battle.UI
                 t.Draw(_window, rs);
                 _window.Draw(t);
             }
-
-
 
             return buttons;
         }

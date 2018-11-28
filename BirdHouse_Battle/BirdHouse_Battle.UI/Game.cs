@@ -256,11 +256,11 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public RectangleShape[] InitPreGame(string[] status)
+        public RectangleShape[] InitPreGame(string[] status, int[,] teamComposition)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            RectangleShape[] buttons = draw.PreGameDisplay(status);
+            RectangleShape[] buttons = draw.PreGameDisplay(status, teamComposition);
             Window.Display();
             return buttons;
         }
@@ -284,64 +284,69 @@ namespace BirdHouse_Battle.UI
                 {0,0,0,0 },
                 {0,0,0,0 }
             };
+            double previous = GetCurrentTime();
 
             while (Window.IsOpen && Status == "preGame")
             {
-                RectangleShape[] buttons = InitPreGame(status);
-                Window.DispatchEvents();
-                status = _iHandler.HandlerPreGame(buttons, status);
-                if (status[2] == "active" && Arena.FindTeam("green")== false )
+                if (GetCurrentTime() - previous >= 300)
                 {
-                    Team green = Arena.CreateTeam("green");
-                }
-                else if (status[3] == "active" && Arena.FindTeam("yellow") == false)
-                {
-                    Team green = Arena.CreateTeam("yellow");
-                }
+                    RectangleShape[] buttons = InitPreGame(status, teamComposition);
+                    Window.DispatchEvents();
+                    status = _iHandler.HandlerPreGame(buttons, status);
+                    if (status[2] == "active" && Arena.FindTeam("green") == false)
+                    {
+                        Team green = Arena.CreateTeam("green");
+                    }
+                    else if (status[3] == "active" && Arena.FindTeam("yellow") == false)
+                    {
+                        Team green = Arena.CreateTeam("yellow");
+                    }
 
 
-                switch (status[4])
-                {
-                    case "archer":
-                        for (int i = 0; i < status.Length -1 ; i++)
-                        {
-                            if (status[i]=="selected")
+                    switch (status[4])
+                    {
+                        case "archer":
+                            for (int i = 0; i < status.Length - 1; i++)
                             {
-                                teamComposition[i, 0] = +1;
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 0] = +1;
+                                }
                             }
-                        }
-                        break;
-                    case "drake":
-                        for (int i = 0; i < status.Length - 1; i++)
-                        {
-                            if (status[i] == "selected")
+                            break;
+                        case "drake":
+                            for (int i = 0; i < status.Length - 1; i++)
                             {
-                                teamComposition[i, 1] = +1;
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 1] = +1;
+                                }
                             }
-                        }
-                        break;
-                    case "gobelin":
-                        for (int i = 0; i < status.Length - 1; i++)
-                        {
-                            if (status[i] == "selected")
+                            break;
+                        case "gobelin":
+                            for (int i = 0; i < status.Length - 1; i++)
                             {
-                                teamComposition[i, 2] = +1;
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 2] = +1;
+                                }
                             }
-                        }
-                        break;
-                    case "paladin":
-                        for (int i = 0; i < status.Length - 1; i++)
-                        {
-                            if (status[i] == "selected")
+                            break;
+                        case "paladin":
+                            for (int i = 0; i < status.Length - 1; i++)
                             {
-                                teamComposition[i, 3] = +1;
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 3] = +1;
+                                }
                             }
-                        }
-                        break;
-                    default:
-                        break;
+                            break;
+                        default:
+                            break;
+                    }
+                    status[4] = "none";
                 }
-                status[4] = "none";
+                previous = GetCurrentTime();
             }
         }
 
