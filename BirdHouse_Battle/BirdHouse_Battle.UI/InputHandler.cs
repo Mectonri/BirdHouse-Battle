@@ -55,20 +55,30 @@ namespace BirdHouse_Battle.UI
             }
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "main";
+                game.Status = "game";
             }
         }
 
-        public void HandlerPreGame(RectangleShape[] buttons, int i)
+        public string[] HandlerPreGame(RectangleShape[] buttons, string[] status)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
                 game.Window.Close();
+                return status;
             }
-            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && game.Arena.TeamCount <4)
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                i = +1;
-                game.Arena.CreateTeam(i.ToString());
+                status[0] = "1";
+                return status;
+            }
+            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                status[1] = "1";
+                return status;
+            }
+            else
+            {
+                return status;
             }
         }
     }

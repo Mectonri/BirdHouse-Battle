@@ -277,7 +277,7 @@ namespace BirdHouse_Battle.UI
 
 
 
-        public RectangleShape[] PreGameDisplay(string preGameStatus)
+        public RectangleShape[] PreGameDisplay(string[] status)
         {
             RectangleShape[] buttons = new RectangleShape[9];
 
@@ -312,12 +312,19 @@ namespace BirdHouse_Battle.UI
             buttonAddTeam3.Position = new Vector2f(261, 317);
             buttonAddTeam3.OutlineThickness = 5;
             buttonAddTeam3.OutlineColor = new Color(0, 250, 0);
+            if (status[0] == "0")
+            {
+                buttonAddTeam3.FillColor = new Color(128,128,128);
+            }
 
             RectangleShape buttonAddTeam4 = new RectangleShape(new Vector2f(118, 190));
             buttonAddTeam4.Position = new Vector2f(389, 317);
             buttonAddTeam4.OutlineThickness = 5;
             buttonAddTeam4.OutlineColor = new Color(250, 250, 0);
-
+            if (status[1]=="0")
+            {
+                buttonAddTeam4.FillColor = new Color(128, 128, 128);
+            }
 
             buttons[0] = buttonAddTeam1;
             buttons[1] = buttonAddTeam2;

@@ -40,6 +40,7 @@ namespace BirdHouse_Battle.UI
         public Arena Arena
         {
             get { return _arena; }
+            set {_arena = value; }
         }
 
         public RenderWindow Window
@@ -255,25 +256,36 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public RectangleShape[] InitPreGame(string preGameStatus)
+        public RectangleShape[] InitPreGame(string[] status)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            RectangleShape[] buttons = draw.PreGameDisplay(preGameStatus);
+            RectangleShape[] buttons = draw.PreGameDisplay(status);
             Window.Display();
             return buttons;
         }
 
         public void PreGame()
         {
-            string preGameStatus = "none";
-            int i = 0;
+            Team blue = Arena.CreateTeam("blue"); 
+            Team red = Arena.CreateTeam("red");
+            string [] status =new string [2];
+            status[0]= "0";
+            status[1] = "0";
 
             while (Window.IsOpen && Status == "preGame")
             {
-                RectangleShape[] buttons = InitPreGame(preGameStatus);
+                RectangleShape[] buttons = InitPreGame(status);
                 Window.DispatchEvents();
-                _iHandler.HandlerPreGame(buttons, i);
+                status = _iHandler.HandlerPreGame(buttons, status);
+                if (status[0] == "1" && Arena.FindTeam("green")== false )
+                {
+                    Team green = Arena.CreateTeam("green");
+                }
+                else if (status[1] == "1" && Arena.FindTeam("yellow") == false)
+                {
+                    Team green = Arena.CreateTeam("yellow");
+                }
             }
         }
 

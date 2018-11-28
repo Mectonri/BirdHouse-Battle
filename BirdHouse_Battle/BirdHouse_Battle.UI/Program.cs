@@ -16,6 +16,7 @@ namespace BirdHouse_Battle.UI
                         game.MainMenu();
                         break;
                     case "preGame":
+                        game.Arena = new Model.Arena();
                         game.PreGame();
                         break;
                     case "game":
