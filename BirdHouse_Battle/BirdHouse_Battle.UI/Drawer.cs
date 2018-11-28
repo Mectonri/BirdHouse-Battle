@@ -279,7 +279,10 @@ namespace BirdHouse_Battle.UI
 
         public RectangleShape[] PreGameDisplay (string preGameStatus)
         {
-            RectangleShape[] buttons = new RectangleShape[4];
+            RectangleShape[] buttons = new RectangleShape[5];
+
+            RectangleShape buttonPlay = new RectangleShape(new Vector2f(75, 25));
+            buttonPlay.Position = new Vector2f(380,125);
 
             RectangleShape buttonAddTeam1 = new RectangleShape(new Vector2f(118, 190));
             buttonAddTeam1.Position = new Vector2f(5, 317);
@@ -306,6 +309,7 @@ namespace BirdHouse_Battle.UI
             buttons[1] = buttonAddTeam2;
             buttons[2] = buttonAddTeam3;
             buttons[3] = buttonAddTeam4;
+            buttons[4] = buttonPlay;
 
 
             foreach (var t in buttons)
