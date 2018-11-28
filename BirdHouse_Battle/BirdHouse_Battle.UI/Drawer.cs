@@ -271,31 +271,41 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
+
+
+
+
+
+
         public RectangleShape[] PreGameDisplay (string preGameStatus)
         {
-            RectangleShape[] buttons = new RectangleShape[3];
+            RectangleShape[] buttons = new RectangleShape[4];
 
-            RectangleShape buttonGame = new RectangleShape(new Vector2f(100, 25));
-            buttonGame.Position = new Vector2f(200, 200);
+            RectangleShape buttonAddTeam1 = new RectangleShape(new Vector2f(118, 190));
+            buttonAddTeam1.Position = new Vector2f(5, 317);
+            buttonAddTeam1.OutlineThickness = 5;
+            buttonAddTeam1.OutlineColor = new Color(0,0,250);
+
+            RectangleShape buttonAddTeam2 = new RectangleShape(new Vector2f(118, 190));
+            buttonAddTeam2.Position = new Vector2f(132, 317);
+            buttonAddTeam2.OutlineThickness = 5;
+            buttonAddTeam2.OutlineColor = new Color(250, 0, 0);
+
+            RectangleShape buttonAddTeam3 = new RectangleShape(new Vector2f(118, 190));
+            buttonAddTeam3.Position = new Vector2f(261, 317);
+            buttonAddTeam3.OutlineThickness = 5;
+            buttonAddTeam3.OutlineColor = new Color(0, 250, 0);
+
+            RectangleShape buttonAddTeam4 = new RectangleShape(new Vector2f(118, 190));
+            buttonAddTeam4.Position = new Vector2f(389, 317);
+            buttonAddTeam4.OutlineThickness = 5;
+            buttonAddTeam4.OutlineColor = new Color(250, 250, 0);
 
 
-            RectangleShape buttonHistory = new RectangleShape(new Vector2f(100, 25));
-            buttonHistory.Position = new Vector2f(200, 100);
-
-
-            RectangleShape buttonParameter = new RectangleShape(new Vector2f(100, 25));
-            buttonParameter.Position = new Vector2f(200, 150);
-
-
-
-
-
-
-            buttons[0] = buttonGame;
-            buttons[1] = buttonHistory;
-            buttons[2] = buttonParameter;
-
-
+            buttons[0] = buttonAddTeam1;
+            buttons[1] = buttonAddTeam2;
+            buttons[2] = buttonAddTeam3;
+            buttons[3] = buttonAddTeam4;
 
 
             foreach (var t in buttons)

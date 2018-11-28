@@ -4,6 +4,7 @@ using SFML.Window;
 using System;
 using System.Diagnostics;
 using System.Threading;
+using BirdHouse_Battle.Model;
 
 namespace BirdHouse_Battle.UI
 {
@@ -58,25 +59,17 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void HandlerPreGame(RectangleShape[] buttons)
+        public void HandlerPreGame(RectangleShape[] buttons, int i)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
                 game.Window.Close();
             }
-            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && game.Arena.TeamCount <4)
             {
-                game.Status = "game";
+                i = +1;
+                game.Arena.CreateTeam(i.ToString());
             }
-            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                game.Status = "game";
-            }
-            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                game.Status = "game";
-            }
-
         }
     }
 }

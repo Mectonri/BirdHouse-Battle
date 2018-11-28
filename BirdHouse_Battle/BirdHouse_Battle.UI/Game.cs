@@ -267,13 +267,13 @@ namespace BirdHouse_Battle.UI
         public void PreGame()
         {
             string preGameStatus = "none";
-
+            int i = 0;
 
             while (Window.IsOpen && Status == "preGame")
             {
                 RectangleShape[] buttons = InitPreGame(preGameStatus);
                 Window.DispatchEvents();
-                _iHandler.HandlerPreGame(buttons);
+                _iHandler.HandlerPreGame(buttons, i);
             }
         }
 
