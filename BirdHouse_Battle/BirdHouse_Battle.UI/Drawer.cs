@@ -277,12 +277,26 @@ namespace BirdHouse_Battle.UI
 
 
 
-        public RectangleShape[] PreGameDisplay (string preGameStatus)
+        public RectangleShape[] PreGameDisplay(string preGameStatus)
         {
-            RectangleShape[] buttons = new RectangleShape[5];
+            RectangleShape[] buttons = new RectangleShape[9];
 
             RectangleShape buttonPlay = new RectangleShape(new Vector2f(75, 25));
-            buttonPlay.Position = new Vector2f(380,125);
+            buttonPlay.Position = new Vector2f(380, 125);
+
+
+
+            RectangleShape buttonArcher = new RectangleShape(new Vector2f(75, 25));
+            buttonArcher.Position = new Vector2f(10,30);
+            RectangleShape buttonDrake = new RectangleShape(new Vector2f(75, 25));
+            buttonDrake.Position = new Vector2f(10, 95);
+            RectangleShape buttonGobelin = new RectangleShape(new Vector2f(75, 25));
+            buttonGobelin.Position = new Vector2f(10, 160);
+            RectangleShape buttonPaladin = new RectangleShape(new Vector2f(75, 25));
+            buttonPaladin.Position = new Vector2f(10, 225);
+
+
+
 
             RectangleShape buttonAddTeam1 = new RectangleShape(new Vector2f(118, 190));
             buttonAddTeam1.Position = new Vector2f(5, 317);
@@ -310,6 +324,10 @@ namespace BirdHouse_Battle.UI
             buttons[2] = buttonAddTeam3;
             buttons[3] = buttonAddTeam4;
             buttons[4] = buttonPlay;
+            buttons[5] = buttonArcher;
+            buttons[6] = buttonDrake;
+            buttons[7] = buttonGobelin;
+            buttons[8] = buttonPaladin;
 
 
             foreach (var t in buttons)
