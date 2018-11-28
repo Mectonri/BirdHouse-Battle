@@ -269,20 +269,22 @@ namespace BirdHouse_Battle.UI
         {
             Team blue = Arena.CreateTeam("blue"); 
             Team red = Arena.CreateTeam("red");
-            string [] status =new string [2];
-            status[0]= "0";
-            status[1] = "0";
+            string [] status =new string [4];
+            status[0] = "1";
+            status[1] = "1";
+            status[2]= "0";
+            status[3] = "0";
 
             while (Window.IsOpen && Status == "preGame")
             {
                 RectangleShape[] buttons = InitPreGame(status);
                 Window.DispatchEvents();
                 status = _iHandler.HandlerPreGame(buttons, status);
-                if (status[0] == "1" && Arena.FindTeam("green")== false )
+                if (status[2] == "1" && Arena.FindTeam("green")== false )
                 {
                     Team green = Arena.CreateTeam("green");
                 }
-                else if (status[1] == "1" && Arena.FindTeam("yellow") == false)
+                else if (status[3] == "1" && Arena.FindTeam("yellow") == false)
                 {
                     Team green = Arena.CreateTeam("yellow");
                 }
