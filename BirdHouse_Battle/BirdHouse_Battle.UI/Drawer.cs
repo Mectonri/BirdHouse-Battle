@@ -279,21 +279,47 @@ namespace BirdHouse_Battle.UI
 
         public RectangleShape[] PreGameDisplay(string[] status)
         {
+            RenderStates rs = new RenderStates();
+            Font font = new Font("../../../../res/GreatVibes-Regular.ttf");
+
+
             RectangleShape[] buttons = new RectangleShape[9];
+            Text[] messages = new Text[5];
+
 
             RectangleShape buttonPlay = new RectangleShape(new Vector2f(75, 25));
             buttonPlay.Position = new Vector2f(380, 125);
-
+            Text messagePlay = new Text("play", font, 25);
+            messagePlay.FillColor = new Color(0, 0, 0);
+            messagePlay.Position = new Vector2f(400, 116);
 
 
             RectangleShape buttonArcher = new RectangleShape(new Vector2f(75, 25));
             buttonArcher.Position = new Vector2f(10,30);
+            Text messageArcher = new Text("archer", font, 25);
+            messageArcher.FillColor = new Color(0, 0, 0);
+            messageArcher.Position = new Vector2f(20, 21);
+
+
             RectangleShape buttonDrake = new RectangleShape(new Vector2f(75, 25));
             buttonDrake.Position = new Vector2f(10, 95);
+            Text messageDrake = new Text("drake", font, 25);
+            messageDrake.FillColor = new Color(0, 0, 0);
+            messageDrake.Position = new Vector2f(20, 86);
+
+
             RectangleShape buttonGobelin = new RectangleShape(new Vector2f(75, 25));
             buttonGobelin.Position = new Vector2f(10, 160);
+            Text messageGobelin = new Text("gobelin", font, 25);
+            messageGobelin.FillColor = new Color(0, 0, 0);
+            messageGobelin.Position = new Vector2f(20, 151);
+
+
             RectangleShape buttonPaladin = new RectangleShape(new Vector2f(75, 25));
             buttonPaladin.Position = new Vector2f(10, 225);
+            Text messagePaladin = new Text("paladin", font, 25);
+            messagePaladin.FillColor = new Color(0, 0, 0);
+            messagePaladin.Position = new Vector2f(20, 216);
 
 
 
@@ -353,11 +379,25 @@ namespace BirdHouse_Battle.UI
             buttons[7] = buttonGobelin;
             buttons[8] = buttonPaladin;
 
-
             foreach (var t in buttons)
             {
                 _window.Draw(t);
             }
+
+
+            messages[0] = messageArcher;
+            messages[1] = messageDrake;
+            messages[2] = messageGobelin;
+            messages[3] = messagePaladin;
+            messages[4] = messagePlay;
+
+            foreach(var t in messages)
+            {
+                t.Draw(_window, rs);
+                _window.Draw(t);
+            }
+
+
 
             return buttons;
         }
