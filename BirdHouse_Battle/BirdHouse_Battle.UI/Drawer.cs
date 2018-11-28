@@ -328,7 +328,7 @@ namespace BirdHouse_Battle.UI
             buttonAddTeam1.Position = new Vector2f(5, 317);
             buttonAddTeam1.OutlineThickness = 5;
             buttonAddTeam1.OutlineColor = new Color(0,0,250);
-            if (status[0]=="2")
+            if (status[0]== "selected")
             {
                 buttonAddTeam1.FillColor = new Color(255, 160, 122);
             }
@@ -337,7 +337,7 @@ namespace BirdHouse_Battle.UI
             buttonAddTeam2.Position = new Vector2f(132, 317);
             buttonAddTeam2.OutlineThickness = 5;
             buttonAddTeam2.OutlineColor = new Color(250, 0, 0);
-            if (status[1] == "2")
+            if (status[1] == "selected")
             {
                 buttonAddTeam2.FillColor = new Color(255, 160, 122);
             }
@@ -347,11 +347,11 @@ namespace BirdHouse_Battle.UI
             buttonAddTeam3.Position = new Vector2f(261, 317);
             buttonAddTeam3.OutlineThickness = 5;
             buttonAddTeam3.OutlineColor = new Color(0, 250, 0);
-            if (status[2] == "0")
+            if (status[2] == "inactive")
             {
                 buttonAddTeam3.FillColor = new Color(128,128,128);
             }
-            else if (status[2] == "2")
+            else if (status[2] == "selected")
             {
                 buttonAddTeam3.FillColor = new Color(255, 160, 122);
             }
@@ -360,11 +360,11 @@ namespace BirdHouse_Battle.UI
             buttonAddTeam4.Position = new Vector2f(389, 317);
             buttonAddTeam4.OutlineThickness = 5;
             buttonAddTeam4.OutlineColor = new Color(250, 250, 0);
-            if (status[3]=="0")
+            if (status[3]== "inactive")
             {
                 buttonAddTeam4.FillColor = new Color(128, 128, 128);
             }
-            if (status[3] == "2")
+            if (status[3] == "selected")
             {
                 buttonAddTeam4.FillColor = new Color(255, 160, 122);
             }

@@ -269,27 +269,79 @@ namespace BirdHouse_Battle.UI
         {
             Team blue = Arena.CreateTeam("blue"); 
             Team red = Arena.CreateTeam("red");
-            string [] status =new string [4];
-            status[0] = "2";
-            status[1] = "1";
-            status[2]= "0";
-            status[3] = "0";
+            string [] status =new string [8];
+            status[0] = "selected";
+            status[1] = "active";
+            status[2]= "inactive";
+            status[3] = "inactive";
 
+            status[4] = "none";
 
+            int[,] teamComposition = 
+            {
+                {0,0,0,0 },
+                {0,0,0,0 },
+                {0,0,0,0 },
+                {0,0,0,0 }
+            };
 
             while (Window.IsOpen && Status == "preGame")
             {
                 RectangleShape[] buttons = InitPreGame(status);
                 Window.DispatchEvents();
                 status = _iHandler.HandlerPreGame(buttons, status);
-                if (status[2] == "1" && Arena.FindTeam("green")== false )
+                if (status[2] == "active" && Arena.FindTeam("green")== false )
                 {
                     Team green = Arena.CreateTeam("green");
                 }
-                else if (status[3] == "1" && Arena.FindTeam("yellow") == false)
+                else if (status[3] == "active" && Arena.FindTeam("yellow") == false)
                 {
                     Team green = Arena.CreateTeam("yellow");
                 }
+
+
+                switch (status[4])
+                {
+                    case "archer":
+                        for (int i = 0; i < status.Length -1 ; i++)
+                        {
+                            if (status[i]=="selected")
+                            {
+                                teamComposition[i, 0] = +1;
+                            }
+                        }
+                        break;
+                    case "drake":
+                        for (int i = 0; i < status.Length - 1; i++)
+                        {
+                            if (status[i] == "selected")
+                            {
+                                teamComposition[i, 1] = +1;
+                            }
+                        }
+                        break;
+                    case "gobelin":
+                        for (int i = 0; i < status.Length - 1; i++)
+                        {
+                            if (status[i] == "selected")
+                            {
+                                teamComposition[i, 2] = +1;
+                            }
+                        }
+                        break;
+                    case "paladin":
+                        for (int i = 0; i < status.Length - 1; i++)
+                        {
+                            if (status[i] == "selected")
+                            {
+                                teamComposition[i, 3] = +1;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                status[4] = "none";
             }
         }
 
