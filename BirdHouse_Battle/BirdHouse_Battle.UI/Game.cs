@@ -270,10 +270,12 @@ namespace BirdHouse_Battle.UI
             Team blue = Arena.CreateTeam("blue"); 
             Team red = Arena.CreateTeam("red");
             string [] status =new string [4];
-            status[0] = "1";
+            status[0] = "2";
             status[1] = "1";
             status[2]= "0";
             status[3] = "0";
+
+
 
             while (Window.IsOpen && Status == "preGame")
             {

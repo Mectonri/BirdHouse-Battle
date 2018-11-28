@@ -455,7 +455,7 @@ namespace BirdHouse_Battle.Model
             
             foreach (KeyValuePair<string, Team> team in _deadTeams)
             {
-                if (FindTeam(team.Key) != null) RemoveTeam(team.Key);
+                if (FindTeam(team.Key) != false) RemoveTeam(team.Key);
             }
         }
     }
