@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace BirdHouse_Battle.UI
+﻿namespace BirdHouse_Battle.UI
 {
     class Program
     {
@@ -21,6 +19,10 @@ namespace BirdHouse_Battle.UI
                         break;
                     case "close":
                         run = false;
+                        break;
+                    case "pause":
+                        game.PauseMenu();
+                  
                         break;
                     default:
                         game.MainMenu();
