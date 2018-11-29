@@ -12,7 +12,7 @@ namespace BirdHouse_Battle.UI
     public class Drawer
     {
         RenderWindow _window;
-        readonly Shape _bShape;
+        Shape _bShape;
         Texture _terain;
         Vector2f _size;
         Texture _startButton;
@@ -71,6 +71,16 @@ namespace BirdHouse_Battle.UI
         public Vector2f Size { get { return _size; } }
 
         #region
+
+        public void BackGroundGame()
+        {
+            _terain = new Texture("../../../../res/terrain1.jpeg");
+            _size = new Vector2f(512, 512);
+            _bShape = new RectangleShape(_size);
+            _bShape.Texture = _terain;
+            _window.Draw(Bshape);
+        }
+
         /// <summary>
         /// Display archer with the corresponding color
         /// </summary>
@@ -87,7 +97,7 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        /// Displays Gobelin and color it in function of the team
+        /// Displays Goblin and color it in function of the team
         /// </summary>
         /// <param name="unit"></param>
         static CircleShape DisplayGobelin(Unit unit)
@@ -126,12 +136,50 @@ namespace BirdHouse_Battle.UI
             return drakDis;
         }
 
+        static Shape DisplayBalista(Unit unit)
+        {
+            CircleShape balistDis = new CircleShape(8);
+            balistDis.SetPointCount(6);
+            balistDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
+
+            Coloring(balistDis, unit);
+
+            return balistDis;
+        }
+
+        static Shape DisplayCatapult(Unit unit)
+        {
+            CircleShape cataDis = new CircleShape(8);
+            cataDis.SetPointCount(7);
+            cataDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
+
+            Coloring(cataDis, unit);
+
+            return cataDis;
+        }
+
         static Shape DisplayArrow(Projectile projectile)
         {
             CircleShape arrDis = new CircleShape(2);
             arrDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
 
             return arrDis;
+        }
+
+        static Shape DisplayBoulder(Projectile projectile)
+        {
+            CircleShape boulDis = new CircleShape(6);
+            boulDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
+
+            return boulDis;
+        }
+
+        static Shape DisplayBalisticAmmo(Projectile projectile)
+        {
+            CircleShape balisDis = new CircleShape(4);
+            balisDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
+
+            return balisDis;
         }
 
         public static Shape Coloring(Shape shape, Unit unit)
@@ -169,14 +217,35 @@ namespace BirdHouse_Battle.UI
         public Shape DisplayField(Tile tile)
         {
             CircleShape arrField = new CircleShape(5);
+            arrField.SetPointCount(6);
             arrField.Position = new Vector2f((float)tile.X + 250, (float)tile.Y + 250);
 
-            if (tile.Obstacle != "None")
+            if (tile.Height != 0)
+            {
+                switch (tile.Height)
+                {
+                    case 1: arrField.FillColor = new Color(10, 30, 27); break;
+                    case 2: arrField.FillColor = new Color(30, 40, 28); break;
+                    case 3: arrField.FillColor = new Color(50, 50, 29); break;
+                    case 4: arrField.FillColor = new Color(70, 60, 30); break;
+                    case 5: arrField.FillColor = new Color(90, 65, 31); break;
+                    case 6: arrField.FillColor = new Color(110, 70, 32); break;
+                    case 7: arrField.FillColor = new Color(115, 75, 33); break;
+                    case 8: arrField.FillColor = new Color(120, 80, 34); break;
+                    case 9: arrField.FillColor = new Color(125, 84, 35); break;
+                    case 10: arrField.FillColor = new Color(130, 87, 36); break;
+                    case 11: arrField.FillColor = new Color(135, 90, 37); break;
+                    case 12: arrField.FillColor = new Color(140, 94, 38); break;
+                    case 13: arrField.FillColor = new Color(145, 97, 39); break;
+                    case 14: arrField.FillColor = new Color(150, 100, 40); break;
+                }
+            }
+            else if (tile.Obstacle != "None")
             {
                 switch (tile.Obstacle)
                 {
                     case "Rock":
-                        arrField.FillColor = new Color(187, 187, 187);
+                        arrField.FillColor = new Color(195, 180, 157);
                         break;
 
                     case "Tree":
@@ -184,44 +253,7 @@ namespace BirdHouse_Battle.UI
                         break;
 
                     case "River":
-                        arrField.FillColor = new Color();
-                        break;
-                }
-            }
-            else if (tile.Height != 0)
-            {
-                switch (tile.Height)
-                {
-                    case 1:
-                        arrField.FillColor = new Color(45, 45, 45);
-                        break;
-
-                    case 2:
-                        arrField.FillColor = new Color(75, 75, 75);
-                        break;
-
-                    case 3:
-                        arrField.FillColor = new Color(105, 105, 105);
-                        break;
-
-                    case 4:
-                        arrField.FillColor = new Color(135, 135, 135);
-                        break;
-
-                    case 5:
-                        arrField.FillColor = new Color(165, 165, 165);
-                        break;
-
-                    case 6:
-                        arrField.FillColor = new Color(195, 195, 195);
-                        break;
-
-                    case 7:
-                        arrField.FillColor = new Color(225, 225, 225);
-                        break;
-
-                    case 8:
-                        arrField.FillColor = new Color(255, 255, 255);
+                        arrField.FillColor = new Color(30, 38, 129);
                         break;
                 }
             }
@@ -258,6 +290,8 @@ namespace BirdHouse_Battle.UI
                         case "BirdHouse_Battle.Model.Drake":
                             shape = DisplayDrake(unit.Value);
                             break;
+                    else if (s == "BirdHouse_Battle.Model.Balista") shape = DisplayBalista(unit.Value);
+                    else if (s == "BirdHouse_Battle.Model.Catapult") shape = DisplayCatapult(unit.Value);
                         default:
                             shape = DisplayPaladin(unit.Value);
                             break;
@@ -268,9 +302,10 @@ namespace BirdHouse_Battle.UI
             }
             foreach (KeyValuePair<int, Projectile> projectile in arena.Projectiles)
             {
-                //string s = u.Value.ToString();
-                //if (s == "BirdHouse_Battle.Model.Arrow")
-                shape = DisplayArrow(projectile.Value);
+                string s = projectile.Value.ToString();
+                if (s == "BirdHouse_Battle.Model.Arrow") shape = DisplayArrow(projectile.Value);
+                else if (s == "BirdHouse_Battle.Model.Boulder") shape = DisplayBoulder(projectile.Value);
+                else shape = DisplayBalisticAmmo(projectile.Value);
                 _window.Draw(shape);
             }
         }

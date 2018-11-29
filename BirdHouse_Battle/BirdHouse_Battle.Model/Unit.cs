@@ -24,12 +24,15 @@ namespace BirdHouse_Battle.Model
 
         bool _fly;
         bool _distance;
-        bool _dumpCantFly;
+        bool _distanceOnly;
+        bool _teamPlay;
+        private bool _dumpCantFly;
+        private bool _dumpCantWalk;
 
         protected Unit(Team team, Arena arena, double life,
                        double speed, double range, double unitPrice,
                        int strength, int armor, string disposition, 
-                       bool fly, bool distance, int NbUnit)
+                       bool fly, bool distance, bool distanceOnly, int nameUnit)
         {
             _team = team;
             _arena = arena;
@@ -40,11 +43,13 @@ namespace BirdHouse_Battle.Model
             _strength = strength;
             _armor = armor;
             _disposition = disposition;
-            _name = NbUnit;
+            _name = nameUnit;
             _burn = 0;
             _fly = fly;
             _distance = distance;
+            _distanceOnly = distanceOnly;
             _dumpCantFly = false;
+            _teamPlay = false;
         }
 
         public Team Team { get { return _team; } }
@@ -102,7 +107,13 @@ namespace BirdHouse_Battle.Model
 
         public bool Distance { get { return _distance; } }
 
+        public bool DistanceOnly { get { return _distanceOnly; } }
+
+        public bool TeamPlay { get { return _teamPlay; } }
+
         public bool DumpCantFly { get { return _dumpCantFly; } }
+
+        public bool DumpCantWalk { get { return _dumpCantWalk; } }
 
         /// <summary>
         /// Search the nearest enemy.
@@ -127,9 +138,29 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+
+
+        public void SearchTargetFlying()
+        {
+            Target = Arena.NearestEnemyFlying(this);
+            if (Target == null)
+            {
+                _dumpCantWalk = true;
+            }
+            else
+            {
+                NewDirection();
+            }
+        }
+
         public void DumpFlyAway()
         {
             _dumpCantFly = false;
+        }
+
+        public void DumpWalkAway()
+        {
+            _dumpCantWalk = false;
         }
 
         /// <summary>
@@ -139,6 +170,12 @@ namespace BirdHouse_Battle.Model
         public void NewDirection()
         {
             _direction = Vector.Soustract(Location, Target.Location);
+            _mouvement = Vector.Move(Speed, Direction);
+        }
+
+        public void NewDirection(Unit target)
+        {
+            _direction = Vector.Soustract(Location, target.Location);
             _mouvement = Vector.Move(Speed, Direction);
         }
 
@@ -153,10 +190,10 @@ namespace BirdHouse_Battle.Model
         /// <summary>
         /// A corriger
         /// </summary>
-        public bool InRange()
+        public bool InRange(double range)
         {
             Vector newV = Vector.Soustract(Target.Location, Location);
-            return newV.Magnitude <= Range;
+            return newV.Magnitude <= range;
         }
 
         /// <summary>
@@ -200,6 +237,72 @@ namespace BirdHouse_Battle.Model
         public void UnboostArmor()
         {
             _armor -= 100;
+        }
+
+        public void TeamPlayOn()
+        {
+            _teamPlay = true;
+        }
+
+        public void TeamPlayOff()
+        {
+            _teamPlay = false;
+        }
+
+        public void FieldEffects(Vector location, Vector targetLocation, double speed, double range, out double speedF, out double rangeF)
+        {
+            speedF = speed;
+            rangeF = range;
+            if (Arena.Field.TryFindTile(int.Parse($"{Math.Round(location.X)}"), int.Parse($"{Math.Round(location.Y)}"), out Tile tile))
+            {
+                if (tile.Obstacle == "River")
+                {
+                    speedF -= 0.4;
+                }
+                else if (tile.Height != 0)
+                {
+                    switch (tile.Height)
+                    {
+                        case 1: rangeF += 1; break;
+                        case 2: rangeF += 2; break;
+                        case 3: rangeF += 3; break;
+                        case 4: rangeF += 4; break;
+                        case 5: rangeF += 5; break;
+                        case 6: rangeF += 6; break;
+                        case 7: rangeF += 7; break;
+                        case 8: rangeF += 8; break;
+                        case 9: rangeF += 9; break;
+                        case 10: rangeF += 10; break;
+                        case 11: rangeF += 11; break;
+                        case 12: rangeF += 12; break;
+                        case 13: rangeF += 13; break;
+                        case 14: rangeF += 14; break;
+                    }
+                }
+            }
+            if (Arena.Field.TryFindTile(int.Parse($"{Math.Round(targetLocation.X)}"), int.Parse($"{Math.Round(targetLocation.Y)}"), out Tile targetTile))
+            {
+                if (targetTile.Height != 0)
+                {
+                    switch (targetTile.Height)
+                    {
+                        case 1: rangeF -= 1; break;
+                        case 2: rangeF -= 2; break;
+                        case 3: rangeF -= 3; break;
+                        case 4: rangeF -= 4; break;
+                        case 5: rangeF -= 5; break;
+                        case 6: rangeF -= 6; break;
+                        case 7: rangeF -= 7; break;
+                        case 8: rangeF -= 8; break;
+                        case 9: rangeF -= 9; break;
+                        case 10: rangeF -= 10; break;
+                        case 11: rangeF -= 11; break;
+                        case 12: rangeF -= 12; break;
+                        case 13: rangeF -= 13; break;
+                        case 14: rangeF -= 14; break;
+                    }
+                }
+            }
         }
 
         /// <summary>

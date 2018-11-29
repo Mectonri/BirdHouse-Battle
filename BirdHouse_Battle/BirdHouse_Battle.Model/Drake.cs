@@ -8,9 +8,9 @@ namespace BirdHouse_Battle.Model
 {
     public class Drake : Unit
     {
-        public Drake(Team team, Arena arena, int NbUnit)
+        public Drake(Team team, Arena arena, int nameUnit)
             : base(team, arena, 10.0, 1.5, 18.0, 15.0, 7, 0, 
-                   "Chaos", true, true, NbUnit)
+                   "Chaos", true, true, false, nameUnit)
         {
         }
 
@@ -19,14 +19,29 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
+            // Observation
+
             SearchTarget();
 
-            if (!IsDead() && DumpCantFly == false)
+            bool canMove = !IsDead() && DumpCantFly == false;
+
+            bool willBurn = new Random().NextDouble() < 0.5;
+
+            // Affectations terrain
+
+            double speed = 0;
+            double range = 0;
+
+            if (!DumpCantFly) FieldEffects(Location, Target.Location, Speed, Range, out speed, out range);
+
+            // Action
+
+            if (canMove)
             {
-                if (InRange())
+                if (InRange(range))
                 {
                     SetMouvementZero();
-                    if (new Random().NextDouble() < 0.5)
+                    if (willBurn)
                     {
                         Arena.GiveDamage(Target, Strength);
                     }
@@ -37,7 +52,7 @@ namespace BirdHouse_Battle.Model
                 }
                 else
                 {
-                    Mouvement = Vector.Move(Speed, Direction);
+                    Mouvement = Vector.Move(speed, Direction);
                     Vector NewLocation = Vector.Add(Mouvement, Location);
 
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
@@ -47,6 +62,7 @@ namespace BirdHouse_Battle.Model
             }
             else if (!IsDead())
             {
+                SetMouvementZero();
                 DumpFlyAway();
             }
         }

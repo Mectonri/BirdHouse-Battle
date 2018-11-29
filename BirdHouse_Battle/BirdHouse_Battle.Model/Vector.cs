@@ -39,6 +39,15 @@ namespace BirdHouse_Battle.Model
         {
             vector.X *= d;
             vector.Y *= d;
+
+            return vector;
+        }
+
+        public static Vector Division(Vector vector, int number)
+        {
+            vector.X = Math.Round(vector.X /= number, 0);
+            vector.Y = Math.Round(vector.Y /= number, 0);
+
             return vector;
         }
 

@@ -11,7 +11,7 @@ namespace BirdHouse_Battle.Model
         int _x;
         int _y;
         uint _height;
-        enum _obstacles { None, Rock, Tree, River };
+        enum _obstacles { None, Rock, Tree, River};
         string _obstacle;
 
         public Tile(int x, int y)
