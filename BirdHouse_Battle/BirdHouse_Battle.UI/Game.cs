@@ -269,7 +269,7 @@ namespace BirdHouse_Battle.UI
         {
             Team blue = Arena.CreateTeam("blue"); 
             Team red = Arena.CreateTeam("red");
-            string [] status =new string [8];
+            string [] status =new string [5];
             status[0] = "selected";
             status[1] = "active";
             status[2]= "inactive";
@@ -288,8 +288,10 @@ namespace BirdHouse_Battle.UI
 
             while (Window.IsOpen && Status == "preGame")
             {
-                if (GetCurrentTime() - previous >= 300)
+                double current = GetCurrentTime();
+                if (current - previous >= 0.000002)
                 {
+                    previous = current;
                     RectangleShape[] buttons = InitPreGame(status, teamComposition);
                     Window.DispatchEvents();
                     status = _iHandler.HandlerPreGame(buttons, status);
@@ -310,7 +312,7 @@ namespace BirdHouse_Battle.UI
                             {
                                 if (status[i] == "selected")
                                 {
-                                    teamComposition[i, 0] = +1;
+                                    teamComposition[i, 0] +=1;
                                 }
                             }
                             break;
@@ -319,7 +321,7 @@ namespace BirdHouse_Battle.UI
                             {
                                 if (status[i] == "selected")
                                 {
-                                    teamComposition[i, 1] = +1;
+                                    teamComposition[i, 1] +=1;
                                 }
                             }
                             break;
@@ -328,7 +330,7 @@ namespace BirdHouse_Battle.UI
                             {
                                 if (status[i] == "selected")
                                 {
-                                    teamComposition[i, 2] = +1;
+                                    teamComposition[i, 2] +=1;
                                 }
                             }
                             break;
@@ -337,7 +339,7 @@ namespace BirdHouse_Battle.UI
                             {
                                 if (status[i] == "selected")
                                 {
-                                    teamComposition[i, 3] = +1;
+                                    teamComposition[i, 3] +=1;
                                 }
                             }
                             break;
@@ -346,7 +348,7 @@ namespace BirdHouse_Battle.UI
                     }
                     status[4] = "none";
                 }
-                previous = GetCurrentTime();
+
             }
         }
 
