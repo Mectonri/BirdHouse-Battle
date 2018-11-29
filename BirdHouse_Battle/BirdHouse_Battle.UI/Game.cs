@@ -354,49 +354,54 @@ namespace BirdHouse_Battle.UI
 
             if (Status != "preGame")
             {
-                for (int i = 0; i < teamComposition.GetLength(0); i++)
-                {
-                    switch (i)
+
+                    for (int i = 0; i < teamComposition.GetLength(0); i++)
                     {
-                        case 0:
-                            blue.AddArcher(teamComposition[0, i]);
-                            break;
-                        case 1:
-                            blue.AddDrake(teamComposition[0, i]);
-                            break;
-                        case 2:
-                            blue.AddGobelin(teamComposition[0, i]);
-                            break;
-                        case 3:
-                            blue.AddPaladin(teamComposition[0, i]);
-                            break;
+                        switch (i)
+                        {
+                            case 0:
+                                blue.AddArcher(teamComposition[0, i]);
+                                break;
+                            case 1:
+                                blue.AddDrake(teamComposition[0, i]);
+                                break;
+                            case 2:
+                                blue.AddGobelin(teamComposition[0, i]);
+                                break;
+                            case 3:
+                                blue.AddPaladin(teamComposition[0, i]);
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
                     }
-                }
-                for (int i = 0; i < teamComposition.GetLength(0); i++)
-                {
-                    switch (i)
+
+
+
+
+                    for (int i = 0; i < teamComposition.GetLength(0); i++)
                     {
-                        case 0:
-                            red.AddArcher(teamComposition[1, i]);
-                            break;
-                        case 1:
-                            red.AddDrake(teamComposition[1, i]);
-                            break;
-                        case 2:
-                            red.AddGobelin(teamComposition[1, i]);
-                            break;
-                        case 3:
-                            red.AddPaladin(teamComposition[1, i]);
-                            break;
+                        switch (i)
+                        {
+                            case 0:
+                                red.AddArcher(teamComposition[1, i]);
+                                break;
+                            case 1:
+                                red.AddDrake(teamComposition[1, i]);
+                                break;
+                            case 2:
+                                red.AddGobelin(teamComposition[1, i]);
+                                break;
+                            case 3:
+                                red.AddPaladin(teamComposition[1, i]);
+                                break;
 
-                        default:
-                            break;
+                            default:
+                                break;
+                        }
                     }
-                }
-
+             
 
                 if (Arena.FindTeam("green") == true)
                 {
@@ -405,16 +410,16 @@ namespace BirdHouse_Battle.UI
                         switch (i)
                         {
                             case 0:
-                                green.AddArcher(teamComposition[1, i]);
+                                green.AddArcher(teamComposition[2, i]);
                                 break;
                             case 1:
-                                green.AddDrake(teamComposition[1, i]);
+                                green.AddDrake(teamComposition[2, i]);
                                 break;
                             case 2:
-                                green.AddGobelin(teamComposition[1, i]);
+                                green.AddGobelin(teamComposition[2, i]);
                                 break;
                             case 3:
-                                green.AddPaladin(teamComposition[1, i]);
+                                green.AddPaladin(teamComposition[2, i]);
                                 break;
 
                             default:
@@ -430,16 +435,16 @@ namespace BirdHouse_Battle.UI
                         switch (i)
                         {
                             case 0:
-                                yellow.AddArcher(teamComposition[1, i]);
+                                yellow.AddArcher(teamComposition[3, i]);
                                 break;
                             case 1:
-                                yellow.AddDrake(teamComposition[1, i]);
+                                yellow.AddDrake(teamComposition[3, i]);
                                 break;
                             case 2:
-                                yellow.AddGobelin(teamComposition[1, i]);
+                                yellow.AddGobelin(teamComposition[3, i]);
                                 break;
                             case 3:
-                                yellow.AddPaladin(teamComposition[1, i]);
+                                yellow.AddPaladin(teamComposition[3, i]);
                                 break;
 
                             default:
