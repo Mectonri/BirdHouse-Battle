@@ -46,7 +46,7 @@ namespace BirdHouse_Battle.UnitTests
             Team team = arena.CreateTeam("red");
 
             Paladin Pal = new Paladin(team, arena);
-            Gobelin Gob = new Gobelin(team, arena);
+            Goblin Gob = new Goblin(team, arena);
             Archer Arc = new Archer(team, arena);
 
             Assert.That(Pal.Team, Is.EqualTo(team));

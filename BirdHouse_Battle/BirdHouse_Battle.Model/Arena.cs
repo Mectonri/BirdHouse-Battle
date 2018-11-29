@@ -71,7 +71,7 @@ namespace BirdHouse_Battle.Model
         {
             if (_teams.ContainsKey(name)) throw new ArgumentException("A team with this name already exists.", nameof(name));
             if (_teams.Count >= 4) throw new Exception("You already have 4 team and cannot create any more");
-            Team team = new Team(this, name, 250);
+            Team team = new Team(this, name, 100);
             _teams.Add(name, team);
             return team;
         }
@@ -120,6 +120,11 @@ namespace BirdHouse_Battle.Model
                     if (vector.X == kv2.Value.Location.X && vector.Y == kv2.Value.Location.Y) doesCollide = true;
                 }
             }
+
+            Tile tile = Field.FindTile(int.Parse($"{Math.Round(vector.X)}"), int.Parse($"{Math.Round(vector.Y)}"));
+
+            if (tile.Obstacle == "Rock" || tile.Obstacle == "Tree") doesCollide = true;
+
             return doesCollide;
         }
 
@@ -313,6 +318,42 @@ namespace BirdHouse_Battle.Model
             return ennemyUnit;
         }
 
+        public Unit NearestEnemy(Vector vector, string teamName)
+        {
+            double x = vector.X;
+            double y = vector.Y;
+            double distance = 0;
+            Unit ennemyUnit = null;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                if (team.Value.Name != teamName)
+                {
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
+                    {
+                        double dX = x - units.Value.Location.X;
+                        double dY = y - units.Value.Location.Y;
+
+                        if (distance == 0)
+                        {
+                            distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                            ennemyUnit = units.Value;
+                        }
+                        else
+                        {
+                            if (distance > Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY))
+                            {
+                                distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                ennemyUnit = units.Value;
+                            }
+
+                        }
+                    }
+                }
+            }
+            return ennemyUnit;
+        }
+
         public Unit NearestEnemyNotFlying(Unit unit)
         {
             double x = unit.Location.X;
@@ -326,7 +367,46 @@ namespace BirdHouse_Battle.Model
                 {
                     foreach (KeyValuePair<int, Unit> units in team.Value._units)
                     {
-                        if (units.Value.Fly == false)
+                        if (!units.Value.Fly)
+                        {
+                            double dX = x - units.Value.Location.X;
+                            double dY = y - units.Value.Location.Y;
+
+                            if (distance == 0)
+                            {
+                                distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                ennemyUnit = units.Value;
+                            }
+                            else
+                            {
+                                if (distance > Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY))
+                                {
+                                    distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                    ennemyUnit = units.Value;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            return ennemyUnit;
+        }
+
+        public Unit NearestEnemyFlying(Unit unit)
+        {
+            double x = unit.Location.X;
+            double y = unit.Location.Y;
+            double distance = 0;
+            Unit ennemyUnit = null;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                if (team.Value != unit.Team)
+                {
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
+                    {
+                        if (units.Value.Fly)
                         {
                             double dX = x - units.Value.Location.X;
                             double dY = y - units.Value.Location.Y;
@@ -368,6 +448,20 @@ namespace BirdHouse_Battle.Model
         {
             Arrow arrow = new Arrow(this, start, end, Counter, NbFram);
             _projectiles.Add(Counter, arrow);
+            _counter++;
+        }
+
+        public void InitBoulder(Vector start, Vector end, int NbFram)
+        {
+            Boulder boulder = new Boulder(this, start, end, Counter, NbFram);
+            _projectiles.Add(Counter, boulder);
+            _counter++;
+        }
+
+        public void InitBalisticAmmo(Vector start, Vector end, int NbFram)
+        {
+            BalisticAmmo balisticAmmo = new BalisticAmmo(this, start, end, Counter, NbFram);
+            _projectiles.Add(Counter, balisticAmmo);
             _counter++;
         }
 

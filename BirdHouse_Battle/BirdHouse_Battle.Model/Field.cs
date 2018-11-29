@@ -55,6 +55,22 @@ namespace BirdHouse_Battle.Model
             return tile;
         }
 
+        public bool TryFindTile(int i, int j, out Tile tile)
+        {
+            if (i > Arena.Height || i < -Arena.Height ||
+                j > Arena.Width || j < -Arena.Width) throw new ArgumentException("Location out of Arena");
+
+            tile = _tiles[i + 250, j + 250];
+            if (tile.Obstacle != "None" || tile.Height != 0)
+            {
+                return true;
+            }
+
+            tile = null;
+
+            return false;
+        }
+
         internal void SpawnHeights(int i, int j, uint height)
         {
             Tile tile = FindTile(i, j);

@@ -18,12 +18,15 @@ namespace BirdHouse_Battle.Model
         int _pToAdd;
         int _gToAdd;
         int _dToAdd;
-
+        int _cToAdd;
+        int _bToAdd;
 
         int _aCount; //le nombre total d' Archer dans l'equipe
         int _pCount; // le nombre total de paladin dans une equipe
-        int _gCount; // le nombre total de Gobelin dans une equipe.
+        int _gCount; // le nombre total de Goblin dans une equipe.
         int _dCount; // le nombre total de Dragons dans une equipe.
+        int _cCount;
+        int _bCount;
 
         bool _isWiped;
 
@@ -32,6 +35,11 @@ namespace BirdHouse_Battle.Model
         Arena _arena; // Rajouter le contexte des equipes qui est l'arene
         internal Dictionary<int, Unit> _deadUnits;
         internal Dictionary<int, Unit> _units;
+
+        Unit _goblinsTarget;
+        Unit _archersTarget;
+        int _goblinsAttack;
+        int _archersAttack;
 
         /// <summary>
         /// Team Constructor
@@ -68,7 +76,7 @@ namespace BirdHouse_Battle.Model
             {
                 if (_unitCount > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of troops for this team");
 
-                return _unitCount = _aCount + _gCount + _pCount + _dCount;
+                return _unitCount = _aCount + _gCount + _pCount + _dCount + _cCount + _bCount;
 
             }
         }
@@ -96,6 +104,16 @@ namespace BirdHouse_Battle.Model
         public int Dcount
         {
             get { return _dCount; }
+        }
+
+        public int Ccount
+        {
+            get { return _cCount; }
+        }
+
+        public int Bcount
+        {
+            get { return _bCount; }
         }
 
         public double GoldAmount
@@ -149,9 +167,49 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        public int CToAdd
+        {
+            get { return _cToAdd; }
+            set
+            {
+                if (_cToAdd < 0 || _cToAdd > _limitNbUnit) throw new ArgumentException("The number of Troups must be positive", nameof(_dToAdd));
+                _cToAdd = value;
+            }
+        }
+
+        public int BToAdd
+        {
+            get { return _bToAdd; }
+            set
+            {
+                if (_bToAdd < 0 || _bToAdd > _limitNbUnit) throw new ArgumentException("The number of Troups must be positive", nameof(_dToAdd));
+                _bToAdd = value;
+            }
+        }
+
         public Dictionary<int, Unit> Units
         {
             get { return _units; }
+        }
+
+        public Unit GoblinsTarget
+        {
+            get { return _goblinsTarget; }
+        }
+
+        public Unit ArchersTarget
+        {
+            get { return _archersTarget; }
+        }
+
+        public int GoblinsAttack
+        {
+            get { return _goblinsAttack; }
+        }
+
+        public int ArchersAttack
+        {
+            get { return _archersAttack; }
         }
 
         /// <summary>
@@ -184,8 +242,30 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        public void AddCatapult(int CToAdd)
+        {
+            if (UnitCount >= _limitNbUnit || CToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
+            for (int i = 0; i < CToAdd; i++)
+            {
+                Catapult catapult = new Catapult(this, _arena, UnitCount);
+                _cCount++;
+                _units.Add(catapult.Name, catapult);
+            }
+        }
+
+        public void AddBalista(int BToAdd)
+        {
+            if (UnitCount >= _limitNbUnit || BToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
+            for (int i = 0; i < BToAdd; i++)
+            {
+                Balista balista = new Balista(this, _arena, UnitCount);
+                _bCount++;
+                _units.Add(balista.Name, balista);
+            }
+        }
+
         /// <summary>
-        /// Add Gobelin to a team
+        /// Add Goblin to a team
         /// </summary>
         /// <param name="GToAdd"></param>
         public void AddGobelin(int GToAdd)
@@ -193,9 +273,9 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < GToAdd; i++)
             {
-                Gobelin gobelin = new Gobelin(this, _arena, UnitCount);
+                Goblin goblin = new Goblin(this, _arena, UnitCount);
                 _gCount++;
-                _units.Add(gobelin.Name, gobelin);
+                _units.Add(goblin.Name, goblin);
             }
         }
 
@@ -252,13 +332,21 @@ namespace BirdHouse_Battle.Model
                 {
                     _aCount--;
                 }
-                else if (s == "BirdHouse_Battle.Model.Gobelin")
+                else if (s == "BirdHouse_Battle.Model.Goblin")
                 {
                     _gCount--;
                 }
                 else if (s == "BirdHouse_Battle.Model.Drake")
                 {
                     _dCount--;
+                }
+                else if (s == "BirdHouse_Battle.Model.Catapult")
+                {
+                    _cCount--;
+                }
+                else if (s == "BirdHouse_Battle.Model.Balista")
+                {
+                    _bCount--;
                 }
                 else { _pCount--; }
             }
@@ -280,6 +368,106 @@ namespace BirdHouse_Battle.Model
             return _goldAmount = Gold - result;
         }
 
+        public bool IsGobelinsAlone()
+        {
+            foreach (KeyValuePair<int, Unit> unit in Units)
+            {
+                if (unit.Value.GetType().ToString() != "BirdHouse_Battle.Model.Goblin")
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public Vector GoblinsLocation()
+        {
+            Vector GlobalLocation = new Vector(0, 0);
+            int Count = 0;
+
+            foreach (KeyValuePair<int, Unit> unit in Units)
+            {
+                if (unit.Value.GetType().ToString() == "BirdHouse_Battle.Model.Goblin")
+                {
+                    GlobalLocation.Add(unit.Value.Location);
+                    Count++;
+                }
+            }
+            return Vector.Division(GlobalLocation, Count);
+        }
+
+        public Vector ArchersLocation()
+        {
+            Vector GlobalLocation = new Vector(0, 0);
+            int Count = 0;
+
+            foreach (KeyValuePair<int, Unit> unit in Units)
+            {
+                if (unit.Value.GetType().ToString() == "BirdHouse_Battle.Model.Archer")
+                {
+                    GlobalLocation.Add(unit.Value.Location);
+                    Count++;
+                }
+            }
+            return Vector.Division(GlobalLocation, Count);
+        }
+
+        public void GetUnitsGlobalStrength()
+        {
+            _goblinsAttack = 0;
+            _archersAttack = 0;
+
+            foreach (KeyValuePair<int, Unit> unit in Units)
+            {
+                string type = unit.Value.GetType().ToString();
+
+                if (type == "BirdHouse_Battle.Model.Goblin" || type == "BirdHouse_Battle.Model.Archer")
+                {
+                    Vector location = unit.Value.Location;
+
+                    Vector globalLocation;
+
+                    if (type == "BirdHouse_Battle.Model.Goblin")
+                    {
+                        globalLocation = Vector.Soustract(GoblinsTarget.Location, unit.Value.Location);
+                    }
+                    else
+                    {
+                        globalLocation = Vector.Soustract(ArchersTarget.Location, unit.Value.Location);
+                    }
+
+                    if (unit.Value.Target != null)
+                    {
+                        location = Vector.Soustract(unit.Value.Target.Location, unit.Value.Location);
+
+                        if (location.Magnitude * 2 >= globalLocation.Magnitude && type == "BirdHouse_Battle.Model.Goblin")
+                        {
+                            _goblinsAttack += unit.Value.Strength;
+                            unit.Value.TeamPlayOn();
+                        }
+                        else if (location.Magnitude * 2 >= globalLocation.Magnitude && type == "BirdHouse_Battle.Model.Archer")
+                        {
+                            _archersAttack += unit.Value.Strength;
+                            unit.Value.TeamPlayOn();
+                        }
+                        else
+                        {
+                            unit.Value.TeamPlayOff();
+                        }
+                    }
+                }
+            }
+        }
+
+        public void UnitTypeEnemys()
+        {
+            Vector GobelinsLocation = this.GoblinsLocation();
+            Vector ArchersLocation = this.ArchersLocation();
+            _goblinsTarget = _arena.NearestEnemy(GobelinsLocation, Name);
+            _archersTarget = _arena.NearestEnemy(ArchersLocation, Name);
+            GetUnitsGlobalStrength();
+        }
+
         /// <summary>
         /// True if all units in the team died
         /// </summary>
@@ -297,6 +485,7 @@ namespace BirdHouse_Battle.Model
             //update units and add dead units in deadunit dic 
             foreach (Unit unit in _units.Values)
             {
+                UnitTypeEnemys();
                 unit.Update();
                 if (unit.IsDead()) _deadUnits.Add(unit.Name, unit);
             }

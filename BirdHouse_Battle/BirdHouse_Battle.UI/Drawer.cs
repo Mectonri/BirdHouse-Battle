@@ -57,7 +57,7 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        /// Displays Gobelin and color it in function of the team
+        /// Displays Goblin and color it in function of the team
         /// </summary>
         /// <param name="unit"></param>
         static CircleShape DisplayGobelin(Unit unit)
@@ -96,12 +96,50 @@ namespace BirdHouse_Battle.UI
             return drakDis;
         }
 
+        static Shape DisplayBalista(Unit unit)
+        {
+            CircleShape balistDis = new CircleShape(8);
+            balistDis.SetPointCount(6);
+            balistDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
+
+            Coloring(balistDis, unit);
+
+            return balistDis;
+        }
+
+        static Shape DisplayCatapult(Unit unit)
+        {
+            CircleShape cataDis = new CircleShape(8);
+            cataDis.SetPointCount(7);
+            cataDis.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
+
+            Coloring(cataDis, unit);
+
+            return cataDis;
+        }
+
         static Shape DisplayArrow(Projectile projectile)
         {
             CircleShape arrDis = new CircleShape(2);
             arrDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
 
             return arrDis;
+        }
+
+        static Shape DisplayBoulder(Projectile projectile)
+        {
+            CircleShape boulDis = new CircleShape(6);
+            boulDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
+
+            return boulDis;
+        }
+
+        static Shape DisplayBalisticAmmo(Projectile projectile)
+        {
+            CircleShape balisDis = new CircleShape(4);
+            balisDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
+
+            return balisDis;
         }
 
         public static Shape Coloring(Shape shape, Unit unit)
@@ -205,8 +243,10 @@ namespace BirdHouse_Battle.UI
                 {
                     string s = unit.Value.ToString();
                     if (s == "BirdHouse_Battle.Model.Archer") shape = DisplayArcher(unit.Value);
-                    else if (s == "BirdHouse_Battle.Model.Gobelin") shape = DisplayGobelin(unit.Value);
+                    else if (s == "BirdHouse_Battle.Model.Goblin") shape = DisplayGobelin(unit.Value);
                     else if (s == "BirdHouse_Battle.Model.Drake") shape = DisplayDrake(unit.Value);
+                    else if (s == "BirdHouse_Battle.Model.Balista") shape = DisplayBalista(unit.Value);
+                    else if (s == "BirdHouse_Battle.Model.Catapult") shape = DisplayCatapult(unit.Value);
                     else { shape = DisplayPaladin(unit.Value); }
 
                     _window.Draw(shape);
@@ -214,9 +254,10 @@ namespace BirdHouse_Battle.UI
             }
             foreach (KeyValuePair<int, Projectile> projectile in arena.Projectiles)
             {
-                //string s = u.Value.ToString();
-                //if (s == "BirdHouse_Battle.Model.Arrow")
-                shape = DisplayArrow(projectile.Value);
+                string s = projectile.Value.ToString();
+                if (s == "BirdHouse_Battle.Model.Arrow") shape = DisplayArrow(projectile.Value);
+                else if (s == "BirdHouse_Battle.Model.Boulder") shape = DisplayBoulder(projectile.Value);
+                else shape = DisplayBalisticAmmo(projectile.Value);
                 _window.Draw(shape);
             }
         }

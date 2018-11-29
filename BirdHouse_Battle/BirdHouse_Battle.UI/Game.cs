@@ -172,32 +172,45 @@ namespace BirdHouse_Battle.UI
 
         public void Prep(Arena arena)
         {
-            Team blue = arena.CreateTeam("blue"); // Part One
+            // Part One
+
+            Team blue = arena.CreateTeam("blue");
             Team red = arena.CreateTeam("red");
-
-            Team green = arena.CreateTeam("green"); // Part Two
+            Team green = arena.CreateTeam("green");
             Team yellow = arena.CreateTeam("yellow");
+            red.AddArcher(10); red.AddGobelin(40); red.AddPaladin(35);
+            red.AddDrake(5); red.AddBalista(5); red.AddCatapult(5);
+            blue.AddArcher(10); blue.AddGobelin(45); blue.AddPaladin(40);
+            blue.AddDrake(5); blue.AddBalista(5); blue.AddCatapult(5);
+            green.AddArcher(10); green.AddGobelin(45); green.AddPaladin(40);
+            green.AddDrake(5); green.AddBalista(5); green.AddCatapult(5);
+            yellow.AddArcher(10); yellow.AddGobelin(45); yellow.AddPaladin(40);
+            yellow.AddDrake(5); yellow.AddBalista(5); yellow.AddCatapult(5);
 
-            //Each unit is represented by a shape
-            //Archers are triagles, goblins by circles and paladin by rectangular shapes
+            // Part Two
 
-            red.AddArcher(10); // Part One
-            red.AddGobelin(55);
-            red.AddPaladin(55);
-            red.AddDrake(5);
-            blue.AddArcher(10);
-            blue.AddGobelin(55);
-            blue.AddPaladin(55);
-            blue.AddDrake(5);
+            //Team blue = arena.CreateTeam("blue");
+            //Team red = arena.CreateTeam("red");
+            //red.AddCatapult(10);
+            //blue.AddPaladin(5);
+            //blue.AddDrake(5);
 
-            green.AddArcher(10); // Part Two
-            green.AddGobelin(55);
-            green.AddPaladin(55);
-            green.AddDrake(5);
-            yellow.AddArcher(10);
-            yellow.AddGobelin(55);
-            yellow.AddPaladin(55);
-            yellow.AddDrake(5);
+            // Part Three
+
+            //Team blue = arena.CreateTeam("blue");
+            //Team red = arena.CreateTeam("red");
+            //red.AddBalista(10);
+            //blue.AddDrake(5);
+            //blue.AddPaladin(5);
+
+            // Part Four
+
+            //Team blue = arena.CreateTeam("blue");
+            //Team red = arena.CreateTeam("red");
+            //red.AddBalista(3);
+            //red.AddGobelin(5);
+            //blue.AddCatapult(2);
+            //blue.AddDrake(5);
 
             arena.SpawnUnit();
         }

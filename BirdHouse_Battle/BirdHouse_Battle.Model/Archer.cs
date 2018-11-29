@@ -8,12 +8,11 @@ namespace BirdHouse_Battle.Model
 {
     public class Archer : Unit
     {
-
         int _callDown;
 
-        public Archer(Team team, Arena arena, int NbUnit)
+        public Archer(Team team, Arena arena, int nameUnit)
             : base(team, arena, 12.0, 1.8, 135.0, 10.0, 4, 1, 
-                   "Order", false, true, NbUnit)
+                   "Order", false, true, false, nameUnit)
         {
             _callDown = 0;
         }
@@ -23,35 +22,33 @@ namespace BirdHouse_Battle.Model
             get { return _callDown; }
         }
 
-        public void BowAttack(int NbFram)
+        public void BowAttack(int NbFram, Unit finalTarget)
         {
-            Vector End = Vector.Add(Vector.Multiply(NbFram, Target.Mouvement), Target.Location);
+            Vector End = Vector.Add(Vector.Multiply(NbFram, finalTarget.Mouvement), finalTarget.Location);
             End.Limit(-Arena.Height, Arena.Height);
 
             if (Vector.Soustract(Location, End).Magnitude < (Range / 2))
             {
                 if (Vector.Soustract(Location, End).Magnitude < (Range / 4))
                 {
-                    End = Vector.Add(Vector.Multiply(0, Target.Mouvement), Target.Location);
+                    End = Vector.Add(Vector.Multiply(0, finalTarget.Mouvement), finalTarget.Location);
                     End.Limit(-Arena.Height, Arena.Height);
 
                     Arena.InitArrow(Location, End, (NbFram / 4));
-                    _callDown = (NbFram / 4);
                 }
                 else
                 {
-                    End = Vector.Add(Vector.Multiply((NbFram / 2), Target.Mouvement), Target.Location);
+                    End = Vector.Add(Vector.Multiply((NbFram / 2), finalTarget.Mouvement), finalTarget.Location);
                     End.Limit(-Arena.Height, Arena.Height);
 
                     Arena.InitArrow(Location, End, (NbFram / 2));
-                    _callDown = (NbFram / 2);
                 }
             }
             else
             {
                 Arena.InitArrow(Location, End, NbFram);
-                _callDown = NbFram;
             }
+            _callDown = NbFram;
         }
 
         /// <summary>
@@ -59,16 +56,43 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         public override void Update()
         {
+            // Observation
+
+            bool globalAttack = TeamPlay && Team.ArchersAttack > 2 * Team.ArchersTarget.Life;
+
+            Unit finalTarget = null;
+
             SearchTarget();
 
-            if (!IsDead() && DumpCantFly == false)
+            if (globalAttack)
             {
-                if (InRange())
+                finalTarget = Team.GoblinsTarget;
+                NewDirection(finalTarget);
+            }
+            else
+            {
+                finalTarget = Target;
+            }
+
+            bool canMove = !IsDead() && DumpCantFly == false;
+
+            // Affectations terrain
+
+            double speed = 0;
+            double range = 0;
+
+            if (!DumpCantFly) FieldEffects(Location, finalTarget.Location, Speed, Range, out speed, out range);
+
+            // Action
+
+            if (canMove)
+            {
+                if (InRange(range))
                 {
                     SetMouvementZero();
                     if (_callDown == 0)
                     {
-                        BowAttack(24);
+                        BowAttack(24, finalTarget);
                     }
                     else
                     {
@@ -77,7 +101,7 @@ namespace BirdHouse_Battle.Model
                 }
                 else
                 {
-                    Mouvement = Vector.Move(Speed, Direction);
+                    Mouvement = Vector.Move(speed, Direction);
                     Vector NewLocation = Vector.Add(Mouvement, Location);
 
                     if (!Arena.Collision(NewLocation)) Location = NewLocation;
@@ -87,6 +111,7 @@ namespace BirdHouse_Battle.Model
             }
             else if (!IsDead())
             {
+                SetMouvementZero();
                 DumpFlyAway();
             }
         }
