@@ -58,7 +58,7 @@ namespace BirdHouse_Battle.UnitTests
             Vector v = new Vector(x, y);
 
             double d = rdm1.NextDouble() * 2 - 1;
-            v = v.Multiply(d);
+      
 
             Assert.That(v.X, Is.EqualTo(x * d));
             Assert.That(v.Y, Is.EqualTo(y * d));
@@ -94,7 +94,6 @@ namespace BirdHouse_Battle.UnitTests
             Vector v = new Vector(x, y);
             Vector v2 = new Vector(x2, y2);
 
-            v = v.Soustract(v2);
 
             Assert.That(v.X, Is.EqualTo(x - x2));
             Assert.That(v.Y, Is.EqualTo(y - y2));

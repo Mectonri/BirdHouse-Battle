@@ -83,11 +83,10 @@ namespace BirdHouse_Battle.Model
             _teams.Remove(name);
         }
 
-        public Team FindTeam(string name)
+        public bool FindTeam(string name)
         {
             Team result;
-            _teams.TryGetValue(name, out result);
-            return result;
+            return _teams.TryGetValue(name, out result);
         }
 
         public int TeamCount
@@ -456,7 +455,7 @@ namespace BirdHouse_Battle.Model
             
             foreach (KeyValuePair<string, Team> team in _deadTeams)
             {
-                if (FindTeam(team.Key) != null) RemoveTeam(team.Key);
+                if (FindTeam(team.Key) != false) RemoveTeam(team.Key);
             }
         }
     }

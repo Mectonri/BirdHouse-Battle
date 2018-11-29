@@ -50,6 +50,7 @@ namespace BirdHouse_Battle.UI
         public Arena Arena
         {
             get { return _arena; }
+            set {_arena = value; }
         }
 
         public RenderWindow Window
@@ -272,7 +273,7 @@ namespace BirdHouse_Battle.UI
 
         public void Run()
         {
-            Prep(Arena);
+            //Prep(Arena);
             GameLoop(Arena);
         }
 
@@ -308,6 +309,210 @@ namespace BirdHouse_Battle.UI
                 
                 _iHandler.HandlerMain(buttons);
             }
+        }
+
+        public RectangleShape[] InitPreGame(string[] status, int[,] teamComposition)
+        {
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            RectangleShape[] buttons = draw.PreGameDisplay(status, teamComposition);
+            Window.Display();
+            return buttons;
+        }
+
+        public void PreGame()
+        {
+            Team blue = Arena.CreateTeam("blue"); 
+            Team red = Arena.CreateTeam("red");
+            Team green = null;
+            Team yellow = null;
+            string [] status =new string [5];
+            status[0] = "selected";
+            status[1] = "active";
+            status[2]= "inactive";
+            status[3] = "inactive";
+
+            status[4] = "none";
+
+            int[,] teamComposition = 
+            {
+                {0,0,0,0 },
+                {0,0,0,0 },
+                {0,0,0,0 },
+                {0,0,0,0 }
+            };
+            double previous = GetCurrentTime();
+
+            while (Window.IsOpen && Status == "preGame")
+            {
+                double current = GetCurrentTime();
+                if (current - previous >= 0.000002)
+                {
+                    previous = current;
+                    RectangleShape[] buttons = InitPreGame(status, teamComposition);
+                    Window.DispatchEvents();
+                    status = _iHandler.HandlerPreGame(buttons, status);
+                    if (status[2] == "active" && Arena.FindTeam("green") == false)
+                    {
+                        green = Arena.CreateTeam("green");
+                    }
+                    else if (status[3] == "active" && Arena.FindTeam("yellow") == false)
+                    {
+                        yellow = Arena.CreateTeam("yellow");
+                    }
+
+
+                    switch (status[4])
+                    {
+                        case "archer":
+                            for (int i = 0; i < status.Length - 1; i++)
+                            {
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 0] +=1;
+                                }
+                            }
+                            break;
+                        case "drake":
+                            for (int i = 0; i < status.Length - 1; i++)
+                            {
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 1] +=1;
+                                }
+                            }
+                            break;
+                        case "gobelin":
+                            for (int i = 0; i < status.Length - 1; i++)
+                            {
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 2] +=1;
+                                }
+                            }
+                            break;
+                        case "paladin":
+                            for (int i = 0; i < status.Length - 1; i++)
+                            {
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 3] +=1;
+                                }
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                    status[4] = "none";
+                }
+            }
+
+            if (Status != "preGame")
+            {
+
+                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                blue.AddArcher(teamComposition[0, i]);
+                                break;
+                            case 1:
+                                blue.AddDrake(teamComposition[0, i]);
+                                break;
+                            case 2:
+                                blue.AddGobelin(teamComposition[0, i]);
+                                break;
+                            case 3:
+                                blue.AddPaladin(teamComposition[0, i]);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+
+
+
+
+                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                red.AddArcher(teamComposition[1, i]);
+                                break;
+                            case 1:
+                                red.AddDrake(teamComposition[1, i]);
+                                break;
+                            case 2:
+                                red.AddGobelin(teamComposition[1, i]);
+                                break;
+                            case 3:
+                                red.AddPaladin(teamComposition[1, i]);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+             
+
+                if (Arena.FindTeam("green") == true)
+                {
+                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                green.AddArcher(teamComposition[2, i]);
+                                break;
+                            case 1:
+                                green.AddDrake(teamComposition[2, i]);
+                                break;
+                            case 2:
+                                green.AddGobelin(teamComposition[2, i]);
+                                break;
+                            case 3:
+                                green.AddPaladin(teamComposition[2, i]);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+
+                if (Arena.FindTeam("yellow") == true)
+                {
+                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    {
+                        switch (i)
+                        {
+                            case 0:
+                                yellow.AddArcher(teamComposition[3, i]);
+                                break;
+                            case 1:
+                                yellow.AddDrake(teamComposition[3, i]);
+                                break;
+                            case 2:
+                                yellow.AddGobelin(teamComposition[3, i]);
+                                break;
+                            case 3:
+                                yellow.AddPaladin(teamComposition[3, i]);
+                                break;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+
+                Arena.SpawnUnit();
+
+            }
+
+
         }
 
     }
