@@ -416,6 +416,24 @@ namespace BirdHouse_Battle.UI
                                 }
                             }
                             break;
+                        case "balista":
+                            for (int i = 0; i < status.Length - 1; i++)
+                            {
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 4] += 1;
+                                }
+                            }
+                            break;
+                        case "catapult":
+                            for (int i = 0; i < status.Length - 1; i++)
+                            {
+                                if (status[i] == "selected")
+                                {
+                                    teamComposition[i, 5] += 1;
+                                }
+                            }
+                            break;
                         default:
                             break;
                     }
@@ -426,7 +444,7 @@ namespace BirdHouse_Battle.UI
             if (Status != "preGame")
             {
 
-                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    for (int i = 0; i < teamComposition.GetLength(1); i++)
                     {
                         switch (i)
                         {
@@ -442,6 +460,13 @@ namespace BirdHouse_Battle.UI
                             case 3:
                                 blue.AddPaladin(teamComposition[0, i]);
                                 break;
+                            case 4:
+                                blue.AddBalista(teamComposition[0, i]);
+                                break;
+                            case 5:
+                                blue.AddCatapult(teamComposition[0, i]);
+                                break;
+
 
                             default:
                                 break;
@@ -451,7 +476,7 @@ namespace BirdHouse_Battle.UI
 
 
 
-                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    for (int i = 0; i < teamComposition.GetLength(1); i++)
                     {
                         switch (i)
                         {
@@ -467,8 +492,14 @@ namespace BirdHouse_Battle.UI
                             case 3:
                                 red.AddPaladin(teamComposition[1, i]);
                                 break;
+                             case 4:
+                                red.AddBalista(teamComposition[1, i]);
+                                break;
+                            case 5:
+                                red.AddCatapult(teamComposition[1, i]);
+                                 break;
 
-                            default:
+                        default:
                                 break;
                         }
                     }
@@ -476,7 +507,7 @@ namespace BirdHouse_Battle.UI
 
                 if (Arena.FindTeam("green") == true)
                 {
-                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    for (int i = 0; i < teamComposition.GetLength(1); i++)
                     {
                         switch (i)
                         {
@@ -492,6 +523,12 @@ namespace BirdHouse_Battle.UI
                             case 3:
                                 green.AddPaladin(teamComposition[2, i]);
                                 break;
+                            case 4:
+                                green.AddBalista(teamComposition[2, i]);
+                                break;
+                            case 5:
+                                green.AddCatapult(teamComposition[2, i]);
+                                break;
 
                             default:
                                 break;
@@ -501,7 +538,7 @@ namespace BirdHouse_Battle.UI
 
                 if (Arena.FindTeam("yellow") == true)
                 {
-                    for (int i = 0; i < teamComposition.GetLength(0); i++)
+                    for (int i = 0; i < teamComposition.GetLength(1); i++)
                     {
                         switch (i)
                         {
@@ -516,6 +553,12 @@ namespace BirdHouse_Battle.UI
                                 break;
                             case 3:
                                 yellow.AddPaladin(teamComposition[3, i]);
+                                break;
+                            case 4:
+                                yellow.AddBalista(teamComposition[3, i]);
+                                break;
+                            case 5:
+                                yellow.AddCatapult(teamComposition[3, i]);
                                 break;
 
                             default:
