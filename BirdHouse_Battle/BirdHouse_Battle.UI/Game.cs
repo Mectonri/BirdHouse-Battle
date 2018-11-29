@@ -16,13 +16,10 @@ namespace BirdHouse_Battle.UI
         bool _return;
         double _previousP;
         Color white;
-        private double MsPerUpdate = 0.0000006;
+        double _msPerUpdate = 0.0000006;
         //double Accel;
         string _status;
         #endregion
-
-
-
 
         public Game()
         {
@@ -64,9 +61,14 @@ namespace BirdHouse_Battle.UI
             set { _paused = value; }
         }
 
+        public double MsPerUpdate
+        {
+            get { return _msPerUpdate; }
+        }
+
         
         #endregion
-
+        
         static void Load()
         {
             SFML.SystemNative.Load();
@@ -128,10 +130,10 @@ namespace BirdHouse_Battle.UI
                     {
                         _previousP = GetCurrentTime();
                         Console.WriteLine("right arrow is pressed");
-                        if (MsPerUpdate >=0.000006/100)
+                        if (MsPerUpdate > 0.0000006/200)
                         {
 
-                            MsPerUpdate = MsPerUpdate / 5;
+                            _msPerUpdate = MsPerUpdate / 20;
                         }
                     }
                     break;
@@ -141,9 +143,9 @@ namespace BirdHouse_Battle.UI
                     {
                         _previousP = GetCurrentTime();
                         Console.WriteLine("Left key is pressed");
-                        if (MsPerUpdate <= 0.000006*100)
+                        if (MsPerUpdate < 0.0000006)
                         {
-                            MsPerUpdate = MsPerUpdate * 5;
+                            _msPerUpdate = MsPerUpdate * 20;
                         }
                     }
                     break;
@@ -350,10 +352,10 @@ namespace BirdHouse_Battle.UI
 
             int[,] teamComposition = 
             {
-                {0,0,0,0 },
-                {0,0,0,0 },
-                {0,0,0,0 },
-                {0,0,0,0 }
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0}
             };
             double previous = GetCurrentTime();
 

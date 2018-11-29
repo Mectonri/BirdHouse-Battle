@@ -56,11 +56,6 @@ namespace BirdHouse_Battle.UI
             // _message.Draw(_window, rs );
             //_message.Position = new Vector2f(200,200);
             //_window.Draw(_message);
-
-            RectangleShape legend = new RectangleShape( new Vector2f(512,200));
-            legend.Texture = new Texture("../../../../res/LEGEND.png");
-            legend.Position = new Vector2f(0,512);
-            win.Draw(legend);
         }
         #endregion
 
@@ -79,6 +74,11 @@ namespace BirdHouse_Battle.UI
             _bShape = new RectangleShape(_size);
             _bShape.Texture = _terain;
             _window.Draw(Bshape);
+
+            RectangleShape legend = new RectangleShape(new Vector2f(512, 200));
+            legend.Texture = new Texture("../../../../res/LEGEND.png");
+            legend.Position = new Vector2f(0, 512);
+            _window.Draw(legend);
         }
 
         /// <summary>
@@ -267,7 +267,7 @@ namespace BirdHouse_Battle.UI
         /// <param name="arena"></param>
         public void UnitDisplay(Arena arena)
         {
-            Shape shape;
+            Shape shape = null;
 
             foreach (KeyValuePair<String, Tile> tile in arena.Field.Elements)
             {
@@ -284,15 +284,19 @@ namespace BirdHouse_Battle.UI
                         case "BirdHouse_Battle.Model.Archer":
                             shape = DisplayArcher(unit.Value);
                             break;
-                        case "BirdHouse_Battle.Model.Gobelin":
+                        case "BirdHouse_Battle.Model.Goblin":
                             shape = DisplayGobelin(unit.Value);
                             break;
                         case "BirdHouse_Battle.Model.Drake":
                             shape = DisplayDrake(unit.Value);
                             break;
-                    else if (s == "BirdHouse_Battle.Model.Balista") shape = DisplayBalista(unit.Value);
-                    else if (s == "BirdHouse_Battle.Model.Catapult") shape = DisplayCatapult(unit.Value);
-                        default:
+                        case "BirdHouse_Battle.Model.Balista":
+                            shape = DisplayBalista(unit.Value);
+                            break;
+                        case "BirdHouse_Battle.Model.Catapult":
+                            shape = DisplayCatapult(unit.Value);
+                            break;
+                        case "BirdHouse_Battle.Model.Paladin":
                             shape = DisplayPaladin(unit.Value);
                             break;
                     }
@@ -314,9 +318,9 @@ namespace BirdHouse_Battle.UI
         {
             RectangleShape[] buttons = new RectangleShape[5];
 
-            RectangleShape buttonGame = new RectangleShape(new Vector2f(100, 25));
-            buttonGame.Texture = _startButton;
-            buttonGame.Position = new Vector2f(200, 50);
+            RectangleShape buttonPreGame = new RectangleShape(new Vector2f(100, 25));
+            buttonPreGame.Texture = _startButton;
+            buttonPreGame.Position = new Vector2f(200, 50);
             
             
             RectangleShape buttonHistory = new RectangleShape(new Vector2f(100, 25));
