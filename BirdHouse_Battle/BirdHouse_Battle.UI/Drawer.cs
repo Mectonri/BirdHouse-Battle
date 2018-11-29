@@ -58,7 +58,7 @@ namespace BirdHouse_Battle.UI
             //_window.Draw(_message);
 
             RectangleShape legend = new RectangleShape( new Vector2f(512,200));
-            legend.Texture = new Texture("../../../../res/Legende1.png");
+            legend.Texture = new Texture("../../../../res/LEGEND.png");
             legend.Position = new Vector2f(0,512);
             win.Draw(legend);
         }

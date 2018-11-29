@@ -38,7 +38,6 @@ namespace BirdHouse_Battle.UI
             white = new Color(255, 255, 255);
             string s = Keyboard.Key.Right.ToString();
             Console.WriteLine(s);
-
         }
 
         #region Getter
@@ -87,7 +86,6 @@ namespace BirdHouse_Battle.UI
             arena.Update();
 
         }
-
 
         private static double TimeP
         {
