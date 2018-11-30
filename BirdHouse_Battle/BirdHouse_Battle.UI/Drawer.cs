@@ -403,8 +403,8 @@ namespace BirdHouse_Battle.UI
             Font font = new Font("../../../../res/GreatVibes-Regular.ttf");
 
 
-            RectangleShape[] buttons = new RectangleShape[9];
-            Text[] messages = new Text[9];
+            RectangleShape[] buttons = new RectangleShape[11];
+            Text[] messages = new Text[11];
 
 
             RectangleShape buttonPlay = new RectangleShape(new Vector2f(75, 25));
@@ -420,6 +420,17 @@ namespace BirdHouse_Battle.UI
             messageArcher.FillColor = new Color(0, 0, 0);
             messageArcher.Position = new Vector2f(20, 21);
 
+            RectangleShape buttonBalista = new RectangleShape(new Vector2f(75, 25));
+            buttonBalista.Position = new Vector2f(105, 30);
+            Text messageBalista = new Text("balista", font, 25);
+            messageBalista.FillColor = new Color(0, 0, 0);
+            messageBalista.Position = new Vector2f(115, 21);
+
+            RectangleShape buttonCatapult = new RectangleShape(new Vector2f(75, 25));
+            buttonCatapult.Position = new Vector2f(105, 95);
+            Text messageCatapult = new Text("catapult", font, 25);
+            messageCatapult.FillColor = new Color(0, 0, 0);
+            messageCatapult.Position = new Vector2f(115, 84);
 
             RectangleShape buttonDrake = new RectangleShape(new Vector2f(75, 25));
             buttonDrake.Position = new Vector2f(10, 95);
@@ -452,7 +463,7 @@ namespace BirdHouse_Battle.UI
             {
                 buttonAddTeam1.FillColor = new Color(255, 160, 122);
             }
-            Text messageTeam1 = new Text("archer : "+teamComposition[0,0].ToString()+"\n drake : "+teamComposition[0,1].ToString()+"\n gobelin : "+teamComposition[0,2].ToString()+"\n paladin : "+teamComposition[0,3].ToString(), font, 25);
+            Text messageTeam1 = new Text("archer : "+teamComposition[0,0].ToString()+"\n drake : "+teamComposition[0,1].ToString()+"\n gobelin : "+teamComposition[0,2].ToString()+"\n paladin : "+teamComposition[0,3].ToString()+"\n balista : "+teamComposition[0,4].ToString()+"\n catapult : "+teamComposition[0,5].ToString(), font, 15);
             messageTeam1.FillColor = new Color(0, 0, 0);
             messageTeam1.Position = new Vector2f(15, 322);
 
@@ -464,7 +475,7 @@ namespace BirdHouse_Battle.UI
             {
                 buttonAddTeam2.FillColor = new Color(255, 160, 122);
             }
-            Text messageTeam2 = new Text("archer : " + teamComposition[1, 0].ToString() + "\n drake : " + teamComposition[1, 1].ToString() + "\n gobelin : " + teamComposition[1, 2].ToString() + "\n paladin : " + teamComposition[1, 3].ToString(), font, 25);
+            Text messageTeam2 = new Text("archer : " + teamComposition[1, 0].ToString() + "\n drake : " + teamComposition[1, 1].ToString() + "\n gobelin : " + teamComposition[1, 2].ToString() + "\n paladin : " + teamComposition[1, 3].ToString() + "\n balista : " + teamComposition[1, 4].ToString() + "\n catapult : " + teamComposition[1, 5].ToString(), font, 15);
             messageTeam2.FillColor = new Color(0, 0, 0);
             messageTeam2.Position = new Vector2f(142, 322);
 
@@ -484,7 +495,7 @@ namespace BirdHouse_Battle.UI
                 {
                     buttonAddTeam3.FillColor = new Color(255, 160, 122);
                 }
-                messageTeam3 = new Text("archer : " + teamComposition[2, 0].ToString() + "\n drake : " + teamComposition[2, 1].ToString() + "\n gobelin : " + teamComposition[2, 2].ToString() + "\n paladin : " + teamComposition[2, 3].ToString(), font, 25);
+                messageTeam3 = new Text("archer : " + teamComposition[2, 0].ToString() + "\n drake : " + teamComposition[2, 1].ToString() + "\n gobelin : " + teamComposition[2, 2].ToString() + "\n paladin : " + teamComposition[2, 3].ToString() + "\n balista : " + teamComposition[2, 4].ToString() + "\n catapult : " + teamComposition[2, 5].ToString(), font, 15);
                 messageTeam3.FillColor = new Color(0, 0, 0);
                 messageTeam3.Position = new Vector2f(271, 322);
             }
@@ -504,7 +515,7 @@ namespace BirdHouse_Battle.UI
                 {
                     buttonAddTeam4.FillColor = new Color(255, 160, 122);
                 }
-                messageTeam4 = new Text("archer : " + teamComposition[3, 0].ToString() + "\n drake : " + teamComposition[3, 1].ToString() + "\n gobelin : " + teamComposition[3, 2].ToString() + "\n paladin : " + teamComposition[3, 3].ToString(), font, 25);
+                messageTeam4 = new Text("archer : " + teamComposition[3, 0].ToString() + "\n drake : " + teamComposition[3, 1].ToString() + "\n gobelin : " + teamComposition[3, 2].ToString() + "\n paladin : " + teamComposition[3, 3].ToString() + "\n balista : " + teamComposition[3, 4].ToString() + "\n catapult : " + teamComposition[3, 5].ToString(), font, 15);
                 messageTeam4.FillColor = new Color(0, 0, 0);
                 messageTeam4.Position = new Vector2f(399, 322);
             }
@@ -524,6 +535,8 @@ namespace BirdHouse_Battle.UI
             buttons[6] = buttonDrake;
             buttons[7] = buttonGobelin;
             buttons[8] = buttonPaladin;
+            buttons[9] = buttonBalista;
+            buttons[10] = buttonCatapult;
 
             foreach (var t in buttons)
             {
@@ -540,6 +553,8 @@ namespace BirdHouse_Battle.UI
             messages[6] = messageTeam2;
             messages[7] = messageTeam3;
             messages[8] = messageTeam4;
+            messages[9] = messageBalista;
+            messages[10] = messageCatapult;
 
             foreach(var t in messages)
             {

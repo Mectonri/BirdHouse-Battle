@@ -181,6 +181,16 @@ namespace BirdHouse_Battle.UI
                 status[4] = "paladin";
                 return status;
             }
+            else if ((buttons[9].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+            {
+                status[4] = "balista";
+                return status;
+            }
+            else if ((buttons[10].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+            {
+                status[4] = "catapult";
+                return status;
+            }
             else if ((buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
             {
                 game.Status = "game";
