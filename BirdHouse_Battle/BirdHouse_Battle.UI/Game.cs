@@ -33,8 +33,6 @@ namespace BirdHouse_Battle.UI
             draw = new Drawer(_window);
 
             white = new Color(255, 255, 255);
-            string s = Keyboard.Key.Right.ToString();
-            Console.WriteLine(s);
         }
 
         #region Getter

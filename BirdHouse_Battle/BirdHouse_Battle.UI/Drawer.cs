@@ -49,13 +49,6 @@ namespace BirdHouse_Battle.UI
             _bShape = new RectangleShape(_size);
             _bShape.Texture = _terain;
             win.Draw(Bshape);
-
-            //rs = new RenderStates();
-            //_message = new Text("AXEL EST LA", _font, 100);
-
-            // _message.Draw(_window, rs );
-            //_message.Position = new Vector2f(200,200);
-            //_window.Draw(_message);
         }
         #endregion
 
