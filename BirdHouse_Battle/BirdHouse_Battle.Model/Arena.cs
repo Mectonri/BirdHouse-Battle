@@ -8,17 +8,43 @@ namespace BirdHouse_Battle.Model
     {
         readonly Dictionary<string, Team> _teams;
         readonly Dictionary<string, Team> _deadTeams;
+        readonly Dictionary<int, Projectile> _projectiles;
+        readonly Dictionary<int, Projectile> _deadProjectiles;
         readonly int _height;
         readonly int _width;
-
-
+        int _counter;
+        Field _field;
 
         public Arena()
         {
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
+            _projectiles = new Dictionary<int, Projectile>();
+            _deadProjectiles = new Dictionary<int, Projectile>();
             _height = 250;
             _width = 250;
+            _counter = 0;
+            _field = new Field(this, -_height, _height, -_width, _width);
+        }
+
+        public Dictionary<string, Team> Teams
+        {
+            get { return _teams; }
+        }
+
+        public Dictionary<int, Projectile> Projectiles
+        {
+            get { return _projectiles; }
+        }
+
+        public Dictionary<string, Team> DeadTeams
+        {
+            get { return _deadTeams; }
+        }
+
+        public Dictionary<int, Projectile> DeadProjectiles
+        {
+            get { return _deadProjectiles; }
         }
 
         public int Height
@@ -31,11 +57,21 @@ namespace BirdHouse_Battle.Model
             get { return _width; }
         }
 
+        public int Counter
+        {
+            get { return _counter; }
+        }
+
+        public Field Field
+        {
+            get { return _field; }
+        }
+
         public Team CreateTeam(string name)
         {
             if (_teams.ContainsKey(name)) throw new ArgumentException("A team with this name already exists.", nameof(name));
             if (_teams.Count >= 4) throw new Exception("You already have 4 team and cannot create any more");
-            Team team = new Team(this, name, 250);//POUR L'INSTANT AXEL
+            Team team = new Team(this, name, 100);
             _teams.Add(name, team);
             return team;
         }
@@ -47,11 +83,10 @@ namespace BirdHouse_Battle.Model
             _teams.Remove(name);
         }
 
-        public Team FindTeam(string name)
+        public bool FindTeam(string name)
         {
             Team result;
-            _teams.TryGetValue(name, out result);
-            return result;
+            return _teams.TryGetValue(name, out result);
         }
 
         public int TeamCount
@@ -66,7 +101,7 @@ namespace BirdHouse_Battle.Model
             bool doesCollide = false;
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     if (x == kv2.Value.Location.X && y == kv2.Value.Location.Y && kv2.Value.Name != unit.Name) doesCollide = true;
                 }
@@ -79,11 +114,16 @@ namespace BirdHouse_Battle.Model
             bool doesCollide = false;
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     if (vector.X == kv2.Value.Location.X && vector.Y == kv2.Value.Location.Y) doesCollide = true;
                 }
             }
+
+            Tile tile = Field.FindTile(int.Parse($"{Math.Round(vector.X)}"), int.Parse($"{Math.Round(vector.Y)}"));
+
+            if (tile.Obstacle == "Rock" || tile.Obstacle == "Tree") doesCollide = true;
+
             return doesCollide;
         }
 
@@ -118,7 +158,7 @@ namespace BirdHouse_Battle.Model
 
         public void SpawnUnit()
         {
-            Vector vector =new Vector(0,0);
+            Vector vector = new Vector(0, 0);
             double x;
             double y;
             Random random = new Random();
@@ -128,7 +168,7 @@ namespace BirdHouse_Battle.Model
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
 
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     bool IsSpawnable = false;
 
@@ -207,14 +247,6 @@ namespace BirdHouse_Battle.Model
                 }
                 i++;
             }
-
-            foreach (KeyValuePair<string, Team> kv in _teams)
-            {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
-                {
-                    kv2.Value.SearchTarget();
-                }
-            }
         }
 
         public Unit SpawnUnit(Unit unit, double x, double y)
@@ -239,7 +271,7 @@ namespace BirdHouse_Battle.Model
         {
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
-                foreach (KeyValuePair<Guid, Unit> kv2 in kv.Value._units)
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
                     if (kv2.Value.Location.X == vector.X && kv2.Value.Location.Y == vector.Y || vector.X == 0 && vector.Y == 0 || vector.X > _width || vector.Y > _height)
                     {
@@ -249,10 +281,6 @@ namespace BirdHouse_Battle.Model
             }
             return true;
         }
-
-
-
-
 
         public Unit NearestEnemy(Unit unit)
         {
@@ -264,7 +292,7 @@ namespace BirdHouse_Battle.Model
             foreach (KeyValuePair<string, Team> team in _teams)
             {
                 if (team.Value != unit.Team) {
-                    foreach (KeyValuePair<Guid, Unit> units in team.Value._units)
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
                     {
                         double dX = x - units.Value.Location.X;
                         double dY = y - units.Value.Location.Y;
@@ -289,14 +317,198 @@ namespace BirdHouse_Battle.Model
             return ennemyUnit;
         }
 
+        public Unit NearestEnemy(Vector vector, string teamName)
+        {
+            double x = vector.X;
+            double y = vector.Y;
+            double distance = 0;
+            Unit ennemyUnit = null;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                if (team.Value.Name != teamName)
+                {
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
+                    {
+                        double dX = x - units.Value.Location.X;
+                        double dY = y - units.Value.Location.Y;
+
+                        if (distance == 0)
+                        {
+                            distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                            ennemyUnit = units.Value;
+                        }
+                        else
+                        {
+                            if (distance > Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY))
+                            {
+                                distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                ennemyUnit = units.Value;
+                            }
+
+                        }
+                    }
+                }
+            }
+            return ennemyUnit;
+        }
+
+        public Unit NearestEnemyNotFlying(Unit unit)
+        {
+            double x = unit.Location.X;
+            double y = unit.Location.Y;
+            double distance = 0;
+            Unit ennemyUnit = null;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                if (team.Value != unit.Team)
+                {
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
+                    {
+                        if (!units.Value.Fly)
+                        {
+                            double dX = x - units.Value.Location.X;
+                            double dY = y - units.Value.Location.Y;
+
+                            if (distance == 0)
+                            {
+                                distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                ennemyUnit = units.Value;
+                            }
+                            else
+                            {
+                                if (distance > Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY))
+                                {
+                                    distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                    ennemyUnit = units.Value;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            return ennemyUnit;
+        }
+
+        public Unit NearestEnemyFlying(Unit unit)
+        {
+            double x = unit.Location.X;
+            double y = unit.Location.Y;
+            double distance = 0;
+            Unit ennemyUnit = null;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                if (team.Value != unit.Team)
+                {
+                    foreach (KeyValuePair<int, Unit> units in team.Value._units)
+                    {
+                        if (units.Value.Fly)
+                        {
+                            double dX = x - units.Value.Location.X;
+                            double dY = y - units.Value.Location.Y;
+
+                            if (distance == 0)
+                            {
+                                distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                ennemyUnit = units.Value;
+                            }
+                            else
+                            {
+                                if (distance > Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY))
+                                {
+                                    distance = Math.Sqrt(dX * dX) + Math.Sqrt(dY * dY);
+                                    ennemyUnit = units.Value;
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+            return ennemyUnit;
+        }
+
         public Unit GiveDamage(Unit unit, double damage)
         {
             unit.TakeDamages(damage);
             return unit;
         }
 
+        public Unit GiveFire(Unit unit, int damage)
+        {
+            unit.Fired(damage);
+            return unit;
+        }
 
-        public void Update()
+        public void InitArrow(Vector start, Vector end, int NbFram)
+        {
+            Arrow arrow = new Arrow(this, start, end, Counter, NbFram);
+            _projectiles.Add(Counter, arrow);
+            _counter++;
+        }
+
+        public void InitBoulder(Vector start, Vector end, int NbFram)
+        {
+            Boulder boulder = new Boulder(this, start, end, Counter, NbFram);
+            _projectiles.Add(Counter, boulder);
+            _counter++;
+        }
+
+        public void InitBalisticAmmo(Vector start, Vector end, int NbFram)
+        {
+            BalisticAmmo balisticAmmo = new BalisticAmmo(this, start, end, Counter, NbFram);
+            _projectiles.Add(Counter, balisticAmmo);
+            _counter++;
+        }
+
+        public void IsUnitInRangeAoe(Projectile projectile, int damages)
+        {
+            Vector UnitPosition;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                foreach (KeyValuePair<int, Unit> units in team.Value._units)
+                {
+                    UnitPosition = units.Value.Location;
+
+                    if (Vector.Soustract(UnitPosition, projectile.Position).Magnitude <= projectile.Range)
+                    {
+                        units.Value.TakeDamages(damages);
+                    }
+                }
+            }
+        }
+
+        public bool IsUnitInRange(Projectile projectile, int damages)
+        {
+            Vector UnitPosition;
+
+            foreach (KeyValuePair<string, Team> team in _teams)
+            {
+                foreach (KeyValuePair<int, Unit> units in team.Value._units)
+                {
+                    UnitPosition = units.Value.Location;
+                    Vector location = Vector.Soustract(UnitPosition, projectile.Position);
+
+                    if (location.Magnitude <= projectile.Range)
+                    {
+                        units.Value.TakeDamages(damages);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        
+        private bool FindProjectile(int name)
+        {
+            return _projectiles.TryGetValue(name, out Projectile projectile);
+        }
+
+        public void UpdateTeams()
         {
             foreach (Team team in _teams.Values)
             {
@@ -307,15 +519,38 @@ namespace BirdHouse_Battle.Model
                 team.UpdateDead();
                 if (team.IsWiped == true) _deadTeams.Add(team.Name, team);
             }
-            foreach (KeyValuePair<string, Team> team in _deadTeams)
+        }
+
+        public void UpdateProjectiles()
+        {
+            foreach (Projectile projectile in _projectiles.Values)
             {
-                if (FindTeam(team.Key) != null) RemoveTeam(team.Key);
+                projectile.Update();
+
+                if (projectile.Arrived)
+                {
+                    _deadProjectiles.Add(projectile.Name, projectile);
+                }
+            }
+            foreach (Projectile projectile in _deadProjectiles.Values)
+                {
+                if (FindProjectile(projectile.Name))
+                {
+                    _projectiles.Remove(projectile.Name);
+                    projectile.Dispose();
+                }
             }
         }
 
-        public Dictionary<string, Team> Teams
+        public void Update()
         {
-            get { return _teams; }
+            UpdateTeams();
+            UpdateProjectiles();
+            
+            foreach (KeyValuePair<string, Team> team in _deadTeams)
+            {
+                if (FindTeam(team.Key) != false) RemoveTeam(team.Key);
+            }
         }
     }
 }

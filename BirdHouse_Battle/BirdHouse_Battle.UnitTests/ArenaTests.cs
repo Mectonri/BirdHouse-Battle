@@ -9,38 +9,38 @@ namespace BirdHouse_Battle.UnitTests
     [TestFixture]
     class ArenaTests
     {
-        [Test]
-        public void create_team()
-        {
-            Arena arena = new Arena();
+        //[Test]
+        //public void create_team()
+        //{
+        //    Arena arena = new Arena();
 
-            Team firstTeam = arena.CreateTeam("firstTeam");
-            Assert.That(firstTeam.Name, Is.EqualTo("firstTeam"));
+        //    Team firstTeam = arena.CreateTeam("firstTeam");
+        //    Assert.That(firstTeam.Name, Is.EqualTo("firstTeam"));
 
-            Team team = arena.FindTeam("firstTeam");
-            Assert.That(team, Is.EqualTo(firstTeam));
-        }
+        //    Team team = arena.FindTeam("firstTeam");
+        //    Assert.That(team, Is.EqualTo(firstTeam));
+        //}
 
-        [Test]
-        public void remove_team()
-        {
-            Arena arena = new Arena();
-
-
-            Assert.Throws<ArgumentException>(() => arena.RemoveTeam("Titi"));
+        //[Test]
+        //public void remove_team()
+        //{
+        //    Arena arena = new Arena();
 
 
+        //    Assert.Throws<ArgumentException>(() => arena.RemoveTeam("Titi"));
 
 
-            Team firstTeam = arena.CreateTeam("firstTeam");
-            Team team = arena.FindTeam("firstTeam");
-            Assert.That(team, Is.EqualTo(firstTeam));
 
 
-            arena.RemoveTeam("firstTeam");
-            Assert.Throws<ArgumentException>(() => arena.RemoveTeam("firstTeam"));
+        //    Team firstTeam = arena.CreateTeam("firstTeam");
+        //    Team team = arena.FindTeam("firstTeam");
+        //    Assert.That(team, Is.EqualTo(firstTeam));
 
-        }
+
+        //    arena.RemoveTeam("firstTeam");
+        //    Assert.Throws<ArgumentException>(() => arena.RemoveTeam("firstTeam"));
+
+        //}
 
 
         [Test]
