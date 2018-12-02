@@ -1,8 +1,6 @@
 ﻿using BirdHouse_Battle.Model;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BirdHouse_Battle.UnitTests
 {
@@ -146,9 +144,5 @@ namespace BirdHouse_Battle.UnitTests
             Unit testUnit2 = arena.NearestEnemy(firstUnit);
             Assert.That(testUnit2, Is.EqualTo(secondUnit));
         }
-
-
-        
-
     }
 }

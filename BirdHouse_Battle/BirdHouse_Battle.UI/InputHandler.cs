@@ -1,9 +1,5 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
-using System;
-using System.Diagnostics;
-using System.Threading;
-using BirdHouse_Battle.Model;
 
 namespace BirdHouse_Battle.UI
 {

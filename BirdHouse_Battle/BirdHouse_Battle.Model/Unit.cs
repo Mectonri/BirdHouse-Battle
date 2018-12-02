@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
 {
@@ -137,9 +136,7 @@ namespace BirdHouse_Battle.Model
                 NewDirection();
             }
         }
-
-
-
+        
         public void SearchTargetFlying()
         {
             Target = Arena.NearestEnemyFlying(this);
