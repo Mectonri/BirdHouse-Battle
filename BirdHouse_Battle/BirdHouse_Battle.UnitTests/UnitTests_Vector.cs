@@ -42,7 +42,6 @@ namespace BirdHouse_Battle.UnitTests
             Random rdm1 = new Random();
             double x = rdm1.NextDouble() * 2 - 1;
             double y = rdm1.NextDouble() * 2 - 1;
-
             Vector v = new Vector(x, y);
 
             Assert.That(v.Magnitude, Is.EqualTo(Math.Sqrt(x * x + y * y)));
@@ -54,14 +53,11 @@ namespace BirdHouse_Battle.UnitTests
             Random rdm1 = new Random();
             double x = rdm1.NextDouble() * 2 - 1;
             double y = rdm1.NextDouble() * 2 - 1;
-
             Vector v = new Vector(x, y);
-
             double d = rdm1.NextDouble() * 2 - 1;
-      
 
-            Assert.That(v.X, Is.EqualTo(x * d));
-            Assert.That(v.Y, Is.EqualTo(y * d));
+            Assert.That(v.X * d, Is.EqualTo(x * d));
+            Assert.That(v.Y * d, Is.EqualTo(y * d));
         }
 
         [Test]
@@ -94,9 +90,8 @@ namespace BirdHouse_Battle.UnitTests
             Vector v = new Vector(x, y);
             Vector v2 = new Vector(x2, y2);
 
-
-            Assert.That(v.X, Is.EqualTo(x - x2));
-            Assert.That(v.Y, Is.EqualTo(y - y2));
+            Assert.That(v.X - x2, Is.EqualTo(x - x2));
+            Assert.That(v.Y - y2, Is.EqualTo(y - y2));
         }
     }
 }

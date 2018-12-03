@@ -1,6 +1,5 @@
 ﻿using BirdHouse_Battle.Model;
 using NUnit.Framework;
-using System;
 
 namespace BirdHouse_Battle.UnitTests
 {
@@ -46,7 +45,7 @@ namespace BirdHouse_Battle.UnitTests
             Team team = arena.CreateTeam("red");
 
             Paladin Pal = new Paladin(team, arena,1);
-            Gobelin Gob = new Gobelin(team, arena,1);
+            Goblin Gob = new Goblin(team, arena,1);
             Archer Arc = new Archer(team, arena,1);
 
             Assert.That(Pal.Team, Is.EqualTo(team));
