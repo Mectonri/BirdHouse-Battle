@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BirdHouse_Battle.Model
+﻿namespace BirdHouse_Battle.Model
 {
     public class Paladin : Unit
     {
