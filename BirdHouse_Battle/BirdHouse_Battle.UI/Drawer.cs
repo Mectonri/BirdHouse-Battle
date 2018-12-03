@@ -67,16 +67,6 @@ namespace BirdHouse_Battle.UI
             _window.Draw(legend);
         }
 
-        static  void DisplayUnit(Unit u)
-        {
-            if (u is Archer) { DisplayArcher(u); }
-            else if (u is Balista) { DisplayBalista(u); }
-            else if (u is Catapult ) {DisplayCatapult(u); }
-            else if (u is Drake ) { DisplayDrake(u); }
-            else if (u is Goblin) { DisplayGoblin(u); }
-            else { DisplayPaladin(u); }
-        }
-
         /// <summary>
         /// Display archer with the corresponding color
         /// </summary>
@@ -253,8 +243,20 @@ namespace BirdHouse_Battle.UI
             return arrField;
         }
 
+
+        //static  void DisplayUnit(Unit u)
+        //{
+        //    if (u as Archer) { }
+        //    if (u is Archer) { DisplayArcher(u); }
+        //    else if (u is Balista) { DisplayBalista(u); }
+        //    else if (u is Catapult ) {DisplayCatapult(u); }
+        //    else if (u is Drake ) { DisplayDrake(u); }
+        //    else if (u is Goblin) { DisplayGoblin(u); }
+        //    else { DisplayPaladin(u); }
+        //}
+
         /// <summary>
-        /// Display Units and projectiles
+        /// 
         /// </summary>
         /// <param name="arena"></param>
         public void UnitDisplay(Arena arena)
@@ -270,15 +272,37 @@ namespace BirdHouse_Battle.UI
             {
                 foreach (KeyValuePair<int, Unit> unit in team.Value.Units)
                 {
-                    DisplayUnit(unit.Value);
+                    string s = unit.Value.ToString();
+                    switch (s)
+                    {
+                        case "BirdHouse_Battle.Model.Archer":
+                            shape = DisplayArcher(unit.Value);
+                            break;
+                        case "BirdHouse_Battle.Model.Goblin":
+                            shape = DisplayGoblin(unit.Value);
+                            break;
+                        case "BirdHouse_Battle.Model.Drake":
+                            shape = DisplayDrake(unit.Value);
+                            break;
+                        case "BirdHouse_Battle.Model.Balista":
+                            shape = DisplayBalista(unit.Value);
+                            break;
+                        case "BirdHouse_Battle.Model.Catapult":
+                            shape = DisplayCatapult(unit.Value);
+                            break;
+                        case "BirdHouse_Battle.Model.Paladin":
+                            shape = DisplayPaladin(unit.Value);
+                            break;
+                    }
+
                     _window.Draw(shape);
                 }
             }
             foreach (KeyValuePair<int, Projectile> projectile in arena.Projectiles)
             {
                 string s = projectile.Value.ToString();
-                if (projectile. Value is Arrow) shape = DisplayArrow(projectile.Value);
-                else if ( projectile.Value is Boulder) shape = DisplayBoulder(projectile.Value);
+                if (s == "BirdHouse_Battle.Model.Arrow") shape = DisplayArrow(projectile.Value);
+                else if (s == "BirdHouse_Battle.Model.Boulder") shape = DisplayBoulder(projectile.Value);
                 else shape = DisplayBalisticAmmo(projectile.Value);
                 _window.Draw(shape);
             }
