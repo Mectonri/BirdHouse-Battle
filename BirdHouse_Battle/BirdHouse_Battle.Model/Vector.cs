@@ -160,6 +160,15 @@ namespace BirdHouse_Battle.Model
             return vector;
         }
 
+        public static bool Orientation(Vector vector, Vector location)
+        {
+            Vector soustract = Soustract(vector, location);
+
+            if (Math.Abs(soustract.X) < Math.Abs(soustract.Y)) return true;
+
+            return false;
+        }
+
         public static Vector MoveProjectile(int NbFram, Vector vector)
         {
             vector.X = Math.Round(vector.X / NbFram, 0);

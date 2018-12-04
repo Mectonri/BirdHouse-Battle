@@ -302,6 +302,64 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        public bool MissObstacle(Vector vector, double speed, bool isOriginalXGood, bool isOriginalYGood)
+        {
+            bool DoesCollide = false;
+
+            bool isXSmallest = Vector.Orientation(vector, Location);
+
+            Vector NewLocation;
+
+            if (isXSmallest)
+            {
+                if (isOriginalXGood)
+                {
+                    _location.X += 1;
+
+                    NewLocation = Vector.Add(Vector.Move(speed, Direction), Location);
+
+                    DoesCollide = Arena.Collision(this, NewLocation, speed, true, isOriginalYGood);
+
+                    if (!DoesCollide) Location = NewLocation;
+                }
+                else
+                {
+                    _location.X -= 1;
+
+                    NewLocation = Vector.Add(Vector.Move(speed, Direction), Location);
+
+                    DoesCollide = Arena.Collision(this, NewLocation, speed, true, isOriginalYGood);
+
+                    if (!DoesCollide) Location = NewLocation;
+                }
+            }
+            else
+            {
+                if (isOriginalYGood)
+                {
+                    _location.X += 1;
+
+                    NewLocation = Vector.Add(Vector.Move(speed, Direction), Location);
+
+                    DoesCollide = Arena.Collision(this, NewLocation, speed, isOriginalXGood, true);
+
+                    if (!DoesCollide) Location = NewLocation;
+                }
+                else
+                {
+                    _location.X -= 1;
+
+                    NewLocation = Vector.Add(Vector.Move(speed, Direction), Location);
+
+                    DoesCollide = Arena.Collision(this, NewLocation, speed, isOriginalXGood, true);
+
+                    if (!DoesCollide) Location = NewLocation;
+                }
+            }
+
+            return DoesCollide;
+        }
+
         /// <summary>
         /// Game Loop in Unit
         /// </summary>

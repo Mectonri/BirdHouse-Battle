@@ -57,7 +57,7 @@
                     Vector NewLocation = Vector.Add(Mouvement, Location);
                     NewLocation.Limit(-Arena.Height, Arena.Height);
 
-                    if (!Arena.Collision(NewLocation)) Location = NewLocation;
+                    if (!Arena.Collision(this, NewLocation, speed)) Location = NewLocation;
                 }
                 else
                 {
@@ -71,7 +71,7 @@
                         Mouvement = Vector.Move(speed, Direction);
                         Vector NewLocation = Vector.Add(Mouvement, Location);
 
-                        if (!Arena.Collision(NewLocation)) Location = NewLocation;
+                        if (!Arena.Collision(this, NewLocation, speed)) Location = NewLocation;
                     }
                 }
 

@@ -94,24 +94,27 @@ namespace BirdHouse_Battle.Model
             get { return _teams.Count; }
         }
 
-        public bool Collision(Unit unit)
-        {
-            double x = unit.Location.X;
-            double y = unit.Location.Y;
-            bool doesCollide = false;
-            foreach (KeyValuePair<string, Team> kv in _teams)
-            {
-                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
-                {
-                    if (x == kv2.Value.Location.X && y == kv2.Value.Location.Y && kv2.Value.Name != unit.Name) doesCollide = true;
-                }
-            }
-            return doesCollide;
-        }
+        //public bool Collision(Unit unit)
+        //{
+        //    double x = unit.Location.X;
+        //    double y = unit.Location.Y;
+        //    bool doesCollide = false;
+        //    foreach (KeyValuePair<string, Team> kv in _teams)
+        //    {
+        //        foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
+        //        {
+        //            if (x == kv2.Value.Location.X && y == kv2.Value.Location.Y && kv2.Value.Name != unit.Name) doesCollide = true;
+        //        }
+        //    }
+        //    return doesCollide;
+        //}
 
-        public bool Collision(Vector vector)
+        public bool Collision(Unit unit, Vector vector, double speed)
         {
             bool doesCollide = false;
+            bool isOriginalXGood = unit.Location.X <= unit.Arena.Height - 1;
+            bool isOriginalYGood = unit.Location.Y <= unit.Arena.Height - 1;
+
             foreach (KeyValuePair<string, Team> kv in _teams)
             {
                 foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
@@ -122,7 +125,26 @@ namespace BirdHouse_Battle.Model
 
             Tile tile = Field.FindTile(int.Parse($"{Math.Round(vector.X)}"), int.Parse($"{Math.Round(vector.Y)}"));
 
-            if (tile.Obstacle == "Rock" || tile.Obstacle == "Tree") doesCollide = true;
+            if (tile.Obstacle == "Rock" || tile.Obstacle == "Tree") doesCollide = unit.MissObstacle(vector, speed, isOriginalXGood, isOriginalYGood);
+
+            return doesCollide;
+        }
+
+        public bool Collision(Unit unit, Vector vector, double speed, bool isOriginalXGood, bool isOriginalYGood)
+        {
+            bool doesCollide = false;
+
+            foreach (KeyValuePair<string, Team> kv in _teams)
+            {
+                foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
+                {
+                    if (vector.X == kv2.Value.Location.X && vector.Y == kv2.Value.Location.Y) doesCollide = true;
+                }
+            }
+
+            Tile tile = Field.FindTile(int.Parse($"{Math.Round(vector.X)}"), int.Parse($"{Math.Round(vector.Y)}"));
+
+            if (tile.Obstacle == "Rock" || tile.Obstacle == "Tree") doesCollide = unit.MissObstacle(vector, speed, isOriginalXGood, isOriginalYGood);
 
             return doesCollide;
         }

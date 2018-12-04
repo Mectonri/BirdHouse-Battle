@@ -86,7 +86,7 @@
                     Mouvement = Vector.Move(speed, Direction);
                     Vector NewLocation = Vector.Add(Mouvement, Location);
 
-                    if (!Arena.Collision(NewLocation)) Location = NewLocation;
+                    if (!Arena.Collision(this, NewLocation, speed)) Location = NewLocation;
                 }
 
                 SpecialEffect();
