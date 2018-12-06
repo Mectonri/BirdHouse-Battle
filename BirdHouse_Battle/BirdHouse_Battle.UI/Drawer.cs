@@ -392,8 +392,10 @@ namespace BirdHouse_Battle.UI
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
 
-            RectangleShape[] buttons = new RectangleShape[11];
-            Text[] messages = new Text[4];
+            RectangleShape[] buttons = new RectangleShape[13];
+            Text[] messages = new Text[6];
+
+
 
             RectangleShape buttonPlay = new RectangleShape(Bsize);
             buttonPlay.Position = new Vector2f(380, 125);
@@ -439,6 +441,7 @@ namespace BirdHouse_Battle.UI
             buttonAddTeam2.Position = new Vector2f(132, 317);
             buttonAddTeam2.OutlineThickness = 5;
             buttonAddTeam2.OutlineColor = new Color(250, 0, 0);
+            
             if (status[1] == "selected")
             {
                 buttonAddTeam2.FillColor = new Color(255, 160, 122);
@@ -449,36 +452,56 @@ namespace BirdHouse_Battle.UI
 
 
             RectangleShape buttonAddTeam3 = new RectangleShape(Tsize);
+            RectangleShape buttonSupprTeam3 = new RectangleShape(new Vector2f(20, 20));
             buttonAddTeam3.Position = new Vector2f(261, 317);
+            buttonSupprTeam3.Position = new Vector2f(261,317);
             buttonAddTeam3.OutlineThickness = 5;
             buttonAddTeam3.OutlineColor = new Color(0, 250, 0);
             Text messageTeam3 = new Text("", font, 25);
+            Text messageSuppr3 = new Text(" ",font,25);
             if (status[2] == "inactive")
             {
                 buttonAddTeam3.FillColor = new Color(128, 128, 128);
+                buttonSupprTeam3.FillColor = new Color( Color.Transparent);
             }
             else
             {
+                buttonSupprTeam3.FillColor = new Color(255, 0, 0);
+                messageSuppr3 = new Text("X", font, 25);
+                messageSuppr3.FillColor = new Color(0, 0, 0);
+                messageSuppr3.Position = new Vector2f(261, 317);
                 if (status[2] == "selected")
                 {
                     buttonAddTeam3.FillColor = new Color(255, 160, 122);
+                    
                 }
                 messageTeam3 = new Text("ARCHER : " + teamComposition[2, 0].ToString() + "\n DRAKE : " + teamComposition[2, 1].ToString() + "\n GOBLIN : " + teamComposition[2, 2].ToString() + "\n PALADIN : " + teamComposition[2, 3].ToString() + "\n BALISTA : " + teamComposition[2, 4].ToString() + "\n CAPAPULT : " + teamComposition[2, 5].ToString(), font, 15);
                 messageTeam3.FillColor = new Color(0, 0, 0);
                 messageTeam3.Position = new Vector2f(271, 322);
             }
+            
+           
 
             RectangleShape buttonAddTeam4 = new RectangleShape(Tsize);
+            RectangleShape buttonSupprTeam4 = new RectangleShape(new Vector2f(20, 20));
             buttonAddTeam4.Position = new Vector2f(389, 317);
+            buttonSupprTeam4.Position = new Vector2f(389, 317);
             buttonAddTeam4.OutlineThickness = 5;
             buttonAddTeam4.OutlineColor = new Color(250, 250, 0);
             Text messageTeam4 = new Text("", font, 25);
+            Text messageSuppr4 = new Text("",font,25);
             if (status[3] == "inactive")
             {
                 buttonAddTeam4.FillColor = new Color(128, 128, 128);
+                buttonSupprTeam4.FillColor = new Color(Color.Transparent);
             }
             else
             {
+
+                buttonSupprTeam4.FillColor = new Color(255,0,0);
+                messageSuppr4 = new Text("X", font, 25);
+                messageSuppr4.FillColor = new Color(0, 0, 0);
+                messageSuppr4.Position = new Vector2f(389, 317);
                 if (status[3] == "selected")
                 {
                     buttonAddTeam4.FillColor = new Color(255, 160, 122);
@@ -499,6 +522,8 @@ namespace BirdHouse_Battle.UI
             buttons[8] = buttonPaladin;
             buttons[9] = buttonBalista;
             buttons[10] = buttonCatapult;
+            buttons[11] =buttonSupprTeam3;
+            buttons[12] =buttonSupprTeam4;
 
             foreach (var t in buttons)
             {
@@ -509,7 +534,11 @@ namespace BirdHouse_Battle.UI
             messages[1] = messageTeam2;
             messages[2] = messageTeam3;
             messages[3] = messageTeam4;
-          
+            messages[4] = messageSuppr3;
+            messages[5] = messageSuppr4;
+            
+
+
             foreach (var t in messages)
             {
                 t.Draw(_window, rs);
