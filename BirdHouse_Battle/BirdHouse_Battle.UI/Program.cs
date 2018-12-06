@@ -10,27 +10,40 @@
             {
                 switch (game.Status)
                 {
+                    //main menu
                     case "main":
                         game.MainMenu();
                         break;
-                    case "preGame":
+                        
+                    case "preGame"://game prep menu
                         game.Arena = new Model.Arena();
                         game.PreGame();
                         break;
-                    case "game":
+
+                        
+                    case "game"://game screen
                         game.Run();
                         break;
-                    case "close":
-                        run = false;
+                        
+                        
+                    case "close"://close the window
+                        game.ExitMenu();
+                        //run = false;
                         break;
-                    case "pause":
+                        
+                    case "pause"://pause the game screen
                         game.PauseMenu();
-                  
                         break;
+
+                    case "ended"://when the game has ended
+                        game.ResultWindow();
+                        break;
+
                     default:
                         game.MainMenu();
                         break;
                 }
+                
             }
         }
     }
