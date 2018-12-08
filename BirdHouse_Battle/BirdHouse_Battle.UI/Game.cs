@@ -334,6 +334,24 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
+        public bool IsValidToAddUnit(int [,]TeamCompo, int i)
+        {
+            int count = 0;
+            for (int j = 0; j< 6; j++)
+            {
+                count += TeamCompo[i, j];
+            }
+            if (count>250)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+        }
+
         public void PreGame()
         {
             Team blue = Arena.CreateTeam("blue"); 
@@ -412,7 +430,7 @@ namespace BirdHouse_Battle.UI
                         case "archer":
                             for (int i = 0; i < status.Length - 1; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i)==true)
                                 {
                                     teamComposition[i, 0] +=1;
                                 }
@@ -421,7 +439,7 @@ namespace BirdHouse_Battle.UI
                         case "drake":
                             for (int i = 0; i < status.Length - 1; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true)
                                 {
                                     teamComposition[i, 1] +=1;
                                 }
@@ -430,7 +448,7 @@ namespace BirdHouse_Battle.UI
                         case "gobelin":
                             for (int i = 0; i < status.Length - 1; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true)
                                 {
                                     teamComposition[i, 2] +=1;
                                 }
@@ -439,7 +457,7 @@ namespace BirdHouse_Battle.UI
                         case "paladin":
                             for (int i = 0; i < status.Length - 1; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true)
                                 {
                                     teamComposition[i, 3] +=1;
                                 }
@@ -448,7 +466,7 @@ namespace BirdHouse_Battle.UI
                         case "balista":
                             for (int i = 0; i < status.Length - 1; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true)
                                 {
                                     teamComposition[i, 4] += 1;
                                 }
@@ -457,7 +475,7 @@ namespace BirdHouse_Battle.UI
                         case "catapult":
                             for (int i = 0; i < status.Length - 1; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true)
                                 {
                                     teamComposition[i, 5] += 1;
                                 }
