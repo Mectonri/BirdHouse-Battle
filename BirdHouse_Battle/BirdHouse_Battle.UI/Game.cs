@@ -341,7 +341,7 @@ namespace BirdHouse_Battle.UI
             {
                 count += TeamCompo[i, j];
             }
-            if (count>250)
+            if (count>123)
             {
                 return false;
             }
