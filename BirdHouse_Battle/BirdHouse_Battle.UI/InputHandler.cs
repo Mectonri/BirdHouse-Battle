@@ -128,6 +128,11 @@ namespace BirdHouse_Battle.UI
                 status[2] = "active";
                 return status;
             }
+            else if ((buttons[11].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+            {
+                status[2] = "inactive";
+                return status;
+            }
             else if ((buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[2]== "active"))
             {
                 for (int i = 0; i < status.Length; i++)

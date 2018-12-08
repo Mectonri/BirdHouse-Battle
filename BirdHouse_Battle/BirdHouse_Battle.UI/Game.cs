@@ -366,6 +366,25 @@ namespace BirdHouse_Battle.UI
                     RectangleShape[] buttons = InitPreGame(status, teamComposition);
                     Window.DispatchEvents();
                     status = _iHandler.HandlerPreGame(buttons, status);
+
+
+                    if (status[2] == "inactive")
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+                            teamComposition[2, i] = 0;
+                        }
+                    }
+                    if (status[3] == "inactive")
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+                            teamComposition[3, i] = 0;
+                        }
+                    }
+
+
+
                     if (status[2] == "active" && Arena.FindTeam("green") == false)
                     {
                         green = Arena.CreateTeam("green");
