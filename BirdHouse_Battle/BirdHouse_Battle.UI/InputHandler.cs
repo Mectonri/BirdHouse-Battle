@@ -130,7 +130,14 @@ namespace BirdHouse_Battle.UI
             }
             else if ((buttons[11].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
             {
-                status[2] = "inactive";
+                if (status[3] == "inactive")
+                {
+                    status[2] = "inactive";
+                }
+                else
+                {
+                    status[2] = "inactiveTemp";
+                }
                 return status;
             }
             else if ((buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[2]== "active"))
@@ -145,12 +152,19 @@ namespace BirdHouse_Battle.UI
                 status[2] = "selected";
                 return status;
             }
-            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "inactive")
+            else if ((buttons[12].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+            {
+                status[3] = "inactive";
+                return status;
+
+
+            }
+            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "inactive" && status[2]!="inactive")
             {
                 status[3] = "active";
                 return status;
             }
-            else if ((buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "active"))
+            else if ((buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "active" && status[2]!="inactive"))
             {
                 for (int i = 0; i < status.Length; i++)
                 {

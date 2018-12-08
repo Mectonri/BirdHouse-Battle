@@ -368,6 +368,18 @@ namespace BirdHouse_Battle.UI
                     status = _iHandler.HandlerPreGame(buttons, status);
 
 
+                    if (status[2] == "inactiveTemp")
+                    {
+                        status[3] = "inactive";
+                        status[2] = "active";
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            teamComposition[2, i] = teamComposition[3, i];
+                        }
+
+                    }
+
                     if (status[2] == "inactive")
                     {
                         for (int i = 0; i < 6; i++)

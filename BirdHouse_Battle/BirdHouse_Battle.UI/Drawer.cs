@@ -454,7 +454,7 @@ namespace BirdHouse_Battle.UI
             RectangleShape buttonAddTeam3 = new RectangleShape(Tsize);
             RectangleShape buttonSupprTeam3 = new RectangleShape(new Vector2f(20, 20));
             buttonAddTeam3.Position = new Vector2f(261, 317);
-            buttonSupprTeam3.Position = new Vector2f(261,317);
+            buttonSupprTeam3.Position = new Vector2f(360,317);
             buttonAddTeam3.OutlineThickness = 5;
             buttonAddTeam3.OutlineColor = new Color(0, 250, 0);
             Text messageTeam3 = new Text("", font, 25);
@@ -469,7 +469,7 @@ namespace BirdHouse_Battle.UI
                 buttonSupprTeam3.FillColor = new Color(255, 0, 0);
                 messageSuppr3 = new Text("X", font, 25);
                 messageSuppr3.FillColor = new Color(0, 0, 0);
-                messageSuppr3.Position = new Vector2f(261, 317);
+                messageSuppr3.Position = new Vector2f(362, 310);
                 if (status[2] == "selected")
                 {
                     buttonAddTeam3.FillColor = new Color(255, 160, 122);
@@ -485,7 +485,7 @@ namespace BirdHouse_Battle.UI
             RectangleShape buttonAddTeam4 = new RectangleShape(Tsize);
             RectangleShape buttonSupprTeam4 = new RectangleShape(new Vector2f(20, 20));
             buttonAddTeam4.Position = new Vector2f(389, 317);
-            buttonSupprTeam4.Position = new Vector2f(389, 317);
+            buttonSupprTeam4.Position = new Vector2f(488, 317);
             buttonAddTeam4.OutlineThickness = 5;
             buttonAddTeam4.OutlineColor = new Color(250, 250, 0);
             Text messageTeam4 = new Text("", font, 25);
@@ -501,7 +501,7 @@ namespace BirdHouse_Battle.UI
                 buttonSupprTeam4.FillColor = new Color(255,0,0);
                 messageSuppr4 = new Text("X", font, 25);
                 messageSuppr4.FillColor = new Color(0, 0, 0);
-                messageSuppr4.Position = new Vector2f(389, 317);
+                messageSuppr4.Position = new Vector2f(490, 310);
                 if (status[3] == "selected")
                 {
                     buttonAddTeam4.FillColor = new Color(255, 160, 122);
