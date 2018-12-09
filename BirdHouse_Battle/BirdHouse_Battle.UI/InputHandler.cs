@@ -6,7 +6,7 @@ namespace BirdHouse_Battle.UI
 {
     class InputHandler
     {
-        private Game game;
+        Game game;
 
         public InputHandler(Game game)
         {
@@ -19,12 +19,10 @@ namespace BirdHouse_Battle.UI
             {
                 game.Switch("ESC");
             }
-            //Condition to start the game
             if (Keyboard.IsKeyPressed(Keyboard.Key.Return))
             {
                 game.Switch("RETURN");
             }
-            //condition to pause the game
             if (Keyboard.IsKeyPressed(Keyboard.Key.P))
             {
                 game.Switch("P");
@@ -34,22 +32,22 @@ namespace BirdHouse_Battle.UI
                 game.Switch("Right");
             }
             if (Keyboard.IsKeyPressed(Keyboard.Key.Left))
-            { game.Switch("Left"); }
+            {
+                game.Switch("Left");
+            }
         }
 
-        public void HandlerPause(RectangleShape[] buttons)
+        public void HandlerPause(Shape[] buttons)
         {
-            Console.WriteLine("handlerPause");
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                Console.WriteLine("pause : ESC Key");
                 game.Status = "game";
             }
-            if ((Keyboard.IsKeyPressed(Keyboard.Key.P)))
+            else if ((Keyboard.IsKeyPressed(Keyboard.Key.P)))
             {
+                Console.WriteLine("pause : p");
                 game.Switch("P");
-            }
-            //CONTINUE button
+            }//CONTINUE button
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 Console.WriteLine("pause: continue button");
@@ -68,12 +66,11 @@ namespace BirdHouse_Battle.UI
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 Console.WriteLine("pause: quit button");
-                game.InitExit();
+                game.Status = "close";
             }
         }
 
-
-        public void HandlerExit(RectangleShape[] buttons)
+        public void HandlerExit(Shape[] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
@@ -89,7 +86,7 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void HandlerMain(RectangleShape [] buttons)
+        public void HandlerMain(Shape [] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
@@ -114,11 +111,10 @@ namespace BirdHouse_Battle.UI
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "close";
-            }
-                
+            } 
         }
 
-        public string[] HandlerPreGame(RectangleShape[] buttons, string[] status)
+        public string[] HandlerPreGame(Shape[] buttons, string[] status)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
@@ -218,22 +214,19 @@ namespace BirdHouse_Battle.UI
                 game.Status = "game";
                 return status;
             }
-            else
-            {
-                return status;
-            }
+            else { return status; }
         }
 
-        internal void HandlerEnd(RectangleShape[] buttons)
+        internal void HandlerEnd(Shape[] buttons)
         {
             //play
             if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "preGame";
-            }//QUIT
+            }//QUIT 
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "close";
+                game.Status = "main";
             }
         }
     }

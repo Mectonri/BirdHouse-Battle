@@ -32,6 +32,7 @@
                         break;
                         
                     case "pause"://pause the game screen
+                        
                         game.PauseMenu();
                         break;
 

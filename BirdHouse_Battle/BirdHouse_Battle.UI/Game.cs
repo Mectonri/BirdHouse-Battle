@@ -186,7 +186,6 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-
         public void Prep(Arena arena)
         {
             // Part One
@@ -256,26 +255,25 @@ namespace BirdHouse_Battle.UI
                     {
                         Paused = !Paused;
                         _previousP = GetCurrentTime();
-                        Console.WriteLine("P key is pressed");
+                        Console.WriteLine("switch : P key is pressed");
                         //InitPause();
-                        _status = "pause";
+                        //Status = "pause";
                     }
                     break;
 
                 case "ESC":
                     //Window.Close();
-                    _status = "close";
-                    Console.WriteLine("ESC key is pressed");
+                    Status = "close";
+                    Console.WriteLine("switch : ESC key is pressed");
                     break;
 
                 case "Right":
                     if (GetCurrentTime() - PreviousP >= TimeP)
                     {
                         _previousP = GetCurrentTime();
-                        Console.WriteLine("right arrow is pressed");
+                        Console.WriteLine(" switch : Right arrow is pressed");
                         if (MsPerUpdate > 0.0000006 / 200)
                         {
-
                             _msPerUpdate = MsPerUpdate / 20;
                         }
                     }
@@ -285,7 +283,7 @@ namespace BirdHouse_Battle.UI
                     if (GetCurrentTime() - PreviousP >= TimeP)
                     {
                         _previousP = GetCurrentTime();
-                        Console.WriteLine("Left key is pressed");
+                        Console.WriteLine("swithc : Left key is pressed");
                         if (MsPerUpdate < 0.0000006)
                         {
                             _msPerUpdate = MsPerUpdate * 20;
@@ -304,12 +302,12 @@ namespace BirdHouse_Battle.UI
         /// <summary>
         /// Init the main menu
         /// </summary>
-        public RectangleShape[] InitGUI()
+        public Shape[] InitGUI()
         {
             Window.Clear( white);
             
            //Drawer draw = new Drawer(Window);
-            RectangleShape[] buttons = draw.MenuDisplay();
+            Shape[] buttons = draw.MenuDisplay();
             Window.Display();
             
             return buttons;
@@ -322,17 +320,16 @@ namespace BirdHouse_Battle.UI
         {
             while (Window.IsOpen && Status == "main")
             {
-                RectangleShape[] buttons = InitGUI();
+                Shape[] buttons = InitGUI();
 
                 _iHandler.HandlerMain(buttons);
             }
         }
 
-        public RectangleShape[] InitPause()
+        public Shape[] InitPause()
         {
-            //Console.WriteLine("Init pause is launched");
-            Window.Clear();
-            RectangleShape[] buttons = draw.PauseDisplay();
+            Window.Clear(white);
+            Shape[] buttons = draw.PauseDisplay();
             Window.Display();
             return buttons;
         }
@@ -342,23 +339,21 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public void PauseMenu()
         {
-            //Console.WriteLine("pause menu launched");
-            while (Status == "pause")
+            if (Paused)
             {
-                RectangleShape[] buttons = InitPause();
-                Window.DispatchEvents();
-                _iHandler.HandlerPause(buttons);
-                Console.WriteLine(Status);
-                Console.WriteLine(Paused);
+                Shape[] buttons = InitPause();
+                while (Window.IsOpen && Status == "pause")
+                {
+                    _iHandler.HandlerPause(buttons);
+                }
             }
+
         }
 
-        public RectangleShape[] InitExit()
+        public Shape[] InitExit()
         {
-            Window.Clear(white);
-            //Window.Draw(draw.Bshape);
-           
-            RectangleShape[] buttons = draw.ExitDisplay();
+            Window.Clear(white);           
+            Shape[] buttons = draw.ExitDisplay();
            
             Window.Display();
             return buttons;
@@ -371,16 +366,16 @@ namespace BirdHouse_Battle.UI
         {
             while (Window.IsOpen && Status == "close")
             {
-                RectangleShape[] buttons = InitExit();
+                Shape[] buttons = InitExit();
                 _iHandler.HandlerExit(buttons);
             }
         }
       
-        public RectangleShape[] InitPreGame(string[] status, int[,] teamComposition)
+        public Shape[] InitPreGame(string[] status, int[,] teamComposition)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            RectangleShape[] buttons = draw.PreGameDisplay(status, teamComposition);
+            Shape[] buttons = draw.PreGameDisplay(status, teamComposition);
             Window.Display();
             return buttons;
         }
@@ -390,15 +385,15 @@ namespace BirdHouse_Battle.UI
         {
             while (Window.IsOpen && Status == "ended")
             {
-                RectangleShape[] buttons = InitEnd();
+                Shape[] buttons = InitEnd();
                 _iHandler.HandlerEnd(buttons);
             }
         }
 
-        private RectangleShape[] InitEnd()
+        private Shape[] InitEnd()
         {
             Window.Clear(white);
-            RectangleShape[] buttons = draw.EndDisplay(Winner);
+            Shape[] buttons = draw.EndDisplay(Winner);
             Window.Display();
 
             return buttons;
@@ -434,7 +429,7 @@ namespace BirdHouse_Battle.UI
                 if (current - previous >= 0.000002)
                 {
                     previous = current;
-                    RectangleShape[] buttons = InitPreGame(status, teamComposition);
+                    Shape[] buttons = InitPreGame(status, teamComposition);
                     Window.DispatchEvents();
                     status = _iHandler.HandlerPreGame(buttons, status);
                     if (status[2] == "active" && Arena.FindTeam("green") == false)
@@ -445,7 +440,6 @@ namespace BirdHouse_Battle.UI
                     {
                         yellow = Arena.CreateTeam("yellow");
                     }
-
 
                     switch (status[4])
                     {
@@ -536,15 +530,11 @@ namespace BirdHouse_Battle.UI
                                 blue.AddCatapult(teamComposition[0, i]);
                                 break;
 
-
                             default:
                                 break;
                         }
                     }
-
-
-
-
+                    
                     for (int i = 0; i < teamComposition.GetLength(1); i++)
                     {
                         switch (i)
@@ -637,11 +627,7 @@ namespace BirdHouse_Battle.UI
                 }
 
                 Arena.SpawnUnit();
-
             }
-
-
         }
-
     }
 }

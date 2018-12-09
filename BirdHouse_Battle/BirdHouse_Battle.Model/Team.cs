@@ -77,7 +77,6 @@ namespace BirdHouse_Battle.Model
                 if (_unitCount > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of troops for this team");
 
                 return _unitCount = _aCount + _gCount + _pCount + _dCount + _cCount + _bCount;
-
             }
         }
 
@@ -123,7 +122,6 @@ namespace BirdHouse_Battle.Model
             {
                 if (value < 0.0) throw new ArgumentException("You don't have enought gold", nameof(value));
                 _goldAmount = value;
-
             }
         }
 

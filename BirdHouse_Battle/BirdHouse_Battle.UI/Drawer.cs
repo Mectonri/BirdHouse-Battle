@@ -11,214 +11,105 @@ namespace BirdHouse_Battle.UI
     public class Drawer
     {
         internal RenderWindow _window;
-        Shape _bShape;
-        readonly Shape _resultScreen;
 
-        //Shape _legendSh;
-        Vector2f _size;
-        public Vector2f _screenSize;
-
-        //different textures
-        internal Texture _terain;
-        readonly Texture _startButton;
-        readonly Texture _creditButton;
-        readonly Texture _settingButton;
-        readonly Texture _historyButton;
-        readonly Texture _continueButton;
-        readonly Texture _restartButton;
-        readonly Texture _againButton;
-        readonly Texture _quitButton;
-
-        readonly Texture _exitScreenTexture;
-        readonly Texture _yesButton;
-        readonly Texture _noButton;
-
-        readonly Texture _resultScreenTexture;
         readonly Shape _winnerButton;
         readonly Texture _redTeam;
         readonly Texture _blueTeam;
         readonly Texture _yellowTeam;
         readonly Texture _greenTeam;
-        readonly Texture _main;
+      
 
 
         public Drawer(RenderWindow Window)
         {
-            _main = new Texture("../../../../res/main.png");
-
-            _terain = new Texture("../../../../res/terrain1.jpeg");
-
-            _startButton = new Texture("../../../../res/button_start.png");
-
-            _creditButton = new Texture("../../../../res/button_credits.png");
-            _settingButton = new Texture("../../../../res/button_setting.png");
-            _historyButton = new Texture("../../../../res/button_history.png");
-
-            _continueButton = new Texture("../../../../res/button_continue.png");
-            _restartButton = new Texture("../../../../res/button_restart.png");
-            _quitButton = new Texture("../../../../res/button_quit.png");
-
-            _yesButton = new Texture("../../../../res/button_yes.png");
-            _noButton = new Texture("../../../../res/button_no.png");
-
-            _exitScreenTexture = new Texture("../../../../res/exit.png");
-            _resultScreenTexture = new Texture("../../../../res/end.png");
-            _againButton = new Texture("../../../../res/button_again.png");
-
             _redTeam = new Texture("../../../../res/RedTeam.png");
             _blueTeam = new Texture("../../../../res/BlueTeam.png");
             _greenTeam = new Texture("../../../../res/GreenTeam.png");
             _yellowTeam = new Texture("../../../../res/YellowTeam.png");
 
-
-            _winnerButton = new RectangleShape(new Vector2f (250, 100));
-            _winnerButton.Position = new Vector2f(128, 374);
-            _screenSize = new Vector2f(512, 712);
             _window = Window;
 
-            _resultScreen = new RectangleShape()
+
+            _winnerButton = new RectangleShape()
             {
-                Size = _screenSize,
-                Texture = _resultScreenTexture
-            };
-           
-            _size = new Vector2f(512, 512);
-            _bShape = new RectangleShape()
-            {
-                Size = _size,
-                Texture = _terain
-            };
-            _window.Draw(Bshape);
+                Size = new Vector2f(250, 100),
+                Position = new Vector2f(128, 374)
+            };         
+            _window.Draw(CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
         }
-
-        public Shape Bshape { get { return _bShape; } }
-
-        public Texture Terain { get { return _terain; } }
-
-        public Vector2f Size { get { return _size; } }
 
         /// <summary>
         /// Displays the game background
         /// </summary>
         public void BackGroundGame()
         {
-            _terain = new Texture("../../../../res/terrain1.jpeg");
-            _size = new Vector2f(512, 512);
-            _bShape = new RectangleShape(_size);
-            _bShape.Texture = _terain;
-            _window.Draw(Bshape);
+            //_terain = new Texture();
+            //_size = new Vector2f(512, 512);
+            //_bShape = new RectangleShape(_size);
+            //_bShape.Texture = _terain;
+            _window.Draw( CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
 
             //Displays the legend
-            RectangleShape legend = new RectangleShape(new Vector2f(512, 200))
+            _window.Draw(CreateShape(512, 200, "../../../../res/LEGEND.png", 0, 512));
+        }
+
+        #region CreateButton & overloads
+
+        internal Shape CreateShape(Vector2f Size, string Link, Vector2f position)
+        {
+            RectangleShape button = new RectangleShape()
             {
-                Texture = new Texture("../../../../res/LEGEND.png"),
-                Position = new Vector2f(0, 512)
+                Size = Size,
+                Texture =  new Texture(Link),
+                Position = position,
             };
-            _window.Draw(legend);
+            return button;
         }
 
-        /// <summary>
-        /// Display archer with the corresponding color
-        /// </summary>
-        /// <param name="unit"></param>
-        static Shape DisplayArcher(Unit unit)
+        internal Shape CreateShape(int X, int Y, string Link, int PosX, int PosY)
         {
-            CircleShape shape = new CircleShape(7);
-            shape.SetPointCount(3);
-            shape.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
-
-            Coloring(shape, unit);
-
-            return shape;
-        }
-
-        /// <summary>
-        /// Displays Goblin and color it in function of the team
-        /// </summary>
-        /// <param name="unit"></param>
-        static CircleShape DisplayGoblin(Unit unit)
-        {
-            CircleShape shape = new CircleShape(6)
+            RectangleShape button = new RectangleShape()
             {
-                Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250)
+                Size = new Vector2f(X, Y),
+                Texture = new Texture(Link),
+                Position = new Vector2f(PosX, PosY)
             };
+            return button;
+        }
 
+        internal Shape CreateShape(Vector2f Size, string Link, int PosX, int PosY)
+        {
+            RectangleShape shape = new RectangleShape()
+            {
+                Size = Size,
+                Position = new Vector2f(PosX, PosY),
+                Texture = new Texture(Link)
+            };
+            return shape;
+        }
+   
+        internal static CircleShape CreateShape(Unit unit, int size, uint point)
+        {
+            CircleShape shape = new CircleShape(size)
+            {
+                Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250),
+            };
+            shape.SetPointCount(point);
             Coloring(shape, unit);
 
             return shape;
         }
 
-        static RectangleShape DisplayPaladin(Unit unit)
+        internal static CircleShape CreateShape(Projectile projectile, int size)
         {
-            Vector2f vect = new Vector2f(10, 10);
-            RectangleShape shape = new RectangleShape(vect);
-            shape.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
-
-            Coloring(shape, unit);
-
+            CircleShape shape = new CircleShape(size)
+            {
+                Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250),
+            };
             return shape;
         }
 
-        /// <summary>
-        /// Display drake with the corresponding color
-        /// </summary>
-        /// <param name="unit"></param>
-        static Shape DisplayDrake(Unit unit)
-        {
-            CircleShape shape = new CircleShape(8);
-            shape.SetPointCount(5);
-            shape.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
-
-            Coloring(shape, unit);
-
-            return shape;
-        }
-
-        static Shape DisplayBalista(Unit unit)
-        {
-            CircleShape shape = new CircleShape(8);
-            shape.SetPointCount(6);
-            shape.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
-
-            Coloring(shape, unit);
-
-            return shape;
-        }
-
-        static Shape DisplayCatapult(Unit unit)
-        {
-            CircleShape shape = new CircleShape(8);
-            shape.SetPointCount(7);
-            shape.Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250);
-
-            Coloring(shape, unit);
-
-            return shape;
-        }
-
-        static Shape DisplayArrow(Projectile projectile)
-        {
-            CircleShape arrDis = new CircleShape(2);
-            arrDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
-
-            return arrDis;
-        }
-
-        static Shape DisplayBoulder(Projectile projectile)
-        {
-            CircleShape boulDis = new CircleShape(6);
-            boulDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
-
-            return boulDis;
-        }
-
-        static Shape DisplayBalisticAmmo(Projectile projectile)
-        {
-            CircleShape balisDis = new CircleShape(4);
-            balisDis.Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250);
-
-            return balisDis;
-        }
+        #endregion
 
         public static Shape Coloring(Shape shape, Unit unit)
         {
@@ -240,14 +131,18 @@ namespace BirdHouse_Battle.UI
             return shape;
         }
 
-        /// <summary>
-        /// Creates the Texture for the differents buttons 
-        /// </summary>
-        static void Texturer()
+        static Shape DisplayPaladin(Unit unit)
         {
-           
+            RectangleShape shape = new RectangleShape(new Vector2f(10, 10))
+            {
+                Position = new Vector2f((float)unit.Location.X + 250, (float)unit.Location.Y + 250)
+            };
+
+            Coloring(shape, unit);
+
+            return shape;
         }
-        
+
         public Shape DisplayField(Tile tile)
         {
             CircleShape arrField = new CircleShape(5);
@@ -295,16 +190,16 @@ namespace BirdHouse_Battle.UI
             return arrField;
         }
 
-        static Shape DisplayUnit(Unit u )
+        static Shape DisplayUnit(Unit unit )
         {
             Shape shape = null;
 
-            if ( u is Archer) { shape = DisplayArcher(u); }
-            else if ( u is Balista ) { shape =  DisplayBalista(u); }
-            else if ( u is Catapult ) { shape =  DisplayCatapult(u); }
-            else if ( u is Drake ) { shape = DisplayDrake(u); }
-            else if ( u is Goblin ) { shape = DisplayGoblin(u); }
-            else { shape  = DisplayPaladin(u); }
+            if ( unit is Archer) { shape = shape = CreateShape(unit, 7, 3); }
+            else if ( unit is Balista ) { shape = CreateShape(unit, 8, 6); }
+            else if ( unit is Catapult ) { shape = CreateShape(unit, 8, 7); }
+            else if ( unit is Drake ) { shape = CreateShape(unit, 8, 5); }
+            else if ( unit is Goblin ) { shape = CreateShape(unit, 6, 0);}
+            else { shape  = DisplayPaladin(unit);}// case paladin
 
             return shape;
         }
@@ -312,9 +207,9 @@ namespace BirdHouse_Battle.UI
         static Shape DisplayProj(Projectile p)
         {
             Shape shape = null;
-            if (p is Arrow) shape = DisplayArrow(p);
-            else if (p is Boulder) shape = DisplayBoulder(p);
-            else { shape = DisplayBalisticAmmo(p); }
+            if (p is Arrow) shape = CreateShape(p, 2);
+            else if (p is Boulder) shape = CreateShape(p, 6);
+            else { shape = CreateShape(p, 4); }
 
             return shape;
         }
@@ -350,22 +245,16 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        internal RectangleShape[] EndDisplay(int Winner)
+        #region Menu
+
+        internal Shape[] EndDisplay(int Winner)
         {
-            _window.Draw(_resultScreen);
+            _window.Draw( CreateShape(512, 712, "../../../../res/end.png", 0 , 0));
             Vector2f Bsize = new Vector2f(100, 25);
-            RectangleShape[] buttons = new RectangleShape[2];
+            Shape[] buttons = new RectangleShape[2];
 
-            RectangleShape buttonPreGame = new RectangleShape(Bsize);
-            buttonPreGame.Texture = _againButton;
-            buttonPreGame.Position = new Vector2f(100, 500);
-
-            RectangleShape buttonQuit = new RectangleShape(Bsize);
-            buttonQuit.Texture = _quitButton;
-            buttonQuit.Position = new Vector2f(300, 500);
-
-            buttons[0] = buttonPreGame; // take us to pregame screen
-            buttons[1] = buttonQuit; // take us to main menu
+            buttons[0] = CreateShape(Bsize, "../../../../res/button_again.png", 100, 500); // take us to pregame screen
+            buttons[1] = CreateShape(Bsize, "../../../../res/button_quit.png", 300, 500); ; // take us to main menu
 
             switch (Winner)
             {
@@ -386,7 +275,6 @@ namespace BirdHouse_Battle.UI
                 case 4:
                     _winnerButton.Texture = _yellowTeam;
                     break;
-                
             }
 
             _window.Draw(_winnerButton);
@@ -401,44 +289,20 @@ namespace BirdHouse_Battle.UI
         /// Display the main menu
         /// </summary>
         /// <returns></returns>
-        public RectangleShape[] MenuDisplay()
+        public Shape[] MenuDisplay()
         {
             Vector2f Bsize = new Vector2f(100, 25);
-            RectangleShape[] buttons = new RectangleShape[5];
-            RectangleShape MenuBackground = new RectangleShape(_screenSize)
-            {
-                Texture = _main
-            };
+            Shape[] buttons = new RectangleShape[5];
+
+            Shape MenuBackground = CreateShape(512, 712, "../../../../res/main.png",0 , 0);
             _window.Draw(MenuBackground);
+           
+            buttons[0] = CreateShape(Bsize, "../../../../res/button_start.png", 200, 100); // take us to pregame sreen
+            buttons[1] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 150);// to history mode
+            buttons[2] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 200);// to settings
+            buttons[3] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 250); // to credits
+            buttons[4] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 300); //take us to exit screen
 
-            RectangleShape buttonPreGame = new RectangleShape(Bsize);
-            buttonPreGame.Texture = _startButton;
-            buttonPreGame.Position = new Vector2f(200, 100);
-            
-            
-            RectangleShape buttonHistory = new RectangleShape(Bsize);
-            buttonHistory.Texture = _historyButton;
-            buttonHistory.Position = new Vector2f(200, 150);
-
-
-            RectangleShape buttonParameter = new RectangleShape(Bsize);
-            buttonParameter.Texture = _settingButton;
-            buttonParameter.Position = new Vector2f(200, 200);
-
-            RectangleShape buttonCredit = new RectangleShape(Bsize);
-            buttonCredit.Texture = _creditButton;
-            buttonCredit.Position = new Vector2f(200, 250);
-
-            RectangleShape buttonQuit = new RectangleShape(Bsize);
-            buttonQuit.Texture = _quitButton;
-            buttonQuit.Position = new Vector2f(200, 300);
-
-            buttons[0] = buttonPreGame; // take us to pregame sreen
-            buttons[1] = buttonHistory;
-            buttons[2] = buttonParameter;
-            buttons[3] = buttonCredit;
-            buttons[4] = buttonQuit; //take us to exit screen
-            
             foreach (var t in buttons)
             {
                 _window.Draw(t);
@@ -450,30 +314,16 @@ namespace BirdHouse_Battle.UI
         /// Asks for cofirmation before quitting
         /// </summary>
         /// <returns></returns>
-        public RectangleShape[] ExitDisplay()
+        public Shape[] ExitDisplay()
         {
-            RectangleShape exitBackground = new RectangleShape()
-            {
-                Size = _screenSize,
-                Texture = _exitScreenTexture
-            };
+            Shape ExitBackground = CreateShape(512, 712, "../../../../res/exit.png", 0 ,0);
+            _window.Draw(ExitBackground);
 
-            _window.Draw(exitBackground);
-            RectangleShape[] button = new RectangleShape[2];
+            Shape[] button = new RectangleShape[2];
             Vector2f Bsize = new Vector2f(100, 50);
 
-            RectangleShape buttonYes = new RectangleShape(Bsize);
-            buttonYes.Texture = _yesButton;
-            buttonYes.Position = new Vector2f(100, 200);
-
-            RectangleShape buttonNo = new RectangleShape(Bsize)
-            {
-                Texture = _noButton,
-                Position = new Vector2f(300,200)
-            };
-
-            button[0] = buttonYes; //close the program
-            button[1] = buttonNo; // take us to the precedent screen
+            button[0] = CreateShape(Bsize, "../../../../res/button_yes.png", 100, 200); // 
+            button[1] = CreateShape(Bsize, "../../../../res/button_no.png", 300, 200); // take us to the precedent screen
 
             foreach (var t in button)
             {
@@ -485,31 +335,16 @@ namespace BirdHouse_Battle.UI
         /// <summary>
         /// Display the pause menu
         /// </summary>
-        public RectangleShape[] PauseDisplay()
+        public Shape[] PauseDisplay()
         {
-            RectangleShape[] button = new RectangleShape[4];
+            Shape[] button = new RectangleShape[4];
 
             Vector2f Bsize = new Vector2f(100, 25);
-            RectangleShape buttonContinue = new RectangleShape(Bsize);
-            buttonContinue.Texture = _continueButton;
-            buttonContinue.Position = new Vector2f(200, 50);
-
-            RectangleShape buttonRestart = new RectangleShape(Bsize);
-            buttonRestart.Texture = _restartButton;
-            buttonRestart.Position = new Vector2f(200, 100);
-
-            RectangleShape buttonSetting = new RectangleShape(Bsize);
-            buttonSetting.Texture = _settingButton;
-            buttonSetting.Position = new Vector2f(200, 150);
-
-            RectangleShape buttonQuit = new RectangleShape(Bsize);
-            buttonQuit.Texture = _quitButton;
-            buttonQuit.Position = new Vector2f(200, 200);
-
-            button[0] = buttonContinue; //take us to the game screen
-            button[1] = buttonRestart; // teke us to pregame screen
-            button[2] = buttonSetting;
-            button[3] = buttonQuit; // take us to exist screen
+           
+            button[0] = CreateShape(Bsize, "../../../../res/button_continue.png", 200, 50);//take us to the game screen
+            button[1] = CreateShape(Bsize, "../../../../res/button_restart.png", 200, 100); // take us to pregame screen
+            button[2] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 150); // to settings
+            button[3] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 200); // take us to exist screen
 
             foreach (var t in button)
             {
@@ -518,7 +353,7 @@ namespace BirdHouse_Battle.UI
             return button;
         }
 
-        public RectangleShape[] PreGameDisplay(string[] status, int[,] teamComposition)
+        public Shape[] PreGameDisplay(string[] status, int[,] teamComposition)
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
             Vector2f Tsize = new Vector2f(118, 190); //team button  size
@@ -526,37 +361,9 @@ namespace BirdHouse_Battle.UI
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
 
-            RectangleShape[] buttons = new RectangleShape[11];
+            Shape[] buttons = new RectangleShape[11];
             Text[] messages = new Text[4];
-
-            RectangleShape buttonPlay = new RectangleShape(Bsize);
-            buttonPlay.Position = new Vector2f(380, 125);
-            buttonPlay.Texture = new Texture("../../../../res/button_play.png");
-
-            RectangleShape buttonArcher = new RectangleShape(Bsize);
-            buttonArcher.Position = new Vector2f(10,30);
-            buttonArcher.Texture = new Texture("../../../../res/button_archer.png");
-
-            RectangleShape buttonBalista = new RectangleShape(Bsize);
-            buttonBalista.Position = new Vector2f(105, 30);
-            buttonBalista.Texture = new Texture("../../../../res/button_balista.png");
-
-            RectangleShape buttonCatapult = new RectangleShape(Bsize);
-            buttonCatapult.Position = new Vector2f(105, 95);
-            buttonCatapult.Texture = new Texture("../../../../res/button_catapult.png");
-           
-            RectangleShape buttonDrake = new RectangleShape(Bsize);
-            buttonDrake.Position = new Vector2f(10, 95);
-            buttonDrake.Texture = new Texture("../../../../res/button_drake.png");
-
-            RectangleShape buttonGobelin = new RectangleShape(Bsize);
-            buttonGobelin.Position = new Vector2f(10, 160);
-            buttonGobelin.Texture = new Texture("../../../../res/button_goblin.png");
-
-            RectangleShape buttonPaladin = new RectangleShape(Bsize);
-            buttonPaladin.Position = new Vector2f(10, 225);
-            buttonPaladin.Texture = new Texture("../../../../res/button_paladin.png");
-           
+            
             RectangleShape buttonAddTeam1 = new RectangleShape(Tsize);
             buttonAddTeam1.Position = new Vector2f(5, 317);
             buttonAddTeam1.OutlineThickness = 5;
@@ -628,13 +435,13 @@ namespace BirdHouse_Battle.UI
             buttons[1] = buttonAddTeam2;
             buttons[2] = buttonAddTeam3;
             buttons[3] = buttonAddTeam4;
-            buttons[4] = buttonPlay;
-            buttons[5] = buttonArcher;
-            buttons[6] = buttonDrake;
-            buttons[7] = buttonGobelin;
-            buttons[8] = buttonPaladin;
-            buttons[9] = buttonBalista;
-            buttons[10] = buttonCatapult;
+            buttons[4] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 125);
+            buttons[5] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 30);
+            buttons[6] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 95);
+            buttons[7] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 160);
+            buttons[8] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
+            buttons[9] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
+            buttons[10] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
 
             foreach (var t in buttons)
             {
@@ -654,5 +461,7 @@ namespace BirdHouse_Battle.UI
 
             return buttons;
         }
+
+        #endregion
     }
 }
