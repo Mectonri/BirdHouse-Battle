@@ -41,7 +41,7 @@ namespace BirdHouse_Battle.UI
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "game";
+                game.Switch("ESC");
             }
             else if ((Keyboard.IsKeyPressed(Keyboard.Key.P)))
             {
@@ -50,8 +50,7 @@ namespace BirdHouse_Battle.UI
             }//CONTINUE button
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                Console.WriteLine("pause: continue button");
-                game.Status = "game";
+                game.Switch("P");
             }//RESART
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {

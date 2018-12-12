@@ -19,22 +19,19 @@
                         game.Arena = new Model.Arena();
                         game.PreGame();
                         break;
-
                         
                     case "game"://game screen
                         game.Run();
                         break;
                         
-                        
                     case "close"://close the window
                         game.ExitMenu();
-                        //run = false;
                         break;
                         
-                    case "pause"://pause the game screen
+                    //case "pause"://pause the game screen
+                    //    if ( game.Paused == true ) { game.PauseMenu(); }
                         
-                        game.PauseMenu();
-                        break;
+                    //    break;
 
                     case "ended"://when the game has ended
                         game.ResultWindow();

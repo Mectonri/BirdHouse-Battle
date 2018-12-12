@@ -17,8 +17,6 @@ namespace BirdHouse_Battle.UI
         readonly Texture _blueTeam;
         readonly Texture _yellowTeam;
         readonly Texture _greenTeam;
-      
-
 
         public Drawer(RenderWindow Window)
         {
@@ -28,8 +26,7 @@ namespace BirdHouse_Battle.UI
             _yellowTeam = new Texture("../../../../res/YellowTeam.png");
 
             _window = Window;
-
-
+            
             _winnerButton = new RectangleShape()
             {
                 Size = new Vector2f(250, 100),
@@ -43,10 +40,6 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public void BackGroundGame()
         {
-            //_terain = new Texture();
-            //_size = new Vector2f(512, 512);
-            //_bShape = new RectangleShape(_size);
-            //_bShape.Texture = _terain;
             _window.Draw( CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
 
             //Displays the legend
@@ -236,11 +229,6 @@ namespace BirdHouse_Battle.UI
             }
             foreach (KeyValuePair<int, Projectile> projectile in arena.Projectiles)
             {
-
-                //string s = projectile.Value.ToString();
-                //if (s == "BirdHouse_Battle.Model.Arrow") shape = DisplayArrow(projectile.Value);
-                //else if (s == "BirdHouse_Battle.Model.Boulder") shape = DisplayBoulder(projectile.Value);
-                //else shape = DisplayBalisticAmmo(projectile.Value);
                 _window.Draw(shape = DisplayProj(projectile.Value));
             }
         }
@@ -249,7 +237,7 @@ namespace BirdHouse_Battle.UI
 
         internal Shape[] EndDisplay(int Winner)
         {
-            _window.Draw( CreateShape(512, 712, "../../../../res/end.png", 0 , 0));
+            _window.Draw( CreateShape(512, 712, "../../../../res/end.png", 0, 0));
             Vector2f Bsize = new Vector2f(100, 25);
             Shape[] buttons = new RectangleShape[2];
 
@@ -264,8 +252,6 @@ namespace BirdHouse_Battle.UI
 
                 case 2://blue won
                     _winnerButton.Texture = _redTeam;
-
-
                     break;
 
                 case 3:
@@ -461,7 +447,6 @@ namespace BirdHouse_Battle.UI
 
             return buttons;
         }
-
         #endregion
     }
 }

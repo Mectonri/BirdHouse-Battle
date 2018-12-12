@@ -1,5 +1,6 @@
 ﻿using BirdHouse_Battle.Model;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using System;
 
@@ -16,33 +17,27 @@ namespace BirdHouse_Battle.UI
         bool _paused; // track whether the game is paused or not
         bool _return;
         double _previousP;
-        readonly Color white;
         double _msPerUpdate = 0.0000006;
         string _status;
         public int _winner = 0;
-
+        public int _tour = 0;
         #endregion
 
         public Game()
         {
             Load();
-            
+
             _iHandler = new InputHandler(this);
             _arena = new Arena();
             _window = new RenderWindow(new VideoMode(512, 712), "BirdHouseBattle", Styles.Default);
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
-
-            white = new Color(255, 255, 255);
             _winner = FindWinner();
+
+          
         }
 
-
-        //static int GetUpdateNb()
-        //{
-        //    return x++;
-        //}
 
         #region Getter
 
@@ -70,11 +65,18 @@ namespace BirdHouse_Battle.UI
             set { _paused = value; }
         }
 
+        
         public double MsPerUpdate
         {
             get { return _msPerUpdate; }
         }
+
+       // public int Tour { get { return _tour; } }
         
+        //static int GetNbTour(int X)
+        //{
+        //    return  X = _tour++;
+        //}
         #endregion
         
         static void Load()
@@ -95,7 +97,6 @@ namespace BirdHouse_Battle.UI
         internal static void Update(Arena arena)
         {
             arena.Update();
-            //GetUpdateNb();
         }
 
         private static double TimeP
@@ -113,13 +114,16 @@ namespace BirdHouse_Battle.UI
             get { return _return; }
         }
 
+        //public int Tour { get => _tour; set => _tour = value; }
+
+
         #endregion
 
         public bool GameLoop(Arena arena)
         {
             _return = true;
             double previous = GetCurrentTime();
-            
+
             _iHandler.Handler();
 
             while (arena.TeamCount > 1)
@@ -130,22 +134,27 @@ namespace BirdHouse_Battle.UI
                 {
                     Update(arena);
                     previous = GetCurrentTime();
+                    _tour++;
                 }
-                else if (Paused)
+                else if (GetCurrentTime() - previous >= MsPerUpdate && Paused)
                 {
-                    PauseMenu();
+                    //PauseMenu();
+                    _iHandler.HandlerPause(draw.PauseDisplay());
                 }
-
+                
                 if (!_window.IsOpen || !Return)
                 {
-                    Status = "main";
+                    Status = "ended";
                     arena.Teams.Clear();
                     arena.Projectiles.Clear();
                     arena.DeadTeams.Clear();
                     arena.DeadProjectiles.Clear();
                 }
+
                 if (!Paused) Render(arena);
+                else PauseMenu();
             }
+
             FindWinner();
 
             Status = "ended";
@@ -156,7 +165,6 @@ namespace BirdHouse_Battle.UI
 
             return true;
         }
-
 
         /// <summary>
         /// Find the winning team
@@ -253,16 +261,14 @@ namespace BirdHouse_Battle.UI
                 case "P":
                     if (GetCurrentTime() - PreviousP >= TimeP)
                     {
+                        Console.WriteLine("switch : P key is pressed");
+                        Console.WriteLine("pause is :{0}", Paused);
                         Paused = !Paused;
                         _previousP = GetCurrentTime();
-                        Console.WriteLine("switch : P key is pressed");
-                        //InitPause();
-                        //Status = "pause";
                     }
                     break;
 
-                case "ESC":
-                    //Window.Close();
+                case "ESC": 
                     Status = "close";
                     Console.WriteLine("switch : ESC key is pressed");
                     break;
@@ -304,31 +310,16 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public Shape[] InitGUI()
         {
-            Window.Clear( white);
-            
-           //Drawer draw = new Drawer(Window);
+            Window.Clear( );
             Shape[] buttons = draw.MenuDisplay();
             Window.Display();
             
             return buttons;
         }
 
-        /// <summary>
-        /// Display Main Menu
-        /// </summary>
-        public void MainMenu()
-        {
-            while (Window.IsOpen && Status == "main")
-            {
-                Shape[] buttons = InitGUI();
-
-                _iHandler.HandlerMain(buttons);
-            }
-        }
-
         public Shape[] InitPause()
         {
-            Window.Clear(white);
+            Window.Clear();
             Shape[] buttons = draw.PauseDisplay();
             Window.Display();
             return buttons;
@@ -339,20 +330,28 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public void PauseMenu()
         {
-            if (Paused)
+            while (Window.IsOpen && Paused == true)
             {
                 Shape[] buttons = InitPause();
-                while (Window.IsOpen && Status == "pause")
-                {
-                    _iHandler.HandlerPause(buttons);
-                }
+                _iHandler.HandlerPause(buttons);
             }
-
         }
 
+        /// <summary>
+        /// Display Main Menu
+        /// </summary>
+        public void MainMenu()
+        {
+            while (Window.IsOpen && Status == "main")
+            {
+                Shape[] buttons = InitGUI();
+                _iHandler.HandlerMain(buttons);
+            }
+        }
+        
         public Shape[] InitExit()
         {
-            Window.Clear(white);           
+            Window.Clear();           
             Shape[] buttons = draw.ExitDisplay();
            
             Window.Display();
@@ -380,7 +379,7 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        #endregion
+        
         public void ResultWindow()
         {
             while (Window.IsOpen && Status == "ended")
@@ -392,13 +391,21 @@ namespace BirdHouse_Battle.UI
 
         private Shape[] InitEnd()
         {
-            Window.Clear(white);
+            
+
+            Window.Clear();
+            Font font = new Font("../../../../res/Overlock-Bold.ttf");
+            Text ToursFinal = new Text(_tour.ToString() + "TURNS", font, 50);
+            
+
+            ToursFinal.Position = new Vector2f(150,550);
             Shape[] buttons = draw.EndDisplay(Winner);
+            Window.Draw(ToursFinal);
             Window.Display();
 
             return buttons;
         }
-
+        #endregion
         public void PreGame()
         {
             
