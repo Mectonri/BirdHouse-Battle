@@ -1,8 +1,12 @@
 ﻿using BirdHouse_Battle.Model;
+//using Newtonsoft.Json;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
+using System.Collections.Generic;
+
+//using System.Web.Script.Serialization;
 
 namespace BirdHouse_Battle.UI
 {
@@ -35,9 +39,21 @@ namespace BirdHouse_Battle.UI
             draw = new Drawer(_window);
             _winner = FindWinner();
 
-          
+
+            //string json = JsonConvert.SerializeObject(product);
+
+
         }
 
+
+
+        //private void SampleJSONSerilaize(Archer A)
+        //{ 
+           
+        //    string objjsonData = JsonConvert.SerializeObject(A);
+            
+        //    System.IO.File.WriteAllText("../../../../res/", objjsonData);
+        //}
 
         #region Getter
 
@@ -125,6 +141,12 @@ namespace BirdHouse_Battle.UI
             double previous = GetCurrentTime();
 
             _iHandler.Handler();
+
+            // string objjsonData = JsonConvert.SerializeObject(arena);
+
+            //System.IO.File.WriteAllText("../../../../res/", objjsonData);
+
+
 
             while (arena.TeamCount > 1)
             {
@@ -237,6 +259,51 @@ namespace BirdHouse_Battle.UI
             //blue.AddDrake(5);
 
             arena.SpawnUnit();
+        }
+
+        public void RandomGame( Arena arena)
+        {
+            int max = 125;
+
+            Random rn = new Random();
+            int f = 1;
+            
+            int t = rn.Next(1, 5);
+            int r = rn.Next(max);
+
+            //int reste = max - i.Value.UnitCount;
+
+            for (f = 1; f <= t; f++)
+            {
+               
+                arena.CreateTeam( "Team"+ f.ToString() );
+            }
+
+            
+            foreach (KeyValuePair<string, Team> i in arena.Teams)
+            {
+                
+                i.Value.AddArcher(rn.Next(125));
+
+                
+                i.Value.AddBalista(rn.Next(125-i.Value.UnitCount));
+                
+
+                i.Value.AddCatapult(rn.Next(125 - i.Value.UnitCount));
+                //max = max - r;
+                //reste = max - i.Value.UnitCount;
+
+                i.Value.AddDrake(rn.Next(125 - i.Value.UnitCount));
+                //max = max - r;
+               // reste = max - i.Value.UnitCount;
+
+                i.Value.AddGobelin(rn.Next(125 - i.Value.UnitCount));
+                //max = max - r;
+                //reste = max - i.Value.UnitCount;
+
+                i.Value.AddPaladin(rn.Next(125 - i.Value.UnitCount));
+                //reste = max - i.Value.UnitCount;
+            }
         }
 
         public void Run()
@@ -391,8 +458,6 @@ namespace BirdHouse_Battle.UI
 
         private Shape[] InitEnd()
         {
-            
-
             Window.Clear();
             Font font = new Font("../../../../res/Overlock-Bold.ttf");
             Text ToursFinal = new Text(_tour.ToString() + "TURNS", font, 50);

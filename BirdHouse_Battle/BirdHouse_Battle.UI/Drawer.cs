@@ -347,7 +347,7 @@ namespace BirdHouse_Battle.UI
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
 
-            Shape[] buttons = new RectangleShape[11];
+            Shape[] buttons = new RectangleShape[12];
             Text[] messages = new Text[4];
             
             RectangleShape buttonAddTeam1 = new RectangleShape(Tsize);
@@ -428,6 +428,7 @@ namespace BirdHouse_Battle.UI
             buttons[8] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
             buttons[9] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
             buttons[10] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
+            buttons[11] = CreateShape(Bsize, "../../../../res/button_random.png", 380, 225);
 
             foreach (var t in buttons)
             {

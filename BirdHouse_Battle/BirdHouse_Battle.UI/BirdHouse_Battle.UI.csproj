@@ -10,6 +10,7 @@
     <PackageReference Include="ITI.SFML.Graphics" Version="0.1.0" />
     <PackageReference Include="ITI.SFML.System" Version="0.1.0" />
     <PackageReference Include="ITI.SFML.Window" Version="0.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>

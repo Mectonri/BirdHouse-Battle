@@ -1,4 +1,8 @@
-﻿namespace BirdHouse_Battle.UI
+﻿using BirdHouse_Battle.Model;
+using Newtonsoft.Json.Linq;
+
+
+namespace BirdHouse_Battle.UI
 {
     class Program
     {
@@ -6,6 +10,28 @@
         {
             bool run = true;
             Game game = new Game();
+
+            ///////
+            //Arena a = new Arena();
+            //Team t = new Team(a,"Bleu",125);
+            //Archer A = new Archer(t,a, 1);
+
+            //JObject o = new JObject
+            //    (
+            //        new Archer(t, a, 1)
+            //        {
+                      
+           
+            //        }
+            //    );
+                   
+
+            //string json = JsonConvert.SerializeObject(t);
+
+            //System.IO.File.WriteAllText("../../../../res/", json);
+            /////
+
+
             while (run == true)
             {
                 switch (game.Status)
