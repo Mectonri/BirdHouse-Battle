@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
@@ -80,10 +81,8 @@ namespace BirdHouse_Battle.Model
             }
         }
 
-        public Arena Context
-        {
-            get { return _arena; }
-        }
+        [JsonIgnore]
+        public Arena Context => _arena;
 
         public int Acount
         {
@@ -185,20 +184,11 @@ namespace BirdHouse_Battle.Model
             }
         }
 
-        public Dictionary<int, Unit> Units
-        {
-            get { return _units; }
-        }
+        public Dictionary<int, Unit> Units => _units;
 
-        public Unit GoblinsTarget
-        {
-            get { return _goblinsTarget; }
-        }
+        public Unit GoblinsTarget => _goblinsTarget;
 
-        public Unit ArchersTarget
-        {
-            get { return _archersTarget; }
-        }
+        public Unit ArchersTarget => _archersTarget;
 
         public int GoblinsAttack
         {
