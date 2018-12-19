@@ -1,41 +1,46 @@
 ﻿using BirdHouse_Battle.Model;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using System;
+using System.Collections.Generic;
 
 namespace BirdHouse_Battle.UI
 {
     public class Game
     {
         #region Fields
+
         RenderWindow _window;
         Arena _arena;
         InputHandler _iHandler;
-        private Drawer draw;
-        bool _paused; // track whether the game is paused or not
+        Drawer draw;
         bool _return;
         double _previousP;
-        Color white;
         double _msPerUpdate = 0.0000006;
-        //double Accel;
         string _status;
+        public int _winner = 0;
+        public int _tour = 0;
+    
         #endregion
 
         public Game()
         {
             Load();
-            
+
             _iHandler = new InputHandler(this);
             _arena = new Arena();
             _window = new RenderWindow(new VideoMode(512, 712), "BirdHouseBattle", Styles.Default);
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
+            _winner = FindWinner();
 
-            white = new Color(255, 255, 255);
         }
 
         #region Getter
+
+        public int Winner =>_winner;
 
         public string Status
         {
@@ -48,23 +53,13 @@ namespace BirdHouse_Battle.UI
             set {_arena = value; }
         }
 
-        public RenderWindow Window
-        {
-            get { return _window; }
-        }
+        public RenderWindow Window => _window; 
+    
+        public bool Paused { get; set; }
 
-        public bool Paused
-        {
-            get { return _paused; }
-            set { _paused = value; }
-        }
-
-        public double MsPerUpdate
-        {
-            get { return _msPerUpdate; }
-        }
-
+        public double MsPerUpdate => _msPerUpdate; 
         
+
         #endregion
         
         static void Load()
@@ -74,33 +69,185 @@ namespace BirdHouse_Battle.UI
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
         }
-        
+
         #region Relevant to Gameloop
 
-        static double GetCurrentTime()
-        {
-            return DateTime.Now.ToOADate();
-        }
+        public double PreviousP => _previousP;
 
-        static void Update(Arena arena)
+        public bool Return => _return;
+
+        private static double TimeP => 0.000002;
+
+        static double GetCurrentTime() => DateTime.Now.ToOADate();
+
+        internal static void Update(Arena arena)
         {
             arena.Update();
-
         }
 
-        private static double TimeP
+        #endregion
+
+        public bool GameLoop(Arena arena)
         {
-            get { return 0.000002; }
+            _return = true;
+            double previous = GetCurrentTime();
+
+            _iHandler.Handler();
+
+            while (arena.TeamCount > 1)
+            {
+                _iHandler.Handler();
+
+                if (GetCurrentTime() - previous >= MsPerUpdate && !Paused)
+                {
+                    Update(arena);
+                    previous = GetCurrentTime();
+                    _tour++;
+                }
+                else if (GetCurrentTime() - previous >= MsPerUpdate && Paused)
+                {
+                    //PauseMenu();
+                    _iHandler.HandlerPause(draw.PauseDisplay());
+                }
+                
+                if (!_window.IsOpen || !Return)
+                {
+                    Status = "ended";
+                    arena.Teams.Clear();
+                    arena.Projectiles.Clear();
+                    arena.DeadTeams.Clear();
+                    arena.DeadProjectiles.Clear();
+                }
+
+                if (!Paused) Render(arena);
+                else PauseMenu();
+            }
+
+            FindWinner();
+
+            Status = "ended";
+            arena.Teams.Clear();
+            arena.Projectiles.Clear();
+            arena.DeadTeams.Clear();
+            arena.DeadProjectiles.Clear();
+
+            return true;
+        }
+        
+        /// <summary>
+        /// Find the winning team
+        /// </summary>
+        /// <returns></returns>
+        public int FindWinner()
+        {
+            if (_arena.FindTeam("blue") == true)
+            {
+                Console.WriteLine("Blue team won");
+                return _winner = 1;
+            }
+            else if (_arena.FindTeam("red") == true)
+            {
+                Console.WriteLine("Red team won");
+                return _winner = 2;
+            }
+            else if (_arena.FindTeam("green") == true)
+            {
+                Console.WriteLine("Green team won");
+                return _winner = 3;
+            }
+            else
+            {
+                Console.WriteLine("Yellow team won");
+                return _winner = 4;
+            }
         }
 
-        public double PreviousP
+        //public void Prep(Arena arena)
+        //{
+        //    // Part One
+
+        //    Team blue = arena.CreateTeam("blue");
+        //    Team red = arena.CreateTeam("red");
+        //    Team green = arena.CreateTeam("green");
+        //    Team yellow = arena.CreateTeam("yellow");
+        //    red.AddArcher(10); red.AddGobelin(40); red.AddPaladin(35);
+        //    red.AddDrake(5); red.AddBalista(5); red.AddCatapult(5);
+        //    blue.AddArcher(10); blue.AddGobelin(45); blue.AddPaladin(40);
+        //    blue.AddDrake(5); blue.AddBalista(5); blue.AddCatapult(5);
+        //    green.AddArcher(10); green.AddGobelin(45); green.AddPaladin(40);
+        //    green.AddDrake(5); green.AddBalista(5); green.AddCatapult(5);
+        //    yellow.AddArcher(10); yellow.AddGobelin(45); yellow.AddPaladin(40);
+        //    yellow.AddDrake(5); yellow.AddBalista(5); yellow.AddCatapult(5);
+
+        //    // Part Two
+
+        //    //Team blue = arena.CreateTeam("blue");
+        //    //Team red = arena.CreateTeam("red");
+        //    //red.AddCatapult(10);
+        //    //blue.AddPaladin(5);
+        //    //blue.AddDrake(5);
+
+        //    // Part Three
+
+        //    //Team blue = arena.CreateTeam("blue");
+        //    //Team red = arena.CreateTeam("red");
+        //    //red.AddBalista(10);
+        //    //blue.AddDrake(5);
+        //    //blue.AddPaladin(5);
+
+        //    // Part Four
+
+        //    //Team blue = arena.CreateTeam("blue");
+        //    //Team red = arena.CreateTeam("red");
+        //    //red.AddBalista(3);
+        //    //red.AddGobelin(5);
+        //    //blue.AddCatapult(2);
+        //    //blue.AddDrake(5);
+
+        //    arena.SpawnUnit();
+        //}
+
+        public void RandomGame( Arena arena)
         {
-            get { return _previousP; }
+            Random rn = new Random();
+            int t = rn.Next(2, 5);
+
+            for (int f = 1; f <= t; f++)
+            {
+                arena.CreateTeam( "Team"+ f.ToString() );
+            }
+            
+            foreach (KeyValuePair<string, Team> i in arena.Teams)
+            {
+                i.Value.AddArcher(rn.Next(125));
+                
+                i.Value.AddBalista(rn.Next(125-i.Value.UnitCount));
+
+                i.Value.AddCatapult(rn.Next(125 - i.Value.UnitCount));
+               
+                i.Value.AddDrake(rn.Next(125 - i.Value.UnitCount));
+
+                i.Value.AddGobelin(rn.Next(125 - i.Value.UnitCount));
+
+                i.Value.AddPaladin(rn.Next(125 - i.Value.UnitCount));
+            }
+
+            arena.SpawnUnit();
         }
 
-        public bool Return
+        public void Run()
         {
-            get { return _return; }
+            GameLoop(Arena);
+        }
+
+        public void Render(Arena arena )
+        {
+           
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            draw.BackGroundGame();
+            draw.UnitDisplay(arena);
+            Window.Display();
         }
 
         public void Switch(string input)
@@ -110,27 +257,25 @@ namespace BirdHouse_Battle.UI
                 case "P":
                     if (GetCurrentTime() - PreviousP >= TimeP)
                     {
+                        Console.WriteLine("switch : P key is pressed");
+                        Console.WriteLine("pause is :{0}", Paused);
                         Paused = !Paused;
                         _previousP = GetCurrentTime();
-                        Console.WriteLine("P key is pressed");
-                        _status = "pause";
                     }
                     break;
 
                 case "ESC":
-                    Window.Close();
-                    _status = "close";
-                    Console.WriteLine("ESC key is pressed");
+                    Status = "close";
+                    Console.WriteLine("switch : ESC key is pressed");
                     break;
 
                 case "Right":
                     if (GetCurrentTime() - PreviousP >= TimeP)
                     {
                         _previousP = GetCurrentTime();
-                        Console.WriteLine("right arrow is pressed");
-                        if (MsPerUpdate > 0.0000006/200)
+                        Console.WriteLine(" switch : Right arrow is pressed");
+                        if (MsPerUpdate > 0.0000006 / 200)
                         {
-
                             _msPerUpdate = MsPerUpdate / 20;
                         }
                     }
@@ -140,7 +285,7 @@ namespace BirdHouse_Battle.UI
                     if (GetCurrentTime() - PreviousP >= TimeP)
                     {
                         _previousP = GetCurrentTime();
-                        Console.WriteLine("Left key is pressed");
+                        Console.WriteLine("swithc : Left key is pressed");
                         if (MsPerUpdate < 0.0000006)
                         {
                             _msPerUpdate = MsPerUpdate * 20;
@@ -151,144 +296,81 @@ namespace BirdHouse_Battle.UI
                 case "RETURN":
                     _return = false;
                     break;
+                default:
+                    break;
             }
         }
 
-        
-        #endregion
-
-        public bool GameLoop(Arena arena)
-        {
-            _return = true;
-            double previous = GetCurrentTime();
-            
-            _iHandler.Handler();
-
-            while (arena.TeamCount > 1)
-            {
-                _iHandler.Handler();
-                
-                if (GetCurrentTime() - previous >= MsPerUpdate && !Paused)
-                {
-                    Update(arena);
-                    previous = GetCurrentTime();
-                }
-
-                if (!_window.IsOpen || !Return)
-                {
-                    Status = "main";
-                    arena.Teams.Clear();
-                    arena.Projectiles.Clear();
-                    arena.DeadTeams.Clear();
-                    arena.DeadProjectiles.Clear();
-                }
-                Render(arena);
-            }
-
-            Status = "main";
-            arena.Teams.Clear();
-            arena.Projectiles.Clear();
-            arena.DeadTeams.Clear();
-            arena.DeadProjectiles.Clear();
-
-            return true;
-        }
-
-        public void Prep(Arena arena)
-        {
-            // Part One
-
-            Team blue = arena.CreateTeam("blue");
-            Team red = arena.CreateTeam("red");
-            Team green = arena.CreateTeam("green");
-            Team yellow = arena.CreateTeam("yellow");
-            red.AddArcher(10); red.AddGobelin(40); red.AddPaladin(35);
-            red.AddDrake(5); red.AddBalista(5); red.AddCatapult(5);
-            blue.AddArcher(10); blue.AddGobelin(45); blue.AddPaladin(40);
-            blue.AddDrake(5); blue.AddBalista(5); blue.AddCatapult(5);
-            green.AddArcher(10); green.AddGobelin(45); green.AddPaladin(40);
-            green.AddDrake(5); green.AddBalista(5); green.AddCatapult(5);
-            yellow.AddArcher(10); yellow.AddGobelin(45); yellow.AddPaladin(40);
-            yellow.AddDrake(5); yellow.AddBalista(5); yellow.AddCatapult(5);
-
-            // Part Two
-
-            //Team blue = arena.CreateTeam("blue");
-            //Team red = arena.CreateTeam("red");
-            //red.AddCatapult(10);
-            //blue.AddPaladin(5);
-            //blue.AddDrake(5);
-
-            // Part Three
-
-            //Team blue = arena.CreateTeam("blue");
-            //Team red = arena.CreateTeam("red");
-            //red.AddBalista(10);
-            //blue.AddDrake(5);
-            //blue.AddPaladin(5);
-
-            // Part Four
-
-            //Team blue = arena.CreateTeam("blue");
-            //Team red = arena.CreateTeam("red");
-            //red.AddBalista(3);
-            //red.AddGobelin(5);
-            //blue.AddCatapult(2);
-            //blue.AddDrake(5);
-
-            arena.SpawnUnit();
-        }
-
-        //private void WindowEscaping(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Code == Keyboard.Key.Escape) Window.Close();
-        //}
-
-        //private void WindowClosed(object sender, EventArgs e)
-        //{
-        //    _window.Close();
-        //}
-
-        public void Render(Arena arena)
-        {
-            Window.Clear();
-            Drawer draw = new Drawer(Window);
-            draw.BackGroundGame();
-            draw.UnitDisplay(arena);
-            Window.Display();
-        }
+        #region InitMenus
 
         /// <summary>
         /// Init the main menu
         /// </summary>
-        public RectangleShape[] InitGUI()
+        public Shape[] InitGUI()
         {
-            
-            Window.Clear( white);
-            
-           //Drawer draw = new Drawer(Window);
-            RectangleShape[] buttons = draw.MenuDisplay();
+            Window.Clear( );
+            Shape[] buttons = draw.MenuDisplay();
             Window.Display();
             
             return buttons;
         }
 
-        public RectangleShape[] InitPause()
+        public void CreditPage()
         {
-            //throw new NotImplementedException();
-            
-            Window.Clear(white);
-            
-            RectangleShape[] buttons = draw.PauseDisplay();
-            Window.Display();
+            while(Window.IsOpen && Status == "credit")
+            {
+                Shape[] buttons = InitCredit();
+                _iHandler.HandlerCredit(buttons);
+            }
+        }
 
+        private Shape[] InitCredit()
+        {
+            Window.Clear();
+            Shape[] buttons = draw.CreditDisplay();
+            Window.Display();
             return buttons;
         }
 
-        public void Run()
+        public Shape[] InitPause()
         {
-            //Prep(Arena);
-            GameLoop(Arena);
+            Window.Clear();
+            Shape[] buttons = draw.PauseDisplay();
+            Window.Display();
+            return buttons;
+        }
+        
+        /// <summary>
+        /// Display pause Menu
+        /// </summary>
+        public void PauseMenu()
+        {
+            while (Window.IsOpen && Paused == true)
+            {
+                Shape[] buttons = InitPause();
+                _iHandler.HandlerPause(buttons);
+            }
+        }
+
+        /// <summary>
+        /// Display Main Menu
+        /// </summary>
+        public void MainMenu()
+        {
+            while (Window.IsOpen && Status == "main")
+            {
+                Shape[] buttons = InitGUI();
+                _iHandler.HandlerMain(buttons);
+            }
+        }
+        
+        public Shape[] InitExit()
+        {
+            Window.Clear();           
+            Shape[] buttons = draw.ExitDisplay();
+           
+            Window.Display();
+            return buttons;
         }
 
         /// <summary>
@@ -296,46 +378,49 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public void ExitMenu()
         {
-
-        }
-
-
-        /// <summary>
-        /// Trigered xwhen the game is on pause
-        /// </summary>
-        public void PauseMenu()
-        {
-            while (Window.IsOpen && Status == "pause")
+            while (Window.IsOpen && Status == "close")
             {
-                RectangleShape[] buttons = InitPause();
-                _iHandler.HandlerPause(buttons);
+                Shape[] buttons = InitExit();
+                _iHandler.HandlerExit(buttons);
             }
         }
-        
-        /// <summary>
-        /// trigered when game start
-        /// </summary>
-        public void MainMenu()
-        {
-            while (Window.IsOpen && Status=="main")
-            {
-                RectangleShape[] buttons = InitGUI();
-                
-                _iHandler.HandlerMain(buttons);
-            }
-        }
-
-        public RectangleShape[] InitPreGame(string[] status, int[,] teamComposition)
+      
+        public Shape[] InitPreGame(string[] status, int[,] teamComposition)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            RectangleShape[] buttons = draw.PreGameDisplay(status, teamComposition);
+            Shape[] buttons = draw.PreGameDisplay(status, teamComposition);
             Window.Display();
             return buttons;
         }
 
+        public void ResultWindow()
+        {
+            while (Window.IsOpen && Status == "ended")
+            {
+                Shape[] buttons = InitEnd();
+                _iHandler.HandlerEnd(buttons);
+            }
+        }
+
+        private Shape[] InitEnd()
+        {
+            Window.Clear();
+            Font font = new Font("../../../../res/Overlock-Bold.ttf");
+            Text ToursFinal = new Text(_tour.ToString() + "TURNS", font, 50)
+            {
+                Position = new Vector2f(150, 550)
+            };
+            Shape[] buttons = draw.EndDisplay(Winner);
+            Window.Draw(ToursFinal);
+            Window.Display();
+
+            return buttons;
+        }
+        
         public void PreGame()
         {
+            
             Team blue = Arena.CreateTeam("blue"); 
             Team red = Arena.CreateTeam("red");
             Team green = null;
@@ -363,7 +448,7 @@ namespace BirdHouse_Battle.UI
                 if (current - previous >= 0.000002)
                 {
                     previous = current;
-                    RectangleShape[] buttons = InitPreGame(status, teamComposition);
+                    Shape[] buttons = InitPreGame(status, teamComposition);
                     Window.DispatchEvents();
                     status = _iHandler.HandlerPreGame(buttons, status);
                     if (status[2] == "active" && Arena.FindTeam("green") == false)
@@ -374,7 +459,6 @@ namespace BirdHouse_Battle.UI
                     {
                         yellow = Arena.CreateTeam("yellow");
                     }
-
 
                     switch (status[4])
                     {
@@ -465,15 +549,11 @@ namespace BirdHouse_Battle.UI
                                 blue.AddCatapult(teamComposition[0, i]);
                                 break;
 
-
                             default:
                                 break;
                         }
                     }
-
-
-
-
+                    
                     for (int i = 0; i < teamComposition.GetLength(1); i++)
                     {
                         switch (i)
@@ -566,11 +646,8 @@ namespace BirdHouse_Battle.UI
                 }
 
                 Arena.SpawnUnit();
-
             }
-
-
         }
-
     }
 }
+#endregion
