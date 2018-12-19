@@ -1,12 +1,9 @@
 ﻿using BirdHouse_Battle.Model;
-//using Newtonsoft.Json;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
-
-//using System.Web.Script.Serialization;
 
 namespace BirdHouse_Battle.UI
 {
@@ -18,13 +15,13 @@ namespace BirdHouse_Battle.UI
         Arena _arena;
         InputHandler _iHandler;
         Drawer draw;
-        bool _paused; // track whether the game is paused or not
         bool _return;
         double _previousP;
         double _msPerUpdate = 0.0000006;
         string _status;
         public int _winner = 0;
         public int _tour = 0;
+    
         #endregion
 
         public Game()
@@ -39,25 +36,11 @@ namespace BirdHouse_Battle.UI
             draw = new Drawer(_window);
             _winner = FindWinner();
 
-
-            //string json = JsonConvert.SerializeObject(product);
-
-
         }
-
-
-
-        //private void SampleJSONSerilaize(Archer A)
-        //{ 
-           
-        //    string objjsonData = JsonConvert.SerializeObject(A);
-            
-        //    System.IO.File.WriteAllText("../../../../res/", objjsonData);
-        //}
 
         #region Getter
 
-        public int Winner { get { return _winner; } }
+        public int Winner =>_winner;
 
         public string Status
         {
@@ -70,29 +53,13 @@ namespace BirdHouse_Battle.UI
             set {_arena = value; }
         }
 
-        public RenderWindow Window
-        {
-            get { return _window; }
-        }
+        public RenderWindow Window => _window; 
+    
+        public bool Paused { get; set; }
 
-        public bool Paused
-        {
-            get { return _paused; }
-            set { _paused = value; }
-        }
-
+        public double MsPerUpdate => _msPerUpdate; 
         
-        public double MsPerUpdate
-        {
-            get { return _msPerUpdate; }
-        }
 
-       // public int Tour { get { return _tour; } }
-        
-        //static int GetNbTour(int X)
-        //{
-        //    return  X = _tour++;
-        //}
         #endregion
         
         static void Load()
@@ -102,36 +69,21 @@ namespace BirdHouse_Battle.UI
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
         }
-        
+
         #region Relevant to Gameloop
 
-        static double GetCurrentTime()
-        {
-            return DateTime.Now.ToOADate();
-        }
+        public double PreviousP => _previousP;
+
+        public bool Return => _return;
+
+        private static double TimeP => 0.000002;
+
+        static double GetCurrentTime() => DateTime.Now.ToOADate();
 
         internal static void Update(Arena arena)
         {
             arena.Update();
         }
-
-        private static double TimeP
-        {
-            get { return 0.000002; }
-        }
-
-        public double PreviousP
-        {
-            get { return _previousP; }
-        }
-
-        public bool Return
-        {
-            get { return _return; }
-        }
-
-        //public int Tour { get => _tour; set => _tour = value; }
-
 
         #endregion
 
@@ -141,12 +93,6 @@ namespace BirdHouse_Battle.UI
             double previous = GetCurrentTime();
 
             _iHandler.Handler();
-
-            // string objjsonData = JsonConvert.SerializeObject(arena);
-
-            //System.IO.File.WriteAllText("../../../../res/", objjsonData);
-
-
 
             while (arena.TeamCount > 1)
             {
@@ -187,7 +133,7 @@ namespace BirdHouse_Battle.UI
 
             return true;
         }
-
+        
         /// <summary>
         /// Find the winning team
         /// </summary>
@@ -216,94 +162,77 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void Prep(Arena arena)
-        {
-            // Part One
+        //public void Prep(Arena arena)
+        //{
+        //    // Part One
 
-            Team blue = arena.CreateTeam("blue");
-            Team red = arena.CreateTeam("red");
-            Team green = arena.CreateTeam("green");
-            Team yellow = arena.CreateTeam("yellow");
-            red.AddArcher(10); red.AddGobelin(40); red.AddPaladin(35);
-            red.AddDrake(5); red.AddBalista(5); red.AddCatapult(5);
-            blue.AddArcher(10); blue.AddGobelin(45); blue.AddPaladin(40);
-            blue.AddDrake(5); blue.AddBalista(5); blue.AddCatapult(5);
-            green.AddArcher(10); green.AddGobelin(45); green.AddPaladin(40);
-            green.AddDrake(5); green.AddBalista(5); green.AddCatapult(5);
-            yellow.AddArcher(10); yellow.AddGobelin(45); yellow.AddPaladin(40);
-            yellow.AddDrake(5); yellow.AddBalista(5); yellow.AddCatapult(5);
+        //    Team blue = arena.CreateTeam("blue");
+        //    Team red = arena.CreateTeam("red");
+        //    Team green = arena.CreateTeam("green");
+        //    Team yellow = arena.CreateTeam("yellow");
+        //    red.AddArcher(10); red.AddGobelin(40); red.AddPaladin(35);
+        //    red.AddDrake(5); red.AddBalista(5); red.AddCatapult(5);
+        //    blue.AddArcher(10); blue.AddGobelin(45); blue.AddPaladin(40);
+        //    blue.AddDrake(5); blue.AddBalista(5); blue.AddCatapult(5);
+        //    green.AddArcher(10); green.AddGobelin(45); green.AddPaladin(40);
+        //    green.AddDrake(5); green.AddBalista(5); green.AddCatapult(5);
+        //    yellow.AddArcher(10); yellow.AddGobelin(45); yellow.AddPaladin(40);
+        //    yellow.AddDrake(5); yellow.AddBalista(5); yellow.AddCatapult(5);
 
-            // Part Two
+        //    // Part Two
 
-            //Team blue = arena.CreateTeam("blue");
-            //Team red = arena.CreateTeam("red");
-            //red.AddCatapult(10);
-            //blue.AddPaladin(5);
-            //blue.AddDrake(5);
+        //    //Team blue = arena.CreateTeam("blue");
+        //    //Team red = arena.CreateTeam("red");
+        //    //red.AddCatapult(10);
+        //    //blue.AddPaladin(5);
+        //    //blue.AddDrake(5);
 
-            // Part Three
+        //    // Part Three
 
-            //Team blue = arena.CreateTeam("blue");
-            //Team red = arena.CreateTeam("red");
-            //red.AddBalista(10);
-            //blue.AddDrake(5);
-            //blue.AddPaladin(5);
+        //    //Team blue = arena.CreateTeam("blue");
+        //    //Team red = arena.CreateTeam("red");
+        //    //red.AddBalista(10);
+        //    //blue.AddDrake(5);
+        //    //blue.AddPaladin(5);
 
-            // Part Four
+        //    // Part Four
 
-            //Team blue = arena.CreateTeam("blue");
-            //Team red = arena.CreateTeam("red");
-            //red.AddBalista(3);
-            //red.AddGobelin(5);
-            //blue.AddCatapult(2);
-            //blue.AddDrake(5);
+        //    //Team blue = arena.CreateTeam("blue");
+        //    //Team red = arena.CreateTeam("red");
+        //    //red.AddBalista(3);
+        //    //red.AddGobelin(5);
+        //    //blue.AddCatapult(2);
+        //    //blue.AddDrake(5);
 
-            arena.SpawnUnit();
-        }
+        //    arena.SpawnUnit();
+        //}
 
         public void RandomGame( Arena arena)
         {
-            int max = 125;
-
             Random rn = new Random();
-            int f = 1;
-            
-            int t = rn.Next(1, 5);
-            int r = rn.Next(max);
+            int t = rn.Next(2, 5);
 
-            //int reste = max - i.Value.UnitCount;
-
-            for (f = 1; f <= t; f++)
+            for (int f = 1; f <= t; f++)
             {
-               
                 arena.CreateTeam( "Team"+ f.ToString() );
             }
-
             
             foreach (KeyValuePair<string, Team> i in arena.Teams)
             {
-                
                 i.Value.AddArcher(rn.Next(125));
-
                 
                 i.Value.AddBalista(rn.Next(125-i.Value.UnitCount));
-                
 
                 i.Value.AddCatapult(rn.Next(125 - i.Value.UnitCount));
-                //max = max - r;
-                //reste = max - i.Value.UnitCount;
-
+               
                 i.Value.AddDrake(rn.Next(125 - i.Value.UnitCount));
-                //max = max - r;
-               // reste = max - i.Value.UnitCount;
 
                 i.Value.AddGobelin(rn.Next(125 - i.Value.UnitCount));
-                //max = max - r;
-                //reste = max - i.Value.UnitCount;
 
                 i.Value.AddPaladin(rn.Next(125 - i.Value.UnitCount));
-                //reste = max - i.Value.UnitCount;
             }
+
+            arena.SpawnUnit();
         }
 
         public void Run()
@@ -311,7 +240,7 @@ namespace BirdHouse_Battle.UI
             GameLoop(Arena);
         }
 
-        public void Render(Arena arena)
+        public void Render(Arena arena )
         {
            
             Window.Clear();
@@ -335,7 +264,7 @@ namespace BirdHouse_Battle.UI
                     }
                     break;
 
-                case "ESC": 
+                case "ESC":
                     Status = "close";
                     Console.WriteLine("switch : ESC key is pressed");
                     break;
@@ -367,6 +296,8 @@ namespace BirdHouse_Battle.UI
                 case "RETURN":
                     _return = false;
                     break;
+                default:
+                    break;
             }
         }
 
@@ -381,6 +312,23 @@ namespace BirdHouse_Battle.UI
             Shape[] buttons = draw.MenuDisplay();
             Window.Display();
             
+            return buttons;
+        }
+
+        public void CreditPage()
+        {
+            while(Window.IsOpen && Status == "credit")
+            {
+                Shape[] buttons = InitCredit();
+                _iHandler.HandlerCredit(buttons);
+            }
+        }
+
+        private Shape[] InitCredit()
+        {
+            Window.Clear();
+            Shape[] buttons = draw.CreditDisplay();
+            Window.Display();
             return buttons;
         }
 
@@ -446,7 +394,6 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        
         public void ResultWindow()
         {
             while (Window.IsOpen && Status == "ended")
@@ -460,17 +407,17 @@ namespace BirdHouse_Battle.UI
         {
             Window.Clear();
             Font font = new Font("../../../../res/Overlock-Bold.ttf");
-            Text ToursFinal = new Text(_tour.ToString() + "TURNS", font, 50);
-            
-
-            ToursFinal.Position = new Vector2f(150,550);
+            Text ToursFinal = new Text(_tour.ToString() + "TURNS", font, 50)
+            {
+                Position = new Vector2f(150, 550)
+            };
             Shape[] buttons = draw.EndDisplay(Winner);
             Window.Draw(ToursFinal);
             Window.Display();
 
             return buttons;
         }
-        #endregion
+        
         public void PreGame()
         {
             
@@ -703,3 +650,4 @@ namespace BirdHouse_Battle.UI
         }
     }
 }
+#endregion
