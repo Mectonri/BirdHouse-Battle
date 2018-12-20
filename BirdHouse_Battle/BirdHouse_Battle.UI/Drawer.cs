@@ -299,12 +299,12 @@ namespace BirdHouse_Battle.UI
 
         internal Shape[] CreditDisplay()
         {
-            Shape CreditBacground = CreateShape(512, 712, "../../../../res/terrain1.jpeg", 0, 0);
+            Shape CreditBacground = CreateShape(512, 712, "../../../../res/credit.png", 0, 0);
             _window.Draw(CreditBacground );
 
             Shape[] button = new RectangleShape[1];
 
-            button[0] = CreateShape(100, 50, "../../../../res/button_quit.png", 400, 650);
+            button[0] = CreateShape(100, 50, "../../../../res/return.png", 400, 650);
 
             foreach (var t in button)
             {
@@ -449,7 +449,7 @@ namespace BirdHouse_Battle.UI
             buttons[8] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
             buttons[9] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
             buttons[10] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
-            buttons[11] = CreateShape(Bsize, "../../../../res/button_random.png", 380, 225);
+            buttons[11] = CreateShape(Bsize, "../../../../res/button_fill.png", 380, 225);
 
             foreach (var t in buttons)
             {
