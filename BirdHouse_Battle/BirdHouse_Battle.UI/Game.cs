@@ -413,6 +413,26 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
+        public bool IsValidToAddUnit(int [,]TeamCompo, int i, string[]status)
+        {
+            int count = 0;
+            for (int j = 0; j< 6; j++)
+            {
+                count += TeamCompo[i, j];
+            }
+            count += Int32.Parse(status[6]);
+            if (count>125)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+        }
+
+
         public void ResultWindow()
         {
             while (Window.IsOpen && Status == "ended")
@@ -444,13 +464,17 @@ namespace BirdHouse_Battle.UI
             Team red = Arena.CreateTeam("red");
             Team green = null;
             Team yellow = null;
-            string [] status =new string [5];
+            string [] status =new string [7];
             status[0] = "selected";
             status[1] = "active";
             status[2]= "inactive";
             status[3] = "inactive";
 
             status[4] = "none";
+            status[5] = "add";
+            status[6] = "1";
+
+
 
             int[,] teamComposition = 
             {
@@ -470,6 +494,37 @@ namespace BirdHouse_Battle.UI
                     Shape[] buttons = InitPreGame(status, teamComposition);
                     Window.DispatchEvents();
                     status = _iHandler.HandlerPreGame(buttons, status);
+
+
+                    if (status[2] == "inactiveTemp")
+                    {
+                        status[3] = "inactive";
+                        status[2] = "active";
+
+                        for (int i = 0; i < 6; i++)
+                        {
+                            teamComposition[2, i] = teamComposition[3, i];
+                        }
+
+                    }
+
+                    if (status[2] == "inactive")
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+                            teamComposition[2, i] = 0;
+                        }
+                    }
+                    if (status[3] == "inactive")
+                    {
+                        for (int i = 0; i < 6; i++)
+                        {
+                            teamComposition[3, i] = 0;
+                        }
+                    }
+
+
+
                     if (status[2] == "active" && Arena.FindTeam("green") == false)
                     {
                         green = Arena.CreateTeam("green");
@@ -482,56 +537,104 @@ namespace BirdHouse_Battle.UI
                     switch (status[4])
                     {
                         case "archer":
-                            for (int i = 0; i < status.Length - 1; i++)
+                            for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
-                                    teamComposition[i, 0] +=1;
+                                    teamComposition[i, 0] += Int32.Parse(status[6]);
+                                }
+                                else if (status[i] == "selected" && status[5]!= "add")
+                                {
+                                    teamComposition[i, 0] -= Int32.Parse(status[6]);
+                                    if (teamComposition[i,0] <0)
+                                    {
+                                        teamComposition[i, 0] = 0;
+                                    }
                                 }
                             }
                             break;
                         case "drake":
-                            for (int i = 0; i < status.Length - 1; i++)
+                            for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
-                                    teamComposition[i, 1] +=1;
+                                    teamComposition[i, 1] += Int32.Parse(status[6]);
+                                }
+                                else if (status[i] == "selected" && status[5] != "add")
+                                {
+                                    teamComposition[i, 0] -= Int32.Parse(status[6]);
+                                    if (teamComposition[i, 0] < 0)
+                                    {
+                                        teamComposition[i, 0] = 0;
+                                    }
                                 }
                             }
                             break;
                         case "gobelin":
-                            for (int i = 0; i < status.Length - 1; i++)
+                            for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
-                                    teamComposition[i, 2] +=1;
+                                    teamComposition[i, 2] += Int32.Parse(status[6]);
+                                }
+                                else if (status[i] == "selected" && status[5] != "add")
+                                {
+                                    teamComposition[i, 0] -= Int32.Parse(status[6]);
+                                    if (teamComposition[i, 0] < 0)
+                                    {
+                                        teamComposition[i, 0] = 0;
+                                    }
                                 }
                             }
                             break;
                         case "paladin":
-                            for (int i = 0; i < status.Length - 1; i++)
+                            for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
-                                    teamComposition[i, 3] +=1;
+                                    teamComposition[i, 3] += Int32.Parse(status[6]);
+                                }
+                                else if (status[i] == "selected" && status[5] != "add")
+                                {
+                                    teamComposition[i, 0] -= Int32.Parse(status[6]);
+                                    if (teamComposition[i, 0] < 0)
+                                    {
+                                        teamComposition[i, 0] = 0;
+                                    }
                                 }
                             }
                             break;
                         case "balista":
-                            for (int i = 0; i < status.Length - 1; i++)
+                            for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
-                                    teamComposition[i, 4] += 1;
+                                    teamComposition[i, 4] += Int32.Parse(status[6]);
+                                }
+                                else if (status[i] == "selected" && status[5] != "add")
+                                {
+                                    teamComposition[i, 0] -= Int32.Parse(status[6]);
+                                    if (teamComposition[i, 0] < 0)
+                                    {
+                                        teamComposition[i, 0] = 0;
+                                    }
                                 }
                             }
                             break;
                         case "catapult":
-                            for (int i = 0; i < status.Length - 1; i++)
+                            for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
-                                    teamComposition[i, 5] += 1;
+                                    teamComposition[i, 5] += Int32.Parse(status[6]);
+                                }
+                                else if (status[i] == "selected" && status[5] != "add")
+                                {
+                                    teamComposition[i, 0] -= Int32.Parse(status[6]);
+                                    if (teamComposition[i, 0] < 0)
+                                    {
+                                        teamComposition[i, 0] = 0;
+                                    }
                                 }
                             }
                             break;

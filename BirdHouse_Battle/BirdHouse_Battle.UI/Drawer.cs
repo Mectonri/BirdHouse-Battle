@@ -322,13 +322,86 @@ namespace BirdHouse_Battle.UI
         {
             Shape ExitBackground = CreateShape(512, 712, "../../../../res/exit.png", 0 ,0);
             _window.Draw(ExitBackground);
+            Vector2f Bsize = new Vector2f(75, 25);//button size
+            Vector2f Tsize = new Vector2f(118, 390); //team button  size
 
             Shape[] button = new RectangleShape[2];
             Vector2f Bsize = new Vector2f(100, 50);
 
             button[0] = CreateShape(Bsize, "../../../../res/button_yes.png", 100, 200); // 
             button[1] = CreateShape(Bsize, "../../../../res/button_no.png", 300, 200); // take us to the precedent screen
+            RectangleShape[] buttons = new RectangleShape[17];
+            Text[] messages = new Text[10];
 
+
+
+            RectangleShape buttonAddRemove = new RectangleShape(Bsize);
+            buttonAddRemove.Position = new Vector2f(275, 30);
+            buttonAddRemove.FillColor = new Color(211,211,211);
+            Text textAddRemove = new Text("",font,25);
+
+            if (status[5] == "add")
+            {
+                textAddRemove = new Text("ADD", font, 20);
+            }
+            else
+            {
+                textAddRemove = new Text("REM", font, 20);
+            }
+            textAddRemove.Position = new Vector2f(295, 27);
+            textAddRemove.FillColor = new Color(0, 0, 0);
+
+
+
+
+
+            RectangleShape button1 = new RectangleShape(new Vector2f(30,25));
+            Text text1 = new Text("1",font,15);
+            button1.Position = new Vector2f(360,30);
+            text1.Position = new Vector2f(370,30);
+            text1.FillColor = new Color(0, 0, 0);
+            if (status[6] == "1")
+            {
+                button1.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button1.FillColor = new Color(200, 200, 200);
+            }
+
+            RectangleShape button10 = new RectangleShape(new Vector2f(30, 25));
+            Text text10 = new Text("10", font, 15);
+            button10.Position = new Vector2f(390,30);
+            text10.Position = new Vector2f(390,30);
+            text10.FillColor = new Color(0, 0, 0);
+            if (status[6] == "10")
+            {
+                button10.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button10.FillColor = new Color(200, 200, 200);
+            }
+
+
+            RectangleShape button100 = new RectangleShape(new Vector2f(30, 25));
+            Text text100 = new Text("100", font, 15);
+            button100.Position = new Vector2f(420,30);
+            text100.Position = new Vector2f(420,30);
+            text100.FillColor = new Color(0, 0, 0);
+            if (status[6] == "100")
+            {
+                button100.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button100.FillColor = new Color(200, 200, 200);
+            }
+
+
+            RectangleShape buttonPlay = new RectangleShape(Bsize);
+            buttonPlay.Position = new Vector2f(380, 125);
+            buttonPlay.Texture = new Texture("../../../../res/button_play.png");
             foreach (var t in button)
             {
                _window.Draw(t);
@@ -387,6 +460,7 @@ namespace BirdHouse_Battle.UI
             buttonAddTeam2.Position = new Vector2f(132, 317);
             buttonAddTeam2.OutlineThickness = 5;
             buttonAddTeam2.OutlineColor = new Color(250, 0, 0);
+            
             if (status[1] == "selected")
             {
                 buttonAddTeam2.FillColor = new Color(255, 160, 122);
@@ -397,24 +471,35 @@ namespace BirdHouse_Battle.UI
 
 
             RectangleShape buttonAddTeam3 = new RectangleShape(Tsize);
+            RectangleShape buttonSupprTeam3 = new RectangleShape(new Vector2f(20, 20));
             buttonAddTeam3.Position = new Vector2f(261, 317);
+            buttonSupprTeam3.Position = new Vector2f(360,317);
             buttonAddTeam3.OutlineThickness = 5;
             buttonAddTeam3.OutlineColor = new Color(0, 250, 0);
             Text messageTeam3 = new Text("", font, 25);
+            Text messageSuppr3 = new Text(" ",font,25);
             if (status[2] == "inactive")
             {
                 buttonAddTeam3.FillColor = new Color(128, 128, 128);
+                buttonSupprTeam3.FillColor = new Color( Color.Transparent);
             }
             else
             {
+                buttonSupprTeam3.FillColor = new Color(255, 0, 0);
+                messageSuppr3 = new Text("X", font, 25);
+                messageSuppr3.FillColor = new Color(0, 0, 0);
+                messageSuppr3.Position = new Vector2f(362, 310);
                 if (status[2] == "selected")
                 {
                     buttonAddTeam3.FillColor = new Color(255, 160, 122);
+                    
                 }
                 messageTeam3 = new Text("ARCHER : " + teamComposition[2, 0].ToString() + "\n DRAKE : " + teamComposition[2, 1].ToString() + "\n GOBLIN : " + teamComposition[2, 2].ToString() + "\n PALADIN : " + teamComposition[2, 3].ToString() + "\n BALISTA : " + teamComposition[2, 4].ToString() + "\n CAPAPULT : " + teamComposition[2, 5].ToString(), font, 15);
                 messageTeam3.FillColor = new Color(0, 0, 0);
                 messageTeam3.Position = new Vector2f(271, 322);
             }
+            
+           
 
             RectangleShape buttonAddTeam4 = new RectangleShape(Tsize)
             {
@@ -423,12 +508,19 @@ namespace BirdHouse_Battle.UI
                 OutlineColor = new Color(250, 250, 0)
             };
             Text messageTeam4 = new Text("", font, 25);
+            Text messageSuppr4 = new Text("",font,25);
             if (status[3] == "inactive")
             {
                 buttonAddTeam4.FillColor = new Color(128, 128, 128);
+                buttonSupprTeam4.FillColor = new Color(Color.Transparent);
             }
             else
             {
+
+                buttonSupprTeam4.FillColor = new Color(255,0,0);
+                messageSuppr4 = new Text("X", font, 25);
+                messageSuppr4.FillColor = new Color(0, 0, 0);
+                messageSuppr4.Position = new Vector2f(490, 310);
                 if (status[3] == "selected")
                 {
                     buttonAddTeam4.FillColor = new Color(255, 160, 122);
@@ -442,14 +534,20 @@ namespace BirdHouse_Battle.UI
             buttons[1] = buttonAddTeam2;
             buttons[2] = buttonAddTeam3;
             buttons[3] = buttonAddTeam4;
-            buttons[4] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 125);
-            buttons[5] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 30);
-            buttons[6] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 95);
-            buttons[7] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 160);
-            buttons[8] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
-            buttons[9] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
-            buttons[10] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
-            buttons[11] = CreateShape(Bsize, "../../../../res/button_fill.png", 380, 225);
+            buttons[4] = buttonPlay;
+            buttons[5] = buttonArcher;
+            buttons[6] = buttonDrake;
+            buttons[7] = buttonGobelin;
+            buttons[8] = buttonPaladin;
+            buttons[9] = buttonBalista;
+            buttons[10] = buttonCatapult;
+            buttons[11] =buttonSupprTeam3;
+            buttons[12] =buttonSupprTeam4;
+            buttons[13] = buttonAddRemove;
+            buttons[14] = button1;
+            buttons[15] = button10;
+            buttons[16] = button100;
+
 
             foreach (var t in buttons)
             {
@@ -460,7 +558,13 @@ namespace BirdHouse_Battle.UI
             messages[1] = messageTeam2;
             messages[2] = messageTeam3;
             messages[3] = messageTeam4;
-          
+            messages[4] = messageSuppr3;
+            messages[5] = messageSuppr4;
+            messages[6] = text1;
+            messages[7] = text10;
+            messages[8] = text100;
+            messages[9] = textAddRemove;
+
             foreach (var t in messages)
             {
                 t.Draw(_window, rs);
