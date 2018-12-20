@@ -33,7 +33,6 @@ namespace BirdHouse_Battle.UI
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
-
         }
 
         #region Getter
@@ -66,6 +65,8 @@ namespace BirdHouse_Battle.UI
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
         }
+
+      
 
         public void NewArena()
         {
@@ -263,8 +264,7 @@ namespace BirdHouse_Battle.UI
         }
 
         public void Render(Arena arena )
-        {
-           
+        { 
             Window.Clear();
             Drawer draw = new Drawer(Window);
             draw.BackGroundGame();
@@ -287,8 +287,12 @@ namespace BirdHouse_Battle.UI
                     break;
 
                 case "ESC":
-                    Status = "close";
-                    Console.WriteLine("switch : ESC key is pressed");
+                    if (GetCurrentTime() - PreviousP >= TimeP)
+                    {
+                        Status = "return";
+                        Console.WriteLine("switch : ESC key is pressed");
+                        _previousP = GetCurrentTime();
+                    }
                     break;
 
                 case "Right":
@@ -318,6 +322,7 @@ namespace BirdHouse_Battle.UI
                 case "RETURN":
                     _return = false;
                     break;
+
                 default:
                     break;
             }
@@ -379,18 +384,36 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public void MainMenu()
         {
+            Shape[] buttons = InitGUI();
             while (Window.IsOpen && Status == "main")
             {
-                Shape[] buttons = InitGUI();
                 _iHandler.HandlerMain(buttons);
             }
         }
         
-        public Shape[] InitExit()
+        public Shape[] InitReturn()
         {
             Window.Clear();           
-            Shape[] buttons = draw.ExitDisplay();
+            Shape[] buttons = draw.ReturnDisplay();
            
+            Window.Display();
+            return buttons;
+        }
+
+        internal void QuitPage()
+        {
+            Shape[] buttons = InitQuitting();
+
+            while (Window.IsOpen && Status == "quit")
+            {
+                _iHandler.HandlerQuit(buttons);
+            }
+        }
+
+        private Shape[] InitQuitting()
+        {
+            Window.Clear();
+            Shape[] buttons = draw.QuitDisplay();
             Window.Display();
             return buttons;
         }
@@ -398,12 +421,13 @@ namespace BirdHouse_Battle.UI
         /// <summary>
         ///Asks for a YES/NO confirmation  Game
         /// </summary>
-        public void ExitMenu()
+        public void ReturnMenu()
         {
-            while (Window.IsOpen && Status == "close")
+            Shape[] buttons = InitReturn();
+            while (Window.IsOpen && Status == "return")
             {
-                Shape[] buttons = InitExit();
-                _iHandler.HandlerExit(buttons);
+                
+                _iHandler.HandlerReturn(buttons);
             }
         }
       

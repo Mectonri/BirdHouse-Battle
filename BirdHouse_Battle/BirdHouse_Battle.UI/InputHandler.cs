@@ -37,6 +37,10 @@ namespace BirdHouse_Battle.UI
             }
         }
 
+        /// <summary>
+        /// Handler to Pause
+        /// </summary>
+        /// <param name="buttons"></param>
         public void HandlerPause(Shape[] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -69,11 +73,15 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void HandlerExit(Shape[] buttons)
+        /// <summary>
+        /// Handler to Return
+        /// </summary>
+        /// <param name="buttons"></param>
+        public void HandlerReturn(Shape[] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "game";
+                game.Status = "main";
             }//YES
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
@@ -81,15 +89,19 @@ namespace BirdHouse_Battle.UI
             }//NO
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "game";
+                game.Status = "main";
             }
         }
 
+        /// <summary>
+        /// Handler to MainMenu()
+        /// </summary>
+        /// <param name="buttons"></param>
         public void HandlerMain(Shape [] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "close";
+                game.Status = "quit";
             }//play
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
@@ -114,11 +126,17 @@ namespace BirdHouse_Battle.UI
             }//Quit
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "close";
-                game.ExitMenu();
+                game.Status = "quit";
+                //game.QuitPage();
             }
         }
 
+        /// <summary>
+        /// Handler to PreGame
+        /// </summary>
+        /// <param name="buttons"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         public string[] HandlerPreGame(Shape[] buttons, string[] status)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -273,11 +291,39 @@ namespace BirdHouse_Battle.UI
             else { return status; }
         }
 
+        /// <summary>
+        /// Handler to Quit the game
+        /// </summary>
+        /// <param name="buttons"></param>
+        internal void HandlerQuit(Shape[] buttons)
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+            {
+                game.Status = "return";
+                
+            }//OUI
+            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Window.Close();
+            }// NO
+            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "return";
+                //game.Switch("ESC");
+            }
+
+        }
+
+        /// <summary>
+        /// Handler to Credit
+        /// </summary>
+        /// <param name="buttons"></param>
         internal void HandlerCredit(Shape[] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "main";
+                game.Switch("ESC");
+                //game.Status = "main";
             }//return
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
@@ -285,6 +331,10 @@ namespace BirdHouse_Battle.UI
             }
         }
 
+        /// <summary>
+        /// Handler to End
+        /// </summary>
+        /// <param name="buttons"></param>
         internal void HandlerEnd(Shape[] buttons)
         {
             //play

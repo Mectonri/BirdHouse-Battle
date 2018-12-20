@@ -27,8 +27,8 @@
                         game.Run();
                         break;
                         
-                    case "close"://close the window
-                        game.ExitMenu();
+                    case "return"://close the window
+                        game.ReturnMenu();
                         break;
                         
                     //case "pause"://pause the game screen
@@ -42,6 +42,10 @@
 
                     case "credit"://credit
                         game.CreditPage();
+                        break;
+
+                    case "quit":
+                        game.QuitPage();
                         break;
 
                     default:
