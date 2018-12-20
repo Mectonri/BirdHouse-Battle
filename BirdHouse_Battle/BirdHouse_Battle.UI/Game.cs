@@ -567,9 +567,9 @@ namespace BirdHouse_Battle.UI
                                 else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
-                                    if (teamComposition[i, 0] < 0)
+                                    if (teamComposition[i, 1] < 0)
                                     {
-                                        teamComposition[i, 0] = 0;
+                                        teamComposition[i, 1] = 0;
                                     }
                                 }
                             }
@@ -584,9 +584,9 @@ namespace BirdHouse_Battle.UI
                                 else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
-                                    if (teamComposition[i, 0] < 0)
+                                    if (teamComposition[i, 2] < 0)
                                     {
-                                        teamComposition[i, 0] = 0;
+                                        teamComposition[i, 2] = 0;
                                     }
                                 }
                             }
@@ -601,9 +601,9 @@ namespace BirdHouse_Battle.UI
                                 else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
-                                    if (teamComposition[i, 0] < 0)
+                                    if (teamComposition[i, 3] < 0)
                                     {
-                                        teamComposition[i, 0] = 0;
+                                        teamComposition[i, 3] = 0;
                                     }
                                 }
                             }
@@ -618,9 +618,9 @@ namespace BirdHouse_Battle.UI
                                 else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
-                                    if (teamComposition[i, 0] < 0)
+                                    if (teamComposition[i, 4] < 0)
                                     {
-                                        teamComposition[i, 0] = 0;
+                                        teamComposition[i, 4] = 0;
                                     }
                                 }
                             }
@@ -635,9 +635,9 @@ namespace BirdHouse_Battle.UI
                                 else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
-                                    if (teamComposition[i, 0] < 0)
+                                    if (teamComposition[i, 5] < 0)
                                     {
-                                        teamComposition[i, 0] = 0;
+                                        teamComposition[i, 5] = 0;
                                     }
                                 }
                             }

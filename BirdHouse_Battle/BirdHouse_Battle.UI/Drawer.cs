@@ -356,7 +356,7 @@ namespace BirdHouse_Battle.UI
         public Shape[] PreGameDisplay(string[] status, int[,] teamComposition)
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
-            Vector2f Tsize = new Vector2f(118, 190); //team button  size
+            Vector2f Tsize = new Vector2f(118, 390); //team button  size
 
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
