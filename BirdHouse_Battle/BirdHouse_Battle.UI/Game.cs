@@ -207,6 +207,25 @@ namespace BirdHouse_Battle.UI
         //    arena.SpawnUnit();
         //}
 
+        public void Random(Arena arena, Team team)
+        {
+            Random random = new Random();
+
+            team.AddArcher(random.Next(125));
+
+            team.AddBalista(random.Next(125 - team.UnitCount));
+
+            team.AddCatapult(random.Next(125 - team.UnitCount));
+
+            team.AddDrake(random.Next(125 - team.UnitCount));
+
+            team.AddGobelin(random.Next(125 - team.UnitCount));
+
+            team.AddPaladin(random.Next(125 - team.UnitCount));
+
+            arena.SpawnUnit();
+        }
+        
         public void RandomGame( Arena arena)
         {
             Random rn = new Random();
