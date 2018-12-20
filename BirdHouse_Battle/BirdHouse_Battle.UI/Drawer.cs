@@ -416,14 +416,48 @@ namespace BirdHouse_Battle.UI
 
 
 
-            RectangleShape button1 = new RectangleShape();
-            Text text1 = new Text("1",font,25);
+            RectangleShape button1 = new RectangleShape(new Vector2f(30,25));
+            Text text1 = new Text("1",font,15);
+            button1.Position = new Vector2f(360,30);
+            text1.Position = new Vector2f(370,30);
+            text1.FillColor = new Color(0, 0, 0);
+            if (status[6] == "1")
+            {
+                button1.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button1.FillColor = new Color(200, 200, 200);
+            }
 
-            RectangleShape button10 = new RectangleShape();
-            Text text10 = new Text("10", font, 25);
+            RectangleShape button10 = new RectangleShape(new Vector2f(30, 25));
+            Text text10 = new Text("10", font, 15);
+            button10.Position = new Vector2f(390,30);
+            text10.Position = new Vector2f(390,30);
+            text10.FillColor = new Color(0, 0, 0);
+            if (status[6] == "10")
+            {
+                button10.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button10.FillColor = new Color(200, 200, 200);
+            }
 
-            RectangleShape button100 = new RectangleShape();
-            Text text100 = new Text("100", font, 25);
+
+            RectangleShape button100 = new RectangleShape(new Vector2f(30, 25));
+            Text text100 = new Text("100", font, 15);
+            button100.Position = new Vector2f(420,30);
+            text100.Position = new Vector2f(420,30);
+            text100.FillColor = new Color(0, 0, 0);
+            if (status[6] == "100")
+            {
+                button100.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button100.FillColor = new Color(200, 200, 200);
+            }
 
 
             RectangleShape buttonPlay = new RectangleShape(Bsize);

@@ -104,6 +104,21 @@ namespace BirdHouse_Battle.UI
                 status[5] = "remove";
                 return status;
             }
+            else if ((buttons[14].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+            {
+                status[6] = "1";
+                return status;
+            }
+            else if ((buttons[15].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+            {
+                status[6] = "10";
+                return status;
+            }
+            else if ((buttons[16].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) ))
+            {
+                status[6] = "100";
+                return status;
+            }
             else if ((buttons[13].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "remove"))
             {
                 status[5] = "add";

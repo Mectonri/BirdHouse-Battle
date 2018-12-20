@@ -334,14 +334,15 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        public bool IsValidToAddUnit(int [,]TeamCompo, int i)
+        public bool IsValidToAddUnit(int [,]TeamCompo, int i, string[]status)
         {
             int count = 0;
             for (int j = 0; j< 6; j++)
             {
                 count += TeamCompo[i, j];
             }
-            if (count>123)
+            count += Int32.Parse(status[6]);
+            if (count>125)
             {
                 return false;
             }
@@ -435,11 +436,11 @@ namespace BirdHouse_Battle.UI
                         case "archer":
                             for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i)==true && status[5]=="add")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
                                     teamComposition[i, 0] += Int32.Parse(status[6]);
                                 }
-                                else 
+                                else if (status[i] == "selected" && status[5]!= "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
                                     if (teamComposition[i,0] <0)
@@ -452,11 +453,11 @@ namespace BirdHouse_Battle.UI
                         case "drake":
                             for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true && status[5] == "add")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
                                     teamComposition[i, 1] += Int32.Parse(status[6]);
                                 }
-                                else
+                                else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
                                     if (teamComposition[i, 0] < 0)
@@ -469,11 +470,11 @@ namespace BirdHouse_Battle.UI
                         case "gobelin":
                             for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true && status[5] == "add")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
                                     teamComposition[i, 2] += Int32.Parse(status[6]);
                                 }
-                                else 
+                                else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
                                     if (teamComposition[i, 0] < 0)
@@ -486,11 +487,11 @@ namespace BirdHouse_Battle.UI
                         case "paladin":
                             for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true && status[5] == "add")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
                                     teamComposition[i, 3] += Int32.Parse(status[6]);
                                 }
-                                else
+                                else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
                                     if (teamComposition[i, 0] < 0)
@@ -503,11 +504,11 @@ namespace BirdHouse_Battle.UI
                         case "balista":
                             for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true && status[5] == "add")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
                                     teamComposition[i, 4] += Int32.Parse(status[6]);
                                 }
-                                else 
+                                else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
                                     if (teamComposition[i, 0] < 0)
@@ -520,11 +521,11 @@ namespace BirdHouse_Battle.UI
                         case "catapult":
                             for (int i = 0; i < 4; i++)
                             {
-                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i) == true && status[5] == "add")
+                                if (status[i] == "selected" && IsValidToAddUnit(teamComposition, i, status) == true && status[5] == "add")
                                 {
                                     teamComposition[i, 5] += Int32.Parse(status[6]);
                                 }
-                                else
+                                else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
                                     if (teamComposition[i, 0] < 0)
