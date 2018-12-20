@@ -97,8 +97,7 @@ namespace BirdHouse_Battle.UI
             }//Quick game
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.RandomGame(game.Arena);
-                game.Status = "game";
+                game.Status = "quickGame";
             }
             //history
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))

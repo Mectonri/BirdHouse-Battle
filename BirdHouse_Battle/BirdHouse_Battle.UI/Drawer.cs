@@ -47,18 +47,7 @@ namespace BirdHouse_Battle.UI
         }
 
         #region CreateButton & overloads
-
-        internal Shape CreateShape(Vector2f Size, string Link, Vector2f position)
-        {
-            RectangleShape button = new RectangleShape()
-            {
-                Size = Size,
-                Texture =  new Texture(Link),
-                Position = position,
-            };
-            return button;
-        }
-
+        
         internal Shape CreateShape(int X, int Y, string Link, int PosX, int PosY)
         {
             RectangleShape button = new RectangleShape()
@@ -198,12 +187,12 @@ namespace BirdHouse_Battle.UI
             return shape;
         }
 
-        static Shape DisplayProj(Projectile p)
+        static Shape DisplayProj(Projectile projectile)
         {
             Shape shape = null;
-            if (p is Arrow) shape = CreateShape(p, 2);
-            else if (p is Boulder) shape = CreateShape(p, 6);
-            else { shape = CreateShape(p, 4); }
+            if (projectile is Arrow) shape = CreateShape(projectile, 2);
+            else if (projectile is Boulder) shape = CreateShape(projectile, 6);
+            else { shape = CreateShape(projectile, 4); }
 
             return shape;
         }
@@ -327,90 +316,22 @@ namespace BirdHouse_Battle.UI
             Vector2f Tsize = new Vector2f(118, 390); //team button  size
 
             Shape[] button = new RectangleShape[2];
-            Vector2f Bsize = new Vector2f(100, 50);
 
             button[0] = CreateShape(Bsize, "../../../../res/button_yes.png", 100, 200); // 
             button[1] = CreateShape(Bsize, "../../../../res/button_no.png", 300, 200); // take us to the precedent screen
             RectangleShape[] buttons = new RectangleShape[17];
             Text[] messages = new Text[10];
 
-
-
-            RectangleShape buttonAddRemove = new RectangleShape(Bsize);
-            buttonAddRemove.Position = new Vector2f(275, 30);
-            buttonAddRemove.FillColor = new Color(211,211,211);
-            Text textAddRemove = new Text("",font,25);
-
-            if (status[5] == "add")
-            {
-                textAddRemove = new Text("ADD", font, 20);
-            }
-            else
-            {
-                textAddRemove = new Text("REM", font, 20);
-            }
-            textAddRemove.Position = new Vector2f(295, 27);
-            textAddRemove.FillColor = new Color(0, 0, 0);
-
-
-
-
-
-            RectangleShape button1 = new RectangleShape(new Vector2f(30,25));
-            Text text1 = new Text("1",font,15);
-            button1.Position = new Vector2f(360,30);
-            text1.Position = new Vector2f(370,30);
-            text1.FillColor = new Color(0, 0, 0);
-            if (status[6] == "1")
-            {
-                button1.FillColor = new Color(100, 100, 100);
-            }
-            else
-            {
-                button1.FillColor = new Color(200, 200, 200);
-            }
-
-            RectangleShape button10 = new RectangleShape(new Vector2f(30, 25));
-            Text text10 = new Text("10", font, 15);
-            button10.Position = new Vector2f(390,30);
-            text10.Position = new Vector2f(390,30);
-            text10.FillColor = new Color(0, 0, 0);
-            if (status[6] == "10")
-            {
-                button10.FillColor = new Color(100, 100, 100);
-            }
-            else
-            {
-                button10.FillColor = new Color(200, 200, 200);
-            }
-
-
-            RectangleShape button100 = new RectangleShape(new Vector2f(30, 25));
-            Text text100 = new Text("100", font, 15);
-            button100.Position = new Vector2f(420,30);
-            text100.Position = new Vector2f(420,30);
-            text100.FillColor = new Color(0, 0, 0);
-            if (status[6] == "100")
-            {
-                button100.FillColor = new Color(100, 100, 100);
-            }
-            else
-            {
-                button100.FillColor = new Color(200, 200, 200);
-            }
-
-
             RectangleShape buttonPlay = new RectangleShape(Bsize);
             buttonPlay.Position = new Vector2f(380, 125);
             buttonPlay.Texture = new Texture("../../../../res/button_play.png");
             foreach (var t in button)
             {
-               _window.Draw(t);
+                _window.Draw(t);
             }
             return button;
         }
-
-
+        
         /// <summary>
         /// Display the pause menu
         /// </summary>
@@ -440,8 +361,66 @@ namespace BirdHouse_Battle.UI
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
 
-            Shape[] buttons = new RectangleShape[12];
-            Text[] messages = new Text[4];
+            Shape[] buttons = new RectangleShape[18];
+            Text[] messages = new Text[10];
+
+            RectangleShape buttonAddRemove = new RectangleShape(Bsize);
+            buttonAddRemove.Position = new Vector2f(275, 30);
+            buttonAddRemove.FillColor = new Color(211, 211, 211);
+            Text textAddRemove = new Text("", font, 25);
+
+            if (status[5] == "add")
+            {
+                textAddRemove = new Text("ADD", font, 20);
+            }
+            else
+            {
+                textAddRemove = new Text("REM", font, 20);
+            }
+            textAddRemove.Position = new Vector2f(295, 27);
+            textAddRemove.FillColor = new Color(0, 0, 0);
+
+            RectangleShape button1 = new RectangleShape(new Vector2f(30, 25));
+            Text text1 = new Text("1", font, 15);
+            button1.Position = new Vector2f(360, 30);
+            text1.Position = new Vector2f(370, 30);
+            text1.FillColor = new Color(0, 0, 0);
+            if (status[6] == "1")
+            {
+                button1.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button1.FillColor = new Color(200, 200, 200);
+            }
+
+            RectangleShape button10 = new RectangleShape(new Vector2f(30, 25));
+            Text text10 = new Text("10", font, 15);
+            button10.Position = new Vector2f(390, 30);
+            text10.Position = new Vector2f(390, 30);
+            text10.FillColor = new Color(0, 0, 0);
+            if (status[6] == "10")
+            {
+                button10.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button10.FillColor = new Color(200, 200, 200);
+            }
+            
+            RectangleShape button100 = new RectangleShape(new Vector2f(30, 25));
+            Text text100 = new Text("100", font, 15);
+            button100.Position = new Vector2f(420, 30);
+            text100.Position = new Vector2f(420, 30);
+            text100.FillColor = new Color(0, 0, 0);
+            if (status[6] == "100")
+            {
+                button100.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button100.FillColor = new Color(200, 200, 200);
+            }
 
             RectangleShape buttonAddTeam1 = new RectangleShape(Tsize)
             {
@@ -469,8 +448,7 @@ namespace BirdHouse_Battle.UI
             Text messageTeam2 = new Text("ARCHER : " + teamComposition[1, 0].ToString() + "\n DRAKE : " + teamComposition[1, 1].ToString() + "\n GOBLIN : " + teamComposition[1, 2].ToString() + "\n PALADIN : " + teamComposition[1, 3].ToString() + "\n BALISTA : " + teamComposition[1, 4].ToString() + "\n CATAPULT : " + teamComposition[1, 5].ToString(), font, 15);
             messageTeam2.FillColor = new Color(0, 0, 0);
             messageTeam2.Position = new Vector2f(142, 322);
-
-
+            
             RectangleShape buttonAddTeam3 = new RectangleShape(Tsize);
             RectangleShape buttonSupprTeam3 = new RectangleShape(new Vector2f(20, 20));
             buttonAddTeam3.Position = new Vector2f(261, 317);
@@ -499,8 +477,6 @@ namespace BirdHouse_Battle.UI
                 messageTeam3.FillColor = new Color(0, 0, 0);
                 messageTeam3.Position = new Vector2f(271, 322);
             }
-            
-           
 
             RectangleShape buttonAddTeam4 = new RectangleShape(Tsize)
             {
@@ -508,8 +484,12 @@ namespace BirdHouse_Battle.UI
                 OutlineThickness = 5,
                 OutlineColor = new Color(250, 250, 0)
             };
+
             Text messageTeam4 = new Text("", font, 25);
             Text messageSuppr4 = new Text("",font,25);
+            RectangleShape buttonSupprTeam4 = new RectangleShape(new Vector2f(20, 20));
+            buttonSupprTeam4.Position = new Vector2f(488, 317);
+
             if (status[3] == "inactive")
             {
                 buttonAddTeam4.FillColor = new Color(128, 128, 128);
@@ -535,19 +515,20 @@ namespace BirdHouse_Battle.UI
             buttons[1] = buttonAddTeam2;
             buttons[2] = buttonAddTeam3;
             buttons[3] = buttonAddTeam4;
-            buttons[4] = buttonPlay;
-            buttons[5] = buttonArcher;
-            buttons[6] = buttonDrake;
-            buttons[7] = buttonGobelin;
-            buttons[8] = buttonPaladin;
-            buttons[9] = buttonBalista;
-            buttons[10] = buttonCatapult;
+            buttons[4] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 125);
+            buttons[5] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 30);
+            buttons[6] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 95);
+            buttons[7] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 160);
+            buttons[8] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
+            buttons[9] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
+            buttons[10] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
             buttons[11] =buttonSupprTeam3;
             buttons[12] =buttonSupprTeam4;
             buttons[13] = buttonAddRemove;
             buttons[14] = button1;
             buttons[15] = button10;
             buttons[16] = button100;
+            buttons[17] = CreateShape(Bsize, "../../../../res/button_fill.png", 380, 225);
 
 
             foreach (var t in buttons)

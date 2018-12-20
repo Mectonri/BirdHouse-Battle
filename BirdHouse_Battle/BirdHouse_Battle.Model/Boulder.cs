@@ -18,8 +18,8 @@ namespace BirdHouse_Battle.Model
             {
                 FinalPosition();
                 GiveDamagesAoe();
-                if (Position.X < Arena.Height && Position.X > - Arena.Height && 
-                    Position.Y < Arena.Height && Position.Y > - Arena.Height)
+                if (Position.X < Arena.Height - 1 && Position.X > - Arena.Height + 1 && 
+                    Position.Y < Arena.Height - 1 && Position.Y > - Arena.Height + 1)
                 {
                     Arena.SpawnRock(int.Parse($"{Math.Round(Position.X, 0)}"), int.Parse($"{Math.Round(Position.Y, 0)}"));
                 }

@@ -33,7 +33,6 @@ namespace BirdHouse_Battle.UI
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
-            _winner = FindWinner();
 
         }
 
@@ -126,7 +125,7 @@ namespace BirdHouse_Battle.UI
                 else PauseMenu();
             }
 
-            FindWinner();
+            _winner = FindWinner();
 
             Status = "ended";
             arena.Teams.Clear();
@@ -255,6 +254,7 @@ namespace BirdHouse_Battle.UI
             }
 
             arena.SpawnUnit();
+            Status = "game";
         }
 
         public void Run()
@@ -438,9 +438,10 @@ namespace BirdHouse_Battle.UI
 
         public void ResultWindow()
         {
+            Shape[] buttons = InitEnd();
+
             while (Window.IsOpen && Status == "ended")
             {
-                Shape[] buttons = InitEnd();
                 _iHandler.HandlerEnd(buttons);
             }
         }

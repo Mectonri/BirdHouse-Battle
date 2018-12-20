@@ -19,7 +19,10 @@
                         game.NewArena();
                         game.PreGame();
                         break;
-                        
+                    case "quickGame":
+                        game.NewArena();
+                        game.RandomGame(game.Arena);
+                        break;
                     case "game"://game screen
                         game.Run();
                         break;
