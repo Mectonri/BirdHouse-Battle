@@ -1,4 +1,6 @@
-﻿namespace BirdHouse_Battle.Model
+﻿using System;
+
+namespace BirdHouse_Battle.Model
 {
     public class Boulder : Projectile
     {
@@ -16,6 +18,11 @@
             {
                 FinalPosition();
                 GiveDamagesAoe();
+                if (Position.X < Arena.Height && Position.X > - Arena.Height && 
+                    Position.Y < Arena.Height && Position.Y > - Arena.Height)
+                {
+                    Arena.SpawnRock(int.Parse($"{Math.Round(Position.X, 0)}"), int.Parse($"{Math.Round(Position.Y, 0)}"));
+                }
                 DieNullContext();
             }
         }

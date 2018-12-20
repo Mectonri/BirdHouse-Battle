@@ -139,11 +139,11 @@ namespace BirdHouse_Battle.UI
         public Shape DisplayField(Tile tile)
         {
             CircleShape arrField = new CircleShape(5);
-            arrField.SetPointCount(6);
             arrField.Position = new Vector2f((float)tile.X + 250, (float)tile.Y + 250);
 
             if (tile.Height != 0)
             {
+                arrField.SetPointCount(3);
                 switch (tile.Height)
                 {
                     case 1: arrField.FillColor = new Color(10, 30, 27); break;
@@ -164,6 +164,7 @@ namespace BirdHouse_Battle.UI
             }
             else if (tile.Obstacle != "None")
             {
+                arrField.SetPointCount(6);
                 switch (tile.Obstacle)
                 {
                     case "Rock":

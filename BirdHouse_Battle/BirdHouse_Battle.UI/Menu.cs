@@ -5,12 +5,12 @@ namespace BirdHouse_Battle.UI
 {
     public class Menu
     {
-        private Game game;
+        private Game _game;
         RenderWindow _mainMenu;
 
         public Menu(Game game)
         {
-            this.game = game;
+            _game = game;
             _mainMenu = new RenderWindow(new VideoMode(512, 512), "Main Menu");
         }
 
