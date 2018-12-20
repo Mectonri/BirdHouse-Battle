@@ -396,6 +396,7 @@ namespace BirdHouse_Battle.UI
             Text[] messages = new Text[10];
 
 
+
             RectangleShape buttonAddRemove = new RectangleShape(Bsize);
             buttonAddRemove.Position = new Vector2f(275, 30);
             buttonAddRemove.FillColor = new Color(211,211,211);
