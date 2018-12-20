@@ -14,7 +14,7 @@
                         game.MainMenu();
                         break;
                     case "preGame":
-                        game.Arena = new Model.Arena();
+                        game.NewArena();
                         game.PreGame();
                         break;
                     case "game":

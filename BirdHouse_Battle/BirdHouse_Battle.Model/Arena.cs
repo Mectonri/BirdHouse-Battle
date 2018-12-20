@@ -25,6 +25,11 @@ namespace BirdHouse_Battle.Model
             _width = 250;
             _counter = 0;
             _field = new Field(this, -_height, _height, -_width, _width);
+
+            if (true) // Créer le bool de nouvelle partie / rejouer partie
+            {
+                _field.Init();
+            }
         }
 
         public Dictionary<string, Team> Teams
@@ -528,6 +533,11 @@ namespace BirdHouse_Battle.Model
         private bool FindProjectile(int name)
         {
             return _projectiles.TryGetValue(name, out Projectile projectile);
+        }
+
+        public void SpawnRock(int i, int j)
+        {
+            Field.GenerationRockInGame(i, j);
         }
 
         public void UpdateTeams()

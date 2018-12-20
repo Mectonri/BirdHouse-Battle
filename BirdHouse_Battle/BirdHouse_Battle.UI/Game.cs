@@ -26,7 +26,6 @@ namespace BirdHouse_Battle.UI
             Load();
             
             _iHandler = new InputHandler(this);
-            _arena = new Arena();
             _window = new RenderWindow(new VideoMode(512, 712), "BirdHouseBattle", Styles.Default);
             _status = "main";
             _previousP = GetCurrentTime();
@@ -45,7 +44,6 @@ namespace BirdHouse_Battle.UI
         public Arena Arena
         {
             get { return _arena; }
-            set {_arena = value; }
         }
 
         public RenderWindow Window
@@ -73,6 +71,11 @@ namespace BirdHouse_Battle.UI
             SFML.WindowNative.Load();
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
+        }
+
+        public void NewArena()
+        {
+            _arena = new Arena();
         }
         
         #region Relevant to Gameloop

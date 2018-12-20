@@ -38,7 +38,7 @@
 
             bool canMove = !IsDead() && DumpCantFly == false;
 
-            bool runAway = finalTarget.Life > Life && Life < 5 && !GoblinsAlone();
+            bool runAway = finalTarget != null && finalTarget.Life > Life && Life < 5 && !GoblinsAlone();
 
             // Affectations terrain
 

@@ -15,8 +15,6 @@ namespace BirdHouse_Battle.Model
             _tiles = new Tile[endX * 2 + 1, endY * 2 + 1];
             _elements = new Dictionary<string, Tile>();
             SpawnTiles(startX, endX, startY, endY);
-            StartingGeneration();
-            AddElements();
         }
 
         public Arena Arena
@@ -32,6 +30,12 @@ namespace BirdHouse_Battle.Model
         public Dictionary<string, Tile> Elements
         {
             get { return _elements; }
+        }
+
+        public void Init()
+        {
+            StartingGeneration();
+            AddElements();
         }
 
         internal void SpawnTiles(int startX, int endX, int startY, int endY)
@@ -133,6 +137,29 @@ namespace BirdHouse_Battle.Model
             }
         }
 
+        internal void GenerationRockInGame(int x, int y)
+        {
+            Tile[] tiles = new Tile[5];
+            tiles[0] = FindTile(x, y);
+            tiles[1] = FindTile(x - 1, y - 1);
+            tiles[2] = FindTile(x + 1, y - 1);
+            tiles[3] = FindTile(x - 1, y + 1);
+            tiles[4] = FindTile(x + 1, y + 1);
+
+            foreach (Tile tile in tiles)
+            {
+                tile.ObstacleAssign(1);
+                TryAddElement(tile);
+            }
+        }
+
+        internal void TryAddElement(Tile tile)
+        {
+            if (!Elements.TryGetValue($"{tile.X}:{tile.Y}", out Tile faketile))
+            {
+                Elements.Add($"{tile.X}:{tile.Y}", tile);
+            }
+        }
 
         internal void GenerationTree(int x, int y)
         {
@@ -300,6 +327,12 @@ namespace BirdHouse_Battle.Model
 
             GenerationMountains(random);
             GenerationObstacles(random);
+
+            for (int x = 0; x < 2; x++)
+            {
+                DiamondSquare();
+            }
+            //DiamondSquare(true);
         }
 
         public void AddElements()
@@ -312,5 +345,215 @@ namespace BirdHouse_Battle.Model
                 }
             }
         }
+
+        public void DiamondSquare()
+        {
+            Random rdm = new Random();
+            int X = rdm.Next(0, 434);
+            int Y = rdm.Next(0, 434);
+
+            int MAP_SIZE = 65;
+            bool wrap = false;
+            int roughness = 1;
+
+            double[,] map = new double[MAP_SIZE,MAP_SIZE];
+            int nw = (wrap ? 0 : 1); // indicateur non répétable
+
+            // Initialise les coins de la carte
+            map[0, 0] = rdm.Next(0, 4); // haut gauche
+            map[0, MAP_SIZE - 1] = rdm.Next(0, 4); // bas gauche
+            map[MAP_SIZE - 1, 0] = rdm.Next(0, 4); // haut droite
+            map[MAP_SIZE - 1, MAP_SIZE - 1] = rdm.Next(0, 4); // bas droite
+
+            double h = 7; // la plage (-h -> +h) pour le décalage moyen
+
+            // sideLength est la longueur d'un côté d'un carré
+            // ou la longueur de la diagonale d'un losange
+            for (int sideLength = MAP_SIZE - 1; sideLength >= 2; sideLength /= 2)
+            {
+                h /= 2.0;
+                // la moitié de la longueur d'un carré
+                // ou la distance du centre d'un losange à un coin
+                // (juste pour rendre les calculs ci-dessous un peu plus clairs)
+                int halfSide = sideLength / 2;
+
+                // génère les nouvelles valeurs du carré
+                for (int x = 0; x < MAP_SIZE - 1; x += sideLength)
+                {
+                    for (int y = 0; y < MAP_SIZE - 1; y += sideLength)
+                    {
+                        // x, y est en haut à gauche du carré
+                        // calcule la moyenne des coins existants
+                        double avg = map[x, y] + //top left
+                                  map[x + sideLength, y] + // top right
+                                  map[x, y + sideLength] + // lower left
+                                  map[x + sideLength, y + sideLength]; // lower right
+                        avg /= 4.0;
+
+                        // le centre c'est la moyenne plus un décalage aléatoire
+                        map[x + halfSide, y + halfSide] = normalize(avg + offset(h, roughness));
+                    } // for y
+                } // for x 
+
+                // génère les valeurs du losange
+                // puisque les losanges sont en quinconce on se déplace en x
+                // uniquement de halfSide.
+                // NOTE : si la carte ne doit pas se répéter, alors x < MAP_SIZE
+                // pour générer les valeurs du bord
+                for (int x = 0; x < MAP_SIZE - 1 + nw; x += halfSide)
+                {
+                    // et y est x décalé de halfSide, mais translaté
+                    // de la pleine longueur du côté
+                    // NOTE : si la carte ne doit pas se répéter, alors y < MAP_SIZE
+                    // pour générer les valeurs du bord
+                    for (int y = (x + halfSide) % sideLength; y < MAP_SIZE - 1 + nw; y += sideLength)
+                    {
+                        // x, y est le centre du losange
+                        // à noter que nous devons utiliser le modulo et l'ajout de MAP_SIZE pour la soustraction
+                        // de façon à parcourir cycliquement le tableau pour trouver les coins
+                        double avg =
+                            map[(x - halfSide + MAP_SIZE - 1) % (MAP_SIZE - 1), y] + // gauche du centre
+                            map[(x + halfSide) % (MAP_SIZE - 1), y] + // droite du centre
+                            map[x, (y + halfSide) % (MAP_SIZE - 1)] + // bas du centre
+                            map[x, (y - halfSide + MAP_SIZE - 1) % (MAP_SIZE - 1)]; // haut du centre
+
+                        avg /= 4.0;
+
+                        // nouvelle valeur = moyenne + décalage aléatoire
+                        avg = normalize(avg + offset(h, roughness));
+// met à jour la valeur pour le centre du losange
+                        map[x, y] = avg;
+
+                        // duplique les valeurs sur les bords si carte répétable
+                        if (wrap)
+                        {
+                            if (x == 0) map[MAP_SIZE - 1, y] = avg;
+                            if (y == 0) map[x, MAP_SIZE - 1] = avg;
+                        }
+                    } // for y
+                } // for x
+            } // for sideLength
+
+            for (int x = 0; x < MAP_SIZE; x++)
+            {
+                for (int y = 0; y < MAP_SIZE; y++)
+                {
+                    _tiles[X + x, Y + y].HeightAssign(uint.Parse($"{map[x, y]}"));
+                }
+            }
+        } // heightmapDiamondSquare
+
+// Renvoie un décalage aléatoire proportionnel à la hauteur
+        internal double offset(double height, int roughness)
+        {
+            // On calcule la valeur aléatoire dans une plage de 2h
+            // et ensuite on soustrait h de façon à ce que la valeur finale
+            // soit dans l'intervalle [-h, +h]
+
+            return (new Random().NextDouble() * 2 - 1) * height * roughness;
+        } // offset
+
+// Normalise la valeur pour s'assurer qu'elle reste dans les limites
+        internal double normalize(double value)
+        {
+            return Math.Round(Math.Max(Math.Min(value, 14), 0));
+        } // normalize
+
+        public void DiamondSquare(bool useless)
+        {
+            Random rdm = new Random();
+            int X = 0;
+            int Y = 0;
+
+            int MAP_SIZE = 257;
+            bool wrap = false;
+            int roughness = 1;
+
+            double[,] map = new double[MAP_SIZE, MAP_SIZE];
+            int nw = (wrap ? 0 : 1); // indicateur non répétable
+
+            // Initialise les coins de la carte
+            map[0, 0] = rdm.Next(0, 12); // haut gauche
+            map[0, MAP_SIZE - 1] = rdm.Next(0, 12); // bas gauche
+            map[MAP_SIZE - 1, 0] = rdm.Next(0, 12); // haut droite
+            map[MAP_SIZE - 1, MAP_SIZE - 1] = rdm.Next(0, 12); // bas droite
+
+            double h = 7; // la plage (-h -> +h) pour le décalage moyen
+
+            // sideLength est la longueur d'un côté d'un carré
+            // ou la longueur de la diagonale d'un losange
+            for (int sideLength = MAP_SIZE - 1; sideLength >= 2; sideLength /= 2)
+            {
+                h /= 2.0;
+                // la moitié de la longueur d'un carré
+                // ou la distance du centre d'un losange à un coin
+                // (juste pour rendre les calculs ci-dessous un peu plus clairs)
+                int halfSide = sideLength / 2;
+
+                // génère les nouvelles valeurs du carré
+                for (int x = 0; x < MAP_SIZE - 1; x += sideLength)
+                {
+                    for (int y = 0; y < MAP_SIZE - 1; y += sideLength)
+                    {
+                        // x, y est en haut à gauche du carré
+                        // calcule la moyenne des coins existants
+                        double avg = map[x, y] + //top left
+                                  map[x + sideLength, y] + // top right
+                                  map[x, y + sideLength] + // lower left
+                                  map[x + sideLength, y + sideLength]; // lower right
+                        avg /= 4.0;
+
+                        // le centre c'est la moyenne plus un décalage aléatoire
+                        map[x + halfSide, y + halfSide] = normalize(avg + offset(h, roughness));
+                    } // for y
+                } // for x 
+
+                // génère les valeurs du losange
+                // puisque les losanges sont en quinconce on se déplace en x
+                // uniquement de halfSide.
+                // NOTE : si la carte ne doit pas se répéter, alors x < MAP_SIZE
+                // pour générer les valeurs du bord
+                for (int x = 0; x < MAP_SIZE - 1 + nw; x += halfSide)
+                {
+                    // et y est x décalé de halfSide, mais translaté
+                    // de la pleine longueur du côté
+                    // NOTE : si la carte ne doit pas se répéter, alors y < MAP_SIZE
+                    // pour générer les valeurs du bord
+                    for (int y = (x + halfSide) % sideLength; y < MAP_SIZE - 1 + nw; y += sideLength)
+                    {
+                        // x, y est le centre du losange
+                        // à noter que nous devons utiliser le modulo et l'ajout de MAP_SIZE pour la soustraction
+                        // de façon à parcourir cycliquement le tableau pour trouver les coins
+                        double avg =
+                            map[(x - halfSide + MAP_SIZE - 1) % (MAP_SIZE - 1), y] + // gauche du centre
+                            map[(x + halfSide) % (MAP_SIZE - 1), y] + // droite du centre
+                            map[x, (y + halfSide) % (MAP_SIZE - 1)] + // bas du centre
+                            map[x, (y - halfSide + MAP_SIZE - 1) % (MAP_SIZE - 1)]; // haut du centre
+
+                        avg /= 4.0;
+
+                        // nouvelle valeur = moyenne + décalage aléatoire
+                        avg = normalize(avg + offset(h, roughness));
+                        // met à jour la valeur pour le centre du losange
+                        map[x, y] = avg;
+
+                        // duplique les valeurs sur les bords si carte répétable
+                        if (wrap)
+                        {
+                            if (x == 0) map[MAP_SIZE - 1, y] = avg;
+                            if (y == 0) map[x, MAP_SIZE - 1] = avg;
+                        }
+                    } // for y
+                } // for x
+            } // for sideLength
+
+            for (int x = 0; x < MAP_SIZE; x++)
+            {
+                for (int y = 0; y < MAP_SIZE; y++)
+                {
+                    _tiles[X + x, Y + y].HeightAssign(uint.Parse($"{map[x, y]}"));
+                }
+            }
+        } // heightmapDiamondSquare
     }
 }
