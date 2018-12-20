@@ -1,11 +1,16 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace BirdHouse_Battle.Model
 {
     public abstract class Unit
     {
+        
         Team _team;
+
+        
         Arena _arena;
+
         Unit _target;
         readonly int _name;
         Vector _location;
@@ -51,8 +56,10 @@ namespace BirdHouse_Battle.Model
             _teamPlay = false;
         }
 
+        [JsonIgnore]
         public Team Team { get { return _team; } }
 
+        [JsonIgnore]
         public Arena Arena { get { return _arena; } }
 
         public int Name { get { return _name; } }

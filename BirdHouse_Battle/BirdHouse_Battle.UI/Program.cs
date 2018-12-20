@@ -6,31 +6,47 @@
         {
             bool run = true;
             Game game = new Game();
+
             while (run == true)
             {
                 switch (game.Status)
                 {
+                    //main menu
                     case "main":
                         game.MainMenu();
                         break;
-                    case "preGame":
+                        
+                    case "preGame"://game prep menu
                         game.Arena = new Model.Arena();
                         game.PreGame();
                         break;
-                    case "game":
+                        
+                    case "game"://game screen
                         game.Run();
                         break;
-                    case "close":
-                        run = false;
+                        
+                    case "close"://close the window
+                        game.ExitMenu();
                         break;
-                    case "pause":
-                        game.PauseMenu();
-                  
+                        
+                    //case "pause"://pause the game screen
+                    //    if ( game.Paused == true ) { game.PauseMenu(); }
+                        
+                    //    break;
+
+                    case "ended"://when the game has ended
+                        game.ResultWindow();
                         break;
+
+                    case "credit"://credit
+                        game.CreditPage();
+                        break;
+
                     default:
                         game.MainMenu();
                         break;
                 }
+                
             }
         }
     }

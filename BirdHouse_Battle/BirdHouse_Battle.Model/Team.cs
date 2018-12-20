@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
@@ -77,14 +78,11 @@ namespace BirdHouse_Battle.Model
                 if (_unitCount > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of troops for this team");
 
                 return _unitCount = _aCount + _gCount + _pCount + _dCount + _cCount + _bCount;
-
             }
         }
 
-        public Arena Context
-        {
-            get { return _arena; }
-        }
+        [JsonIgnore]
+        public Arena Context => _arena;
 
         public int Acount
         {
@@ -123,7 +121,6 @@ namespace BirdHouse_Battle.Model
             {
                 if (value < 0.0) throw new ArgumentException("You don't have enought gold", nameof(value));
                 _goldAmount = value;
-
             }
         }
 
@@ -187,20 +184,11 @@ namespace BirdHouse_Battle.Model
             }
         }
 
-        public Dictionary<int, Unit> Units
-        {
-            get { return _units; }
-        }
+        public Dictionary<int, Unit> Units => _units;
 
-        public Unit GoblinsTarget
-        {
-            get { return _goblinsTarget; }
-        }
+        public Unit GoblinsTarget => _goblinsTarget;
 
-        public Unit ArchersTarget
-        {
-            get { return _archersTarget; }
-        }
+        public Unit ArchersTarget => _archersTarget;
 
         public int GoblinsAttack
         {

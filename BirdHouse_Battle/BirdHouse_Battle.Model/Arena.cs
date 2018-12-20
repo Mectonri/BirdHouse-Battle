@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BirdHouse_Battle.Model
 {
@@ -13,7 +12,7 @@ namespace BirdHouse_Battle.Model
         readonly int _height;
         readonly int _width;
         int _counter;
-        Field _field;
+        readonly Field _field;
 
         public Arena()
         {
@@ -85,8 +84,7 @@ namespace BirdHouse_Battle.Model
 
         public bool FindTeam(string name)
         {
-            Team result;
-            return _teams.TryGetValue(name, out result);
+            return _teams.TryGetValue(name, out Team result);
         }
 
         public int TeamCount
