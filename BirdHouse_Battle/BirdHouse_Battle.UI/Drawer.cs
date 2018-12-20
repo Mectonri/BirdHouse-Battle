@@ -392,9 +392,38 @@ namespace BirdHouse_Battle.UI
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
 
-            RectangleShape[] buttons = new RectangleShape[13];
-            Text[] messages = new Text[6];
+            RectangleShape[] buttons = new RectangleShape[17];
+            Text[] messages = new Text[10];
 
+
+            RectangleShape buttonAddRemove = new RectangleShape(Bsize);
+            buttonAddRemove.Position = new Vector2f(275, 30);
+            buttonAddRemove.FillColor = new Color(211,211,211);
+            Text textAddRemove = new Text("",font,25);
+
+            if (status[5] == "add")
+            {
+                textAddRemove = new Text("ADD", font, 20);
+            }
+            else
+            {
+                textAddRemove = new Text("REM", font, 20);
+            }
+            textAddRemove.Position = new Vector2f(295, 27);
+            textAddRemove.FillColor = new Color(0, 0, 0);
+
+
+
+
+
+            RectangleShape button1 = new RectangleShape();
+            Text text1 = new Text("1",font,25);
+
+            RectangleShape button10 = new RectangleShape();
+            Text text10 = new Text("10", font, 25);
+
+            RectangleShape button100 = new RectangleShape();
+            Text text100 = new Text("100", font, 25);
 
 
             RectangleShape buttonPlay = new RectangleShape(Bsize);
@@ -524,6 +553,11 @@ namespace BirdHouse_Battle.UI
             buttons[10] = buttonCatapult;
             buttons[11] =buttonSupprTeam3;
             buttons[12] =buttonSupprTeam4;
+            buttons[13] = buttonAddRemove;
+            buttons[14] = button1;
+            buttons[15] = button10;
+            buttons[16] = button100;
+
 
             foreach (var t in buttons)
             {
@@ -536,8 +570,10 @@ namespace BirdHouse_Battle.UI
             messages[3] = messageTeam4;
             messages[4] = messageSuppr3;
             messages[5] = messageSuppr4;
-            
-
+            messages[6] = text1;
+            messages[7] = text10;
+            messages[8] = text100;
+            messages[9] = textAddRemove;
 
             foreach (var t in messages)
             {
