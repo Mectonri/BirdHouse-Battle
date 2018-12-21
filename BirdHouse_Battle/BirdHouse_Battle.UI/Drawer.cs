@@ -135,20 +135,20 @@ namespace BirdHouse_Battle.UI
                 arrField.SetPointCount(3);
                 switch (tile.Height)
                 {
-                    case 1: arrField.FillColor = new Color(10, 30, 27); break;
-                    case 2: arrField.FillColor = new Color(30, 40, 28); break;
-                    case 3: arrField.FillColor = new Color(50, 50, 29); break;
-                    case 4: arrField.FillColor = new Color(70, 60, 30); break;
-                    case 5: arrField.FillColor = new Color(90, 65, 31); break;
-                    case 6: arrField.FillColor = new Color(110, 70, 32); break;
-                    case 7: arrField.FillColor = new Color(115, 75, 33); break;
-                    case 8: arrField.FillColor = new Color(120, 80, 34); break;
-                    case 9: arrField.FillColor = new Color(125, 84, 35); break;
-                    case 10: arrField.FillColor = new Color(130, 87, 36); break;
-                    case 11: arrField.FillColor = new Color(135, 90, 37); break;
-                    case 12: arrField.FillColor = new Color(140, 94, 38); break;
-                    case 13: arrField.FillColor = new Color(145, 97, 39); break;
-                    case 14: arrField.FillColor = new Color(150, 100, 40); break;
+                    case 1: arrField.FillColor = new Color(90, 135, 10); break;
+                    case 2: arrField.FillColor = new Color(80, 130, 10); break;
+                    case 3: arrField.FillColor = new Color(75, 125, 10); break;
+                    case 4: arrField.FillColor = new Color(70, 120, 9); break;
+                    case 5: arrField.FillColor = new Color(65, 115, 9); break;
+                    case 6: arrField.FillColor = new Color(60, 110, 8); break;
+                    case 7: arrField.FillColor = new Color(55, 100, 8); break;
+                    case 8: arrField.FillColor = new Color(50, 90, 7); break;
+                    case 9: arrField.FillColor = new Color(45, 80, 7); break;
+                    case 10: arrField.FillColor = new Color(40, 70, 7); break;
+                    case 11: arrField.FillColor = new Color(35, 60, 6); break;
+                    case 12: arrField.FillColor = new Color(30, 50, 6); break;
+                    case 13: arrField.FillColor = new Color(25, 40, 5); break;
+                    case 14: arrField.FillColor = new Color(20, 30, 5); break;
                 }
             }
             else if (tile.Obstacle != "None")
