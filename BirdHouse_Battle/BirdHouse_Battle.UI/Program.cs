@@ -21,7 +21,7 @@
                         break;
                     case "quickGame":
                         game.NewArena();
-                        game.RandomGame(game.Arena);
+                        game.FillRandom(game.Arena);
                         break;
                     case "game"://game screen
                         game.Run();

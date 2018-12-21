@@ -209,27 +209,12 @@ namespace BirdHouse_Battle.UI
 
         //    arena.SpawnUnit();
         //}
-
-        public void Random(Arena arena, Team team)
-        {
-            Random random = new Random();
-
-            team.AddArcher(random.Next(125));
-
-            team.AddBalista(random.Next(125 - team.UnitCount));
-
-            team.AddCatapult(random.Next(125 - team.UnitCount));
-
-            team.AddDrake(random.Next(125 - team.UnitCount));
-
-            team.AddGobelin(random.Next(125 - team.UnitCount));
-
-            team.AddPaladin(random.Next(125 - team.UnitCount));
-
-            arena.SpawnUnit();
-        }
         
-        public void RandomGame( Arena arena)
+            /// <summary>
+            /// Create a random game
+            /// </summary>
+            /// <param name="arena"></param>
+        public void FillRandom( Arena arena)
         {
             Random rn = new Random();
             int t = rn.Next(2, 5);
@@ -484,7 +469,28 @@ namespace BirdHouse_Battle.UI
 
             return buttons;
         }
-        
+
+        /// <summary>
+        /// Fill a team at random
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="TeamComp"></param>
+        /// <returns></returns>
+        public int[,] FillRandom(int i, int[,] TeamComp)
+        {
+            Random rdm = new Random();
+            int f = 0;
+            int max = 0;
+            
+            for (f = 1; f < 6; f++)
+            {
+                TeamComp[i, f] = rdm.Next( 125 - max);
+                max = max + TeamComp[i, f];
+            }
+         
+            return TeamComp;
+        }
+
         public void PreGame()
         {
             
@@ -492,7 +498,7 @@ namespace BirdHouse_Battle.UI
             Team red = Arena.CreateTeam("red");
             Team green = null;
             Team yellow = null;
-            string [] status =new string [7];
+            string [] status =new string [8];
             status[0] = "selected";
             status[1] = "active";
             status[2]= "inactive";
@@ -501,6 +507,7 @@ namespace BirdHouse_Battle.UI
             status[4] = "none";
             status[5] = "add";
             status[6] = "1";
+            status[7] = "yes";
 
 
 
@@ -522,6 +529,18 @@ namespace BirdHouse_Battle.UI
                     Shape[] buttons = InitPreGame(status, teamComposition);
                     Window.DispatchEvents();
                     status = _iHandler.HandlerPreGame(buttons, status);
+
+                    if (status[7] == "no")
+                    {
+                        for (int i= 0; i < status.Length; i++)
+                        {
+                            if (status[i] == "selected")
+                            {
+                                teamComposition = FillRandom(i, teamComposition);
+                                status[7] = "yes"; 
+                            }
+                        }
+                    }
 
 
                     if (status[2] == "inactiveTemp")

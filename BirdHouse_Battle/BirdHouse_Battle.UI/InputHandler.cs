@@ -226,8 +226,6 @@ namespace BirdHouse_Battle.UI
             {
                 status[3] = "inactive";
                 return status;
-
-
             }
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "inactive" && status[2]!="inactive")
             {
@@ -280,11 +278,10 @@ namespace BirdHouse_Battle.UI
             {
                 game.Status = "game";
                 return status;
-            }
-            else if ((buttons[11].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+            }//fill button
+            else if ((buttons[17].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
             {
-                game.RandomGame(game.Arena);
-                game.Status =  "game";
+                status[7] = "no";                
                 return status ;
             }
 
