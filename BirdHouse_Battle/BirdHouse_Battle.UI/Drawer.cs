@@ -228,11 +228,10 @@ namespace BirdHouse_Battle.UI
         internal Shape[] EndDisplay(int Winner)
         {
             _window.Draw( CreateShape(512, 712, "../../../../res/end.png", 0, 0));
-            Vector2f Bsize = new Vector2f(100, 25);
             Shape[] buttons = new RectangleShape[2];
 
-            buttons[0] = CreateShape(Bsize, "../../../../res/button_again.png", 100, 500); // take us to pregame screen
-            buttons[1] = CreateShape(Bsize, "../../../../res/button_quit.png", 300, 500); ; // take us to main menu
+            buttons[0] = CreateShape(100, 25, "../../../../res/button_again.png", 100, 500); // take us to pregame screen
+            buttons[1] = CreateShape(100, 25, "../../../../res/button_quit.png", 300, 500); ; // take us to main menu
 
             switch (Winner)
             {
@@ -305,33 +304,53 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        /// Asks for cofirmation before quitting
+        /// Ask For confirmation before returning
         /// </summary>
         /// <returns></returns>
-        public Shape[] ExitDisplay()
+        public Shape[] ReturnDisplay()
         {
-            Shape ExitBackground = CreateShape(512, 712, "../../../../res/exit.png", 0 ,0);
+            Shape ExitBackground = CreateShape(512, 712, "../../../../res/return1.png", 0 ,0);
             _window.Draw(ExitBackground);
-            Vector2f Bsize = new Vector2f(75, 25);//button size
+            
             Vector2f Tsize = new Vector2f(118, 390); //team button  size
 
             Shape[] button = new RectangleShape[2];
 
-            button[0] = CreateShape(Bsize, "../../../../res/button_yes.png", 100, 200); // 
-            button[1] = CreateShape(Bsize, "../../../../res/button_no.png", 300, 200); // take us to the precedent screen
+            button[0] = CreateShape(75, 25, "../../../../res/button_yes.png", 100, 200); // 
+            button[1] = CreateShape(75, 25, "../../../../res/button_no.png", 300, 200); // take us to the precedent screen
             RectangleShape[] buttons = new RectangleShape[17];
             Text[] messages = new Text[10];
 
-            RectangleShape buttonPlay = new RectangleShape(Bsize);
-            buttonPlay.Position = new Vector2f(380, 125);
-            buttonPlay.Texture = new Texture("../../../../res/button_play.png");
+           Shape buttonPlay = CreateShape(75, 25, "../../../../res/button_play.png", 380, 125);
+
             foreach (var t in button)
             {
                 _window.Draw(t);
             }
             return button;
         }
-        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        internal Shape[] QuitDisplay()
+        {
+            Shape[] button = new RectangleShape[2];
+
+            Shape ExitBackground = CreateShape(512, 712, "../../../../res/exit.png", 0, 0);
+            _window.Draw(ExitBackground);
+
+            button[0] = CreateShape(75, 25, "../../../../res/button_yes.png", 100, 200); // 
+            button[1] = CreateShape(75, 25, "../../../../res/button_no.png", 300, 200);
+
+            foreach (var t in button)
+            {
+                _window.Draw(t);
+            }
+            return button;
+        }
+
         /// <summary>
         /// Display the pause menu
         /// </summary>
@@ -353,6 +372,12 @@ namespace BirdHouse_Battle.UI
             return button;
         }
 
+        /// <summary>
+        /// Display the PreGame Menu
+        /// </summary>
+        /// <param name="status"></param>
+        /// <param name="teamComposition"></param>
+        /// <returns></returns>
         public Shape[] PreGameDisplay(string[] status, int[,] teamComposition)
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
