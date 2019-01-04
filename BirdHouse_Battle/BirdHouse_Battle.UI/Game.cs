@@ -263,7 +263,7 @@ namespace BirdHouse_Battle.UI
             GameLoop(Arena);
         }
 
-        public void Render(Arena arena )
+        public void Render(Arena arena)
         { 
             Window.Clear();
             Drawer draw = new Drawer(Window);

@@ -11,7 +11,6 @@ namespace BirdHouse_Battle.UI
     public class Drawer
     {
         internal RenderWindow _window;
-
         readonly Shape _winnerButton;
         readonly Texture _redTeam;
         readonly Texture _blueTeam;
@@ -41,7 +40,7 @@ namespace BirdHouse_Battle.UI
         public void BackGroundGame()
         {
             _window.Draw( CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
-
+            _window.Draw( CreateShape(512,512, "../../../../res/DiamondBackground.png", 0, 0));
             //Displays the legend
             _window.Draw(CreateShape(512, 200, "../../../../res/LEGEND.png", 0, 512));
         }
@@ -130,28 +129,7 @@ namespace BirdHouse_Battle.UI
             CircleShape arrField = new CircleShape(5);
             arrField.Position = new Vector2f((float)tile.X + 250, (float)tile.Y + 250);
 
-            if (tile.Height != 0)
-            {
-                arrField.SetPointCount(3);
-                switch (tile.Height)
-                {
-                    case 1: arrField.FillColor = new Color(90, 135, 10); break;
-                    case 2: arrField.FillColor = new Color(80, 130, 10); break;
-                    case 3: arrField.FillColor = new Color(75, 125, 10); break;
-                    case 4: arrField.FillColor = new Color(70, 120, 9); break;
-                    case 5: arrField.FillColor = new Color(65, 115, 9); break;
-                    case 6: arrField.FillColor = new Color(60, 110, 8); break;
-                    case 7: arrField.FillColor = new Color(55, 100, 8); break;
-                    case 8: arrField.FillColor = new Color(50, 90, 7); break;
-                    case 9: arrField.FillColor = new Color(45, 80, 7); break;
-                    case 10: arrField.FillColor = new Color(40, 70, 7); break;
-                    case 11: arrField.FillColor = new Color(35, 60, 6); break;
-                    case 12: arrField.FillColor = new Color(30, 50, 6); break;
-                    case 13: arrField.FillColor = new Color(25, 40, 5); break;
-                    case 14: arrField.FillColor = new Color(20, 30, 5); break;
-                }
-            }
-            else if (tile.Obstacle != "None")
+            if (tile.Obstacle != "None")
             {
                 arrField.SetPointCount(6);
                 switch (tile.Obstacle)
