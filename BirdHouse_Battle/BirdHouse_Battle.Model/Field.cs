@@ -473,46 +473,46 @@ namespace BirdHouse_Battle.Model
                     switch (data[x, y])
                     {
                         case 1:
-                            c = Color.FromArgb(90, 135, 10);
+                            c = Color.FromArgb(110, 48, 12);
                             break;
                         case 2:
-                            c = Color.FromArgb(80, 130, 10);
+                            c = Color.FromArgb(109, 60, 12);
                             break;
                         case 3:
-                            c = Color.FromArgb(75, 125, 10);
+                            c = Color.FromArgb(108, 73, 11);
                             break;
                         case 4:
-                            c = Color.FromArgb(70, 120, 9);
+                            c = Color.FromArgb(107, 85, 11);
                             break;
                         case 5:
-                            c = Color.FromArgb(65, 115, 9);
+                            c = Color.FromArgb(107, 97, 10);
                             break;
                         case 6:
-                            c = Color.FromArgb(60, 110, 8);
+                            c = Color.FromArgb(102, 106, 10);
                             break;
                         case 7:
-                            c = Color.FromArgb(55, 100, 8);
+                            c = Color.FromArgb(88, 105, 9);
                             break;
                         case 8:
-                            c = Color.FromArgb(50, 90, 7);
+                            c = Color.FromArgb(75, 105, 9);
                             break;
                         case 9:
-                            c = Color.FromArgb(45, 80, 7);
+                            c = Color.FromArgb(61, 104, 8);
                             break;
                         case 10:
-                            c = Color.FromArgb(40, 70, 7);
+                            c = Color.FromArgb(47, 103, 8);
                             break;
                         case 11:
-                            c = Color.FromArgb(35, 60, 6);
+                            c = Color.FromArgb(34, 103, 7);
                             break;
                         case 12:
-                            c = Color.FromArgb(30, 50, 6);
+                            c = Color.FromArgb(20, 102, 7);
                             break;
                         case 13:
-                            c = Color.FromArgb(25, 40, 5);
+                            c = Color.FromArgb(7, 101, 6);
                             break;
                         default:
-                            c = Color.FromArgb(20, 30, 5);
+                            c = Color.FromArgb(6, 101, 18);
                             break;
                     }
                     pic.SetPixel(x, y, c);
