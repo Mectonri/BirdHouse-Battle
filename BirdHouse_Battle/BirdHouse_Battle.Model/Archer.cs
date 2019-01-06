@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BirdHouse_Battle.Model;
-using NUnit.Framework;
-
-namespace BirdHouse_Battle.Model
+﻿namespace BirdHouse_Battle.Model
 {
     public class Archer : Unit
     {
@@ -16,7 +10,6 @@ namespace BirdHouse_Battle.Model
         {
             _callDown = 0;
         }
-
         public int CallDown
         {
             get { return _callDown; }

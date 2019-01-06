@@ -1,4 +1,4 @@
-﻿using Newtonsoft.Json;
+﻿using Newtonsoft.Json.Linq;
 using System;
 
 namespace BirdHouse_Battle.Model
@@ -7,12 +7,10 @@ namespace BirdHouse_Battle.Model
     {
         
         Team _team;
-
-        
         Arena _arena;
 
-        Unit _target;
         readonly int _name;
+
         Vector _location;
         Vector _direction;
         Vector _mouvement;
@@ -56,19 +54,61 @@ namespace BirdHouse_Battle.Model
             _teamPlay = false;
         }
 
-        [JsonIgnore]
+        #region Serialization
+
+        /// <summary>
+        /// Deserialize a unit using a JToken
+        /// </summary>
+        /// <param name="team"></param>
+        /// <param name="jToken"></param>
+        public Unit(Team team, JToken jToken)
+        {
+            _team = team;
+            _life = jToken["Life"].Value<double>();
+            _speed = jToken["Speed"].Value<double>();
+            _range = jToken["Range"].Value<double>();
+            _unitPrice = jToken["UnitPrice"].Value<double>();
+            _strength = jToken["Strength"].Value<int>();
+            _armor = jToken["Armor"].Value<int>();
+            _disposition = jToken["Disposition"].Value<string>();
+            _fly = jToken["Fly"].Value<bool>();
+            _distance = jToken["Distance"].Value<bool>();
+            _distanceOnly= jToken["DistanceOnly"].Value<bool>();
+            _name = jToken["Name"].Value<int>();
+        }
+
+        /// <summary>
+        /// Serialize a Unit
+        /// </summary>
+        /// <returns></returns>
+        public JToken Serialize()
+        {
+            return new JObject(
+                new JProperty("Life", _life),
+                new JProperty("Speed", _speed),
+                new JProperty("Range", _range),
+                new JProperty("UnitPrice", _unitPrice),
+                new JProperty("Strength", _strength), 
+                new JProperty("Armor", _armor),
+                new JProperty("Disposition", _disposition),
+                new JProperty("Fly", _fly),
+                new JProperty("Distance", _distance),
+                new JProperty("DistanceOnly", _distanceOnly),
+                new JProperty("Name", _name)
+                );
+        }
+
+#endregion
+
+        #region Getter & Setter
+
         public Team Team { get { return _team; } }
 
-        [JsonIgnore]
         public Arena Arena { get { return _arena; } }
 
         public int Name { get { return _name; } }
 
-        public Unit Target
-        {
-            get { return _target; }
-            set { _target = value; }
-        }
+        public Unit Target { get; set; }
 
         public Vector Location
         {
@@ -120,6 +160,8 @@ namespace BirdHouse_Battle.Model
         public bool DumpCantFly { get { return _dumpCantFly; } }
 
         public bool DumpCantWalk { get { return _dumpCantWalk; } }
+
+        #endregion
 
         /// <summary>
         /// Search the nearest enemy.

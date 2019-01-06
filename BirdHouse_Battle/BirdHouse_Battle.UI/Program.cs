@@ -22,6 +22,7 @@
                     case "quickGame":
                         game.NewArena();
                         game.FillRandom(game.Arena);
+                        
                         break;
                     case "game"://game screen
                         game.Run();
@@ -31,10 +32,10 @@
                         game.ReturnMenu();
                         break;
                         
-                    //case "pause"://pause the game screen
-                    //    if ( game.Paused == true ) { game.PauseMenu(); }
-                        
-                    //    break;
+                    case "history"://history mode
+                        game.NewArena();
+                        game.HistoryMenu();                        
+                        break;
 
                     case "ended"://when the game has ended
                         game.ResultWindow();

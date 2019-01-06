@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BirdHouse_Battle.Model
 {
@@ -31,45 +33,21 @@ namespace BirdHouse_Battle.Model
             }
         }
 
-        public Dictionary<string, Team> Teams
-        {
-            get { return _teams; }
-        }
+        public Dictionary<string, Team> Teams => _teams;
 
-        public Dictionary<int, Projectile> Projectiles
-        {
-            get { return _projectiles; }
-        }
+        public Dictionary<int, Projectile> Projectiles => _projectiles;
 
-        public Dictionary<string, Team> DeadTeams
-        {
-            get { return _deadTeams; }
-        }
+        public Dictionary<string, Team> DeadTeams => _deadTeams;
 
-        public Dictionary<int, Projectile> DeadProjectiles
-        {
-            get { return _deadProjectiles; }
-        }
+        public Dictionary<int, Projectile> DeadProjectiles => _deadProjectiles;
 
-        public int Height
-        {
-            get { return _height; }
-        }
-        
-        public int Width
-        {
-            get { return _width; }
-        }
+        public int Height => _height;
 
-        public int Counter
-        {
-            get { return _counter; }
-        }
+        public int Width => _width;
 
-        public Field Field
-        {
-            get { return _field; }
-        }
+        public int Counter => _counter;
+
+        public Field Field => _field;
 
         public Team CreateTeam(string name)
         {
@@ -111,6 +89,8 @@ namespace BirdHouse_Battle.Model
         //    }
         //    return doesCollide;
         //}
+
+        
 
         public bool Collision(Unit unit, Vector vector, double speed)
         {
