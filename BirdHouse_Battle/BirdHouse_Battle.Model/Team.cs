@@ -64,32 +64,6 @@ namespace BirdHouse_Battle.Model
 
         #region relevent to serialization
 
-
-        /// <summary>
-        /// Create Team from JToken
-        /// </summary>
-        ///<param name = "jToken" ></ param >
-        //public Team(Arena Arena, string Name, JToken jToken)
-        //{
-        //    _isWiped = false;
-        //    _name = Name;
-        //    _arena = Arena;
-        //    _teamNumber = _arena.TeamCount;
-        //    _limitNbUnit = 125;
-
-        //    _units = new Dictionary<int, Unit>();
-
-        //    JArray jUnits = (JArray)jToken["units"];
-        //    IEnumerable<Unit> units = jUnits.Select(u => new Unit(this, u));
-
-        //    foreach (Unit unit in units)
-        //    {
-        //        _units.Add(unit.Name, unit);
-        //    }
-
-        //    _deadUnits = new Dictionary<int, Unit>();
-        //}
-
         /// <summary>
         /// Serialize a team
         /// </summary>
@@ -99,7 +73,32 @@ namespace BirdHouse_Battle.Model
             return new JObject(
                 new JProperty("Units", _units.Select(kv => kv.Value.Serialize())));
         }
-     
+
+        /// <summary>
+        /// Create Team from JToken
+        /// </summary>
+        ///<param name = "jToken" ></ param >
+        public Team(Arena Arena, string Name, JToken jToken)
+        {
+            _isWiped = false;
+            _name = Name;
+            _arena = Arena;
+            _teamNumber = _arena.TeamCount;
+            _limitNbUnit = 125;
+
+            _units = new Dictionary<int, Unit>();
+            JArray jUnits = (JArray)jToken["units"];
+
+           // IEnumerable<Unit> units = jUnits.Select(u => new Archer(this, u));
+            
+            //foreach (Unit unit in units)
+            //{
+            //    _units.Add(unit.Name, unit);
+            //}
+
+            _deadUnits = new Dictionary<int, Unit>();
+        }
+
         public IEnumerable<Unit> GetUnits()
         {
             return _units.Values;

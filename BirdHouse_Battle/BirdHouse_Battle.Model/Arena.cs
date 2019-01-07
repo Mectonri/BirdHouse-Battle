@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace BirdHouse_Battle.Model
 {
@@ -31,6 +30,24 @@ namespace BirdHouse_Battle.Model
             {
                 _field.Init();
             }
+        }
+
+        public Arena( int TeamLimint, JToken jToken)
+        {
+            _teams = new Dictionary<string, Team>();
+            _deadTeams = new Dictionary<string, Team>();
+            _projectiles = new Dictionary<int, Projectile>();
+            _deadProjectiles = new Dictionary<int, Projectile>();
+            _height = 250;
+            _width = 250;
+            _counter = 0;
+            _field = new Field(this, -_height, _height, -_width, _width);
+
+            if (true) // Créer le bool de nouvelle partie / rejouer partie
+            {
+                _field.Init();
+            }
+
         }
 
         public Dictionary<string, Team> Teams => _teams;
@@ -89,8 +106,6 @@ namespace BirdHouse_Battle.Model
         //    }
         //    return doesCollide;
         //}
-
-        
 
         public bool Collision(Unit unit, Vector vector, double speed)
         {

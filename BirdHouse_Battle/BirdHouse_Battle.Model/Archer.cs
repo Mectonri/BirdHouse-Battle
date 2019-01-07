@@ -1,4 +1,6 @@
-﻿namespace BirdHouse_Battle.Model
+﻿using Newtonsoft.Json.Linq;
+
+namespace BirdHouse_Battle.Model
 {
     public class Archer : Unit
     {
@@ -6,10 +8,11 @@
 
         public Archer(Team team, Arena arena, int nameUnit)
             : base(team, arena, 12.0, 1.8, 135.0, 10.0, 4, 1, 
-                   "Order", false, true, false, nameUnit)
+                   "Order", false, true, false, nameUnit, "archer")
         {
             _callDown = 0;
         }
+
         public int CallDown
         {
             get { return _callDown; }

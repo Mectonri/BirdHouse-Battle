@@ -6,7 +6,7 @@ namespace BirdHouse_Battle.Model
     {
         public Drake(Team team, Arena arena, int nameUnit)
             : base(team, arena, 10.0, 1.5, 18.0, 15.0, 7, 0, 
-                   "Chaos", true, true, false, nameUnit)
+                   "Chaos", true, true, false, nameUnit, "drake")
         {
         }
 

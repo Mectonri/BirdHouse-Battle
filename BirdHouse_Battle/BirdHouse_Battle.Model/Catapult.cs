@@ -6,7 +6,7 @@
 
         public Catapult(Team team, Arena arena, int nameUnit)
             : base(team, arena, 30.0, 0.50, 250.0, 40.0, 20, 3,
-                "Order", false, false, false, nameUnit)
+                "Order", false, false, false, nameUnit, "catapult")
         {
             _callDown = 0;
         }

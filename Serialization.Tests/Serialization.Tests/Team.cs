@@ -18,8 +18,8 @@ namespace Serialization.Tests
             : this()
         {
             JArray jUnits = ( JArray )jToken[ "Units" ];
-            IEnumerable<Unit> units = jUnits.Select<JArray, JToken>
-            //IEnumerable<Unit> units = jUnits.Select( u => new Unit( this, u ) );
+            
+            IEnumerable<Unit> units = jUnits.Select( u => new Unit( this, u ) );
             foreach(Unit unit in units)
             {
                 _units.Add( Guid.NewGuid().ToString(), unit );

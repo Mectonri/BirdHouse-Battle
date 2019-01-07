@@ -23,18 +23,19 @@ namespace BirdHouse_Battle.Model
         int _armor;
         int _burn;
         string _disposition;
+        readonly string _breed;
 
         bool _fly;
-        bool _distance;
+        bool _distance; 
         bool _distanceOnly;
         bool _teamPlay;
-        private bool _dumpCantFly;
-        private bool _dumpCantWalk;
+        bool _dumpCantFly;
+        bool _dumpCantWalk;
 
         protected Unit(Team team, Arena arena, double life,
                        double speed, double range, double unitPrice,
                        int strength, int armor, string disposition, 
-                       bool fly, bool distance, bool distanceOnly, int nameUnit)
+                       bool fly, bool distance, bool distanceOnly, int nameUnit, string breed)
         {
             _team = team;
             _arena = arena;
@@ -52,9 +53,11 @@ namespace BirdHouse_Battle.Model
             _distanceOnly = distanceOnly;
             _dumpCantFly = false;
             _teamPlay = false;
+            _breed = breed;
+
         }
 
-        #region Serialization
+        #region De & Serialization 
 
         /// <summary>
         /// Deserialize a unit using a JToken
@@ -75,6 +78,7 @@ namespace BirdHouse_Battle.Model
             _distance = jToken["Distance"].Value<bool>();
             _distanceOnly= jToken["DistanceOnly"].Value<bool>();
             _name = jToken["Name"].Value<int>();
+            _breed = jToken["Breed"].Value<string>();
         }
 
         /// <summary>
@@ -94,7 +98,8 @@ namespace BirdHouse_Battle.Model
                 new JProperty("Fly", _fly),
                 new JProperty("Distance", _distance),
                 new JProperty("DistanceOnly", _distanceOnly),
-                new JProperty("Name", _name)
+                new JProperty("Name", _name),
+                new JProperty("Breed", _breed)
                 );
         }
 
@@ -107,6 +112,8 @@ namespace BirdHouse_Battle.Model
         public Arena Arena { get { return _arena; } }
 
         public int Name { get { return _name; } }
+
+        public string Type => _breed;
 
         public Unit Target { get; set; }
 
