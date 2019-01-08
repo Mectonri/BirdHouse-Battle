@@ -516,7 +516,7 @@ namespace BirdHouse_Battle.UI
             while (Window.IsOpen && Status == "preGame")
             {
                 double current = GetCurrentTime();
-                if (current - previous >= 0.000002)
+                if (current - previous >= 0.0000019)
                 {
                     previous = current;
                     Shape[] buttons = InitPreGame(status, teamComposition);
