@@ -4,7 +4,7 @@
     {
         public Goblin(Team team, Arena arena, int nameUnit)
             : base(team, arena, 8.0, 2.5, 4.0, 3.0, 15, 0, 
-                   "Chaos", false, false, false, nameUnit)
+                   "Chaos", false, false, false, nameUnit, "goblin")
         {
         }
 

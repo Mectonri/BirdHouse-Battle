@@ -1,9 +1,11 @@
 ﻿using BirdHouse_Battle.Model;
+using Newtonsoft.Json;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BirdHouse_Battle.UI
 {
@@ -49,12 +51,13 @@ namespace BirdHouse_Battle.UI
             get { return _arena; }
         }
 
+      
+
         public RenderWindow Window => _window; 
     
         public bool Paused { get; set; }
 
         public double MsPerUpdate => _msPerUpdate; 
-        
 
         #endregion
         
@@ -65,9 +68,7 @@ namespace BirdHouse_Battle.UI
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
         }
-
-      
-
+        
         public void NewArena()
         {
             _arena = new Arena();
@@ -125,7 +126,7 @@ namespace BirdHouse_Battle.UI
                 if (!Paused) Render(arena);
                 else PauseMenu();
             }
-
+            //ListTeam(arena);
             _winner = FindWinner();
 
             Status = "ended";
@@ -136,24 +137,34 @@ namespace BirdHouse_Battle.UI
 
             return true;
         }
-        
+
+        //private void ListTeam(Arena arena)
+        //{
+        //    foreach (KeyValuePair<string, Team> team in arena.Teams)
+        //    {
+        //        Console.WriteLine(team.Key);
+        //        Console.WriteLine(team.Value.Name);
+
+        //    }
+        //}
+
         /// <summary>
         /// Find the winning team
         /// </summary>
         /// <returns></returns>
         public int FindWinner()
         {
-            if (_arena.FindTeam("blue") == true)
+            if (_arena.FindTeam("blue") == true || _arena.FindTeam("Team1"))
             {
                 Console.WriteLine("Blue team won");
                 return _winner = 1;
             }
-            else if (_arena.FindTeam("red") == true)
+            else if (_arena.FindTeam("red") == true || _arena.FindTeam("Team2"))
             {
                 Console.WriteLine("Red team won");
                 return _winner = 2;
             }
-            else if (_arena.FindTeam("green") == true)
+            else if (_arena.FindTeam("green") == true || _arena.FindTeam("Team3"))
             {
                 Console.WriteLine("Green team won");
                 return _winner = 3;
@@ -165,98 +176,58 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        //public void Prep(Arena arena)
-        //{
-        //    // Part One
-
-        //    Team blue = arena.CreateTeam("blue");
-        //    Team red = arena.CreateTeam("red");
-        //    Team green = arena.CreateTeam("green");
-        //    Team yellow = arena.CreateTeam("yellow");
-        //    red.AddArcher(10); red.AddGobelin(40); red.AddPaladin(35);
-        //    red.AddDrake(5); red.AddBalista(5); red.AddCatapult(5);
-        //    blue.AddArcher(10); blue.AddGobelin(45); blue.AddPaladin(40);
-        //    blue.AddDrake(5); blue.AddBalista(5); blue.AddCatapult(5);
-        //    green.AddArcher(10); green.AddGobelin(45); green.AddPaladin(40);
-        //    green.AddDrake(5); green.AddBalista(5); green.AddCatapult(5);
-        //    yellow.AddArcher(10); yellow.AddGobelin(45); yellow.AddPaladin(40);
-        //    yellow.AddDrake(5); yellow.AddBalista(5); yellow.AddCatapult(5);
-
-        //    // Part Two
-
-        //    //Team blue = arena.CreateTeam("blue");
-        //    //Team red = arena.CreateTeam("red");
-        //    //red.AddCatapult(10);
-        //    //blue.AddPaladin(5);
-        //    //blue.AddDrake(5);
-
-        //    // Part Three
-
-        //    //Team blue = arena.CreateTeam("blue");
-        //    //Team red = arena.CreateTeam("red");
-        //    //red.AddBalista(10);
-        //    //blue.AddDrake(5);
-        //    //blue.AddPaladin(5);
-
-        //    // Part Four
-
-        //    //Team blue = arena.CreateTeam("blue");
-        //    //Team red = arena.CreateTeam("red");
-        //    //red.AddBalista(3);
-        //    //red.AddGobelin(5);
-        //    //blue.AddCatapult(2);
-        //    //blue.AddDrake(5);
-
-        //    arena.SpawnUnit();
-        //}
-
-        public void Random(Arena arena, Team team)
+        /// <summary>
+        /// Load the selected level to be played
+        /// </summary>
+        internal void LoadLevel( int Level)
         {
-            Random random = new Random();
+            string path = Level.ToString(); //stranstaltes the level to a string to obtain it path
 
-            team.AddArcher(random.Next(125));
-
-            team.AddBalista(random.Next(125 - team.UnitCount));
-
-            team.AddCatapult(random.Next(125 - team.UnitCount));
-
-            team.AddDrake(random.Next(125 - team.UnitCount));
-
-            team.AddGobelin(random.Next(125 - team.UnitCount));
-
-            team.AddPaladin(random.Next(125 - team.UnitCount));
-
-            arena.SpawnUnit();
+            using (FileStream fs = File.OpenRead(path))
+            using (StreamReader sr = new StreamReader(fs))
+            using (JsonTextReader jr = new JsonTextReader(sr))
+            {
+                while (jr.Read())
+                {
+                    if (jr.Value != null)
+                    {
+                        Console.WriteLine("Token: {0}, Value: {1}", jr.TokenType, jr.Value);
+                        CreateTeam( jr.Value, jr.Value, jr.Value, jr.Value, jr.Value, jr.Value );
+                    }
+                    else
+                    {
+                        Console.WriteLine("Token: {0}", jr.TokenType);
+                    }
+                }
+            }
         }
-        
-        public void RandomGame( Arena arena)
+
+        private void CreateTeam(object value1, object value2, object value3, object value4, object value5, object value6)
         {
-            Random rn = new Random();
-            int t = rn.Next(2, 5);
-
-            for (int f = 1; f <= t; f++)
-            {
-                arena.CreateTeam( "Team"+ f.ToString() );
-            }
-            
-            foreach (KeyValuePair<string, Team> i in arena.Teams)
-            {
-                i.Value.AddArcher(rn.Next(125));
-                
-                i.Value.AddBalista(rn.Next(125-i.Value.UnitCount));
-
-                i.Value.AddCatapult(rn.Next(125 - i.Value.UnitCount));
-               
-                i.Value.AddDrake(rn.Next(125 - i.Value.UnitCount));
-
-                i.Value.AddGobelin(rn.Next(125 - i.Value.UnitCount));
-
-                i.Value.AddPaladin(rn.Next(125 - i.Value.UnitCount));
-            }
-
-            arena.SpawnUnit();
-            Status = "game";
+            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Fills a team read from the JSON
+        /// </summary>
+        /// <param name="AToAdd"></param>
+        /// <param name="BToAdd"></param>
+        /// <param name="CToAdd"></param>
+        /// <param name="DToAdd"></param>
+        /// <param name="GToAdd"></param>
+        /// <param name="PToAdd"></param>
+        private void CreateTeam(int AToAdd, int BToAdd, int CToAdd, int DToAdd, int GToAdd, int PToAdd)
+        {
+            Team team = new Team( Arena, "red", 125);
+
+            team.AddArcher(AToAdd);
+            team.AddArcher(BToAdd);
+            team.AddCatapult(CToAdd);
+            team.AddDrake(DToAdd);
+            team.AddGobelin(GToAdd);
+            team.AddPaladin(PToAdd);
+        }
+
 
         public void Run()
         {
@@ -328,6 +299,65 @@ namespace BirdHouse_Battle.UI
             }
         }
 
+        #region Fill random and overloads
+
+        /// <summary>
+        /// Create a random game
+        /// </summary>
+        /// <param name="arena"></param>
+        public void FillRandom(Arena arena)
+        {
+            
+            Random rn = new Random();
+            int t = rn.Next(2, 5);
+
+            for (int f = 1; f <= t; f++)
+            {
+                arena.CreateTeam("Team" + f.ToString());
+            }
+
+            foreach (KeyValuePair<string, Team> i in arena.Teams)
+            {
+                i.Value.AddArcher(rn.Next(125));
+
+                i.Value.AddBalista(rn.Next(125 - i.Value.UnitCount));
+
+                i.Value.AddCatapult(rn.Next(125 - i.Value.UnitCount));
+
+                i.Value.AddDrake(rn.Next(125 - i.Value.UnitCount));
+
+                i.Value.AddGobelin(rn.Next(125 - i.Value.UnitCount));
+
+                i.Value.AddPaladin(rn.Next(125 - i.Value.UnitCount));
+            }
+
+            arena.SpawnUnit();
+
+            Run();
+        }
+
+        /// <summary>
+        /// Fill a team at random
+        /// </summary>
+        /// <param name="i"></param>
+        /// <param name="TeamComp"></param>
+        /// <returns></returns>
+        public int[,] FillRandom(int i, int[,] TeamComp)
+        {
+            Random rdm = new Random();
+            int f = 0;
+            int max = 0;
+
+            for (f = 1; f < 6; f++)
+            {
+                TeamComp[i, f] = rdm.Next(125 - max);
+                max = max + TeamComp[i, f];
+            }
+
+            return TeamComp;
+        }
+        #endregion
+
         #region InitMenus
 
         /// <summary>
@@ -344,9 +374,10 @@ namespace BirdHouse_Battle.UI
 
         public void CreditPage()
         {
-            while(Window.IsOpen && Status == "credit")
+            Shape[] buttons = InitCredit();
+
+            while (Window.IsOpen && Status == "credit")
             {
-                Shape[] buttons = InitCredit();
                 _iHandler.HandlerCredit(buttons);
             }
         }
@@ -379,6 +410,25 @@ namespace BirdHouse_Battle.UI
             }
         }
 
+        internal void HistoryMenu()
+        {
+            Shape[] buttons = InitHistory();
+
+            while (Window.IsOpen && Status == "history")
+            {
+                _iHandler.HandlerHistoryPage(buttons);
+            }
+        }
+
+        private Shape[] InitHistory()
+        {
+            Window.Clear();
+            Shape[] buttons = draw.HistoryPageDisplay();
+            Window.Display();
+
+            return buttons;
+        }
+
         /// <summary>
         /// Display Main Menu
         /// </summary>
@@ -400,7 +450,7 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        internal void QuitPage()
+        public void QuitPage()
         {
             Shape[] buttons = InitQuitting();
 
@@ -419,7 +469,7 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
-        ///Asks for a YES/NO confirmation  Game
+        ///Asks for a YES/NO confirmation  before quitting the game
         /// </summary>
         public void ReturnMenu()
         {
@@ -430,7 +480,48 @@ namespace BirdHouse_Battle.UI
                 _iHandler.HandlerReturn(buttons);
             }
         }
-      
+
+        public bool IsValidToAddUnit(int [,]TeamCompo, int i, string[]status)
+        {
+            int count = 0;
+            for (int j = 0; j< 6; j++)
+            {
+                count += TeamCompo[i, j];
+            }
+
+            count += Int32.Parse(status[6]);
+
+            if (count > 125) return false;
+
+            else { return true; }
+        }
+
+
+        public void ResultWindow()
+        {
+            Shape[] buttons = InitResult();
+
+            while (Window.IsOpen && Status == "ended")
+            {
+                _iHandler.HandlerResulsult(buttons);
+            }
+        }
+
+        private Shape[] InitResult()
+        {
+            Window.Clear();
+            Font font = new Font("../../../../res/Overlock-Bold.ttf");
+            Text ToursFinal = new Text(_tour.ToString() + "TURNS", font, 50)
+            {
+                Position = new Vector2f(150, 550)
+            };
+            Shape[] buttons = draw.ResultDisplay(Winner);
+            Window.Draw(ToursFinal);
+            Window.Display();
+
+            return buttons;
+        }
+
         public Shape[] InitPreGame(string[] status, int[,] teamComposition)
         {
             Window.Clear();
@@ -440,59 +531,14 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        public bool IsValidToAddUnit(int [,]TeamCompo, int i, string[]status)
-        {
-            int count = 0;
-            for (int j = 0; j< 6; j++)
-            {
-                count += TeamCompo[i, j];
-            }
-            count += Int32.Parse(status[6]);
-            if (count>125)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-            
-        }
-
-
-        public void ResultWindow()
-        {
-            Shape[] buttons = InitEnd();
-
-            while (Window.IsOpen && Status == "ended")
-            {
-                _iHandler.HandlerEnd(buttons);
-            }
-        }
-
-        private Shape[] InitEnd()
-        {
-            Window.Clear();
-            Font font = new Font("../../../../res/Overlock-Bold.ttf");
-            Text ToursFinal = new Text(_tour.ToString() + "TURNS", font, 50)
-            {
-                Position = new Vector2f(150, 550)
-            };
-            Shape[] buttons = draw.EndDisplay(Winner);
-            Window.Draw(ToursFinal);
-            Window.Display();
-
-            return buttons;
-        }
-        
         public void PreGame()
         {
-            
+
             Team blue = Arena.CreateTeam("blue"); 
             Team red = Arena.CreateTeam("red");
             Team green = null;
             Team yellow = null;
-            string [] status =new string [7];
+            string [] status =new string [8];
             status[0] = "selected";
             status[1] = "active";
             status[2]= "inactive";
@@ -501,8 +547,7 @@ namespace BirdHouse_Battle.UI
             status[4] = "none";
             status[5] = "add";
             status[6] = "1";
-
-
+            status[7] = "yes";
 
             int[,] teamComposition = 
             {
@@ -523,6 +568,17 @@ namespace BirdHouse_Battle.UI
                     Window.DispatchEvents();
                     status = _iHandler.HandlerPreGame(buttons, status);
 
+                    if (status[7] == "no")
+                    {
+                        for (int i= 0; i < status.Length; i++)
+                        {
+                            if (status[i] == "selected")
+                            {
+                                teamComposition = FillRandom(i, teamComposition);
+                                status[7] = "yes"; 
+                            }
+                        }
+                    }
 
                     if (status[2] == "inactiveTemp")
                     {
@@ -533,7 +589,6 @@ namespace BirdHouse_Battle.UI
                         {
                             teamComposition[2, i] = teamComposition[3, i];
                         }
-
                     }
 
                     if (status[2] == "inactive")
@@ -550,8 +605,6 @@ namespace BirdHouse_Battle.UI
                             teamComposition[3, i] = 0;
                         }
                     }
-
-
 
                     if (status[2] == "active" && Arena.FindTeam("green") == false)
                     {
@@ -731,7 +784,6 @@ namespace BirdHouse_Battle.UI
                                 break;
                         }
                     }
-             
 
                 if (Arena.FindTeam("green") == true)
                 {
@@ -794,7 +846,6 @@ namespace BirdHouse_Battle.UI
                         }
                     }
                 }
-
                 Arena.SpawnUnit();
             }
         }

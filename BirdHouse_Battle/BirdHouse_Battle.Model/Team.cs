@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BirdHouse_Battle.Model
 {
@@ -26,7 +27,7 @@ namespace BirdHouse_Battle.Model
         int _pCount; // le nombre total de paladin dans une equipe
         int _gCount; // le nombre total de Goblin dans une equipe.
         int _dCount; // le nombre total de Dragons dans une equipe.
-        int _cCount;
+        int _cCount; // number of Catapult in a team
         int _bCount;
 
         bool _isWiped;
@@ -60,16 +61,57 @@ namespace BirdHouse_Battle.Model
             _units = new Dictionary<int, Unit>();
             _deadUnits = new Dictionary<int, Unit>();
         }
-        
-        public string Name
+
+        #region relevent to serialization
+
+        /// <summary>
+        /// Serialize a team
+        /// </summary>
+        /// <returns></returns>
+        public JToken Serialize()
         {
-            get { return _name; }
+            return new JObject(
+                new JProperty("Units", _units.Select(kv => kv.Value.Serialize())));
         }
 
-        public int TeamNumber
+        /// <summary>
+        /// Create Team from JToken
+        /// </summary>
+        ///<param name = "jToken" ></ param >
+        public Team(Arena Arena, string Name, JToken jToken)
         {
-            get { return _teamNumber; }
+            _isWiped = false;
+            _name = Name;
+            _arena = Arena;
+            _teamNumber = _arena.TeamCount;
+            _limitNbUnit = 125;
+
+            _units = new Dictionary<int, Unit>();
+            JArray jUnits = (JArray)jToken["units"];
+
+            //IEnumerable<Archer> archers = jUnits.Where
+            //IEnumerable<Unit> units = jUnits.Select(u => new Archer(this, u));
+
+            //foreach (Unit unit in units)
+            //{
+            //    _units.Add(unit.Name, unit);
+            //}
+
+            _deadUnits = new Dictionary<int, Unit>();
         }
+
+        public IEnumerable<Unit> GetUnits()
+        {
+            return _units.Values;
+        }
+
+        #endregion
+
+        #region Getters & Setters
+
+        public string Name => _name;
+
+        public int TeamNumber => _teamNumber;
 
         public int UnitCount
         {
@@ -81,42 +123,23 @@ namespace BirdHouse_Battle.Model
             }
         }
 
-        [JsonIgnore]
         public Arena Context => _arena;
 
-        public int Acount
-        {
-            get { return _aCount; }
-        }
+        public int Acount => _aCount;
 
-        public int Gcount
-        {
-            get { return _gCount; }
-        }
+        public int Gcount => _gCount;
 
-        public int Pcount
-        {
-            get { return _pCount; }
-        }
+        public int Pcount => _pCount;
 
-        public int Dcount
-        {
-            get { return _dCount; }
-        }
+        public int Dcount => _dCount;
 
-        public int Ccount
-        {
-            get { return _cCount; }
-        }
+        public int Ccount => _cCount;
 
-        public int Bcount
-        {
-            get { return _bCount; }
-        }
+        public int Bcount => _bCount;
 
         public double GoldAmount
         {
-            get { return _goldAmount; }
+            get => _goldAmount;
             set
             {
                 if (value < 0.0) throw new ArgumentException("You don't have enought gold", nameof(value));
@@ -126,7 +149,7 @@ namespace BirdHouse_Battle.Model
 
         public int AToAdd
         {
-            get { return _aToAdd; }
+            get => _aToAdd;
             set
             {
                 if (_aToAdd < 0 || _aToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maxin4mun number for this team", nameof(_aToAdd));
@@ -136,7 +159,7 @@ namespace BirdHouse_Battle.Model
 
         public int GToAdd
         {
-            get { return _gToAdd; }
+            get => _gToAdd;
             set
             {
                 if (_gToAdd < 0 || _gToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maxin4mun number for this team", nameof(_gToAdd));
@@ -146,7 +169,7 @@ namespace BirdHouse_Battle.Model
 
         public int PToAdd
         {
-            get { return _pToAdd; }
+            get => _pToAdd;
             set
             {
                 if (_pToAdd < 0 || _pToAdd > _limitNbUnit) throw new ArgumentException("The number of Troups must be positive", nameof(_pToAdd));
@@ -156,7 +179,7 @@ namespace BirdHouse_Battle.Model
 
         public int DToAdd
         {
-            get { return _dToAdd; }
+            get => _dToAdd;
             set
             {
                 if (_dToAdd < 0 || _dToAdd > _limitNbUnit) throw new ArgumentException("The number of Troups must be positive", nameof(_dToAdd));
@@ -166,7 +189,7 @@ namespace BirdHouse_Battle.Model
 
         public int CToAdd
         {
-            get { return _cToAdd; }
+            get => _cToAdd;
             set
             {
                 if (_cToAdd < 0 || _cToAdd > _limitNbUnit) throw new ArgumentException("The number of Troups must be positive", nameof(_dToAdd));
@@ -176,7 +199,7 @@ namespace BirdHouse_Battle.Model
 
         public int BToAdd
         {
-            get { return _bToAdd; }
+            get => _bToAdd;
             set
             {
                 if (_bToAdd < 0 || _bToAdd > _limitNbUnit) throw new ArgumentException("The number of Troups must be positive", nameof(_dToAdd));
@@ -190,16 +213,13 @@ namespace BirdHouse_Battle.Model
 
         public Unit ArchersTarget => _archersTarget;
 
-        public int GoblinsAttack
-        {
-            get { return _goblinsAttack; }
-        }
+        public int GoblinsAttack => _goblinsAttack;
 
-        public int ArchersAttack
-        {
-            get { return _archersAttack; }
-        }
+        public int ArchersAttack => _archersAttack;
 
+        #endregion
+
+        #region AddUnit
         /// <summary>
         /// Add an archer to a team
         /// </summary>
@@ -281,6 +301,9 @@ namespace BirdHouse_Battle.Model
                 _units.Add(paladin.Name, paladin);
             }
         }
+
+        #endregion
+
 
         public Unit[] Find()
         {

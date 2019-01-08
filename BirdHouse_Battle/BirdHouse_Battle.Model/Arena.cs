@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 
 namespace BirdHouse_Battle.Model
@@ -31,45 +32,39 @@ namespace BirdHouse_Battle.Model
             }
         }
 
-        public Dictionary<string, Team> Teams
+        public Arena( int TeamLimint, JToken jToken)
         {
-            get { return _teams; }
+            _teams = new Dictionary<string, Team>();
+            _deadTeams = new Dictionary<string, Team>();
+            _projectiles = new Dictionary<int, Projectile>();
+            _deadProjectiles = new Dictionary<int, Projectile>();
+            _height = 250;
+            _width = 250;
+            _counter = 0;
+            _field = new Field(this, -_height, _height, -_width, _width);
+
+            if (true) // Créer le bool de nouvelle partie / rejouer partie
+            {
+                _field.Init();
+            }
+
         }
 
-        public Dictionary<int, Projectile> Projectiles
-        {
-            get { return _projectiles; }
-        }
+        public Dictionary<string, Team> Teams => _teams;
 
-        public Dictionary<string, Team> DeadTeams
-        {
-            get { return _deadTeams; }
-        }
+        public Dictionary<int, Projectile> Projectiles => _projectiles;
 
-        public Dictionary<int, Projectile> DeadProjectiles
-        {
-            get { return _deadProjectiles; }
-        }
+        public Dictionary<string, Team> DeadTeams => _deadTeams;
 
-        public int Height
-        {
-            get { return _height; }
-        }
-        
-        public int Width
-        {
-            get { return _width; }
-        }
+        public Dictionary<int, Projectile> DeadProjectiles => _deadProjectiles;
 
-        public int Counter
-        {
-            get { return _counter; }
-        }
+        public int Height => _height;
 
-        public Field Field
-        {
-            get { return _field; }
-        }
+        public int Width => _width;
+
+        public int Counter => _counter;
+
+        public Field Field => _field;
 
         public Team CreateTeam(string name)
         {

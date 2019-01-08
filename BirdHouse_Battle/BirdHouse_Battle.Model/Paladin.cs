@@ -7,7 +7,7 @@
 
         public Paladin(Team team, Arena arena, int nameUnit)
             : base(team, arena, 18.0, 1.2, 15.0, 12.5, 5, 4, 
-                   "Order", false, false, false, nameUnit)
+                   "Order", false, false, false, nameUnit, "paladin")
         {
         }
 

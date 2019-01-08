@@ -6,7 +6,7 @@
 
         public Balista(Team team, Arena arena, int nameUnit)
             : base(team, arena, 25.0, 0.70, 200.0, 30.0, 15, 2,
-                "Order", false, false, true, nameUnit)
+                "Order", false, false, true, nameUnit , "baliste")
         {
             _callDown = 0;
         }

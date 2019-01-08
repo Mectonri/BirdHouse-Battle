@@ -32,7 +32,7 @@ namespace BirdHouse_Battle.UI
                 Size = new Vector2f(250, 100),
                 Position = new Vector2f(128, 374)
             };         
-            _window.Draw(CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
+            Window.Draw(CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace BirdHouse_Battle.UI
         {
             Shape shape = null;
 
-            if ( unit is Archer) { shape = shape = CreateShape(unit, 7, 3); }
+            if ( unit is Archer) { shape = CreateShape(unit, 7, 3); }
             else if ( unit is Balista ) { shape = CreateShape(unit, 8, 6); }
             else if ( unit is Catapult ) { shape = CreateShape(unit, 8, 7); }
             else if ( unit is Drake ) { shape = CreateShape(unit, 8, 5); }
@@ -225,7 +225,7 @@ namespace BirdHouse_Battle.UI
 
         #region Menu
 
-        internal Shape[] EndDisplay(int Winner)
+        internal Shape[] ResultDisplay(int Winner)
         {
             _window.Draw( CreateShape(512, 712, "../../../../res/end.png", 0, 0));
             Shape[] buttons = new RectangleShape[2];
@@ -330,8 +330,26 @@ namespace BirdHouse_Battle.UI
             return button;
         }
 
+        internal Shape[] HistoryPageDisplay()
+        {
+            Shape HistoryBackground = CreateShape(512, 712, "../../../../res/history.png", 0, 0);// History mode Background
+            _window.Draw(HistoryBackground);
+
+            Shape[] buttons = new RectangleShape[3];
+
+            buttons[0] = CreateShape(75, 25, "../../../../res/button_main-menu.png", 50, 612);// return button
+            buttons[1] = CreateShape(75, 25, "../../../../res/button_archer.png", 218, 200);// Level button
+            buttons[2] = CreateShape(75, 25, "../../../../res/button_play.png", 400, 612);//plays button
+
+            foreach (var t in buttons)
+            {
+                _window.Draw(t);
+            }
+            return buttons;
+        }
+
         /// <summary>
-        /// 
+        /// Display 
         /// </summary>
         /// <returns></returns>
         internal Shape[] QuitDisplay()
