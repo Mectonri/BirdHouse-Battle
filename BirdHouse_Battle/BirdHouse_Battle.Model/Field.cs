@@ -326,7 +326,7 @@ namespace BirdHouse_Battle.Model
         {
             Random random = new Random();
 
-            GenerationMountains(random);
+            //GenerationMountains(random);
             GenerationObstacles(random);
             
             DiamondSquare();

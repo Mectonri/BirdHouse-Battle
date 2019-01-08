@@ -126,7 +126,7 @@ namespace BirdHouse_Battle.UI
 
         public Shape DisplayField(Tile tile)
         {
-            CircleShape arrField = new CircleShape(5);
+            CircleShape arrField = new CircleShape(3);
             arrField.Position = new Vector2f((float)tile.X + 250, (float)tile.Y + 250);
 
             if (tile.Obstacle != "None")
