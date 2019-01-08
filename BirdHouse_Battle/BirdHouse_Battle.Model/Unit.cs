@@ -23,7 +23,7 @@ namespace BirdHouse_Battle.Model
         int _armor;
         int _burn;
         string _disposition;
-        readonly string _breed;
+        readonly string _troop;
 
         bool _fly;
         bool _distance; 
@@ -35,7 +35,7 @@ namespace BirdHouse_Battle.Model
         protected Unit(Team team, Arena arena, double life,
                        double speed, double range, double unitPrice,
                        int strength, int armor, string disposition, 
-                       bool fly, bool distance, bool distanceOnly, int nameUnit, string breed)
+                       bool fly, bool distance, bool distanceOnly, int nameUnit, string Troop)
         {
             _team = team;
             _arena = arena;
@@ -53,7 +53,7 @@ namespace BirdHouse_Battle.Model
             _distanceOnly = distanceOnly;
             _dumpCantFly = false;
             _teamPlay = false;
-            _breed = breed;
+            _troop = Troop;
 
         }
 
@@ -78,7 +78,7 @@ namespace BirdHouse_Battle.Model
             _distance = jToken["Distance"].Value<bool>();
             _distanceOnly= jToken["DistanceOnly"].Value<bool>();
             _name = jToken["Name"].Value<int>();
-            _breed = jToken["Breed"].Value<string>();
+            _troop = jToken["Troop"].Value<string>();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace BirdHouse_Battle.Model
                 new JProperty("Distance", _distance),
                 new JProperty("DistanceOnly", _distanceOnly),
                 new JProperty("Name", _name),
-                new JProperty("Breed", _breed)
+                new JProperty("Breed", _troop)
                 );
         }
 
@@ -113,7 +113,7 @@ namespace BirdHouse_Battle.Model
 
         public int Name { get { return _name; } }
 
-        public string Type => _breed;
+        public string Type => _troop;
 
         public Unit Target { get; set; }
 

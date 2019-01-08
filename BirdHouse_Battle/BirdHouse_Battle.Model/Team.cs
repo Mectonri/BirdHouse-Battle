@@ -89,8 +89,9 @@ namespace BirdHouse_Battle.Model
             _units = new Dictionary<int, Unit>();
             JArray jUnits = (JArray)jToken["units"];
 
-           // IEnumerable<Unit> units = jUnits.Select(u => new Archer(this, u));
-            
+            //IEnumerable<Archer> archers = jUnits.Where
+            //IEnumerable<Unit> units = jUnits.Select(u => new Archer(this, u));
+
             //foreach (Unit unit in units)
             //{
             //    _units.Add(unit.Name, unit);
