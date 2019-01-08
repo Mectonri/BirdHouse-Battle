@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace BirdHouse_Battle.Model
 {
@@ -321,17 +322,14 @@ namespace BirdHouse_Battle.Model
             SwitchRiver();
         }
 
-        internal void StartingGeneration ()
+        internal void StartingGeneration()
         {
             Random random = new Random();
 
-            GenerationMountains(random);
+            //GenerationMountains(random);
             GenerationObstacles(random);
-
-            for (int x = 0; x < 2; x++)
-            {
-                DiamondSquare();
-            }
+            
+            DiamondSquare();
             //DiamondSquare(true);
         }
 
@@ -339,109 +337,12 @@ namespace BirdHouse_Battle.Model
         {
             foreach (Tile tile in Tiles)
             {
-                if (tile.Height > 0 || tile.Obstacle != "None")
+                if (tile.Obstacle != "None")
                 {
                     _elements.Add($"{tile.X}:{tile.Y}", tile);
                 }
             }
         }
-
-        public void DiamondSquare()
-        {
-            Random rdm = new Random();
-            int X = rdm.Next(0, 434);
-            int Y = rdm.Next(0, 434);
-
-            int MAP_SIZE = 65;
-            bool wrap = false;
-            int roughness = 1;
-
-            double[,] map = new double[MAP_SIZE,MAP_SIZE];
-            int nw = (wrap ? 0 : 1); // indicateur non répétable
-
-            // Initialise les coins de la carte
-            map[0, 0] = rdm.Next(0, 4); // haut gauche
-            map[0, MAP_SIZE - 1] = rdm.Next(0, 4); // bas gauche
-            map[MAP_SIZE - 1, 0] = rdm.Next(0, 4); // haut droite
-            map[MAP_SIZE - 1, MAP_SIZE - 1] = rdm.Next(0, 4); // bas droite
-
-            double h = 7; // la plage (-h -> +h) pour le décalage moyen
-
-            // sideLength est la longueur d'un côté d'un carré
-            // ou la longueur de la diagonale d'un losange
-            for (int sideLength = MAP_SIZE - 1; sideLength >= 2; sideLength /= 2)
-            {
-                h /= 2.0;
-                // la moitié de la longueur d'un carré
-                // ou la distance du centre d'un losange à un coin
-                // (juste pour rendre les calculs ci-dessous un peu plus clairs)
-                int halfSide = sideLength / 2;
-
-                // génère les nouvelles valeurs du carré
-                for (int x = 0; x < MAP_SIZE - 1; x += sideLength)
-                {
-                    for (int y = 0; y < MAP_SIZE - 1; y += sideLength)
-                    {
-                        // x, y est en haut à gauche du carré
-                        // calcule la moyenne des coins existants
-                        double avg = map[x, y] + //top left
-                                  map[x + sideLength, y] + // top right
-                                  map[x, y + sideLength] + // lower left
-                                  map[x + sideLength, y + sideLength]; // lower right
-                        avg /= 4.0;
-
-                        // le centre c'est la moyenne plus un décalage aléatoire
-                        map[x + halfSide, y + halfSide] = normalize(avg + offset(h, roughness));
-                    } // for y
-                } // for x 
-
-                // génère les valeurs du losange
-                // puisque les losanges sont en quinconce on se déplace en x
-                // uniquement de halfSide.
-                // NOTE : si la carte ne doit pas se répéter, alors x < MAP_SIZE
-                // pour générer les valeurs du bord
-                for (int x = 0; x < MAP_SIZE - 1 + nw; x += halfSide)
-                {
-                    // et y est x décalé de halfSide, mais translaté
-                    // de la pleine longueur du côté
-                    // NOTE : si la carte ne doit pas se répéter, alors y < MAP_SIZE
-                    // pour générer les valeurs du bord
-                    for (int y = (x + halfSide) % sideLength; y < MAP_SIZE - 1 + nw; y += sideLength)
-                    {
-                        // x, y est le centre du losange
-                        // à noter que nous devons utiliser le modulo et l'ajout de MAP_SIZE pour la soustraction
-                        // de façon à parcourir cycliquement le tableau pour trouver les coins
-                        double avg =
-                            map[(x - halfSide + MAP_SIZE - 1) % (MAP_SIZE - 1), y] + // gauche du centre
-                            map[(x + halfSide) % (MAP_SIZE - 1), y] + // droite du centre
-                            map[x, (y + halfSide) % (MAP_SIZE - 1)] + // bas du centre
-                            map[x, (y - halfSide + MAP_SIZE - 1) % (MAP_SIZE - 1)]; // haut du centre
-
-                        avg /= 4.0;
-
-                        // nouvelle valeur = moyenne + décalage aléatoire
-                        avg = normalize(avg + offset(h, roughness));
-// met à jour la valeur pour le centre du losange
-                        map[x, y] = avg;
-
-                        // duplique les valeurs sur les bords si carte répétable
-                        if (wrap)
-                        {
-                            if (x == 0) map[MAP_SIZE - 1, y] = avg;
-                            if (y == 0) map[x, MAP_SIZE - 1] = avg;
-                        }
-                    } // for y
-                } // for x
-            } // for sideLength
-
-            for (int x = 0; x < MAP_SIZE; x++)
-            {
-                for (int y = 0; y < MAP_SIZE; y++)
-                {
-                    _tiles[X + x, Y + y].HeightAssign(uint.Parse($"{map[x, y]}"));
-                }
-            }
-        } // heightmapDiamondSquare
 
 // Renvoie un décalage aléatoire proportionnel à la hauteur
         internal double offset(double height, int roughness)
@@ -459,13 +360,13 @@ namespace BirdHouse_Battle.Model
             return Math.Round(Math.Max(Math.Min(value, 14), 0));
         } // normalize
 
-        public void DiamondSquare(bool useless)
+        public void DiamondSquare()
         {
             Random rdm = new Random();
             int X = 0;
             int Y = 0;
 
-            int MAP_SIZE = 257;
+            int MAP_SIZE = 513;
             bool wrap = false;
             int roughness = 1;
 
@@ -547,13 +448,78 @@ namespace BirdHouse_Battle.Model
                 } // for x
             } // for sideLength
 
-            for (int x = 0; x < MAP_SIZE; x++)
+            for (int x = 0; x < 500; x++)
             {
-                for (int y = 0; y < MAP_SIZE; y++)
+                for (int y = 0; y < 500; y++)
                 {
-                    _tiles[X + x, Y + y].HeightAssign(uint.Parse($"{map[x, y]}"));
+                    _tiles[x, y].HeightAssign(uint.Parse($"{map[x, y]}"));
                 }
             }
+
+            GetDataPicture(map);
         } // heightmapDiamondSquare
+
+        public void GetDataPicture(double[,] data)
+        {
+            Bitmap pic = new Bitmap(500, 500, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            Color c;
+
+            for (int x = 0; x < 500; x++)
+            {
+                for (int y = 0; y < 500; y++)
+                {
+                    int arrayIndex = y * 500 + x;
+
+                    switch (data[x, y])
+                    {
+                        case 1:
+                            c = Color.FromArgb(110, 48, 12);
+                            break;
+                        case 2:
+                            c = Color.FromArgb(109, 60, 12);
+                            break;
+                        case 3:
+                            c = Color.FromArgb(108, 73, 11);
+                            break;
+                        case 4:
+                            c = Color.FromArgb(107, 85, 11);
+                            break;
+                        case 5:
+                            c = Color.FromArgb(107, 97, 10);
+                            break;
+                        case 6:
+                            c = Color.FromArgb(102, 106, 10);
+                            break;
+                        case 7:
+                            c = Color.FromArgb(88, 105, 9);
+                            break;
+                        case 8:
+                            c = Color.FromArgb(75, 105, 9);
+                            break;
+                        case 9:
+                            c = Color.FromArgb(61, 104, 8);
+                            break;
+                        case 10:
+                            c = Color.FromArgb(47, 103, 8);
+                            break;
+                        case 11:
+                            c = Color.FromArgb(34, 103, 7);
+                            break;
+                        case 12:
+                            c = Color.FromArgb(20, 102, 7);
+                            break;
+                        case 13:
+                            c = Color.FromArgb(7, 101, 6);
+                            break;
+                        default:
+                            c = Color.FromArgb(6, 101, 18);
+                            break;
+                    }
+                    pic.SetPixel(x, y, c);
+                }
+            }
+
+            pic.Save("../../../../res/DiamondBackground.png");
+        }
     }
 }
