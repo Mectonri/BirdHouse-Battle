@@ -33,8 +33,15 @@ namespace BirdHouse_Battle.Model
             }
         }
 
-        public Arena( int TeamLimint, JToken jToken)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="jToken"></param>
+        public Arena( JToken jToken)
         {
+
+
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
             _projectiles = new Dictionary<int, Projectile>();

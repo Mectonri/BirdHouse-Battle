@@ -1,4 +1,6 @@
-﻿namespace BirdHouse_Battle.Model
+﻿using Newtonsoft.Json.Linq;
+
+namespace BirdHouse_Battle.Model
 {
     public class Paladin : Unit
     {
@@ -10,6 +12,10 @@
                    "Order", false, false, false, nameUnit, "paladin")
         {
         }
+
+        public Paladin(Team team, JToken jToken)
+            : base ( team, jToken)
+        { }
 
         public double PastedLife
         {

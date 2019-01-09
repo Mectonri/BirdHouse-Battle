@@ -28,7 +28,7 @@ namespace BirdHouse_Battle.Model
         int _gCount; // le nombre total de Goblin dans une equipe.
         int _dCount; // le nombre total de Dragons dans une equipe.
         int _cCount; // number of Catapult in a team
-        int _bCount;
+        int _bCount; // number of Balista in a team
 
         bool _isWiped;
 
@@ -78,26 +78,87 @@ namespace BirdHouse_Battle.Model
         /// Create Team from JToken
         /// </summary>
         ///<param name = "jToken" ></ param >
-        public Team(Arena Arena, string Name, JToken jToken)
+        public Team(Arena arena, string name, JToken jToken)
         {
             _isWiped = false;
-            _name = Name;
-            _arena = Arena;
+            _name = name;
+            _arena = arena;
             _teamNumber = _arena.TeamCount;
             _limitNbUnit = 125;
 
             _units = new Dictionary<int, Unit>();
             JArray jUnits = (JArray)jToken["units"];
 
-            //IEnumerable<Archer> archers = jUnits.Where
-            //IEnumerable<Unit> units = jUnits.Select(u => new Archer(this, u));
+            //IEnumerable<Unit> units = jUnits.Select(u => if (jToken["Troop"].Value<string>() == "archer") this.AddArcher(1) ) );
+            IEnumerable<Unit> units = jUnits.Select( u => AddUnit(this, u));
 
-            //foreach (Unit unit in units)
-            //{
-            //    _units.Add(unit.Name, unit);
-            //}
+            foreach (Unit unit in units)
+            {
+                _units.Add(unit.Name, unit);
+            }
 
             _deadUnits = new Dictionary<int, Unit>();
+        }
+
+        internal Unit AddUnit(Team team, JToken jToken)
+        {
+            Unit unit = null;
+            if (jToken["Troop"].Value<string>() == "archer")
+            {
+                 unit = new Archer(team, jToken);
+                
+            }
+            else if (jToken["Troop"].Value<string>() == "balista")
+            {
+                 unit = new Balista(team, jToken);
+            }
+            else if (jToken["Troop"].Value<string>() == "catapult")
+            {
+                 unit = new Catapult(team, jToken);
+            }
+            else if (jToken["Troop"].Value<string>() == "drake")
+            {
+                 unit = new Drake(team, jToken);
+            }
+
+            else if (jToken["Troop"].Value<string>() == "goblin")
+            {
+                 unit = new Goblin(team, jToken);
+            }
+
+            else if (jToken["Troop"].Value<string>() == "paladin")
+            {
+                 unit = new Paladin(team, jToken);
+            }
+
+            return unit;
+        }
+
+        internal void AddUnitToTeam(Team team, JToken u)
+        {
+            string troop = u["Troop"].Value<string>();
+
+            switch (troop)
+            {
+                case "archer":
+                    team.AddArcher();
+                    break;
+                case "balista":
+                    team.AddBalista(1);
+                    break;
+                case "catapult":
+                    team.AddCatapult(1);
+                    break;
+                case "drake":
+                    team.AddDrake(1);
+                    break;
+                case "goblin":
+                    team.AddGobelin(1);
+                    break;
+                case "paladin":
+                    team.AddPaladin(1);
+                    break;
+            }
         }
 
         public IEnumerable<Unit> GetUnits()
@@ -233,6 +294,18 @@ namespace BirdHouse_Battle.Model
                 _aCount++;
                 _units.Add(archer.Name, archer);
             }
+        }
+
+        public Unit AddArcher()
+        {
+            Unit unit = null;
+            if (UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
+          
+                 unit = new Archer(this, _arena, UnitCount);
+                _aCount++;
+                _units.Add(unit.Name, unit);
+          
+            return unit;
         }
 
         /// <summary>

@@ -13,6 +13,21 @@ namespace BirdHouse_Battle.Model
             _callDown = 0;
         }
 
+        public Archer(Team team, JToken jToken)
+            : base(team, jToken)
+        {
+            _range = jToken["Range"].Value<double>();
+            _unitPrice = jToken["UnitPrice"].Value<double>();
+            _strength = jToken["Strength"].Value<int>();
+            _armor = jToken["Armor"].Value<int>();
+            _disposition = jToken["Disposition"].Value<string>();
+            _fly = jToken["Fly"].Value<bool>();
+            _distance = jToken["Distance"].Value<bool>();
+            _distanceOnly = jToken["DistanceOnly"].Value<bool>();
+            _name = jToken["Name"].Value<int>();
+            _troop = jToken["Troop"].Value<string>();
+        }
+
         public int CallDown
         {
             get { return _callDown; }

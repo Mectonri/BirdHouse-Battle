@@ -15,22 +15,23 @@ namespace BirdHouse_Battle.Model
         Vector _direction;
         Vector _mouvement;
 
-        double _life;
-        double _speed;
-        double _range;
-        double _unitPrice;
-        int _strength;
-        int _armor;
-        int _burn;
-        string _disposition;
-        readonly string _troop;
+        public double _life;
+        public double _speed;
+        public double _range;
+        public double _unitPrice;
+        public int _strength;
+        public int _armor;
+        public int _burn;
 
-        bool _fly;
-        bool _distance; 
-        bool _distanceOnly;
-        bool _teamPlay;
-        bool _dumpCantFly;
-        bool _dumpCantWalk;
+        public string _disposition;
+        readonly public string _troop;
+
+        public bool _fly;
+        public bool _distance;
+        public bool _distanceOnly;
+        public bool _teamPlay;
+        public bool _dumpCantFly;
+        public bool _dumpCantWalk;
 
         protected Unit(Team team, Arena arena, double life,
                        double speed, double range, double unitPrice,
@@ -56,6 +57,7 @@ namespace BirdHouse_Battle.Model
             _troop = Troop;
 
         }
+
 
         #region De & Serialization 
 

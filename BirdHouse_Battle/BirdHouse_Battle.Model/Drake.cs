@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 namespace BirdHouse_Battle.Model
 {
@@ -8,7 +9,12 @@ namespace BirdHouse_Battle.Model
             : base(team, arena, 10.0, 1.5, 18.0, 15.0, 7, 0, 
                    "Chaos", true, true, false, nameUnit, "drake")
         {
+
         }
+
+        public Drake(Team team, JToken jToken)
+            : base(team, jToken)
+        { }
 
         /// <summary>
         /// Game Loop in Unit

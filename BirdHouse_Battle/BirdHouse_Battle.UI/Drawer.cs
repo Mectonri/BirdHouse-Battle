@@ -551,7 +551,6 @@ namespace BirdHouse_Battle.UI
             buttons[16] = button100;
             buttons[17] = CreateShape(Bsize, "../../../../res/button_fill.png", 380, 225);
 
-
             foreach (var t in buttons)
             {
                 _window.Draw(t);

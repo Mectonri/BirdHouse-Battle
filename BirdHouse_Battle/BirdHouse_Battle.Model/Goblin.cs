@@ -1,4 +1,6 @@
-﻿namespace BirdHouse_Battle.Model
+﻿using Newtonsoft.Json.Linq;
+
+namespace BirdHouse_Battle.Model
 {
     public class Goblin : Unit
     {
@@ -7,6 +9,10 @@
                    "Chaos", false, false, false, nameUnit, "goblin")
         {
         }
+
+        public Goblin(Team team, JToken jToken)
+            : base(team, jToken)
+        { }
 
         public bool GoblinsAlone()
         {
