@@ -89,8 +89,7 @@ namespace BirdHouse_Battle.Model
             _units = new Dictionary<int, Unit>();
             JArray jUnits = (JArray)jToken["units"];
 
-            //IEnumerable<Unit> units = jUnits.Select(u => if (jToken["Troop"].Value<string>() == "archer") this.AddArcher(1) ) );
-            IEnumerable<Unit> units = jUnits.Select( u => AddUnit(this, u));
+            IEnumerable<Unit> units = jUnits.Select(u => AddUnit(this, u));
 
             foreach (Unit unit in units)
             {
@@ -103,10 +102,10 @@ namespace BirdHouse_Battle.Model
         internal Unit AddUnit(Team team, JToken jToken)
         {
             Unit unit = null;
+
             if (jToken["Troop"].Value<string>() == "archer")
             {
                  unit = new Archer(team, jToken);
-                
             }
             else if (jToken["Troop"].Value<string>() == "balista")
             {
@@ -120,12 +119,10 @@ namespace BirdHouse_Battle.Model
             {
                  unit = new Drake(team, jToken);
             }
-
             else if (jToken["Troop"].Value<string>() == "goblin")
             {
                  unit = new Goblin(team, jToken);
             }
-
             else if (jToken["Troop"].Value<string>() == "paladin")
             {
                  unit = new Paladin(team, jToken);
@@ -290,7 +287,7 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < AToAdd; i++)
             {
-                Archer archer = new Archer(this, _arena, UnitCount);
+                Archer archer = new Archer(_arena, this, UnitCount);
                 _aCount++;
                 _units.Add(archer.Name, archer);
             }
@@ -301,7 +298,7 @@ namespace BirdHouse_Battle.Model
             Unit unit = null;
             if (UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
           
-                 unit = new Archer(this, _arena, UnitCount);
+                 unit = new Archer(_arena, this, UnitCount);
                 _aCount++;
                 _units.Add(unit.Name, unit);
           

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Linq;
 
 namespace BirdHouse_Battle.Model
 {
@@ -40,8 +40,6 @@ namespace BirdHouse_Battle.Model
         /// <param name="jToken"></param>
         public Arena( JToken jToken)
         {
-
-
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
             _projectiles = new Dictionary<int, Projectile>();
@@ -56,8 +54,25 @@ namespace BirdHouse_Battle.Model
                 _field.Init();
             }
 
+            JArray jTeams = (JArray)jToken["Arenas"];
+            IEnumerable<Team> teams = jTeams.Select(t => new Team(this,"blue", t));
+            foreach (Team team in teams)
+            {
+                _teams.Add("blue",team);
+            }
         }
 
+        public JToken Serialise()
+        {
+            return new JObject(
+                new JProperty("Arena", _teams.Select(kv => kv.Value.Serialize())));
+        }
+
+
+        public IEnumerable<Team> GetTeams()
+        {
+            return _teams.Values;
+        }
         public Dictionary<string, Team> Teams => _teams;
 
         public Dictionary<int, Projectile> Projectiles => _projectiles;

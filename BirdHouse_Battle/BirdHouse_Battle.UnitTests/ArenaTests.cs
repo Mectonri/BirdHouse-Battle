@@ -1,6 +1,10 @@
 ﻿using BirdHouse_Battle.Model;
-using NUnit.Framework;
 using System;
+using System.IO;
+using System.Linq;
+using NUnit.Framework;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace BirdHouse_Battle.UnitTests
 {
@@ -79,29 +83,29 @@ namespace BirdHouse_Battle.UnitTests
             Assert.Throws<ArgumentException>(() => u = arena.SpawnUnit(u, 1, 1));
         }
 
-        [Test]
-        public void unit_cannot_move_on_a_already_used_location()
-        {
-            Arena arena = new Arena();
-            Team firstTeam = arena.CreateTeam("firstTeam");
-            firstTeam.AddArcher(2);
+        //[Test]
+        //public void unit_cannot_move_on_a_already_used_location()
+        //{
+        //    Arena arena = new Arena();
+        //    Team firstTeam = arena.CreateTeam("firstTeam");
+        //    firstTeam.AddArcher(2);
 
-            Unit[] tab = firstTeam.Find();
-            Unit u = firstTeam.FindUnitByName(tab[0].Name);
-            Unit u2 = firstTeam.FindUnitByName(tab[1].Name);
+        //    Unit[] tab = firstTeam.Find();
+        //    Unit u = firstTeam.FindUnitByName(tab[0].Name);
+        //    Unit u2 = firstTeam.FindUnitByName(tab[1].Name);
 
-            Vector vector = new Vector(1, 1);
-            Vector vector2 = new Vector(7, 7);
+        //    Vector vector = new Vector(1, 1);
+        //    Vector vector2 = new Vector(7, 7);
 
-            u = arena.SpawnUnit(u, 1, 1);
-            bool a = arena.Collision(vector);
-            Assert.That(a, Is.EqualTo(true));
+        //    u = arena.SpawnUnit(u, 1, 1);
+        //    bool a = arena.Collision(vector);
+        //    Assert.That(a, Is.EqualTo(true));
  
 
-            a = arena.Collision(vector2);
-            Assert.That(a, Is.EqualTo(false));
+        //    a = arena.Collision(vector2);
+        //    Assert.That(a, Is.EqualTo(false));
 
-        }
+        //}
 
         [Test]
         public void Aquire_a_target()
@@ -144,5 +148,27 @@ namespace BirdHouse_Battle.UnitTests
             Unit testUnit2 = arena.NearestEnemy(firstUnit);
             Assert.That(testUnit2, Is.EqualTo(secondUnit));
         }
+
+        [Test]
+        public void serialazation_of_arena()
+        {
+            Arena sut = new Arena();
+
+            sut.CreateTeam("red");
+            sut.CreateTeam("blue");
+
+
+            JToken jToken = sut.Serialise();
+
+            Arena result = new Arena(jToken);
+
+            IEnumerable<Team> teams =  result.GetTeams();
+
+            Assert.That(teams.Count(), Is.EqualTo(2) );
+            Assert.That(teams.Any(t => t.Name == "red"));
+            Assert.That(teams.All(t => t.Context == result));
+        }
+
+
     }
 }

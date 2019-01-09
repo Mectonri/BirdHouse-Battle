@@ -6,7 +6,7 @@ namespace BirdHouse_Battle.Model
     {
         int _callDown;
 
-        public Archer(Team team, Arena arena, int nameUnit)
+        public Archer( Arena arena, Team team, int nameUnit)
             : base(team, arena, 12.0, 1.8, 135.0, 10.0, 4, 1, 
                    "Order", false, true, false, nameUnit, "archer")
         {

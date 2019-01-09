@@ -1,5 +1,10 @@
 ﻿using BirdHouse_Battle.Model;
+using System.IO;
+using System.Linq;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NUnit.Framework;
+
 
 namespace BirdHouse_Battle.UnitTests
 {
@@ -46,7 +51,7 @@ namespace BirdHouse_Battle.UnitTests
 
             Paladin Pal = new Paladin(team, arena,1);
             Goblin Gob = new Goblin(team, arena,1);
-            Archer Arc = new Archer(team, arena,1);
+            Archer Arc = new Archer(arena, team, 1);
 
             Assert.That(Pal.Team, Is.EqualTo(team));
             Pal.DieNullContext();
@@ -175,6 +180,60 @@ namespace BirdHouse_Battle.UnitTests
 
             Assert.That(t_blue[0].Location, !Is.EqualTo(new Vector(-15, 16)));
             Assert.That(t_blue[0].Location, Is.EqualTo(new Vector(-13.620000000000001, 14.620000000000001)));
+        }
+
+        [Test]
+        public void Serialize_a_unit()
+        {
+            Arena arena = new Arena();
+            Team team = arena.CreateTeam("blue");
+
+            Archer sut = new Archer(arena, team, 1);
+
+            JToken jToken = sut.Serialize();
+        }
+
+        [Test]
+        public void Deserialize_a_unit()
+        {
+            Arena arena = new Arena(); 
+            Team team = arena.CreateTeam("blue");
+            // add each troop twice to arena
+            Archer a = new Archer(arena, team, 1);
+            team.AddBalista(2);
+            team.AddCatapult(2);
+            team.AddDrake(2);
+            team.AddGobelin(2);
+            team.AddPaladin(2);
+
+           
+            string fileName = Path.GetTempFileName();
+
+            {
+                JToken jToken = a.Serialize();
+                using (FileStream fs = File.OpenWrite(fileName))
+                using (StreamWriter sw = new StreamWriter(fs))
+                using (JsonTextWriter jw = new JsonTextWriter(sw))
+                {
+                    jToken.WriteTo(jw);
+                }
+            }
+
+            {
+                using (FileStream fs = File.OpenRead(fileName))
+                using (StreamReader sr = new StreamReader(fs))
+                using (JsonTextReader jr = new JsonTextReader(sr))
+                {
+                    JToken jToken = JToken.ReadFrom(jr);
+                    Archer archer = new Archer(team, jToken);
+                    Archer archer1 = new Archer(arena, team, 22);
+
+                    Assert.That(archer.Life, Is.EqualTo(12.0));
+                    Assert.That(archer.Troop, Is.EqualTo("archer"));
+                    Assert.That(archer.Equals(archer1), Is.False);
+                    Assert.That(archer.Name, Is.Not.EqualTo(archer1.Name));
+                }
+            }
         }
     }
 }

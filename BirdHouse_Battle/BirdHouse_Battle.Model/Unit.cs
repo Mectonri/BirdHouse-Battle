@@ -9,7 +9,7 @@ namespace BirdHouse_Battle.Model
         Team _team;
         Arena _arena;
 
-        readonly int _name;
+        public int _name;
 
         Vector _location;
         Vector _direction;
@@ -24,7 +24,7 @@ namespace BirdHouse_Battle.Model
         public int _burn;
 
         public string _disposition;
-        readonly public string _troop;
+        public string _troop;
 
         public bool _fly;
         public bool _distance;
@@ -101,7 +101,7 @@ namespace BirdHouse_Battle.Model
                 new JProperty("Distance", _distance),
                 new JProperty("DistanceOnly", _distanceOnly),
                 new JProperty("Name", _name),
-                new JProperty("Breed", _troop)
+                new JProperty("Troop", _troop)
                 );
         }
 
@@ -115,7 +115,7 @@ namespace BirdHouse_Battle.Model
 
         public int Name { get { return _name; } }
 
-        public string Type => _troop;
+        public string Troop => _troop;
 
         public Unit Target { get; set; }
 
