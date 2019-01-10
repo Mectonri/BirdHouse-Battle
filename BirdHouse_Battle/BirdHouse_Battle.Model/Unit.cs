@@ -9,7 +9,7 @@ namespace BirdHouse_Battle.Model
         Team _team;
         Arena _arena;
 
-        public int _name;
+        public int _nameUnit;
 
         Vector _location;
         Vector _direction;
@@ -33,13 +33,14 @@ namespace BirdHouse_Battle.Model
         public bool _dumpCantFly;
         public bool _dumpCantWalk;
 
-        protected Unit(Team team, Arena arena, double life,
+        protected Unit(Arena arena, Team team,  double life,
                        double speed, double range, double unitPrice,
                        int strength, int armor, string disposition, 
-                       bool fly, bool distance, bool distanceOnly, int nameUnit, string Troop)
+                       bool fly, bool distance, bool distanceOnly, int name, string troop)
         {
             _team = team;
             _arena = arena;
+
             _life = life;
             _speed = speed;
             _range = range;
@@ -47,14 +48,15 @@ namespace BirdHouse_Battle.Model
             _strength = strength;
             _armor = armor;
             _disposition = disposition;
-            _name = nameUnit;
-            _burn = 0;
             _fly = fly;
             _distance = distance;
             _distanceOnly = distanceOnly;
+            _nameUnit = name;
+            _troop = troop;
+
             _dumpCantFly = false;
             _teamPlay = false;
-            _troop = Troop;
+            _burn = 0;
 
         }
 
@@ -66,9 +68,11 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         /// <param name="team"></param>
         /// <param name="jToken"></param>
-        public Unit(Team team, JToken jToken)
+        public Unit(Arena arena, Team team, JToken jToken)
         {
+            _arena = arena;
             _team = team;
+
             _life = jToken["Life"].Value<double>();
             _speed = jToken["Speed"].Value<double>();
             _range = jToken["Range"].Value<double>();
@@ -79,8 +83,12 @@ namespace BirdHouse_Battle.Model
             _fly = jToken["Fly"].Value<bool>();
             _distance = jToken["Distance"].Value<bool>();
             _distanceOnly= jToken["DistanceOnly"].Value<bool>();
-            _name = jToken["Name"].Value<int>();
+            _nameUnit = jToken["Name"].Value<int>();
             _troop = jToken["Troop"].Value<string>();
+
+            _dumpCantFly = false;
+            _teamPlay = false;
+            _burn = 0;
         }
 
         /// <summary>
@@ -100,7 +108,7 @@ namespace BirdHouse_Battle.Model
                 new JProperty("Fly", _fly),
                 new JProperty("Distance", _distance),
                 new JProperty("DistanceOnly", _distanceOnly),
-                new JProperty("Name", _name),
+                new JProperty("Name", _nameUnit),
                 new JProperty("Troop", _troop)
                 );
         }
@@ -113,7 +121,7 @@ namespace BirdHouse_Battle.Model
 
         public Arena Arena { get { return _arena; } }
 
-        public int Name { get { return _name; } }
+        public int Name { get { return _nameUnit; } }
 
         public string Troop => _troop;
 

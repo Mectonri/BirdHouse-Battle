@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace BirdHouse_Battle.UnitTests
 {
     [TestFixture]
-    class ArenaTests
+    class UnitTest_Arena
     {
         //[Test]
         //public void create_team()
@@ -150,13 +150,15 @@ namespace BirdHouse_Battle.UnitTests
         }
 
         [Test]
-        public void serialazation_of_arena()
+        public void serialization_of_arena()
         {
             Arena sut = new Arena();
 
             sut.CreateTeam("red");
-            sut.CreateTeam("blue");
+            Team team = new Team(sut, "blue", 125);
 
+            team.AddArcher(2);
+            team.AddPaladin(2);
 
             JToken jToken = sut.Serialise();
 

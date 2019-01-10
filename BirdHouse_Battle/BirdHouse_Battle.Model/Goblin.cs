@@ -4,15 +4,16 @@ namespace BirdHouse_Battle.Model
 {
     public class Goblin : Unit
     {
-        public Goblin(Team team, Arena arena, int nameUnit)
-            : base(team, arena, 8.0, 2.5, 4.0, 3.0, 15, 0, 
+        public Goblin(Arena arena, Team team,  int nameUnit)
+            : base( arena, team, 8.0, 2.5, 4.0, 3.0, 15, 0, 
                    "Chaos", false, false, false, nameUnit, "goblin")
         {
         }
 
-        public Goblin(Team team, JToken jToken)
-            : base(team, jToken)
-        { }
+        public Goblin(Arena arena, Team team, JToken jToken)
+            : base(arena, team, jToken)
+        {
+        }
 
         public bool GoblinsAlone()
         {

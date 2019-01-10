@@ -6,15 +6,15 @@ namespace BirdHouse_Battle.Model
     {
         int _coolDown;
 
-        public Catapult(Team team, Arena arena, int nameUnit)
-            : base(team, arena, 30.0, 0.50, 250.0, 40.0, 20, 3,
+        public Catapult(Arena arena, Team team, int nameUnit)
+            : base(arena, team,  30.0, 0.50, 250.0, 40.0, 20, 3,
                 "Order", false, false, false, nameUnit, "catapult")
         {
             _coolDown = 0;
         }
 
-        public Catapult(Team team, JToken jToken)
-            : base(team, jToken)
+        public Catapult(Arena arena, Team team, JToken jToken)
+            : base(arena, team, jToken)
         {
             _coolDown = 0;
         }

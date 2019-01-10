@@ -4,18 +4,21 @@ namespace BirdHouse_Battle.Model
 {
     public class Archer : Unit
     {
-        int _callDown;
+        int _coolDown;
 
         public Archer( Arena arena, Team team, int nameUnit)
-            : base(team, arena, 12.0, 1.8, 135.0, 10.0, 4, 1, 
+            : base(arena, team,  12.0, 1.8, 135.0, 10.0, 4, 1, 
                    "Order", false, true, false, nameUnit, "archer")
         {
-            _callDown = 0;
+            _coolDown = 0;
         }
 
-        public Archer(Team team, JToken jToken)
-            : base(team, jToken)
+        public Archer(Arena arena, Team team, JToken jToken)
+            : base(arena, team, jToken)
         {
+
+            _life = jToken["Life"].Value<double>();
+            _speed = jToken["Speed"].Value<double>();
             _range = jToken["Range"].Value<double>();
             _unitPrice = jToken["UnitPrice"].Value<double>();
             _strength = jToken["Strength"].Value<int>();
@@ -24,13 +27,15 @@ namespace BirdHouse_Battle.Model
             _fly = jToken["Fly"].Value<bool>();
             _distance = jToken["Distance"].Value<bool>();
             _distanceOnly = jToken["DistanceOnly"].Value<bool>();
-            _name = jToken["Name"].Value<int>();
+            _nameUnit = jToken["Name"].Value<int>();
             _troop = jToken["Troop"].Value<string>();
+
+            _coolDown = 0;
         }
 
-        public int CallDown
+        public int CoolDown
         {
-            get { return _callDown; }
+            get { return _coolDown; }
         }
 
         public void BowAttack(int NbFram, Unit finalTarget)
@@ -59,7 +64,7 @@ namespace BirdHouse_Battle.Model
             {
                 Arena.InitArrow(Location, End, NbFram);
             }
-            _callDown = NbFram;
+            _coolDown = NbFram;
         }
 
         /// <summary>
@@ -101,13 +106,13 @@ namespace BirdHouse_Battle.Model
                 if (InRange(range))
                 {
                     SetMouvementZero();
-                    if (_callDown == 0)
+                    if (_coolDown == 0)
                     {
                         BowAttack(24, finalTarget);
                     }
                     else
                     {
-                        _callDown--;
+                        _coolDown--;
                     }
                 }
                 else

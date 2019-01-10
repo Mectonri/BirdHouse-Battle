@@ -32,10 +32,9 @@ namespace BirdHouse_Battle.Model
                 _field.Init();
             }
         }
-
         
         /// <summary>
-        /// 
+        /// Deserialize a Arena
         /// </summary>
         /// <param name="jToken"></param>
         public Arena( JToken jToken)
@@ -55,7 +54,7 @@ namespace BirdHouse_Battle.Model
             }
 
             JArray jTeams = (JArray)jToken["Arenas"];
-            IEnumerable<Team> teams = jTeams.Select(t => new Team(this,"blue", t));
+            IEnumerable<Team> teams = jTeams.Select(t => new Team(this, "blue", t));
             foreach (Team team in teams)
             {
                 _teams.Add("blue",team);

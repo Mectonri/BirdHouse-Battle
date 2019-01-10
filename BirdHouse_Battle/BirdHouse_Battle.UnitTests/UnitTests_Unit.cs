@@ -49,8 +49,8 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Paladin Pal = new Paladin(team, arena,1);
-            Goblin Gob = new Goblin(team, arena,1);
+            Paladin Pal = new Paladin(arena, team,  1);
+            Goblin Gob = new Goblin(arena, team,  1);
             Archer Arc = new Archer(arena, team, 1);
 
             Assert.That(Pal.Team, Is.EqualTo(team));
@@ -183,7 +183,7 @@ namespace BirdHouse_Battle.UnitTests
         }
 
         [Test]
-        public void Serialize_a_unit()
+        public void Serialize_a_unit_as_archer()
         {
             Arena arena = new Arena();
             Team team = arena.CreateTeam("blue");
@@ -198,14 +198,8 @@ namespace BirdHouse_Battle.UnitTests
         {
             Arena arena = new Arena(); 
             Team team = arena.CreateTeam("blue");
-            // add each troop twice to arena
+            
             Archer a = new Archer(arena, team, 1);
-            team.AddBalista(2);
-            team.AddCatapult(2);
-            team.AddDrake(2);
-            team.AddGobelin(2);
-            team.AddPaladin(2);
-
            
             string fileName = Path.GetTempFileName();
 
@@ -225,7 +219,7 @@ namespace BirdHouse_Battle.UnitTests
                 using (JsonTextReader jr = new JsonTextReader(sr))
                 {
                     JToken jToken = JToken.ReadFrom(jr);
-                    Archer archer = new Archer(team, jToken);
+                    Archer archer = new Archer(arena, team, jToken);
                     Archer archer1 = new Archer(arena, team, 22);
 
                     Assert.That(archer.Life, Is.EqualTo(12.0));

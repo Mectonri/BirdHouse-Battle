@@ -4,19 +4,19 @@ namespace BirdHouse_Battle.Model
 {
     public class Balista : Unit
     {
-        int _callDown;
+        int _coolDown;
 
-        public Balista(Team team, Arena arena, int nameUnit)
-            : base(team, arena, 25.0, 0.70, 200.0, 30.0, 15, 2,
-                "Order", false, false, true, nameUnit , "baliste")
+        public Balista(Arena arena, Team team,  int nameUnit)
+            : base(arena,  team,  25.0, 0.70, 200.0, 30.0, 15, 2,
+                "Order", false, false, true, nameUnit, "balista")
         {
-            _callDown = 0;
+            _coolDown = 0;
         }
 
-        public Balista(Team team, JToken jToken)
-            : base(team, jToken)
+        public Balista(Arena arena, Team team, JToken jToken)
+          : base(arena, team, jToken)
         {
-            
+
             _life = jToken["Life"].Value<double>();
             _speed = jToken["Speed"].Value<double>();
             _range = jToken["Range"].Value<double>();
@@ -27,13 +27,17 @@ namespace BirdHouse_Battle.Model
             _fly = jToken["Fly"].Value<bool>();
             _distance = jToken["Distance"].Value<bool>();
             _distanceOnly = jToken["DistanceOnly"].Value<bool>();
-            _name = jToken["Name"].Value<int>();
+            _nameUnit = jToken["Name"].Value<int>();
             _troop = jToken["Troop"].Value<string>();
+
+            _coolDown = 0;
         }
 
-        public int CallDown
+
+
+        public int CoolDown
         {
-            get { return _callDown; }
+            get { return _coolDown; }
         }
 
         public void BalisticAmmoAttack(int NbFram, Unit finalTarget)
@@ -62,7 +66,7 @@ namespace BirdHouse_Battle.Model
             {
                 Arena.InitBalisticAmmo(Location, End, NbFram);
             }
-            _callDown = NbFram;
+            _coolDown = NbFram;
         }
 
         /// <summary>
@@ -92,13 +96,13 @@ namespace BirdHouse_Battle.Model
                 if (InRange(range))
                 {
                     SetMouvementZero();
-                    if (_callDown == 0)
+                    if (_coolDown == 0)
                     {
                         BalisticAmmoAttack(24, Target);
                     }
                     else
                     {
-                        _callDown--;
+                        _coolDown--;
                     }
                 }
                 else

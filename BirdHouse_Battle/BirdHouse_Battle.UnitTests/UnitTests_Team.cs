@@ -8,7 +8,7 @@ using System.Linq;
 namespace BirdHouse_Battle.UnitTests
 {
     [TestFixture]
-    public class TeamTests
+    public class UnitTest_Team
     {
         
 
@@ -82,7 +82,6 @@ namespace BirdHouse_Battle.UnitTests
 
             Assert.That(t4.UnitCount, Is.EqualTo(18));
         }
-
 
         [Test]
         public void remove_unit_from_team()
@@ -162,7 +161,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team sut = arena.CreateTeam("blue");
             sut.AddArcher(2);
-            sut.AddBalista(2);
+            //sut.AddBalista(2);
             sut.AddCatapult(2);
             sut.AddDrake(2);
             sut.AddGobelin(2);
@@ -172,9 +171,9 @@ namespace BirdHouse_Battle.UnitTests
 
             Team result = new Team(arena, "blue", jToken);
             IEnumerable<Unit> units = result.GetUnits();
-            Assert.That(units.Count(), Is.EqualTo(12));
+            Assert.That(units.Count(), Is.EqualTo(10));
             Assert.That(units.Any(u => u.Life == 12.0 && u.Speed == 1.8));
-            Assert.That(units.Any(u => u.Strength == 135.0 && u.Armor == 1));
+            
             Assert.That(units.All(u => u.Team == result));
         }
     }
