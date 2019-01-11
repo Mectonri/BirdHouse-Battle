@@ -7,8 +7,8 @@ namespace BirdHouse_Battle.Model
 {
     public class Arena
     {
-        readonly Dictionary<string, Team> _teams;
-        readonly Dictionary<string, Team> _deadTeams;
+        public readonly Dictionary<string, Team> _teams;
+        public readonly Dictionary<string, Team> _deadTeams;
         readonly Dictionary<int, Projectile> _projectiles;
         readonly Dictionary<int, Projectile> _deadProjectiles;
         readonly int _height;
@@ -57,14 +57,14 @@ namespace BirdHouse_Battle.Model
             IEnumerable<Team> teams = jTeams.Select(t => new Team(this, "blue", t));
             foreach (Team team in teams)
             {
-                _teams.Add("blue",team);
+                _teams.Add("blue", team);
             }
         }
 
-        public JToken Serialise()
+        public JToken Serialize()
         {
             return new JObject(
-                new JProperty("Arena", _teams.Select(kv => kv.Value.Serialize())));
+                new JProperty("Arenas", _teams.Select(kv => kv.Value.Serialize())));
         }
 
 

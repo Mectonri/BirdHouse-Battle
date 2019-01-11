@@ -9,26 +9,27 @@ namespace BirdHouse_Battle.Model
         Team _team;
         Arena _arena;
 
-        public int _nameUnit;
+      
 
         Vector _location;
         Vector _direction;
         Vector _mouvement;
 
+        //common to unit
         public double _life;
         public double _speed;
         public double _range;
         public double _unitPrice;
         public int _strength;
         public int _armor;
-        public int _burn;
-
         public string _disposition;
-        public string _troop;
-
         public bool _fly;
         public bool _distance;
         public bool _distanceOnly;
+        public int _nameUnit;
+        public string _troop;
+
+        public int _burn;
         public bool _teamPlay;
         public bool _dumpCantFly;
         public bool _dumpCantWalk;
@@ -121,6 +122,25 @@ namespace BirdHouse_Battle.Model
 
         public Arena Arena { get { return _arena; } }
 
+        public double Life { get { return _life; } }
+
+        public double Speed { get { return _speed; } }
+
+        public double Range { get { return _range; } }
+
+        public double UnitPrice { get { return _unitPrice; } }
+
+        public int Strength { get { return _strength; } }
+
+        public int Armor { get { return _armor; } }
+
+        public string Disposition { get { return _disposition; } }
+        public bool Fly { get { return _fly; } }
+
+        public bool Distance { get { return _distance; } }
+
+        public bool DistanceOnly { get { return _distanceOnly; } }
+
         public int Name { get { return _nameUnit; } }
 
         public string Troop => _troop;
@@ -145,32 +165,12 @@ namespace BirdHouse_Battle.Model
             set { _mouvement = value; }
         }
 
-        public double Life { get { return _life; } }
-        
-        public double Speed { get { return _speed; } }
-
-        public double Range { get { return _range; } }
-
-        public double UnitPrice { get { return _unitPrice; } }
-
-        public int Strength { get { return _strength; } }
-
-        public int Armor { get { return _armor; } }
-
         public int Burn { get { return _burn; } }
-
-        public string Disposition { get { return _disposition; } }
 
         public bool IsDead()
         {
             return _life <= 0;
         }
-
-        public bool Fly { get { return _fly; } }
-
-        public bool Distance { get { return _distance; } }
-
-        public bool DistanceOnly { get { return _distanceOnly; } }
 
         public bool TeamPlay { get { return _teamPlay; } }
 

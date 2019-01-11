@@ -17,23 +17,21 @@ namespace BirdHouse_Battle.Model
           : base(arena, team, jToken)
         {
 
-            _life = jToken["Life"].Value<double>();
-            _speed = jToken["Speed"].Value<double>();
-            _range = jToken["Range"].Value<double>();
-            _unitPrice = jToken["UnitPrice"].Value<double>();
-            _strength = jToken["Strength"].Value<int>();
-            _armor = jToken["Armor"].Value<int>();
-            _disposition = jToken["Disposition"].Value<string>();
-            _fly = jToken["Fly"].Value<bool>();
-            _distance = jToken["Distance"].Value<bool>();
-            _distanceOnly = jToken["DistanceOnly"].Value<bool>();
-            _nameUnit = jToken["Name"].Value<int>();
-            _troop = jToken["Troop"].Value<string>();
+            //_life = jToken["Life"].Value<double>();
+            //_speed = jToken["Speed"].Value<double>();
+            //_range = jToken["Range"].Value<double>();
+            //_unitPrice = jToken["UnitPrice"].Value<double>();
+            //_strength = jToken["Strength"].Value<int>();
+            //_armor = jToken["Armor"].Value<int>();
+            //_disposition = jToken["Disposition"].Value<string>();
+            //_fly = jToken["Fly"].Value<bool>();
+            //_distance = jToken["Distance"].Value<bool>();
+            //_distanceOnly = jToken["DistanceOnly"].Value<bool>();
+            //_nameUnit = jToken["Name"].Value<int>();
+            //_troop = jToken["Troop"].Value<string>();
 
             _coolDown = 0;
         }
-
-
 
         public int CoolDown
         {

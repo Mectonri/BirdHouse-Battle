@@ -160,7 +160,7 @@ namespace BirdHouse_Battle.UnitTests
             team.AddArcher(2);
             team.AddPaladin(2);
 
-            JToken jToken = sut.Serialise();
+            JToken jToken = sut.Serialize();
 
             Arena result = new Arena(jToken);
 

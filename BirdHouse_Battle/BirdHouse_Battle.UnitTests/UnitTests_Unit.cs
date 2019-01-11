@@ -229,5 +229,24 @@ namespace BirdHouse_Battle.UnitTests
                 }
             }
         }
+
+        public static void CheckEquals(Unit u1, Unit u2)
+        {
+            Assert.That(u1.GetType(), Is.SameAs(u2.GetType()));
+            Assert.That(u1.Troop, Is.SameAs(u2.Troop));
+            //if (u1 is Balista b1 && u2 is Balista b2)
+            //{
+
+            //}
+            //else if (u1 is Paladin p1 && u2 is Paladin p2)
+            //{
+
+            //}
+            //else
+            //{
+
+            //}
+
+        }
     }
 }

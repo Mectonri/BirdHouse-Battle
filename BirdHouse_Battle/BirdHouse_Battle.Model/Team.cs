@@ -177,23 +177,37 @@ namespace BirdHouse_Battle.Model
             {
                 if (_unitCount > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of troops for this team");
 
-                return _unitCount = _aCount + _gCount + _pCount + _dCount + _cCount + _bCount;
+                return _unitCount = _aCount + _bCount  + _cCount + _dCount + _gCount + _pCount    ;
             }
         }
 
         public Arena Context => _arena;
 
-        public int Acount => _aCount;
+        public int Acount
+        {
+            get{ return _aCount; }
+            set{ _aCount = value; }
+        }
 
         public int Gcount => _gCount;
 
         public int Pcount => _pCount;
 
-        public int Dcount => _dCount;
-
-        public int Ccount => _cCount;
-
-        public int Bcount => _bCount;
+        public int Dcount
+        {
+            get { return _dCount; }
+            set { _dCount = value; }
+        }
+        public int Ccount
+        {
+            get { return _cCount; }
+            set { _cCount = value; }
+        }
+        public int Bcount
+        {
+            get { return _bCount; }
+            set { _bCount = value; }
+        }
 
         public double GoldAmount
         {
@@ -302,7 +316,7 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || DToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < DToAdd; i++)
             {
-                Drake drake = new Drake(this, _arena, UnitCount);
+                Drake drake = new Drake(_arena, this,  UnitCount);
                 _dCount++;
                 _units.Add(drake.Name, drake);
             }
