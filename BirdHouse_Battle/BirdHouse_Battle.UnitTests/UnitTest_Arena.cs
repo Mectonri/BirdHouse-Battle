@@ -154,9 +154,8 @@ namespace BirdHouse_Battle.UnitTests
         {
             Arena sut = new Arena();
 
-            sut.CreateTeam("red");
-            Team team = new Team(sut, "blue", 125);
-
+           Team team =  sut.CreateTeam("red");
+            
             team.AddArcher(2);
             team.AddPaladin(2);
 
@@ -166,8 +165,10 @@ namespace BirdHouse_Battle.UnitTests
 
             IEnumerable<Team> teams =  result.GetTeams();
 
-            Assert.That(teams.Count(), Is.EqualTo(2) );
-            Assert.That(teams.Any(t => t.Name == "red"));
+            Assert.That(teams.Count(), Is.EqualTo(1) );
+            Assert.That(sut.TeamCount == 1);
+            Assert.That(sut.Teams.ContainsKey("red"));
+            Assert.That(sut.Teams.Count == result.Teams.Count);
             Assert.That(teams.All(t => t.Context == result));
         }
 

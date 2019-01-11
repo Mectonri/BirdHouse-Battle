@@ -7,7 +7,7 @@ namespace BirdHouse_Battle.Model
         int _coolDown;
 
         public Archer( Arena arena, Team team, int nameUnit)
-            : base(arena, team,  12.0, 1.8, 135.0, 10.0, 4, 1, 
+            : base(arena, team,  12.0, 1.8, 135.0, 10.0, 4, 1,
                    "Order", false, true, false, nameUnit, "archer")
         {
             _coolDown = 0;

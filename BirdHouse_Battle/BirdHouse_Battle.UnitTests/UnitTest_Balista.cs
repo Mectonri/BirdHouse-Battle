@@ -11,6 +11,9 @@ namespace BirdHouse_Battle.UnitTests
     [TestFixture]
     class UnitTest_Balista
     {
+
+        internal UnitTests_Unit UTT;
+
         [Test]
         public void add_an_balista()
         {
@@ -36,11 +39,8 @@ namespace BirdHouse_Battle.UnitTests
             JToken jToken = sut.Serialize();
 
             Balista result = new Balista(arena, team, jToken);
-            
-            Assert.That(sut.Life, Is.EqualTo(25.0));
-            Assert.That(sut.Troop, Is.EqualTo("balista"));
-            Assert.That(sut.Equals(result), Is.False);
-            Assert.That(sut.Name, Is.Not.EqualTo(result.Name));
+
+            UnitTests_Unit.CheckEquals(sut, result);
         }
 
         [Test]

@@ -35,7 +35,7 @@ namespace BirdHouse_Battle.UnitTests
             Assert.That(sut.Life == 12.0 && sut.Speed == 1.8);
             Assert.That(result.Life == 12.0 && result.Speed == 1.8);
 
-            //Assert.That(sut, Is.EqualTo(result));
+            UnitTests_Unit.CheckEquals(sut, result);
         }
 
         [Test]
