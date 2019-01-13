@@ -1,5 +1,6 @@
 ﻿using BirdHouse_Battle.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
@@ -23,7 +24,7 @@ namespace BirdHouse_Battle.UI
         string _status;
         public int _winner = 0;
         public int _tour = 0;
-    
+
         #endregion
 
         public Game()
@@ -39,7 +40,7 @@ namespace BirdHouse_Battle.UI
 
         #region Getter
 
-        public int Winner =>_winner;
+        public int Winner => _winner;
 
         public string Status
         {
@@ -50,17 +51,15 @@ namespace BirdHouse_Battle.UI
         {
             get { return _arena; }
         }
+        
+        public RenderWindow Window => _window;
 
-      
-
-        public RenderWindow Window => _window; 
-    
         public bool Paused { get; set; }
 
-        public double MsPerUpdate => _msPerUpdate; 
+        public double MsPerUpdate => _msPerUpdate;
 
         #endregion
-        
+
         static void Load()
         {
             SFML.SystemNative.Load();
@@ -68,12 +67,12 @@ namespace BirdHouse_Battle.UI
             SFML.GraphicsNative.Load();
             SFML.AudioNative.Load();
         }
-        
+
         public void NewArena()
         {
             _arena = new Arena();
         }
-        
+
         #region Relevant to Gameloop
 
         public double PreviousP => _previousP;
@@ -113,7 +112,7 @@ namespace BirdHouse_Battle.UI
                     //PauseMenu();
                     _iHandler.HandlerPause(draw.PauseDisplay());
                 }
-                
+
                 if (!_window.IsOpen || !Return)
                 {
                     Status = "ended";
@@ -138,15 +137,16 @@ namespace BirdHouse_Battle.UI
             return true;
         }
 
-        //private void ListTeam(Arena arena)
-        //{
-        //    foreach (KeyValuePair<string, Team> team in arena.Teams)
-        //    {
-        //        Console.WriteLine(team.Key);
-        //        Console.WriteLine(team.Value.Name);
 
-        //    }
-        //}
+        private void ListTeam(Arena arena)
+        {
+            foreach (KeyValuePair<string, Team> team in arena.Teams)
+            {
+                Console.WriteLine(team.Key);
+                Console.WriteLine(team.Value.Name);
+
+            }
+        }
 
         /// <summary>
         /// Find the winning team
@@ -177,29 +177,72 @@ namespace BirdHouse_Battle.UI
         }
 
         /// <summary>
+        /// Writte the different levels in a JSON
+        /// </summary>
+        internal void LevelWritte()
+        {
+
+            string path = "../../../../res/HistoryMode.JSON";
+            
+            Team team = _arena.CreateTeam("blue");
+            team.AddArcher(10);
+            team.Acount = 10;
+
+            //Team team1 = _arena.CreateTeam("red");
+            //team1.AddArcher(10);
+            //team1.Acount = 10;
+
+            string fileName = Path.GetTempFileName();
+
+            ///Writting in the JToken
+            {
+                JToken jToken = _arena.Serialize();
+                using (FileStream fs = File.OpenWrite(path))
+                using (StreamWriter sw = new StreamWriter(fs))
+                using (JsonTextWriter jw = new JsonTextWriter(sw))
+                {
+                    jToken.WriteTo(jw);
+                }
+            }
+
+            //{
+            //    using (FileStream fs = File.OpenRead(fileName))
+            //    using (StreamReader sr = new StreamReader(fs))
+            //    using (JsonTextReader jr = new JsonTextReader(sr))
+            //    {
+            //        JToken token = JToken.ReadFrom(jr);
+            //        Team team = new Team(token);
+            //        IEnumerable<Unit> units = team.GetUnits();
+            //        Assert.That(units.Count(), Is.EqualTo(2));
+            //        Assert.That(units.Any(u => u.Health == 25.0 && u.Speed == 30.0));
+            //        Assert.That(units.Any(u => u.Health == 15.0 && u.Speed == 10.0));
+            //        Assert.That(units.All(u => u.Team == team));
+            //    }
+            //}
+           // Status = "game";
+        }
+        
+        /// <summary>
         /// Load the selected level to be played
         /// </summary>
-        internal void LoadLevel( int Level)
+        internal void LevelLoad(int Level)
         {
-            string path = Level.ToString(); //stranstaltes the level to a string to obtain it path
+            string path = "../../../../res/HistoryMode.JSON";
 
             using (FileStream fs = File.OpenRead(path))
             using (StreamReader sr = new StreamReader(fs))
             using (JsonTextReader jr = new JsonTextReader(sr))
             {
-                while (jr.Read())
-                {
-                    if (jr.Value != null)
-                    {
-                        Console.WriteLine("Token: {0}, Value: {1}", jr.TokenType, jr.Value);
-                        CreateTeam( jr.Value, jr.Value, jr.Value, jr.Value, jr.Value, jr.Value );
-                    }
-                    else
-                    {
-                        Console.WriteLine("Token: {0}", jr.TokenType);
-                    }
-                }
+
+                JToken jToken = JToken.ReadFrom(jr);
+                JArray jArena = (JArray)jToken["Teams"];
+
+
+                Arena arena = new Arena(jArena[Level]);
+
+                HistoryPreGame(arena);
             }
+            
         }
 
         private void CreateTeam(object value1, object value2, object value3, object value4, object value5, object value6)
@@ -216,16 +259,9 @@ namespace BirdHouse_Battle.UI
         /// <param name="DToAdd"></param>
         /// <param name="GToAdd"></param>
         /// <param name="PToAdd"></param>
-        private void CreateTeam(int AToAdd, int BToAdd, int CToAdd, int DToAdd, int GToAdd, int PToAdd)
+        private void FillTeam(Team team)
         {
-            Team team = new Team( Arena, "red", 125);
-
-            team.AddArcher(AToAdd);
-            team.AddArcher(BToAdd);
-            team.AddCatapult(CToAdd);
-            team.AddDrake(DToAdd);
-            team.AddGobelin(GToAdd);
-            team.AddPaladin(PToAdd);
+            
         }
 
 
@@ -235,7 +271,7 @@ namespace BirdHouse_Battle.UI
         }
 
         public void Render(Arena arena)
-        { 
+        {
             Window.Clear();
             Drawer draw = new Drawer(Window);
             draw.BackGroundGame();
@@ -307,7 +343,7 @@ namespace BirdHouse_Battle.UI
         /// <param name="arena"></param>
         public void FillRandom(Arena arena)
         {
-            
+
             Random rn = new Random();
             int t = rn.Next(2, 5);
 
@@ -365,11 +401,64 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public Shape[] InitGUI()
         {
-            Window.Clear( );
+            Window.Clear();
             Shape[] buttons = draw.MenuDisplay();
             Window.Display();
-            
+
             return buttons;
+        }
+
+        internal void HistoryPreGame( Arena arena)
+        {
+
+           
+
+            string[] status = new string[8];
+            status[0] = "selected";
+            status[1] = "active";
+            status[2] = "inactive";
+            status[3] = "inactive";
+
+            status[4] = "none";
+            status[5] = "add";
+            status[6] = "1";
+            status[7] = "yes";
+
+            int[,] teamComposition =
+            {
+                {0, 0, 0, 0, 0, 0},// Player Team
+                {0, 0, 0, 0, 0, 0},// Computer team
+            };
+            double previous = GetCurrentTime();
+
+            foreach (KeyValuePair<string, Team> kv in arena.Teams)
+            {
+                Team team = kv.Value;
+                teamComposition[1, 0] = team.Acount;
+                teamComposition[1, 1] = team.Bcount;
+                teamComposition[1, 2] = team.Ccount;
+                teamComposition[1, 3] = team.Dcount;
+                teamComposition[1, 4] = team.Gcount;
+                teamComposition[1, 5] = team.Pcount;
+            }
+
+
+
+
+            while (Window.IsOpen && Status == "historyPreGame")
+            {
+                double current = GetCurrentTime();
+                if (current - previous >= 0.0000019)
+                {
+                    previous = current;
+                    Shape[] buttons = InitHistoryPreGame(status, teamComposition);
+                    Window.DispatchEvents();
+                    status = _iHandler.HandlerHistoryPreGame(buttons, status);
+
+                }
+                Arena.SpawnUnit();
+                
+            }
         }
 
         public void CreditPage()
@@ -397,7 +486,7 @@ namespace BirdHouse_Battle.UI
             Window.Display();
             return buttons;
         }
-        
+
         /// <summary>
         /// Display pause Menu
         /// </summary>
@@ -410,20 +499,20 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        internal void HistoryMenu()
+        internal void HistoryLvSelectionMenu()
         {
-            Shape[] buttons = InitHistory();
+            Shape[] buttons = InitHistoryLvSelection();
 
             while (Window.IsOpen && Status == "history")
             {
-                _iHandler.HandlerHistoryPage(buttons);
+                _iHandler.HandlerHistoryLvSelection(buttons);
             }
         }
 
-        private Shape[] InitHistory()
+        private Shape[] InitHistoryLvSelection()
         {
             Window.Clear();
-            Shape[] buttons = draw.HistoryPageDisplay();
+            Shape[] buttons = draw.HistoryLvSeletionDisplay();
             Window.Display();
 
             return buttons;
@@ -440,12 +529,12 @@ namespace BirdHouse_Battle.UI
                 _iHandler.HandlerMain(buttons);
             }
         }
-        
+
         public Shape[] InitReturn()
         {
-            Window.Clear();           
+            Window.Clear();
             Shape[] buttons = draw.ReturnDisplay();
-           
+
             Window.Display();
             return buttons;
         }
@@ -476,15 +565,15 @@ namespace BirdHouse_Battle.UI
             Shape[] buttons = InitReturn();
             while (Window.IsOpen && Status == "return")
             {
-                
+
                 _iHandler.HandlerReturn(buttons);
             }
         }
 
-        public bool IsValidToAddUnit(int [,]TeamCompo, int i, string[]status)
+        public bool IsValidToAddUnit(int[,] TeamCompo, int i, string[] status)
         {
             int count = 0;
-            for (int j = 0; j< 6; j++)
+            for (int j = 0; j < 6; j++)
             {
                 count += TeamCompo[i, j];
             }
@@ -495,7 +584,6 @@ namespace BirdHouse_Battle.UI
 
             else { return true; }
         }
-
 
         public void ResultWindow()
         {
@@ -521,6 +609,15 @@ namespace BirdHouse_Battle.UI
 
             return buttons;
         }
+        
+        public Shape[] InitHistoryPreGame(string[] status, int[,] teamComposition)
+        {
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            Shape[] buttons = draw.HistoryPreGameDisplay(status, teamComposition);
+            Window.Display();
+            return buttons;
+        }
 
         public Shape[] InitPreGame(string[] status, int[,] teamComposition)
         {
@@ -534,14 +631,14 @@ namespace BirdHouse_Battle.UI
         public void PreGame()
         {
 
-            Team blue = Arena.CreateTeam("blue"); 
+            Team blue = Arena.CreateTeam("blue");
             Team red = Arena.CreateTeam("red");
             Team green = null;
             Team yellow = null;
-            string [] status =new string [8];
+            string[] status = new string[8];
             status[0] = "selected";
             status[1] = "active";
-            status[2]= "inactive";
+            status[2] = "inactive";
             status[3] = "inactive";
 
             status[4] = "none";
@@ -549,7 +646,7 @@ namespace BirdHouse_Battle.UI
             status[6] = "1";
             status[7] = "yes";
 
-            int[,] teamComposition = 
+            int[,] teamComposition =
             {
                 {0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0},
@@ -570,12 +667,12 @@ namespace BirdHouse_Battle.UI
 
                     if (status[7] == "no")
                     {
-                        for (int i= 0; i < status.Length; i++)
+                        for (int i = 0; i < status.Length; i++)
                         {
                             if (status[i] == "selected")
                             {
                                 teamComposition = FillRandom(i, teamComposition);
-                                status[7] = "yes"; 
+                                status[7] = "yes";
                             }
                         }
                     }
@@ -624,10 +721,10 @@ namespace BirdHouse_Battle.UI
                                 {
                                     teamComposition[i, 0] += Int32.Parse(status[6]);
                                 }
-                                else if (status[i] == "selected" && status[5]!= "add")
+                                else if (status[i] == "selected" && status[5] != "add")
                                 {
                                     teamComposition[i, 0] -= Int32.Parse(status[6]);
-                                    if (teamComposition[i,0] <0)
+                                    if (teamComposition[i, 0] < 0)
                                     {
                                         teamComposition[i, 0] = 0;
                                     }
@@ -729,61 +826,61 @@ namespace BirdHouse_Battle.UI
             if (Status != "preGame")
             {
 
-                    for (int i = 0; i < teamComposition.GetLength(1); i++)
+                for (int i = 0; i < teamComposition.GetLength(1); i++)
+                {
+                    switch (i)
                     {
-                        switch (i)
-                        {
-                            case 0:
-                                blue.AddArcher(teamComposition[0, i]);
-                                break;
-                            case 1:
-                                blue.AddDrake(teamComposition[0, i]);
-                                break;
-                            case 2:
-                                blue.AddGobelin(teamComposition[0, i]);
-                                break;
-                            case 3:
-                                blue.AddPaladin(teamComposition[0, i]);
-                                break;
-                            case 4:
-                                blue.AddBalista(teamComposition[0, i]);
-                                break;
-                            case 5:
-                                blue.AddCatapult(teamComposition[0, i]);
-                                break;
-
-                            default:
-                                break;
-                        }
-                    }
-                    
-                    for (int i = 0; i < teamComposition.GetLength(1); i++)
-                    {
-                        switch (i)
-                        {
-                            case 0:
-                                red.AddArcher(teamComposition[1, i]);
-                                break;
-                            case 1:
-                                red.AddDrake(teamComposition[1, i]);
-                                break;
-                            case 2:
-                                red.AddGobelin(teamComposition[1, i]);
-                                break;
-                            case 3:
-                                red.AddPaladin(teamComposition[1, i]);
-                                break;
-                             case 4:
-                                red.AddBalista(teamComposition[1, i]);
-                                break;
-                            case 5:
-                                red.AddCatapult(teamComposition[1, i]);
-                                 break;
+                        case 0:
+                            blue.AddArcher(teamComposition[0, i]);
+                            break;
+                        case 1:
+                            blue.AddDrake(teamComposition[0, i]);
+                            break;
+                        case 2:
+                            blue.AddGobelin(teamComposition[0, i]);
+                            break;
+                        case 3:
+                            blue.AddPaladin(teamComposition[0, i]);
+                            break;
+                        case 4:
+                            blue.AddBalista(teamComposition[0, i]);
+                            break;
+                        case 5:
+                            blue.AddCatapult(teamComposition[0, i]);
+                            break;
 
                         default:
-                                break;
-                        }
+                            break;
                     }
+                }
+
+                for (int i = 0; i < teamComposition.GetLength(1); i++)
+                {
+                    switch (i)
+                    {
+                        case 0:
+                            red.AddArcher(teamComposition[1, i]);
+                            break;
+                        case 1:
+                            red.AddDrake(teamComposition[1, i]);
+                            break;
+                        case 2:
+                            red.AddGobelin(teamComposition[1, i]);
+                            break;
+                        case 3:
+                            red.AddPaladin(teamComposition[1, i]);
+                            break;
+                        case 4:
+                            red.AddBalista(teamComposition[1, i]);
+                            break;
+                        case 5:
+                            red.AddCatapult(teamComposition[1, i]);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
 
                 if (Arena.FindTeam("green") == true)
                 {
@@ -849,6 +946,6 @@ namespace BirdHouse_Battle.UI
                 Arena.SpawnUnit();
             }
         }
+        #endregion
     }
 }
-#endregion

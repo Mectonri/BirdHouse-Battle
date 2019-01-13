@@ -53,21 +53,18 @@ namespace BirdHouse_Battle.Model
                 _field.Init();
             }
 
-            JArray jTeams = (JArray)jToken["Arenas"];
-            IEnumerable<Team> teams = jTeams.Select(t => new Team(this, "blue", t));
+            JArray jTeams = (JArray)jToken["Teams"];
+            IEnumerable<Team> teams = jTeams.Select(t => new Team(this, t));
             foreach (Team team in teams)
             {
                 _teams.Add("blue", team);
             }
         }
-
         public JToken Serialize()
         {
             return new JObject(
-                new JProperty("Arenas", _teams.Select(kv => kv.Value.Serialize())));
+                new JProperty("Teams", _teams.Select(kv => kv.Value.Serialize())));
         }
-
-
         public IEnumerable<Team> GetTeams()
         {
             return _teams.Values;
@@ -79,13 +76,9 @@ namespace BirdHouse_Battle.Model
         public Dictionary<string, Team> DeadTeams => _deadTeams;
 
         public Dictionary<int, Projectile> DeadProjectiles => _deadProjectiles;
-
         public int Height => _height;
-
         public int Width => _width;
-
         public int Counter => _counter;
-
         public Field Field => _field;
 
         public Team CreateTeam(string name)
@@ -168,7 +161,6 @@ namespace BirdHouse_Battle.Model
 
             return doesCollide;
         }
-
 
         //basic version i'll return on it later 
         public Unit SpawnUnit(Unit unit)

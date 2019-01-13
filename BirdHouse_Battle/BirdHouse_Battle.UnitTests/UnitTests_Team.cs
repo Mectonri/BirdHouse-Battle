@@ -161,7 +161,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team sut = arena.CreateTeam("blue");
             sut.AddArcher(2);
-            //sut.AddBalista(2);
+            sut.AddBalista(2);
             sut.AddCatapult(2);
             sut.AddDrake(2);
             sut.AddGobelin(2);
@@ -169,9 +169,9 @@ namespace BirdHouse_Battle.UnitTests
 
             JToken jToken = sut.Serialize();
 
-            Team result = new Team(arena, "blue", jToken);
+            Team result = new Team(arena, jToken);
             IEnumerable<Unit> units = result.GetUnits();
-            Assert.That(units.Count(), Is.EqualTo(10));
+            Assert.That(units.Count(), Is.EqualTo(12));
             Assert.That(units.Any(u => u.Life == 12.0 && u.Speed == 1.8));
             
             Assert.That(units.All(u => u.Team == result));

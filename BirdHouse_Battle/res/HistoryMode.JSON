@@ -1,0 +1,148 @@
+{
+  "Teams": [
+    {
+      "Units": [
+        {
+          "Armor": 1,
+          "Disposition": "Order",
+          "Distance": true,
+          "DistanceOnly": false,
+          "Fly": false,
+          "Life": 12.0,
+          "Name": 0,
+          "Range": 135.0,
+          "Speed": 1.8,
+          "Strength": 4,
+          "Troop": "archer",
+          "UnitPrice": 10.0
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 1,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 2,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 3,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 4,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 5,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 6,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 7,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 8,
+          "Troop": "archer"
+        },
+        {
+          "Life": 12.0,
+          "Speed": 1.8,
+          "Range": 135.0,
+          "UnitPrice": 10.0,
+          "Strength": 4,
+          "Armor": 1,
+          "Disposition": "Order",
+          "Fly": false,
+          "Distance": true,
+          "DistanceOnly": false,
+          "Name": 9,
+          "Troop": "archer"
+        }
+      ]
+    }
+  ]
+}

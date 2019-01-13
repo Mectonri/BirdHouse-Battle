@@ -221,7 +221,7 @@ namespace BirdHouse_Battle.UnitTests
 
             JToken jToken = sut.Serialize();
 
-            Team result = new Team(arena, "blue", jToken);
+            Team result = new Team(arena, jToken);
 
             IEnumerable<Unit> units = result.GetUnits();
             Assert.That(units.Count(), Is.EqualTo(4));
@@ -272,7 +272,7 @@ namespace BirdHouse_Battle.UnitTests
                 using (JsonTextReader jr = new JsonTextReader(sr))
                 {
                     JToken token = JToken.ReadFrom(jr);
-                    Team team = new Team(arena, "blue", token);
+                    Team team = new Team(arena, token);
                     IEnumerable<Unit> units = team.GetUnits();
                     Assert.That(units.Count(), Is.EqualTo(sut.UnitCount));
                     Assert.That(units.Count(), Is.EqualTo(4));

@@ -16,26 +16,27 @@ namespace BirdHouse_Battle.Model
         readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
 
-        int _aToAdd; // le nombre d' archer a ajouter a une equipe
-        int _pToAdd;
-        int _gToAdd;
-        int _dToAdd;
-        int _cToAdd;
-        int _bToAdd;
-
-        int _aCount; //le nombre total d' Archer dans l'equipe
-        int _pCount; // le nombre total de paladin dans une equipe
-        int _gCount; // le nombre total de Goblin dans une equipe.
-        int _dCount; // le nombre total de Dragons dans une equipe.
-        int _cCount; // number of Catapult in a team
-        int _bCount; // number of Balista in a team
+        int _aToAdd; // Number of Archer to add to a Team
+        int _bToAdd;// Number of Balista to add to a Team
+        int _cToAdd;// Number of Catapult to add to a Team
+        int _dToAdd;// Number of Drake to add to a Team
+        int _gToAdd;// Number of Goblin to add to a Team
+        int _pToAdd;// Number of Paladin to add to a Team
+        
+        int _aCount; // Number of Archer   in a team
+        int _bCount; // Number of Balista  in a team
+        int _cCount; // Number of Catapult in a team
+        int _dCount; // Number of Drake    in a team
+        int _gCount; // Number of Goblin   in a team
+        int _pCount; // Number of Paladin  in a team
+        
 
         bool _isWiped;
 
-        double _goldAmount;
+        double _goldAmount; // Amount of gold given to the player in HistoryMode  
         readonly int _limitNbUnit; // unit limit by team
-        Arena _arena; // Rajouter le contexte des equipes qui est l'arene
-        internal Dictionary<int, Unit> _deadUnits;
+        Arena _arena; // Adds team conttext which is the Arena
+        internal Dictionary<int, Unit> _deadUnits; 
         internal Dictionary<int, Unit> _units;
 
         Unit _goblinsTarget;
@@ -71,6 +72,7 @@ namespace BirdHouse_Battle.Model
         public JToken Serialize()
         {
             return new JObject(
+                new JProperty("Name", _name),
                 new JProperty("Units", _units.Select(kv => kv.Value.Serialize())));
         }
 
@@ -78,10 +80,10 @@ namespace BirdHouse_Battle.Model
         /// Create Team from JToken
         /// </summary>
         ///<param name = "jToken" ></ param >
-        public Team(Arena arena, string name, JToken jToken)
+        public Team(Arena arena, JToken jToken)
         {
             _isWiped = false;
-            _name = name;
+            _name = jToken["Name"].Value<string>();
             _arena = arena;
             _teamNumber = _arena.TeamCount;
             _limitNbUnit = 125;
