@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 
@@ -16,6 +17,11 @@ namespace BirdHouse_Battle.Model
             _tiles = new Tile[endX * 2 + 1, endY * 2 + 1];
             _elements = new Dictionary<string, Tile>();
             SpawnTiles(startX, endX, startY, endY);
+        }
+
+        public Field(Arena arena, JToken jToken)
+        {
+            _arena = arena;
         }
 
         public Arena Arena
