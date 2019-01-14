@@ -1,14 +1,31 @@
-﻿namespace BirdHouse_Battle.Model
+﻿using Newtonsoft.Json.Linq;
+
+namespace BirdHouse_Battle.Model
 {
     public class Paladin : Unit
     {
         double _pastedLife;
         int _coldDown;
 
-        public Paladin(Team team, Arena arena, int nameUnit)
-            : base(team, arena, 18.0, 1.2, 15.0, 12.5, 5, 4, 
+        public Paladin(Arena arena, Team team,  int nameUnit)
+            : base(arena, team,  18.0, 1.2, 15.0, 12.5, 5, 4, 
                    "Order", false, false, false, nameUnit, "paladin")
         {
+        }
+
+        public Paladin(Arena arena, Team team, JToken jToken)
+            : base ( arena, team, jToken)
+        {
+            //_range = jToken["Range"].Value<double>();
+            //_unitPrice = jToken["UnitPrice"].Value<double>();
+            //_strength = jToken["Strength"].Value<int>();
+            //_armor = jToken["Armor"].Value<int>();
+            //_disposition = jToken["Disposition"].Value<string>();
+            //_fly = jToken["Fly"].Value<bool>();
+            //_distance = jToken["Distance"].Value<bool>();
+            //_distanceOnly = jToken["DistanceOnly"].Value<bool>();
+            //_nameUnit = jToken["Name"].Value<int>();
+            //_troop = jToken["Troop"].Value<string>();
         }
 
         public double PastedLife

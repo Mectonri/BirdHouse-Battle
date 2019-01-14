@@ -9,36 +9,39 @@ namespace BirdHouse_Battle.Model
         Team _team;
         Arena _arena;
 
-        readonly int _name;
+      
 
         Vector _location;
         Vector _direction;
         Vector _mouvement;
 
-        double _life;
-        double _speed;
-        double _range;
-        double _unitPrice;
-        int _strength;
-        int _armor;
-        int _burn;
-        string _disposition;
-        readonly string _troop;
+        //common to unit
+        public double _life;
+        public double _speed;
+        public double _range;
+        public double _unitPrice;
+        public int _strength;
+        public int _armor;
+        public string _disposition;
+        public bool _fly;
+        public bool _distance;
+        public bool _distanceOnly;
+        public int _nameUnit;
+        public string _troop;
 
-        bool _fly;
-        bool _distance; 
-        bool _distanceOnly;
-        bool _teamPlay;
-        bool _dumpCantFly;
-        bool _dumpCantWalk;
+        public int _burn;
+        public bool _teamPlay;
+        public bool _dumpCantFly;
+        public bool _dumpCantWalk;
 
-        protected Unit(Team team, Arena arena, double life,
+        protected Unit(Arena arena, Team team,  double life,
                        double speed, double range, double unitPrice,
                        int strength, int armor, string disposition, 
-                       bool fly, bool distance, bool distanceOnly, int nameUnit, string Troop)
+                       bool fly, bool distance, bool distanceOnly, int name, string troop)
         {
             _team = team;
             _arena = arena;
+
             _life = life;
             _speed = speed;
             _range = range;
@@ -46,16 +49,18 @@ namespace BirdHouse_Battle.Model
             _strength = strength;
             _armor = armor;
             _disposition = disposition;
-            _name = nameUnit;
-            _burn = 0;
             _fly = fly;
             _distance = distance;
             _distanceOnly = distanceOnly;
+            _nameUnit = name;
+            _troop = troop;
+
             _dumpCantFly = false;
             _teamPlay = false;
-            _troop = Troop;
+            _burn = 0;
 
         }
+
 
         #region De & Serialization 
 
@@ -64,9 +69,11 @@ namespace BirdHouse_Battle.Model
         /// </summary>
         /// <param name="team"></param>
         /// <param name="jToken"></param>
-        public Unit(Team team, JToken jToken)
+        public Unit(Arena arena, Team team, JToken jToken)
         {
+            _arena = arena;
             _team = team;
+
             _life = jToken["Life"].Value<double>();
             _speed = jToken["Speed"].Value<double>();
             _range = jToken["Range"].Value<double>();
@@ -77,8 +84,12 @@ namespace BirdHouse_Battle.Model
             _fly = jToken["Fly"].Value<bool>();
             _distance = jToken["Distance"].Value<bool>();
             _distanceOnly= jToken["DistanceOnly"].Value<bool>();
-            _name = jToken["Name"].Value<int>();
+            _nameUnit = jToken["Name"].Value<int>();
             _troop = jToken["Troop"].Value<string>();
+
+            _dumpCantFly = false;
+            _teamPlay = false;
+            _burn = 0;
         }
 
         /// <summary>
@@ -98,8 +109,8 @@ namespace BirdHouse_Battle.Model
                 new JProperty("Fly", _fly),
                 new JProperty("Distance", _distance),
                 new JProperty("DistanceOnly", _distanceOnly),
-                new JProperty("Name", _name),
-                new JProperty("Breed", _troop)
+                new JProperty("Name", _nameUnit),
+                new JProperty("Troop", _troop)
                 );
         }
 
@@ -111,9 +122,28 @@ namespace BirdHouse_Battle.Model
 
         public Arena Arena { get { return _arena; } }
 
-        public int Name { get { return _name; } }
+        public double Life { get { return _life; } }
 
-        public string Type => _troop;
+        public double Speed { get { return _speed; } }
+
+        public double Range { get { return _range; } }
+
+        public double UnitPrice { get { return _unitPrice; } }
+
+        public int Strength { get { return _strength; } }
+
+        public int Armor { get { return _armor; } }
+
+        public string Disposition { get { return _disposition; } }
+        public bool Fly { get { return _fly; } }
+
+        public bool Distance { get { return _distance; } }
+
+        public bool DistanceOnly { get { return _distanceOnly; } }
+
+        public int Name { get { return _nameUnit; } }
+
+        public string Troop => _troop;
 
         public Unit Target { get; set; }
 
@@ -135,32 +165,12 @@ namespace BirdHouse_Battle.Model
             set { _mouvement = value; }
         }
 
-        public double Life { get { return _life; } }
-        
-        public double Speed { get { return _speed; } }
-
-        public double Range { get { return _range; } }
-
-        public double UnitPrice { get { return _unitPrice; } }
-
-        public int Strength { get { return _strength; } }
-
-        public int Armor { get { return _armor; } }
-
         public int Burn { get { return _burn; } }
-
-        public string Disposition { get { return _disposition; } }
 
         public bool IsDead()
         {
             return _life <= 0;
         }
-
-        public bool Fly { get { return _fly; } }
-
-        public bool Distance { get { return _distance; } }
-
-        public bool DistanceOnly { get { return _distanceOnly; } }
 
         public bool TeamPlay { get { return _teamPlay; } }
 

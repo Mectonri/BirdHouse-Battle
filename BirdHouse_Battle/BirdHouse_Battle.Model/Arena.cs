@@ -1,14 +1,14 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Linq;
 
 namespace BirdHouse_Battle.Model
 {
     public class Arena
     {
-        readonly Dictionary<string, Team> _teams;
-        readonly Dictionary<string, Team> _deadTeams;
+        public readonly Dictionary<string, Team> _teams;
+        public readonly Dictionary<string, Team> _deadTeams;
         readonly Dictionary<int, Projectile> _projectiles;
         readonly Dictionary<int, Projectile> _deadProjectiles;
         readonly int _height;
@@ -32,8 +32,12 @@ namespace BirdHouse_Battle.Model
                 _field.Init();
             }
         }
-
-        public Arena( int TeamLimint, JToken jToken)
+        
+        /// <summary>
+        /// Deserialize a Arena
+        /// </summary>
+        /// <param name="jToken"></param>
+        public Arena( JToken jToken)
         {
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
@@ -49,8 +53,24 @@ namespace BirdHouse_Battle.Model
                 _field.Init();
             }
 
+            JArray jTeams = (JArray)jToken["Teams"];
+            IEnumerable<Team> teams = jTeams.Select(t => new Team(this, t));
+            foreach (Team team in teams)
+            {
+                _teams.Add("blue", team);
+            }
         }
 
+        
+        public JToken Serialize()
+        {
+            return new JObject(
+                new JProperty("Teams", _teams.Select(kv => kv.Value.Serialize())));
+        }
+        public IEnumerable<Team> GetTeams()
+        {
+            return _teams.Values;
+        }
         public Dictionary<string, Team> Teams => _teams;
 
         public Dictionary<int, Projectile> Projectiles => _projectiles;
@@ -58,13 +78,9 @@ namespace BirdHouse_Battle.Model
         public Dictionary<string, Team> DeadTeams => _deadTeams;
 
         public Dictionary<int, Projectile> DeadProjectiles => _deadProjectiles;
-
         public int Height => _height;
-
         public int Width => _width;
-
         public int Counter => _counter;
-
         public Field Field => _field;
 
         public Team CreateTeam(string name)
@@ -147,7 +163,6 @@ namespace BirdHouse_Battle.Model
 
             return doesCollide;
         }
-
 
         //basic version i'll return on it later 
         public Unit SpawnUnit(Unit unit)

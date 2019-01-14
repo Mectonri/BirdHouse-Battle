@@ -1,20 +1,24 @@
-﻿namespace BirdHouse_Battle.Model
+﻿using Newtonsoft.Json.Linq;
+
+namespace BirdHouse_Battle.Model
 {
     public class Catapult : Unit
     {
-        int _callDown;
+        int _coolDown;
 
-        public Catapult(Team team, Arena arena, int nameUnit)
-            : base(team, arena, 30.0, 0.50, 250.0, 40.0, 20, 3,
+        public Catapult(Arena arena, Team team, int nameUnit)
+            : base(arena, team,  30.0, 0.50, 250.0, 40.0, 20, 3,
                 "Order", false, false, false, nameUnit, "catapult")
         {
-            _callDown = 0;
+            _coolDown = 0;
         }
 
-        public int CallDown
+        public Catapult(Arena arena, Team team, JToken jToken)
+            : base(arena, team, jToken)
         {
-            get { return _callDown; }
+            _coolDown = 0;
         }
+        public int CoolDown => _coolDown;
 
         public void BoulderAttack(int NbFram, Unit finalTarget)
         {
@@ -42,7 +46,7 @@
             {
                 Arena.InitBoulder(Location, End, NbFram);
             }
-            _callDown = NbFram;
+            _coolDown = NbFram;
         }
 
         /// <summary>
@@ -72,13 +76,13 @@
                 if (InRange(range))
                 {
                     SetMouvementZero();
-                    if (_callDown == 0)
+                    if (_coolDown == 0)
                     {
                         BoulderAttack(48, Target);
                     }
                     else
                     {
-                        _callDown--;
+                        _coolDown--;
                     }
                 }
                 else

@@ -16,26 +16,27 @@ namespace BirdHouse_Battle.Model
         readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
 
-        int _aToAdd; // le nombre d' archer a ajouter a une equipe
-        int _pToAdd;
-        int _gToAdd;
-        int _dToAdd;
-        int _cToAdd;
-        int _bToAdd;
-
-        int _aCount; //le nombre total d' Archer dans l'equipe
-        int _pCount; // le nombre total de paladin dans une equipe
-        int _gCount; // le nombre total de Goblin dans une equipe.
-        int _dCount; // le nombre total de Dragons dans une equipe.
-        int _cCount; // number of Catapult in a team
-        int _bCount;
+        int _aToAdd; // Number of Archer to add to a Team
+        int _bToAdd;// Number of Balista to add to a Team
+        int _cToAdd;// Number of Catapult to add to a Team
+        int _dToAdd;// Number of Drake to add to a Team
+        int _gToAdd;// Number of Goblin to add to a Team
+        int _pToAdd;// Number of Paladin to add to a Team
+        
+        int _aCount; // Number of Archer   in a team
+        int _bCount; // Number of Balista  in a team
+        int _cCount; // Number of Catapult in a team
+        int _dCount; // Number of Drake    in a team
+        int _gCount; // Number of Goblin   in a team
+        int _pCount; // Number of Paladin  in a team
+        
 
         bool _isWiped;
 
-        double _goldAmount;
+        double _goldAmount; // Amount of gold given to the player in HistoryMode  
         readonly int _limitNbUnit; // unit limit by team
-        Arena _arena; // Rajouter le contexte des equipes qui est l'arene
-        internal Dictionary<int, Unit> _deadUnits;
+        Arena _arena; // Adds team conttext which is the Arena
+        internal Dictionary<int, Unit> _deadUnits; 
         internal Dictionary<int, Unit> _units;
 
         Unit _goblinsTarget;
@@ -51,13 +52,13 @@ namespace BirdHouse_Battle.Model
         /// <param name="LimitNbUntit"></param>
         public Team(Arena Context, string Name, int LimitNbUntit)
         {
-            _isWiped = false;
-
-            _name = Name;
-
             _arena = Context;
+            _name = Name;
+            
             _teamNumber = _arena.TeamCount;
             _limitNbUnit = 125;
+            _isWiped = false;
+
             _units = new Dictionary<int, Unit>();
             _deadUnits = new Dictionary<int, Unit>();
         }
@@ -71,6 +72,7 @@ namespace BirdHouse_Battle.Model
         public JToken Serialize()
         {
             return new JObject(
+                new JProperty("Name", _name),
                 new JProperty("Units", _units.Select(kv => kv.Value.Serialize())));
         }
 
@@ -78,26 +80,84 @@ namespace BirdHouse_Battle.Model
         /// Create Team from JToken
         /// </summary>
         ///<param name = "jToken" ></ param >
-        public Team(Arena Arena, string Name, JToken jToken)
+        public Team(Arena arena, JToken jToken)
         {
             _isWiped = false;
-            _name = Name;
-            _arena = Arena;
+            _name = jToken["Name"].Value<string>();
+            _arena = arena;
             _teamNumber = _arena.TeamCount;
             _limitNbUnit = 125;
 
             _units = new Dictionary<int, Unit>();
-            JArray jUnits = (JArray)jToken["units"];
+            JArray jUnits = (JArray)jToken["Units"];
 
-            //IEnumerable<Archer> archers = jUnits.Where
-            //IEnumerable<Unit> units = jUnits.Select(u => new Archer(this, u));
+            IEnumerable<Unit> units = jUnits.Select( u =>  AddUnit( arena, this, u) );
 
-            //foreach (Unit unit in units)
-            //{
-            //    _units.Add(unit.Name, unit);
-            //}
+            foreach (Unit unit in units)
+            {
+                _units.Add(unit.Name, unit);
+            }
 
             _deadUnits = new Dictionary<int, Unit>();
+        }
+
+        internal Unit AddUnit(Arena arena, Team team, JToken jToken)
+        {
+            Unit unit = null;
+
+            if (jToken["Troop"].Value<string>() == "archer")
+            {
+                 unit = new Archer(arena, team, jToken);
+            }
+            else if (jToken["Troop"].Value<string>() == "balista")
+            {
+                 unit = new Balista(arena, team, jToken);
+            }
+            else if (jToken["Troop"].Value<string>() == "catapult")
+            {
+                 unit = new Catapult(arena, team, jToken);
+            }
+            else if (jToken["Troop"].Value<string>() == "drake")
+            {
+                 unit = new Drake(arena, team, jToken);
+            }
+            else if (jToken["Troop"].Value<string>() == "goblin")
+            {
+                 unit = new Goblin(arena, team, jToken);
+            }
+            else if (jToken["Troop"].Value<string>() == "paladin")
+            {
+                 unit = new Paladin(arena, team, jToken);
+            }
+
+            return unit;
+        }
+
+        internal void AddUnitToTeam(Team team, JToken u)
+        {
+            string troop = u["Troop"].Value<string>();
+
+            switch (troop)
+            {
+                case "archer":
+                    team.AddArcher(1);
+                    break;
+                case "balista":
+                    team.AddBalista(1);
+                    break;
+                case "catapult":
+                    team.AddCatapult(1);
+                    break;
+                case "drake":
+                    team.AddDrake(1);
+                    break;
+                case "goblin":
+                    team.AddGoblin(1);
+                    break;
+                case "paladin":
+                    team.AddPaladin(1);
+                    break;
+            }
         }
 
         public IEnumerable<Unit> GetUnits()
@@ -119,23 +179,37 @@ namespace BirdHouse_Battle.Model
             {
                 if (_unitCount > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of troops for this team");
 
-                return _unitCount = _aCount + _gCount + _pCount + _dCount + _cCount + _bCount;
+                return _unitCount = _aCount + _bCount  + _cCount + _dCount + _gCount + _pCount    ;
             }
         }
 
         public Arena Context => _arena;
 
-        public int Acount => _aCount;
+        public int Acount
+        {
+            get{ return _aCount; }
+            set{ _aCount = value; }
+        }
 
         public int Gcount => _gCount;
 
         public int Pcount => _pCount;
 
-        public int Dcount => _dCount;
-
-        public int Ccount => _cCount;
-
-        public int Bcount => _bCount;
+        public int Dcount
+        {
+            get { return _dCount; }
+            set { _dCount = value; }
+        }
+        public int Ccount
+        {
+            get { return _cCount; }
+            set { _cCount = value; }
+        }
+        public int Bcount
+        {
+            get { return _bCount; }
+            set { _bCount = value; }
+        }
 
         public double GoldAmount
         {
@@ -229,12 +303,12 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || AToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < AToAdd; i++)
             {
-                Archer archer = new Archer(this, _arena, UnitCount);
+                Archer archer = new Archer(_arena, this, UnitCount);
                 _aCount++;
                 _units.Add(archer.Name, archer);
             }
         }
-
+        
         /// <summary>
         /// Add Drake to a team
         /// </summary>
@@ -244,7 +318,7 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || DToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < DToAdd; i++)
             {
-                Drake drake = new Drake(this, _arena, UnitCount);
+                Drake drake = new Drake(_arena, this,  UnitCount);
                 _dCount++;
                 _units.Add(drake.Name, drake);
             }
@@ -255,7 +329,7 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || CToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < CToAdd; i++)
             {
-                Catapult catapult = new Catapult(this, _arena, UnitCount);
+                Catapult catapult = new Catapult(_arena, this,  UnitCount);
                 _cCount++;
                 _units.Add(catapult.Name, catapult);
             }
@@ -266,7 +340,7 @@ namespace BirdHouse_Battle.Model
             if (UnitCount >= _limitNbUnit || BToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun number of unit in this team", nameof(_unitCount));
             for (int i = 0; i < BToAdd; i++)
             {
-                Balista balista = new Balista(this, _arena, UnitCount);
+                Balista balista = new Balista(_arena, this,  UnitCount);
                 _bCount++;
                 _units.Add(balista.Name, balista);
             }
@@ -276,12 +350,12 @@ namespace BirdHouse_Battle.Model
         /// Add Goblin to a team
         /// </summary>
         /// <param name="GToAdd"></param>
-        public void AddGobelin(int GToAdd)
+        public void AddGoblin(int GToAdd)
         {
             if (UnitCount >= _limitNbUnit || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < GToAdd; i++)
             {
-                Goblin goblin = new Goblin(this, _arena, UnitCount);
+                Goblin goblin = new Goblin(_arena, this,  UnitCount);
                 _gCount++;
                 _units.Add(goblin.Name, goblin);
             }
@@ -296,7 +370,7 @@ namespace BirdHouse_Battle.Model
             if (PToAdd > _limitNbUnit || UnitCount >= _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < PToAdd; i++)
             {
-                Paladin paladin = new Paladin(this, _arena, UnitCount);
+                Paladin paladin = new Paladin(_arena,  this,  UnitCount);
                 _pCount++;
                 _units.Add(paladin.Name, paladin);
             }

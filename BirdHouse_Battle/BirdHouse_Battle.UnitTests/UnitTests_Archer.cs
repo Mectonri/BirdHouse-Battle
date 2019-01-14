@@ -13,7 +13,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Archer Arc = new Archer(team, arena,1);
+            Archer Arc = new Archer(arena, team, 1);
 
             Assert.Throws<ArgumentException>(() => Arc.TakeDamages(-1));
 
@@ -38,17 +38,17 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Archer Arc = new Archer(team, arena,1);
-
+            Archer Arc = new Archer(arena, team, 1);
+             
             Arc.TakeDamages(Arc.Life + Arc.Armor);
             Assert.That(Arc.IsDead, Is.True);
 
-            Arc = new Archer(team, arena,1);
+            Arc = new Archer(arena, team, 1);
 
             Arc.TakeDamages(Arc.Life + Arc.Armor + 1);
             Assert.That(Arc.IsDead, Is.True);
 
-            Arc = new Archer(team, arena,1);
+            Arc = new Archer(arena, team, 1);
 
             Arc.TakeDamages(Arc.Life + Arc.Armor - 1);
             Assert.That(Arc.IsDead, Is.False);
@@ -60,7 +60,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Archer Arc = new Archer(team, arena,1);
+            Archer Arc = new Archer(arena, team, 1);
 
             Random rdm1 = new Random();
             double x = rdm1.NextDouble() * 2 - 1;
@@ -68,7 +68,7 @@ namespace BirdHouse_Battle.UnitTests
 
             Arc.Location = new Vector(x, y);
 
-            Archer target = new Archer(team, arena,1);
+            Archer target = new Archer(arena, team, 1);
 
             double x2 = rdm1.NextDouble() * 2 - 1;
             double y2 = rdm1.NextDouble() * 2 - 1;
@@ -86,10 +86,10 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("red");
 
-            Archer Arc = new Archer(team, arena,1);
+            Archer Arc = new Archer(arena,  team, 1);
             Arc.Location = new Vector(0, 0);
 
-            Archer target = new Archer(team, arena,1);
+            Archer target = new Archer(arena, team, 1);
             Random rdm = new Random();
             double x;
             double y;

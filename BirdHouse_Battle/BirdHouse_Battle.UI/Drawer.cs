@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
+using System;
 
 namespace BirdHouse_Battle.UI
 {
@@ -88,6 +89,210 @@ namespace BirdHouse_Battle.UI
                 Position = new Vector2f((float)projectile.Position.X + 250, (float)projectile.Position.Y + 250),
             };
             return shape;
+        }
+
+        internal Shape[] HistoryPreGameDisplay(string[] status, int[,] teamComposition)
+        {
+            Vector2f Bsize = new Vector2f(75, 25);//button size
+            Vector2f Tsize = new Vector2f(118, 390); //team button  size
+
+            RenderStates rs = new RenderStates();
+            Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
+
+            Shape[] buttons = new RectangleShape[18];
+            Text[] messages = new Text[10];
+
+            RectangleShape buttonAddRemove = new RectangleShape(Bsize);
+            buttonAddRemove.Position = new Vector2f(275, 30); 
+            buttonAddRemove.FillColor = new Color(211, 211, 211);
+            Text textAddRemove = new Text("", font, 25);
+
+            if (status[5] == "add")
+            {
+                textAddRemove = new Text("ADD", font, 20);
+            }
+            else
+            {
+                textAddRemove = new Text("REM", font, 20);
+            }
+            textAddRemove.Position = new Vector2f(295, 27);
+            textAddRemove.FillColor = new Color(0, 0, 0);
+
+
+            RectangleShape button1 = new RectangleShape(new Vector2f(30, 25));
+            Text text1 = new Text("1", font, 15);
+            button1.Position = new Vector2f(360, 30);
+            text1.Position = new Vector2f(370, 30);
+            text1.FillColor = new Color(0, 0, 0);
+            if (status[6] == "1")
+            {
+                button1.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button1.FillColor = new Color(200, 200, 200);
+            }
+
+            RectangleShape button10 = new RectangleShape(new Vector2f(30, 25));
+            Text text10 = new Text("10", font, 15);
+            button10.Position = new Vector2f(390, 30);
+            text10.Position = new Vector2f(390, 30);
+            text10.FillColor = new Color(0, 0, 0);
+            if (status[6] == "10")
+            {
+                button10.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button10.FillColor = new Color(200, 200, 200);
+            }
+
+            RectangleShape button100 = new RectangleShape(new Vector2f(30, 25));
+            Text text100 = new Text("100", font, 15);
+            button100.Position = new Vector2f(420, 30);
+            text100.Position = new Vector2f(420, 30);
+            text100.FillColor = new Color(0, 0, 0);
+            if (status[6] == "100")
+            {
+                button100.FillColor = new Color(100, 100, 100);
+            }
+            else
+            {
+                button100.FillColor = new Color(200, 200, 200);
+            }
+
+            RectangleShape buttonAddTeam1 = new RectangleShape(Tsize)
+            {
+                Position = new Vector2f(5, 317),
+                OutlineThickness = 5,
+                OutlineColor = new Color(0, 0, 250)
+            };
+            if (status[0] == "selected")
+            {
+                buttonAddTeam1.FillColor = new Color(255, 160, 122);
+            }
+            Text messageTeam1 = new Text("ARCHER : " + teamComposition[0, 0].ToString() + "\n DRAKE : " + teamComposition[0, 1].ToString() + "\n GOBLIN : " + teamComposition[0, 2].ToString() + "\n PALADIN : " + teamComposition[0, 3].ToString() + "\n BALISTA : " + teamComposition[0, 4].ToString() + "\n CATAPULT : " + teamComposition[0, 5].ToString(), font, 15);
+            messageTeam1.FillColor = new Color(0, 0, 0);
+            messageTeam1.Position = new Vector2f(15, 322);
+
+            RectangleShape buttonAddTeam2 = new RectangleShape(Tsize);
+            buttonAddTeam2.Position = new Vector2f(132, 317);
+            buttonAddTeam2.OutlineThickness = 5;
+            buttonAddTeam2.OutlineColor = new Color(250, 0, 0);
+
+            if (status[1] == "selected")
+            {
+                buttonAddTeam2.FillColor = new Color(255, 160, 122);
+            }
+            Text messageTeam2 = new Text("ARCHER : " + teamComposition[1, 0].ToString() + "\n DRAKE : " + teamComposition[1, 1].ToString() + "\n GOBLIN : " + teamComposition[1, 2].ToString() + "\n PALADIN : " + teamComposition[1, 3].ToString() + "\n BALISTA : " + teamComposition[1, 4].ToString() + "\n CATAPULT : " + teamComposition[1, 5].ToString(), font, 15);
+            messageTeam2.FillColor = new Color(0, 0, 0);
+            messageTeam2.Position = new Vector2f(142, 322);
+
+            //RectangleShape buttonAddTeam3 = new RectangleShape(Tsize);
+            //RectangleShape buttonSupprTeam3 = new RectangleShape(new Vector2f(20, 20));
+            //buttonAddTeam3.Position = new Vector2f(261, 317);
+            //buttonSupprTeam3.Position = new Vector2f(360, 317);
+            //buttonAddTeam3.OutlineThickness = 5;
+            //buttonAddTeam3.OutlineColor = new Color(0, 250, 0);
+            //Text messageTeam3 = new Text("", font, 25);
+            //Text messageSuppr3 = new Text(" ", font, 25);
+
+            //if (status[2] == "inactive")
+            //{
+            //    buttonAddTeam3.FillColor = new Color(128, 128, 128);
+            //    buttonSupprTeam3.FillColor = new Color(Color.Transparent);
+            //}
+            //else
+            //{
+            //    buttonSupprTeam3.FillColor = new Color(255, 0, 0);
+            //    messageSuppr3 = new Text("X", font, 25);
+            //    messageSuppr3.FillColor = new Color(0, 0, 0);
+            //    messageSuppr3.Position = new Vector2f(362, 310);
+            //    if (status[2] == "selected")
+            //    {
+            //        buttonAddTeam3.FillColor = new Color(255, 160, 122);
+
+            //    }
+            //    messageTeam3 = new Text("ARCHER : " + teamComposition[2, 0].ToString() + "\n DRAKE : " + teamComposition[2, 1].ToString() + "\n GOBLIN : " + teamComposition[2, 2].ToString() + "\n PALADIN : " + teamComposition[2, 3].ToString() + "\n BALISTA : " + teamComposition[2, 4].ToString() + "\n CAPAPULT : " + teamComposition[2, 5].ToString(), font, 15);
+            //    messageTeam3.FillColor = new Color(0, 0, 0);
+            //    messageTeam3.Position = new Vector2f(271, 322);
+            //}
+
+            //RectangleShape buttonAddTeam4 = new RectangleShape(Tsize)
+            //{
+            //    Position = new Vector2f(389, 317),
+            //    OutlineThickness = 5,
+            //    OutlineColor = new Color(250, 250, 0)
+            //};
+
+            //Text messageTeam4 = new Text("", font, 25);
+            //Text messageSuppr4 = new Text("", font, 25);
+            //RectangleShape buttonSupprTeam4 = new RectangleShape(new Vector2f(20, 20));
+            //buttonSupprTeam4.Position = new Vector2f(488, 317);
+
+            //if (status[3] == "inactive")
+            //{
+            //    buttonAddTeam4.FillColor = new Color(128, 128, 128);
+            //    buttonSupprTeam4.FillColor = new Color(Color.Transparent);
+            //}
+            //else
+            //{
+
+            //    buttonSupprTeam4.FillColor = new Color(255, 0, 0);
+            //    messageSuppr4 = new Text("X", font, 25);
+            //    messageSuppr4.FillColor = new Color(0, 0, 0);
+            //    messageSuppr4.Position = new Vector2f(490, 310);
+            //    if (status[3] == "selected")
+            //    {
+            //        buttonAddTeam4.FillColor = new Color(255, 160, 122);
+            //    }
+            //    messageTeam4 = new Text("ARCHER : " + teamComposition[3, 0].ToString() + "\n DRAKE : " + teamComposition[3, 1].ToString() + "\n GOBLIN : " + teamComposition[3, 2].ToString() + "\n PALADIN : " + teamComposition[3, 3].ToString() + "\n BALISTA : " + teamComposition[3, 4].ToString() + "\n CATAPULT : " + teamComposition[3, 5].ToString(), font, 15);
+            //    messageTeam4.FillColor = new Color(0, 0, 0);
+            //    messageTeam4.Position = new Vector2f(399, 322);
+            //}
+
+            buttons[0] = buttonAddTeam1;
+            buttons[1] = buttonAddTeam2;
+            //buttons[2] = buttonAddTeam3;
+            //buttons[3] = buttonAddTeam4;
+            buttons[2] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 125);
+            buttons[3] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 30);
+            buttons[4] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 95);
+            buttons[5] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 160);
+            buttons[6] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
+            buttons[7] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
+            buttons[8] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
+            //buttons[11] = buttonSupprTeam3;
+            //buttons[12] = buttonSupprTeam4;
+            buttons[9] = buttonAddRemove;
+            buttons[10] = button1;
+            buttons[11] = button10;
+            buttons[12] = button100;
+            buttons[13] = CreateShape(Bsize, "../../../../res/button_fill.png", 380, 225);
+
+            foreach (var t in buttons)
+            {
+                _window.Draw(t);
+            }
+
+            messages[0] = messageTeam1;
+            messages[1] = messageTeam2;
+            //messages[2] = messageTeam3;
+            //messages[3] = messageTeam4;
+            //messages[4] = messageSuppr3;
+            //messages[5] = messageSuppr4;
+            messages[2] = text1;
+            messages[3] = text10;
+            messages[4] = text100;
+            messages[5] = textAddRemove;
+
+            foreach (var t in messages)
+            {
+                t.Draw(_window, rs);
+                _window.Draw(t);
+            }
+
+            return buttons;
         }
 
         #endregion
@@ -287,8 +492,8 @@ namespace BirdHouse_Battle.UI
         /// <returns></returns>
         public Shape[] ReturnDisplay()
         {
-            Shape ExitBackground = CreateShape(512, 712, "../../../../res/return1.png", 0 ,0);
-            _window.Draw(ExitBackground);
+            Shape ExitBG = CreateShape(512, 712, "../../../../res/return1.png", 0 ,0);
+            _window.Draw(ExitBG);
             
             Vector2f Tsize = new Vector2f(118, 390); //team button  size
 
@@ -308,15 +513,17 @@ namespace BirdHouse_Battle.UI
             return button;
         }
 
-        internal Shape[] HistoryPageDisplay()
+        internal Shape[] HistoryLvSeletionDisplay()
         {
-            Shape HistoryBackground = CreateShape(512, 712, "../../../../res/history.png", 0, 0);// History mode Background
-            _window.Draw(HistoryBackground);
+            Shape HistoryLvSelectionBG = CreateShape(512, 712, "../../../../res/history.png", 0, 0);// History mode Background
+            _window.Draw(HistoryLvSelectionBG);
 
             Shape[] buttons = new RectangleShape[3];
 
             buttons[0] = CreateShape(75, 25, "../../../../res/button_main-menu.png", 50, 612);// return button
             buttons[1] = CreateShape(75, 25, "../../../../res/button_archer.png", 218, 200);// Level button
+
+            //\\ to be removed
             buttons[2] = CreateShape(75, 25, "../../../../res/button_play.png", 400, 612);//plays button
 
             foreach (var t in buttons)
@@ -550,7 +757,6 @@ namespace BirdHouse_Battle.UI
             buttons[15] = button10;
             buttons[16] = button100;
             buttons[17] = CreateShape(Bsize, "../../../../res/button_fill.png", 380, 225);
-
 
             foreach (var t in buttons)
             {

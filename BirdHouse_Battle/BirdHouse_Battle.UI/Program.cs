@@ -6,7 +6,7 @@
         {
             bool run = true;
             Game game = new Game();
-
+            game.LevelWritte();
             while (run == true)
             {
                 switch (game.Status)
@@ -33,8 +33,11 @@
                         break;
                         
                     case "history"://history mode
+
                         game.NewArena();
-                        game.HistoryMenu();                        
+                        //game.LevelWritte();
+                        game.HistoryLvSelectionMenu();
+                        
                         break;
 
                     case "ended"://when the game has ended

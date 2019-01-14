@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace BirdHouse_Battle.Model
 {
@@ -12,10 +11,10 @@ namespace BirdHouse_Battle.Model
         Vector _direction;
         Vector _mouvement;
 
-        int _name;
+        readonly int _name;
         int _nbFram;
         int _damages;
-        int _range;
+        readonly int _range;
 
         bool _arrived;
 
@@ -33,7 +32,7 @@ namespace BirdHouse_Battle.Model
             _name = name;
         }
 
-        [JsonIgnore]
+        
         public Arena Arena { get { return _arena; } }
 
         public Vector Start { get { return _start; } }

@@ -1,13 +1,21 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 namespace BirdHouse_Battle.Model
 {
     public class Drake : Unit
     {
-        public Drake(Team team, Arena arena, int nameUnit)
-            : base(team, arena, 10.0, 1.5, 18.0, 15.0, 7, 0, 
+        public Drake(Arena arena, Team team,  int nameUnit)
+            : base( arena, team, 10.0, 1.5, 18.0, 15.0, 7, 0, 
                    "Chaos", true, true, false, nameUnit, "drake")
         {
+
+        }
+
+        public Drake(Arena arena,  Team team, JToken jToken)
+            : base(arena, team, jToken)
+        {
+
         }
 
         /// <summary>
