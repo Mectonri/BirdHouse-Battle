@@ -50,7 +50,7 @@ namespace BirdHouse_Battle.UnitTests
         {
             Arena arena = new Arena();
             Team firstTeam = arena.CreateTeam("firstTeam");
-            firstTeam.AddGobelin(1);
+            firstTeam.AddGoblin(1);
 
             Unit[] tab = firstTeam.Find();
             Unit u = firstTeam.FindUnitByName(tab[0].Name);
@@ -113,8 +113,8 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team firstTeam = arena.CreateTeam("firstTeam");
             Team secondTeam = arena.CreateTeam("secondTeam");
-            firstTeam.AddGobelin(1);
-            secondTeam.AddGobelin(1);
+            firstTeam.AddGoblin(1);
+            secondTeam.AddGoblin(1);
 
             Unit[] tab = firstTeam.Find();
             Unit firstUnit = firstTeam.FindUnitByName(tab[0].Name);
@@ -134,7 +134,7 @@ namespace BirdHouse_Battle.UnitTests
             Assert.That(testUnit, Is.EqualTo(secondUnit));
 
 
-            secondTeam.AddGobelin(1);
+            secondTeam.AddGoblin(1);
             tab2 = secondTeam.Find();
             Unit thirdUnit = secondTeam.FindUnitByName(tab2[1].Name);
 

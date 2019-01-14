@@ -36,7 +36,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team t1 = arena.CreateTeam("RED");
 
-            t1.AddGobelin(1);
+            t1.AddGoblin(1);
 
             Unit[] tab = t1.Find();
             Unit u = t1.FindUnitByName(tab[0].Name);
@@ -78,7 +78,7 @@ namespace BirdHouse_Battle.UnitTests
 
             t4.AddArcher(10);
             t4.AddPaladin(5);
-            t4.AddGobelin(3);
+            t4.AddGoblin(3);
 
             Assert.That(t4.UnitCount, Is.EqualTo(18));
         }
@@ -111,7 +111,7 @@ namespace BirdHouse_Battle.UnitTests
 
             tb.AddArcher(5);
             tr.AddArcher(5);//50.0
-            tr.AddGobelin(10);//30.0
+            tr.AddGoblin(10);//30.0
             tr.AddPaladin(6);//75.0
             double r1 = tb.GoldCalculation(50.0);
             double r2 = tr.GoldCalculation(200.0);
@@ -129,7 +129,7 @@ namespace BirdHouse_Battle.UnitTests
             Team t2 = a.CreateTeam("BLUE");
 
             t.AddArcher(0);
-            t.AddGobelin(1);
+            t.AddGoblin(1);
             t2.AddArcher(1);
             Unit[] tab = t.Find();
             Unit u = t.FindUnitByName(tab[0].Name);
@@ -148,10 +148,10 @@ namespace BirdHouse_Battle.UnitTests
             Arena a = new Arena();
             Team t = a.CreateTeam("RED");
             Team t1 = a.CreateTeam("Green");
-            t1.AddGobelin(125);
+            t1.AddGoblin(125);
 
             Assert.Throws<ArgumentException>(() => t.AddArcher(126));
-            Assert.Throws<ArgumentException>(() => t1.AddGobelin(1));
+            Assert.Throws<ArgumentException>(() => t1.AddGoblin(1));
             Assert.Throws<ArgumentException>(() => t.AddPaladin(260));
         }
 
@@ -164,7 +164,7 @@ namespace BirdHouse_Battle.UnitTests
             sut.AddBalista(2);
             sut.AddCatapult(2);
             sut.AddDrake(2);
-            sut.AddGobelin(2);
+            sut.AddGoblin(2);
             sut.AddPaladin(2);
 
             JToken jToken = sut.Serialize();

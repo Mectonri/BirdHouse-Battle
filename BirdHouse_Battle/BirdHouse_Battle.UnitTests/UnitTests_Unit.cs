@@ -20,7 +20,7 @@ namespace BirdHouse_Battle.UnitTests
             Team green = arena.CreateTeam("Green");
 
             red.AddArcher(1);
-            blue.AddGobelin(2);
+            blue.AddGoblin(2);
             green.AddPaladin(1);
 
             Unit[] t_red = red.Find();

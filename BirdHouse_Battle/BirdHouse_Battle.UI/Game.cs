@@ -181,29 +181,57 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         internal void LevelWritte()
         {
+            List<Arena> arenas = new List<Arena>();
 
             string path = "../../../../res/HistoryMode.JSON";
-            
-            Team team = _arena.CreateTeam("blue");
-            team.AddArcher(10);
-            team.Acount = 10;
 
-            //Team team1 = _arena.CreateTeam("red");
-            //team1.AddArcher(10);
-            //team1.Acount = 10;
+            Arena a = new Arena();
+            Team t = a.CreateTeam("red");
+            t.AddGoblin(10);
+            t.Acount = 10;
+            arenas.Add(a);
 
-            string fileName = Path.GetTempFileName();
+            Arena a1 = new Arena();
+            Team t1 = a1.CreateTeam("red");
+            t1.AddArcher(10);
+            t1.Acount = 10;
+            arenas.Add(a1);
 
-            ///Writting in the JToken
+            Arena a2 = new Arena();
+            Team t2 = a2.CreateTeam("red");
+            t2.AddGoblin(10);
+            t2.Acount = 10;
+            arenas.Add(a2);
+
+            Arena a3 = new Arena();
+            Team t3 = a3.CreateTeam("red");
+            t3.AddGoblin(10);
+            t3.Acount = 10;
+            arenas.Add(a3);
+
+            JArray jArray = new JArray();
+            for (int i = 0; i < 4; i++)
             {
-                JToken jToken = _arena.Serialize();
+                jArray[i] = arenas[i].Serialize();
                 using (FileStream fs = File.OpenWrite(path))
                 using (StreamWriter sw = new StreamWriter(fs))
                 using (JsonTextWriter jw = new JsonTextWriter(sw))
                 {
-                    jToken.WriteTo(jw);
+                    jArray.WriteTo(jw);
                 }
             }
+
+            ////foreach (Arena arena in arenas)
+            ///// Writting in the JToken
+            ////{
+            ////    JToken jToken = a.Serialize();
+            ////    using (FileStream fs = File.OpenWrite(path))
+            ////    using (StreamWriter sw = new StreamWriter(fs))
+            ////    using (JsonTextWriter jw = new JsonTextWriter(sw))
+            ////    {
+            ////        jToken.WriteTo(jw);
+            ////    }
+            ////}
 
             //{
             //    using (FileStream fs = File.OpenRead(fileName))
@@ -219,7 +247,7 @@ namespace BirdHouse_Battle.UI
             //        Assert.That(units.All(u => u.Team == team));
             //    }
             //}
-           // Status = "game";
+            // Status = "game";
         }
         
         /// <summary>
@@ -362,7 +390,7 @@ namespace BirdHouse_Battle.UI
 
                 i.Value.AddDrake(rn.Next(125 - i.Value.UnitCount));
 
-                i.Value.AddGobelin(rn.Next(125 - i.Value.UnitCount));
+                i.Value.AddGoblin(rn.Next(125 - i.Value.UnitCount));
 
                 i.Value.AddPaladin(rn.Next(125 - i.Value.UnitCount));
             }
@@ -837,7 +865,7 @@ namespace BirdHouse_Battle.UI
                             blue.AddDrake(teamComposition[0, i]);
                             break;
                         case 2:
-                            blue.AddGobelin(teamComposition[0, i]);
+                            blue.AddGoblin(teamComposition[0, i]);
                             break;
                         case 3:
                             blue.AddPaladin(teamComposition[0, i]);
@@ -865,7 +893,7 @@ namespace BirdHouse_Battle.UI
                             red.AddDrake(teamComposition[1, i]);
                             break;
                         case 2:
-                            red.AddGobelin(teamComposition[1, i]);
+                            red.AddGoblin(teamComposition[1, i]);
                             break;
                         case 3:
                             red.AddPaladin(teamComposition[1, i]);
@@ -895,7 +923,7 @@ namespace BirdHouse_Battle.UI
                                 green.AddDrake(teamComposition[2, i]);
                                 break;
                             case 2:
-                                green.AddGobelin(teamComposition[2, i]);
+                                green.AddGoblin(teamComposition[2, i]);
                                 break;
                             case 3:
                                 green.AddPaladin(teamComposition[2, i]);
@@ -926,7 +954,7 @@ namespace BirdHouse_Battle.UI
                                 yellow.AddDrake(teamComposition[3, i]);
                                 break;
                             case 2:
-                                yellow.AddGobelin(teamComposition[3, i]);
+                                yellow.AddGoblin(teamComposition[3, i]);
                                 break;
                             case 3:
                                 yellow.AddPaladin(teamComposition[3, i]);

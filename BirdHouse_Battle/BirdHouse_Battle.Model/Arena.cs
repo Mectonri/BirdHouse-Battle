@@ -60,6 +60,8 @@ namespace BirdHouse_Battle.Model
                 _teams.Add("blue", team);
             }
         }
+
+        
         public JToken Serialize()
         {
             return new JObject(

@@ -152,7 +152,7 @@ namespace BirdHouse_Battle.Model
                     team.AddDrake(1);
                     break;
                 case "goblin":
-                    team.AddGobelin(1);
+                    team.AddGoblin(1);
                     break;
                 case "paladin":
                     team.AddPaladin(1);
@@ -350,7 +350,7 @@ namespace BirdHouse_Battle.Model
         /// Add Goblin to a team
         /// </summary>
         /// <param name="GToAdd"></param>
-        public void AddGobelin(int GToAdd)
+        public void AddGoblin(int GToAdd)
         {
             if (UnitCount >= _limitNbUnit || GToAdd > _limitNbUnit) throw new ArgumentException("You've exceeded the maximun numebr of unit in this team", nameof(_unitCount));
             for (int i = 0; i < GToAdd; i++)
