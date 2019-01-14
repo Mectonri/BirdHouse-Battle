@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 
 namespace BirdHouse_Battle.Model
 {
@@ -22,6 +23,40 @@ namespace BirdHouse_Battle.Model
         public Field(Arena arena, JToken jToken)
         {
             _arena = arena;
+
+            _elements = new Dictionary<string, Tile>();
+            JArray jElements = (JArray)jToken["Elements"];
+
+            IEnumerable<Tile> elements = jElements.Select(u => new Tile(u));
+
+            foreach (Tile tile in elements)
+            {
+                _elements.Add($"{tile.X}:{tile.Y}", tile);
+            }
+
+            for (int x = 0; x < 500; x++)
+            {
+                for (int y = 0; y < 500; y++)
+                {
+                    _tiles[x, y] = new Tile(x - 250, y - 250);
+                }
+            }
+
+            foreach (Tile tile in _elements.Values)
+            {
+                _tiles[tile.X + 250, tile.Y + 250] = tile;
+            }
+        }
+
+        public JToken Serialize()
+        {
+            return new JObject(
+                new JProperty("Elements", _elements.Select(kv => kv.Value.Serialize())));
+        }
+
+        public void AddElement(string name, Tile tile)
+        {
+            _elements.Add(name, tile);
         }
 
         public Arena Arena

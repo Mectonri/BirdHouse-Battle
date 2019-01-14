@@ -90,8 +90,12 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
-        public bool GameLoop(Arena arena)
+        public bool GameLoop(Arena arena, bool maySave)
         {
+            if (maySave)
+            {
+                SaveState();
+            }
             _return = true;
             double previous = GetCurrentTime();
 
@@ -137,6 +141,12 @@ namespace BirdHouse_Battle.UI
             return true;
         }
 
+        public void SaveState()
+        {
+            string date = DateTime.Now.ToString("MM_dd_yyyy H:mm");
+            string pathString = $"../../../../saveStates/{date}";
+            Directory.CreateDirectory(pathString);
+        }
 
         private void ListTeam(Arena arena)
         {
@@ -293,9 +303,9 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public void Run()
+        public void Run(bool maySave)
         {
-            GameLoop(Arena);
+            GameLoop(Arena, maySave);
         }
 
         public void Render(Arena arena)
@@ -397,7 +407,7 @@ namespace BirdHouse_Battle.UI
 
             arena.SpawnUnit();
 
-            Run();
+            Run(true);
         }
 
         /// <summary>

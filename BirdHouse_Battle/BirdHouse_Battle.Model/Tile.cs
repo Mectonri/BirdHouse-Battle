@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json.Linq;
 
 namespace BirdHouse_Battle.Model
 {
@@ -15,6 +16,22 @@ namespace BirdHouse_Battle.Model
             _x = x;
             _y = y;
             _obstacle = Enum.GetName(typeof(_obstacles), 0);
+        }
+
+        public Tile(JToken jToken)
+        {
+            _x = jToken["X"].Value<int>();
+            _y = jToken["Y"].Value<int>();
+            _obstacle = jToken["Obstacle"].Value<string>();
+        }
+
+        public JToken Serialize()
+        {
+            return new JObject(
+                new JProperty("X", _x),
+                new JProperty("Y", _y),
+                new JProperty("Obstacle", Obstacle)
+                );
         }
 
         public int X { get { return _x; } }

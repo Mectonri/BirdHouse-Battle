@@ -57,16 +57,22 @@ namespace BirdHouse_Battle.Model
             IEnumerable<Team> teams = jTeams.Select(t => new Team(this, t));
             foreach (Team team in teams)
             {
-                _teams.Add("blue", team);
+                _teams.Add(team.Name, team);
             }
+
+            JToken jField = jToken["Field"];
+            _field = new Field(this, jField);
         }
 
         
         public JToken Serialize()
         {
             return new JObject(
-                new JProperty("Teams", _teams.Select(kv => kv.Value.Serialize())));
+                new JProperty("Teams", _teams.Select(kv => kv.Value.Serialize())),
+                new JProperty("Field", Field.Serialize())
+                );
         }
+
         public IEnumerable<Team> GetTeams()
         {
             return _teams.Values;
