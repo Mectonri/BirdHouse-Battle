@@ -64,7 +64,27 @@ namespace BirdHouse_Battle.Model
             _field = new Field(this, jField);
         }
 
-        
+        public Arena(JToken jToken, bool useless)
+        {
+            _teams = new Dictionary<string, Team>();
+            _deadTeams = new Dictionary<string, Team>();
+            _projectiles = new Dictionary<int, Projectile>();
+            _deadProjectiles = new Dictionary<int, Projectile>();
+            _height = 250;
+            _width = 250;
+            _counter = 0;
+
+            JArray jTeams = (JArray)jToken["Teams"];
+            JArray jUnits = (JArray)jToken["Units"];
+            IEnumerable<Team> teams = jTeams.Select(t => new Team(this, t));
+            foreach (Team team in teams)
+            {
+                _teams.Add(team.Name, team);
+            }
+            
+            _field = new Field(this, -Height, Height, -Width, Width);
+        }
+
         public JToken Serialize()
         {
             return new JObject(

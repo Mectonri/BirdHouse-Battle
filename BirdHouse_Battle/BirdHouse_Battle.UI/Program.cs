@@ -29,7 +29,7 @@
                         
                         break;
                     case "game"://game screen
-                        game.Run(true);
+                        game.Run("play");
                         break;
 
                     case "elderGame":
@@ -38,11 +38,11 @@
                         break;
 
                     case "replay":
-                        game.Run(false/*, path*/);
+                        game.Run("replay"/*, path*/);
                         break;
 
                     case "historyGame":
-                       // game.Run(false);
+                       game.RunHistory();
                         break; 
                     case "return"://close the window
                         LastStatut = "return";
@@ -51,9 +51,7 @@
                         
                     case "history"://history mode
                         LastStatut = "history";
-                        game.NewArena();
                         game.LevelSelectionMenu();
-
                         break;
                     case "historyPreGame":
                         //game.HistoryPreGame();

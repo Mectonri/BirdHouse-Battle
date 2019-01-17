@@ -92,9 +92,9 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
-        public bool GameLoop(Arena arena, bool maySave)
+        public bool GameLoop(Arena arena, string mode)
         {
-            if (maySave)
+            if (mode == "replay")
             {
                 SaveState();
             }
@@ -115,7 +115,6 @@ namespace BirdHouse_Battle.UI
                 }
                 else if (GetCurrentTime() - previous >= MsPerUpdate && Paused)
                 {
-                    //PauseMenu();
                     _iHandler.HandlerPause(draw.PauseDisplay());
                 }
 
@@ -260,11 +259,10 @@ namespace BirdHouse_Battle.UI
                 JArray jArena = (JArray)jToken["Arenas"];
 
                 
-                Arena arena = new Arena(jArena[Level]);
-                _arena = arena;
+                _arena = new Arena(jArena[Level], true);
 
                 Status = "historyPreGame";
-                HistoryPreGame(arena); //should take arena
+                HistoryPreGame(_arena); //should take arena
 
             }
             
@@ -290,9 +288,14 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public void Run(bool maySave)
+        public void Run(string mode)
         {
-            GameLoop(Arena, maySave);
+            GameLoop(Arena, mode);
+        }
+
+        public void RunHistory()
+        {
+            GameLoop(Arena, "history");
         }
 
         public void Render(Arena arena)
@@ -394,7 +397,7 @@ namespace BirdHouse_Battle.UI
 
             arena.SpawnUnit();
 
-            Run(true);
+            Run("play");
         }
 
         /// <summary>
@@ -440,59 +443,6 @@ namespace BirdHouse_Battle.UI
             Window.Display();
 
             return buttons;
-        }
-
-        internal void HistoryPreGame( Arena arena)
-        {
-
-           
-
-            string[] status = new string[8];
-            status[0] = "selected";
-            status[1] = "active";
-            status[2] = "inactive";
-            status[3] = "inactive";
-
-            status[4] = "none";
-            status[5] = "add";
-            status[6] = "1";
-            status[7] = "yes";
-
-            int[,] teamComposition =
-            {
-                {0, 0, 0, 0, 0, 0},// Player Team
-                {0, 0, 0, 0, 0, 0},// Computer team
-            };
-            double previous = GetCurrentTime();
-
-            foreach (KeyValuePair<string, Team> kv in arena.Teams)
-            {
-                Team team = kv.Value;
-                teamComposition[1, 0] = team.Acount;
-                teamComposition[1, 1] = team.Bcount;
-                teamComposition[1, 2] = team.Ccount;
-                teamComposition[1, 3] = team.Dcount;
-                teamComposition[1, 4] = team.Gcount;
-                teamComposition[1, 5] = team.Pcount;
-            }
-
-
-
-
-            while (Window.IsOpen && Status == "historyPreGame")
-            {
-                double current = GetCurrentTime();
-                if (current - previous >= 0.0000019)
-                {
-                    previous = current;
-                    Shape[] buttons = InitHistoryPreGame(status, teamComposition);
-                    Window.DispatchEvents();
-                    status = _iHandler.HandlerHistoryPreGame(buttons, status);
-
-                }
-                Arena.SpawnUnit();
-                
-            }
         }
 
         public void CreditPage()
@@ -686,16 +636,6 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
-        #region Retuns Pages
-
-        public Shape[] InitReturn()
-        {
-            Window.Clear();
-            Shape[] buttons = draw.ReturnDisplay();
-
-            Window.Display();
-            return buttons;
-        }
 
         public void ReturnMenu()
         {
@@ -706,8 +646,6 @@ namespace BirdHouse_Battle.UI
                 _iHandler.HandlerReturn(buttons);
             }
         }
-
-        #endregion
 
         #region Pregamge
         public Shape[] InitPreGame(string[] status, int[,] teamComposition)
@@ -1069,7 +1007,5 @@ namespace BirdHouse_Battle.UI
 
             else { return true; }
         }
-
-        #endregion
     }
 }
