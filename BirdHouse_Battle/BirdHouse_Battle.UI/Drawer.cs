@@ -215,19 +215,19 @@ namespace BirdHouse_Battle.UI
 
             switch (Winner)
             {
-                case 1://red won
+                case 0://blue won
                     _winnerButton.Texture = _blueTeam;
                     break;
 
-                case 2://blue won
+                case 1://red won
                     _winnerButton.Texture = _redTeam;
                     break;
 
-                case 3:
+                case 2: // Green won
                     _winnerButton.Texture = _greenTeam;
                     break;
 
-                case 4:
+                case 3: // yellow won
                     _winnerButton.Texture = _yellowTeam;
                     break;
             }
