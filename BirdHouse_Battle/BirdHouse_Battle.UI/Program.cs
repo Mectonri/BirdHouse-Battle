@@ -27,7 +27,9 @@
                     case "game"://game screen
                         game.Run();
                         break;
-                        
+                    case "historyGame":
+                       // game.Run(false);
+                        break; 
                     case "return"://close the window
                         game.ReturnMenu();
                         break;
