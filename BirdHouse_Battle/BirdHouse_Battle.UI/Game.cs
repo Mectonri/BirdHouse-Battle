@@ -90,8 +90,12 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
-        public bool GameLoop(Arena arena)
+        public bool GameLoop(Arena arena, bool maySave)
         {
+            if (maySave)
+            {
+                SaveState();
+            }
             _return = true;
             double previous = GetCurrentTime();
 
@@ -137,6 +141,20 @@ namespace BirdHouse_Battle.UI
             return true;
         }
 
+        public void SaveState()
+        {
+            string date = DateTime.Now.ToString("yyyy_MM_dd H mm");
+            string pathString = $"../../../../saveStates/{date}";
+            Directory.CreateDirectory(pathString);
+
+            JToken save = Arena.Serialize();
+            using (FileStream fs = File.OpenWrite(pathString + "/saveState.json"))
+            using (StreamWriter sw = new StreamWriter(fs))
+            using (JsonTextWriter jw = new JsonTextWriter(sw))
+            {
+                save.WriteTo(jw);
+            }
+        }
 
         private void ListTeam(Arena arena)
         {
@@ -293,9 +311,9 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public void Run()
+        public void Run(bool maySave)
         {
-            GameLoop(Arena);
+            GameLoop(Arena, maySave);
         }
 
         public void Render(Arena arena)
@@ -397,7 +415,7 @@ namespace BirdHouse_Battle.UI
 
             arena.SpawnUnit();
 
-            Run();
+            Run(true);
         }
 
         /// <summary>
@@ -431,6 +449,15 @@ namespace BirdHouse_Battle.UI
         {
             Window.Clear();
             Shape[] buttons = draw.MenuDisplay();
+            Window.Display();
+
+            return buttons;
+        }
+
+        public Shape[] InitGUIElder()
+        {
+            Window.Clear();
+            Shape[] buttons = draw.ElderGameDisplay();
             Window.Display();
 
             return buttons;
@@ -555,6 +582,25 @@ namespace BirdHouse_Battle.UI
             while (Window.IsOpen && Status == "main")
             {
                 _iHandler.HandlerMain(buttons);
+            }
+        }
+
+        public void ElderGame()
+        {
+            DirectoryInfo dir = new DirectoryInfo("../../../../saveStates");
+            DirectoryInfo[] dossiers = dir.GetDirectories();
+            string[] dNames = new string[10];
+            int i = 0;
+
+            for (i = 0; i < dossiers.Length && i < 9 ; i++)
+            {
+                dNames[i] = dossiers[i].Name;
+            }
+
+            Shape[] buttons = InitGUIElder();
+            while (Window.IsOpen && Status == "main")
+            {
+                _iHandler.HandlerElderGame(buttons);
             }
         }
 

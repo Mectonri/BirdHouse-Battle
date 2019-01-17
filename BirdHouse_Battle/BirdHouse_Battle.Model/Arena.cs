@@ -46,7 +46,6 @@ namespace BirdHouse_Battle.Model
             _height = 250;
             _width = 250;
             _counter = 0;
-            _field = new Field(this, -_height, _height, -_width, _width);
 
             if (true) // Créer le bool de nouvelle partie / rejouer partie
             {
@@ -57,16 +56,22 @@ namespace BirdHouse_Battle.Model
             IEnumerable<Team> teams = jTeams.Select(t => new Team(this, t));
             foreach (Team team in teams)
             {
-                _teams.Add("blue", team);
+                _teams.Add(team.Name, team);
             }
+
+            JToken jField = jToken["Field"];
+            _field = new Field(this, jField);
         }
 
         
         public JToken Serialize()
         {
             return new JObject(
-                new JProperty("Teams", _teams.Select(kv => kv.Value.Serialize())));
+                new JProperty("Teams", _teams.Select(kv => kv.Value.Serialize())),
+                new JProperty("Field", Field.Serialize())
+                );
         }
+
         public IEnumerable<Team> GetTeams()
         {
             return _teams.Values;
