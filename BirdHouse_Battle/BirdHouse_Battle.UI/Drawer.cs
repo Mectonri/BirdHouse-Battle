@@ -582,6 +582,71 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
+
+        public Shape[] PlacementDisplay(Arena arena)
+        {
+            Vector2f Bsize = new Vector2f(75, 25);//button size
+
+
+
+            Shape[] buttons = new Shape[9];
+            RenderStates rs = new RenderStates(); 
+            RectangleShape team1 = new RectangleShape(Bsize);
+            RectangleShape team2 = new RectangleShape(Bsize);
+            RectangleShape team3 = new RectangleShape(Bsize);
+            RectangleShape team4 = new RectangleShape(Bsize);
+            RectangleShape font = new RectangleShape(new Vector2f(560,200));
+            RectangleShape over1 = new RectangleShape(new Vector2f(512, 128));
+            RectangleShape over2 = new RectangleShape(new Vector2f(512, 128));
+            if (arena.FindTeam("green")==true)
+            {
+                over1 = new RectangleShape(new Vector2f(128, 128));
+                over2 = new RectangleShape(new Vector2f(128, 128));
+            }
+            RectangleShape over3 = new RectangleShape(new Vector2f(128,128));
+            RectangleShape over4 = new RectangleShape(new Vector2f(128,128));
+
+            team1.Position = new Vector2f(0, 0);
+            team2.Position = new Vector2f(0, 0);
+            font.Position = new Vector2f(0,510);
+
+            if (arena.FindTeam("green")==true)
+            {
+                team3.Position = new Vector2f(0, 0);
+            }
+            if (arena.FindTeam("yellow")==true)
+            {
+                team4.Position = new Vector2f(0, 0);
+
+            }
+
+            buttons[0] = team1;
+            buttons[1] = team2;
+            buttons[2] = team3;
+            buttons[3] = team4;
+            buttons[4] = font;
+            buttons[5] = over1;
+            buttons[6] = over2;
+            buttons[7] = over3;
+            buttons[8] = over4;
+            
+            
+
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                buttons[i].FillColor= new Color(250,250,250);
+                //buttons[i].Position = new Vector2f(0,300);
+            }
+
+            foreach (var t in buttons)
+            {
+                t.Draw(_window, rs);
+                _window.Draw(t);
+            }
+
+            return buttons;
+        }
+
         #region History
 
         internal Shape[] HistoryLvSeletionDisplay()

@@ -1038,6 +1038,21 @@ namespace BirdHouse_Battle.UI
             }
         }
 
+        public void InitPlacement()
+        {
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            Shape[] buttons = draw.PlacementDisplay(Arena);
+            Window.Display();
+        }
+
+        public void Placement()
+        {
+            while (Window.IsOpen && Status=="placement")
+            {
+                InitPlacement();
+            }
+        }
         #endregion
 
         public bool IsValidToAddUnit(int[,] TeamCompo, int i, string[] status)
