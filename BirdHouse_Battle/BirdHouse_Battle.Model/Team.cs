@@ -16,12 +16,12 @@ namespace BirdHouse_Battle.Model
         readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
 
-        int _aToAdd; // Number of Archer to add to a Team
-        int _bToAdd;// Number of Balista to add to a Team
+        int _aToAdd;// Number of Archer   to add to a Team
+        int _bToAdd;// Number of Balista  to add to a Team
         int _cToAdd;// Number of Catapult to add to a Team
-        int _dToAdd;// Number of Drake to add to a Team
-        int _gToAdd;// Number of Goblin to add to a Team
-        int _pToAdd;// Number of Paladin to add to a Team
+        int _dToAdd;// Number of Drake    to add to a Team
+        int _gToAdd;// Number of Goblin   to add to a Team
+        int _pToAdd;// Number of Paladin  to add to a Team
         
         int _aCount; // Number of Archer   in a team
         int _bCount; // Number of Balista  in a team
@@ -108,26 +108,32 @@ namespace BirdHouse_Battle.Model
             if (jToken["Troop"].Value<string>() == "archer")
             {
                  unit = new Archer(arena, team, jToken);
+                team.Acount++;
             }
             else if (jToken["Troop"].Value<string>() == "balista")
             {
                  unit = new Balista(arena, team, jToken);
+                team.Bcount++;
             }
             else if (jToken["Troop"].Value<string>() == "catapult")
             {
                  unit = new Catapult(arena, team, jToken);
+                team.Ccount++;
             }
             else if (jToken["Troop"].Value<string>() == "drake")
             {
                  unit = new Drake(arena, team, jToken);
+                team.Dcount++;
             }
             else if (jToken["Troop"].Value<string>() == "goblin")
             {
                  unit = new Goblin(arena, team, jToken);
+                team.Gcount++;
             }
             else if (jToken["Troop"].Value<string>() == "paladin")
             {
                  unit = new Paladin(arena, team, jToken);
+                team.Pcount++;
             }
 
             return unit;
@@ -191,9 +197,18 @@ namespace BirdHouse_Battle.Model
             set{ _aCount = value; }
         }
 
-        public int Gcount => _gCount;
+        public int Gcount
+        {
+            get { return _gCount; }
+            set { _gCount = value; }
+        }
 
-        public int Pcount => _pCount;
+        public int Pcount
+        {
+            get { return _pCount; }
+            set { _pCount = value; }
+        }
+        
 
         public int Dcount
         {
@@ -308,7 +323,7 @@ namespace BirdHouse_Battle.Model
                 _units.Add(archer.Name, archer);
             }
         }
-        
+
         /// <summary>
         /// Add Drake to a team
         /// </summary>
@@ -444,13 +459,14 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public double GoldCalculation(double Gold)
         {
-            double result = 0.0;
-            foreach (KeyValuePair<int, Unit> kv in _units)
+            
+            foreach (KeyValuePair<int, Unit> unit in _units)
             {
-                result = result + kv.Value.UnitPrice;
-                if (result < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));
+                
+                if (Gold < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));
+                Gold = Gold - unit.Value.UnitPrice;
             }
-            return _goldAmount = Gold - result;
+            return _goldAmount = Gold ;
         }
 
         public bool IsGobelinsAlone()

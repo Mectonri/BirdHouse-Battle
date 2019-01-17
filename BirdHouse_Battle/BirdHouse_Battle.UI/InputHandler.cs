@@ -1,4 +1,5 @@
 ﻿using System;
+using BirdHouse_Battle.Model;
 using SFML.Graphics;
 using SFML.Window;
 
@@ -118,7 +119,7 @@ namespace BirdHouse_Battle.UI
             }//settings
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                //game.Status = "game";
+                //game.Status = "preGame";
             }//credit
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
@@ -291,7 +292,7 @@ namespace BirdHouse_Battle.UI
         /// History Page Handler
         /// </summary>
         /// <param name="buttons"></param>
-        internal void HandlerHistoryLvSelection(Shape[] buttons)
+        internal void HandlerLVSelection(Shape[] buttons)
         {
             //ESC Key 
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -306,7 +307,7 @@ namespace BirdHouse_Battle.UI
             {
 
                 game.LevelLoad(0);
-                //game.HistoryPreGame();
+                
                 
             }//PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
@@ -315,155 +316,68 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        internal string[] HandlerHistoryPreGame(Shape[] buttons, string[] status)
+        internal int[,] HandlerHistoryPreGame(int[,] teamComp, Team team, Shape[] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
                 game.Status = "close";
-                return status;
-            }
-            else if ((buttons[13].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "add"))
+                return teamComp;
+            } //
+            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                status[5] = "remove";
-                return status;
-            }
-            else if ((buttons[14].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+                return teamComp;
+            } // 
+            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                status[6] = "1";
-                return status;
-            }
-            else if ((buttons[15].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[6] = "10";
-                return status;
-            }
-            else if ((buttons[16].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[6] = "100";
-                return status;
-            }
-            else if ((buttons[13].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "remove"))
-            {
-                status[5] = "add";
-                return status;
-            }
-            else if ((buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] == "active"))
-            {
-                for (int i = 0; i < status.Length; i++)
-                {
-                    if (status[i] == "selected")
-                    {
-                        status[i] = "active";
-                    }
-                }
-                status[0] = "selected";
-                return status;
-            }
-            else if ((buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[1] == "active"))
-            {
-                for (int i = 0; i < status.Length; i++)
-                {
-                    if (status[i] == "selected")
-                    {
-                        status[i] = "active";
-                    }
-                }
-                status[1] = "selected";
-                return status;
-            }
-            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[2] == "inactive")
-            {
-                status[2] = "active";
-                return status;
-            }
-            else if ((buttons[11].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                if (status[3] == "inactive")
-                {
-                    status[2] = "inactive";
-                }
-                else
-                {
-                    status[2] = "inactiveTemp";
-                }
-                return status;
-            }
-            else if ((buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[2] == "active"))
-            {
-                for (int i = 0; i < status.Length; i++)
-                {
-                    if (status[i] == "selected")
-                    {
-                        status[i] = "active";
-                    }
-                }
-                status[2] = "selected";
-                return status;
-            }
-            else if ((buttons[12].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[3] = "inactive";
-                return status;
-            }
-            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "inactive" && status[2] != "inactive")
-            {
-                status[3] = "active";
-                return status;
-            }
-            else if ((buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "active" && status[2] != "inactive"))
-            {
-                for (int i = 0; i < status.Length; i++)
-                {
-                    if (status[i] == "selected")
-                    {
-                        status[i] = "active";
-                    }
-                }
-                status[3] = "selected";
-                return status;
-            }
-            else if ((buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[4] = "archer";
-                return status;
-            }
-            else if ((buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[4] = "drake";
-                return status;
-            }
-            else if ((buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[4] = "gobelin";
-                return status;
-            }
-            else if ((buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[4] = "paladin";
-                return status;
-            }
-            else if ((buttons[9].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[4] = "balista";
-                return status;
-            }
-            else if ((buttons[10].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
-            {
-                status[4] = "catapult";
-                return status;
-            }
-            else if ((buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+                return teamComp;
+            } // PLAY
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "game";
-                return status;
-            }//Fill button
-            else if ((buttons[17].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left)))
+                return teamComp;
+            } // Add Archer
+            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                status[7] = "no";
-                return status;
-            }
+                team.AddArcher(1);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
 
-            else { return status; }
+                teamComp[0, 0]++;
+                return teamComp;
+            } // Add Drake
+            else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                team.AddDrake(1);
+                teamComp[0, 3]++;
+                return teamComp;
+            } // Add Goblin
+            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                team.AddGoblin(1);
+                teamComp[0, 4]++;
+                return teamComp;
+            } // Add Paladin
+            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                team.AddPaladin(1);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+
+                teamComp[0, 5]++;
+                return teamComp;
+            }// Add Balista
+            else if (buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                team.AddBalista(1);
+                teamComp[0, 1]++;
+                return teamComp;
+            } //Add Catapult
+            else if (buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                team.AddCatapult(1);
+                teamComp[0, 2]++;
+                return teamComp;
+
+            }
+            else { return teamComp;  }
         }
 
         /// <summary>

@@ -8,7 +8,7 @@ namespace BirdHouse_Battle.Model
         int _coldDown;
 
         public Paladin(Arena arena, Team team,  int nameUnit)
-            : base(arena, team,  18.0, 1.2, 15.0, 12.5, 5, 4, 
+            : base(arena, team,  18.0, 1.2, 15.0, 12.0, 5, 4, 
                    "Order", false, false, false, nameUnit, "paladin")
         {
         }

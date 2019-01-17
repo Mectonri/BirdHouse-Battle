@@ -54,10 +54,15 @@ namespace BirdHouse_Battle.Model
             }
 
             JArray jTeams = (JArray)jToken["Teams"];
+            JArray jUnits = (JArray)jToken["Units"];
             IEnumerable<Team> teams = jTeams.Select(t => new Team(this, t));
             foreach (Team team in teams)
             {
-                _teams.Add("blue", team);
+                _teams.Add(team.Name, team);
+                //foreach (KeyValuePair<int, Unit> unit in team._units)
+                //{
+                //    team._units.Add(unit.Key, unit.Value);
+                //}
             }
         }
 
@@ -99,9 +104,21 @@ namespace BirdHouse_Battle.Model
             _teams.Remove(name);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public bool FindTeam(string name)
         {
             return _teams.TryGetValue(name, out Team result);
+        }
+
+        public Team GetTeam(string name)
+        {
+            _teams.TryGetValue(name, out Team result);
+            return result;
+            
         }
 
         public int TeamCount

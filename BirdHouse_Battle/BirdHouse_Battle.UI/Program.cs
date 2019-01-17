@@ -6,13 +6,13 @@
         {
             bool run = true;
             Game game = new Game();
-            game.LevelWritte();
+            //game.LevelWritte();
             while (run == true)
             {
                 switch (game.Status)
                 {
-                    //main menu
-                    case "main":
+                    case "main": //main menu
+
                         game.MainMenu();
                         break;
                     case "preGame":
@@ -35,28 +35,36 @@
                     case "history"://history mode
 
                         game.NewArena();
-                        //game.LevelWritte();
-                        game.HistoryLvSelectionMenu();
-                        
+                        game.LevelSelectionMenu();
+
+                        break;
+                    case "historyPreGame":
+                        //game.HistoryPreGame();
+
                         break;
 
                     case "ended"://when the game has ended
+
                         game.ResultWindow();
+
                         break;
 
                     case "credit"://credit
+
                         game.CreditPage();
+
                         break;
 
                     case "quit":
+
                         game.QuitPage();
+
                         break;
 
                     default:
                         game.MainMenu();
                         break;
                 }
-                
             }
         }
     }
