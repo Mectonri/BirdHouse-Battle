@@ -155,26 +155,11 @@ namespace BirdHouse_Battle.UI
         /// <returns></returns>
         public int FindWinner()
         {
-            if (_arena.FindTeam("blue") == true || _arena.FindTeam("Team1"))
+            foreach (KeyValuePair<string, Team> kv in Arena.Teams)
             {
-                Console.WriteLine("Blue team won");
-                return _winner = 1;
+                return _winner = kv.Value.TeamNumber;
             }
-            else if (_arena.FindTeam("red") == true || _arena.FindTeam("Team2"))
-            {
-                Console.WriteLine("Red team won");
-                return _winner = 2;
-            }
-            else if (_arena.FindTeam("green") == true || _arena.FindTeam("Team3"))
-            {
-                Console.WriteLine("Green team won");
-                return _winner = 3;
-            }
-            else
-            {
-                Console.WriteLine("Yellow team won");
-                return _winner = 4;
-            }
+            return _winner;
         }
 
         /// <summary>
