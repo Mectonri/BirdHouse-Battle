@@ -52,6 +52,10 @@
                         game.QuitPage();
                         break;
 
+                    case "placement":
+                        game.Placement();
+                        break;
+
                     default:
                         game.MainMenu();
                         break;

@@ -209,17 +209,17 @@ namespace BirdHouse_Battle.UI
             t3.Acount = 10;
             arenas.Add(a3);
 
-            JArray jArray = new JArray();
-            for (int i = 0; i < 4; i++)
-            {
-                jArray[i] = arenas[i].Serialize();
-                using (FileStream fs = File.OpenWrite(path))
-                using (StreamWriter sw = new StreamWriter(fs))
-                using (JsonTextWriter jw = new JsonTextWriter(sw))
-                {
-                    jArray.WriteTo(jw);
-                }
-            }
+            //JArray jArray = new JArray();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    jArray[i] = arenas[i].Serialize();
+            //    using (FileStream fs = File.OpenWrite(path))
+            //    using (StreamWriter sw = new StreamWriter(fs))
+            //    using (JsonTextWriter jw = new JsonTextWriter(sw))
+            //    {
+            //        jArray.WriteTo(jw);
+            //    }
+            //}
 
             ////foreach (Arena arena in arenas)
             ///// Writting in the JToken
@@ -971,7 +971,23 @@ namespace BirdHouse_Battle.UI
                         }
                     }
                 }
-                Arena.SpawnUnit();
+                //Arena.SpawnUnit();
+            }
+        }
+
+        public void InitPlacement()
+        {
+            Window.Clear();
+            Drawer draw = new Drawer(Window);
+            Shape[] buttons = draw.PlacementDisplay(Arena);
+            Window.Display();
+        }
+
+        public void Placement()
+        {
+            while (Window.IsOpen && Status=="placement")
+            {
+                InitPlacement();
             }
         }
         #endregion
