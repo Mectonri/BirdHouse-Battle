@@ -971,7 +971,7 @@ namespace BirdHouse_Battle.UI
                         }
                     }
                 }
-                //Arena.SpawnUnit();
+                Arena.SpawnUnit();
             }
         }
 
