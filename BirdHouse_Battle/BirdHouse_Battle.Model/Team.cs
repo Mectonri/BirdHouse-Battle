@@ -459,14 +459,48 @@ namespace BirdHouse_Battle.Model
         /// <returns></returns>
         public double GoldCalculation(double Gold)
         {
-            
-            foreach (KeyValuePair<int, Unit> unit in _units)
+            if (Gold < 0.0)
             {
-                
-                if (Gold < 0.0) throw new ArgumentException("You dont have enought gold ", nameof(Gold));
-                Gold = Gold - unit.Value.UnitPrice;
+
             }
-            return _goldAmount = Gold ;
+            return Gold;
+        }
+        public double AddWithGold(int unit)
+        {
+            double result = 0.0;
+            switch (unit)
+            {
+                case 1:
+                    result = GoldAmount - 10.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddArcher(1);return GoldAmount = result; }
+
+                    case 2:
+                    result = GoldAmount - 30.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddBalista(1); return GoldAmount = result; }
+
+                case 3:
+                    result = GoldAmount - 40.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddCatapult(1); return GoldAmount = result; }
+
+                case 4:
+                    result = GoldAmount - 15.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddDrake(1); return GoldAmount = result; }
+
+                case 5:
+                    result = GoldAmount - 3.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddGoblin(1); return GoldAmount = result; }
+
+                case 6:
+                    result = GoldAmount - 12.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddPaladin(1); return GoldAmount = result; }
+            }
+            return GoldAmount;
         }
 
         public bool IsGobelinsAlone()

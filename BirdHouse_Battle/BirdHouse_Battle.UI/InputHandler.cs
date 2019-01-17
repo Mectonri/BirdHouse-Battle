@@ -323,14 +323,14 @@ namespace BirdHouse_Battle.UI
                 game.Status = "close";
                 return teamComp;
             } //
-            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                return teamComp;
-            } // 
-            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                return teamComp;
-            } // PLAY
+            //else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            //{
+            //    return teamComp;
+            //} // 
+            //else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            //{
+            //    return teamComp;
+            //} // PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "game";
@@ -338,42 +338,47 @@ namespace BirdHouse_Battle.UI
             } // Add Archer
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddArcher(1);
-                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
-
-                teamComp[0, 0]++;
+                team.AddWithGold(1);
+                teamComp[0, 6] = (int)team.GoldAmount;
+                teamComp[0, 0] = team.Acount;
                 return teamComp;
+
             } // Add Drake
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddDrake(1);
-                teamComp[0, 3]++;
+                team.AddWithGold(4);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 3] = team.Bcount;
                 return teamComp;
             } // Add Goblin
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddGoblin(1);
-                teamComp[0, 4]++;
+                team.AddWithGold(5);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 4] = team.Gcount;
                 return teamComp;
             } // Add Paladin
             else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddPaladin(1);
+                team.AddWithGold(6);
                 teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
-
-                teamComp[0, 5]++;
+                teamComp[0, 5] = team.Pcount;
                 return teamComp;
+
             }// Add Balista
             else if (buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddBalista(1);
-                teamComp[0, 1]++;
+                team.AddWithGold(2);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 1] = team.Bcount;
                 return teamComp;
+
             } //Add Catapult
             else if (buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddCatapult(1);
-                teamComp[0, 2]++;
+                team.AddWithGold(3);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 2] =team.Ccount;
                 return teamComp;
 
             }
