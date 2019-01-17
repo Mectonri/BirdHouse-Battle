@@ -469,6 +469,28 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
+        public Shape[] ElderGameDisplay()
+        {
+            Vector2f Bsize = new Vector2f(100, 25);
+            Shape[] buttons = new RectangleShape[6];
+
+            Shape MenuBackground = CreateShape(512, 712, "../../../../res/main.png", 0, 0);
+            _window.Draw(MenuBackground);
+
+            //buttons[0] = CreateShape(Bsize, "../../../../res/button_start.png", 200, 100); // take us to pregame sreen
+            //buttons[1] = CreateShape(Bsize, "../../../../res/button_quick-game.png", 200, 150); //quick game
+            //buttons[2] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 200);// to history mode
+            //buttons[3] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 250);// to settings
+            //buttons[4] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 300); // to credits
+            //buttons[5] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 350); //take us to exit screen
+
+            foreach (var t in buttons)
+            {
+                _window.Draw(t);
+            }
+            return buttons;
+        }
+
         internal Shape[] CreditDisplay()
         {
             Shape CreditBacground = CreateShape(512, 712, "../../../../res/credit.png", 0, 0);

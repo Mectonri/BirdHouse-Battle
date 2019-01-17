@@ -6,7 +6,8 @@
         {
             bool run = true;
             Game game = new Game();
-            game.LevelWritte();
+            //game.LevelWritte();
+            //game.ElderGame();
             string LastStatut = "";
             while (run == true)
             {
@@ -29,16 +30,18 @@
                         
                         break;
                     case "game"://game screen
-                        if (LastStatut == "history")
-                        {
-                            game.Run(false);
-                        }
-                        else
-                        {
-                            game.Run(true);
-                        }
+                        game.Run(true);
                         break;
-                        
+
+                    case "elderGame":
+                        LastStatut = "elderGame";
+                        game.ElderGame();
+                        break;
+
+                    case "replay":
+                        game.Run(false/*, path*/);
+                        break;
+
                     case "return"://close the window
                         LastStatut = "return";
                         game.ReturnMenu();
