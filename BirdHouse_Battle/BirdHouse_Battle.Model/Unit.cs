@@ -59,6 +59,7 @@ namespace BirdHouse_Battle.Model
             _teamPlay = false;
             _burn = 0;
 
+
         }
 
 

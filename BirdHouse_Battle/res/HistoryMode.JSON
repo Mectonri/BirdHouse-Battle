@@ -1,0 +1,451 @@
+{
+  "Arenas": 
+  [
+    {
+      "Teams": [
+        {
+          "Name": "red",
+          "Units": [
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 0,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 1,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 2,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 3,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 4,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 5,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 6,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 7,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 8,
+              "Troop": "archer"
+            },
+            {
+              "Life": 12.0,
+              "Speed": 1.8,
+              "Range": 135.0,
+              "UnitPrice": 10.0,
+              "Strength": 4,
+              "Armor": 1,
+              "Disposition": "Order",
+              "Fly": false,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 9,
+              "Troop": "archer"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Teams": [
+        {
+          "Name": "red",
+          "Units": [
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 0,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 1,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 2,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 3,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 4,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 5,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 6,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 7,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 8,
+              "Troop": "goblin"
+            },
+            {
+              "Life": 8.0,
+              "Speed": 2.5,
+              "Range": 4.0,
+              "UnitPrice": 3.0,
+              "Strength": 15,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": false,
+              "Distance": false,
+              "DistanceOnly": false,
+              "Name": 9,
+              "Troop": "goblin"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "Teams": [
+        {
+          "Name": "red",
+          "Units": [
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 0,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 1,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 2,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 3,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 4,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 5,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 6,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 7,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 8,
+              "Troop": "drake"
+            },
+            {
+              "Life": 10.0,
+              "Speed": 1.5,
+              "Range": 18.0,
+              "UnitPrice": 15.0,
+              "Strength": 7,
+              "Armor": 0,
+              "Disposition": "Chaos",
+              "Fly": true,
+              "Distance": true,
+              "DistanceOnly": false,
+              "Name": 9,
+              "Troop": "drake"
+            }
+          ]
+        }
+      ]
+    }
+  ]}

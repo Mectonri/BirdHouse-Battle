@@ -6,7 +6,6 @@
         {
             bool run = true;
             Game game = new Game();
-            //game.LevelWritte();
             //game.ElderGame();
             string LastStatut = "";
             while (run == true)
@@ -42,6 +41,9 @@
                         game.Run(false/*, path*/);
                         break;
 
+                    case "historyGame":
+                       // game.Run(false);
+                        break; 
                     case "return"://close the window
                         LastStatut = "return";
                         game.ReturnMenu();
@@ -50,24 +52,30 @@
                     case "history"://history mode
                         LastStatut = "history";
                         game.NewArena();
-                        //game.LevelWritte();
-                        game.HistoryLvSelectionMenu();
-                        
+                        game.LevelSelectionMenu();
+
+                        break;
+                    case "historyPreGame":
+                        //game.HistoryPreGame();
+
                         break;
 
                     case "ended"://when the game has ended
                         LastStatut = "ended";
                         game.ResultWindow();
+
                         break;
 
                     case "credit"://credit
                         LastStatut = "credit";
                         game.CreditPage();
+
                         break;
 
                     case "quit":
                         LastStatut = "quit";
                         game.QuitPage();
+
                         break;
 
                     default:
@@ -75,7 +83,6 @@
                         game.MainMenu();
                         break;
                 }
-                
             }
         }
     }

@@ -37,6 +37,8 @@ namespace BirdHouse_Battle.Model
             //_troop = jToken["Troop"].Value<string>();
 
             _coolDown = 0;
+            
+            
         }
 
         public int CoolDown
