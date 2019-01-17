@@ -252,13 +252,13 @@ namespace BirdHouse_Battle.UI
             Shape MenuBackground = CreateShape(512, 712, "../../../../res/main.png",0 , 0);
             _window.Draw(MenuBackground);
             
-            buttons[0] = CreateShape(Bsize, "../../../../res/button_start.png", 200, 100); // take us to pregame sreen
-            buttons[1] = CreateShape(Bsize, "../../../../res/button_quick-game.png", 200, 150); //quick game
-            buttons[2] = CreateShape(Bsize, "../../../../res/button_historic.png", 200, 200); // Hitoric
-            buttons[3] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 250); // to history mode
-            buttons[4] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 300); // to settings
-            buttons[5] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 350); // to credits
-            buttons[6] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 400); //take us to exit screen
+            buttons[0] = CreateShape(Bsize, "../../../../res/button_start.png", 200, 150); // take us to pregame sreen
+            buttons[1] = CreateShape(Bsize, "../../../../res/button_quick-game.png", 200, 200); //quick game
+            buttons[2] = CreateShape(Bsize, "../../../../res/button_historic.png", 200, 250); // Hitoric
+            buttons[3] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 300); // to history mode
+            buttons[4] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 350); // to settings
+            buttons[5] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 400); // to credits
+            buttons[6] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 500); //take us to exit screen
            
             foreach (var t in buttons)
             {
@@ -587,13 +587,13 @@ namespace BirdHouse_Battle.UI
         internal Shape[] HistoryPreGameDisplay(/*string[] status,*/ int[,] teamComposition)
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
-            Vector2f Tsize = new Vector2f(295, 405); //team button  size
+            Vector2f Tsize = new Vector2f(246, 405); //team button  size
 
             RenderStates rs = new RenderStates();
             Font font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
 
             Shape[] buttons = new RectangleShape[9];
-            Text[] messages = new Text[3];         
+            Text[] messages = new Text[9];         
 
             RectangleShape teamButton = new RectangleShape(Tsize)
             {
@@ -627,7 +627,62 @@ namespace BirdHouse_Battle.UI
                 DisplayedString = "Remaining Gold :" + Gold.ToString(),
                 Font = font,
                 CharacterSize = 20,
-                Position = new Vector2f(105, 225),
+                Position = new Vector2f(200, 225),
+                FillColor = Color.Black,
+                Style = Text.Styles.Bold,
+            };
+            // Archer price
+            Text price1 = new Text()
+            {
+                DisplayedString = "Price: 10",
+                Font = font,
+                CharacterSize = 18,
+                Position = new Vector2f(10, 55),
+                FillColor = Color.Black,
+            };
+            // Balista price
+            Text price2 = new Text()
+            {
+                DisplayedString = "Price: 30",
+                Font = font,
+                CharacterSize = 18,
+                Position = new Vector2f(105, 55),
+                FillColor = Color.Black,
+            };
+            // Catapult price
+            Text price3 = new Text()
+            {
+                DisplayedString = "Price: 40",
+                Font = font,
+                CharacterSize = 18,
+                Position = new Vector2f(200, 55),
+                FillColor = Color.Black,
+            };
+            // Drake price
+            Text price4 = new Text()
+            {
+                DisplayedString = "Price: 15",
+                Font = font,
+                CharacterSize = 18,
+                Position = new Vector2f(10, 120),
+                FillColor = Color.Black,
+            };
+            //Goblin price
+            Text price5 = new Text()
+            {
+                DisplayedString = "Price: 3",
+                Font = font,
+                CharacterSize = 18,
+                Position = new Vector2f(105, 120),
+                FillColor = Color.Black,
+            };
+            // Paladin price
+            Text price6 = new Text()
+            {
+                DisplayedString = "Price: 12",
+                Font = font,
+                CharacterSize = 18,
+                Position = new Vector2f(200, 120),
                 FillColor = Color.Black,
             };
 
@@ -701,10 +756,10 @@ namespace BirdHouse_Battle.UI
             buttons[2] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 125);
             buttons[3] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 30);
             buttons[4] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 95);
-            buttons[5] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 160);
-            buttons[6] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
+            buttons[5] = CreateShape(Bsize, "../../../../res/button_goblin.png", 105, 95);
+            buttons[6] = CreateShape(Bsize, "../../../../res/button_paladin.png", 200, 95);
             buttons[7] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
-            buttons[8] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
+            buttons[8] = CreateShape(Bsize, "../../../../res/button_catapult.png", 200, 30);
 
             foreach (var t in buttons)
             {
@@ -714,6 +769,12 @@ namespace BirdHouse_Battle.UI
             messages[0] = messageTeam1;
             messages[1] = messageTeam2;
             messages[2] = messageGold;
+            messages[3] = price1;
+            messages[4] = price2;
+            messages[5] = price3;
+            messages[6] = price4;
+            messages[7] = price5;
+            messages[8] = price6;
 
             foreach (var t in messages)
             {
