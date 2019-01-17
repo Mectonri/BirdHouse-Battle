@@ -247,17 +247,18 @@ namespace BirdHouse_Battle.UI
         public Shape[] MenuDisplay()
         {
             Vector2f Bsize = new Vector2f(100, 25);
-            Shape[] buttons = new RectangleShape[6];
+            Shape[] buttons = new RectangleShape[7];
 
             Shape MenuBackground = CreateShape(512, 712, "../../../../res/main.png",0 , 0);
             _window.Draw(MenuBackground);
             
             buttons[0] = CreateShape(Bsize, "../../../../res/button_start.png", 200, 100); // take us to pregame sreen
             buttons[1] = CreateShape(Bsize, "../../../../res/button_quick-game.png", 200, 150); //quick game
-            buttons[2] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 200);// to history mode
-            buttons[3] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 250);// to settings
-            buttons[4] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 300); // to credits
-            buttons[5] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 350); //take us to exit screen
+            buttons[2] = CreateShape(Bsize, "../../../../res/button_historic.png", 200, 200); // Hitoric
+            buttons[3] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 250); // to history mode
+            buttons[4] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 300); // to settings
+            buttons[5] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 350); // to credits
+            buttons[6] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 400); //take us to exit screen
            
             foreach (var t in buttons)
             {
@@ -567,13 +568,14 @@ namespace BirdHouse_Battle.UI
             Shape HistoryLvSelectionBG = CreateShape(512, 712, "../../../../res/history.png", 0, 0);// History mode Background
             _window.Draw(HistoryLvSelectionBG);
 
-            Shape[] buttons = new RectangleShape[3];
+            Shape[] buttons = new RectangleShape[6];
 
             buttons[0] = CreateShape(75, 25, "../../../../res/button_main-menu.png", 50, 612);// return button
-            buttons[1] = CreateShape(75, 25, "../../../../res/button_archer.png", 218, 200);// Level button
-
-            //\\ to be removed
-            buttons[2] = CreateShape(75, 25, "../../../../res/button_play.png", 400, 612);//plays button
+            buttons[1] = CreateShape(75, 25, "../../../../res/button_level1.png", 218, 200); // Level button
+            buttons[2] = CreateShape(75, 25, "../../../../res/button_level2.png", 218, 250); // Level button
+            buttons[3] = CreateShape(75, 25, "../../../../res/button_level3.png", 218, 300); // Level button
+            buttons[4] = CreateShape(75, 25, "../../../../res/button_level4.png", 218, 350); // Level button
+            buttons[5] = CreateShape(75, 25, "../../../../res/button_level5.png", 218, 400); //level Button
 
             foreach (var t in buttons)
             {

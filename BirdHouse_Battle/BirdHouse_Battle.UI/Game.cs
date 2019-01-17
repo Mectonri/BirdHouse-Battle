@@ -2,12 +2,12 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
-using System.Linq;
 
 namespace BirdHouse_Battle.UI
 {
