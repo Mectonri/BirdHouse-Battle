@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 
 namespace BirdHouse_Battle.Model
 {
@@ -11,6 +12,21 @@ namespace BirdHouse_Battle.Model
         {
             _x = x;
             _y = y;
+        }
+
+
+        public Vector(JToken jToken)
+        {
+            _x = jToken["X"].Value<double>();
+            _y = jToken["Y"].Value<double>();
+        }
+
+        public JToken Serialization()
+        {
+            return new JObject(
+                 new JProperty("X", _x),
+                 new JProperty("Y", _y)
+                 );
         }
 
         public double X
