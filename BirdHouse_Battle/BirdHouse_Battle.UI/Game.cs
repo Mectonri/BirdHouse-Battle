@@ -188,26 +188,11 @@ namespace BirdHouse_Battle.UI
         /// <returns></returns>
         public int FindWinner()
         {
-            if (_arena.FindTeam("blue") == true || _arena.FindTeam("Team1"))
+            foreach (KeyValuePair<string, Team> kv in Arena.Teams)
             {
-                Console.WriteLine("Blue team won");
-                return _winner = 1;
+                return _winner = kv.Value.TeamNumber;
             }
-            else if (_arena.FindTeam("red") == true || _arena.FindTeam("Team2"))
-            {
-                Console.WriteLine("Red team won");
-                return _winner = 2;
-            }
-            else if (_arena.FindTeam("green") == true || _arena.FindTeam("Team3"))
-            {
-                Console.WriteLine("Green team won");
-                return _winner = 3;
-            }
-            else
-            {
-                Console.WriteLine("Yellow team won");
-                return _winner = 4;
-            }
+            return _winner;
         }
 
         /// <summary>
@@ -301,7 +286,6 @@ namespace BirdHouse_Battle.UI
         {
             throw  new NotImplementedException();
         }
-
 
         public void Run(string mode, string path)
         {
@@ -451,10 +435,10 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        public Shape[] InitGUIElder()
+        public Shape[] InitGUIElder(string[] dNames)
         {
             Window.Clear();
-            Shape[] buttons = draw.ElderGameDisplay();
+            Shape[] buttons = draw.ElderGameDisplay(dNames);
             Window.Display();
 
             return buttons;
@@ -588,7 +572,7 @@ namespace BirdHouse_Battle.UI
                 dNames[i] = dossiers[i].Name;
             }
 
-            Shape[] buttons = InitGUIElder();
+            Shape[] buttons = InitGUIElder(dNames);
             while (Window.IsOpen && Status == "main")
             {
                 _iHandler.HandlerElderGame(buttons);

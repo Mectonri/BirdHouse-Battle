@@ -15,6 +15,7 @@ namespace BirdHouse_Battle.Model
         readonly int _width;
         int _counter;
         readonly Field _field;
+         
 
         public Arena()
         {

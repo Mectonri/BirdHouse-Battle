@@ -16,14 +16,14 @@ namespace BirdHouse_Battle.Model
         readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
 
-        int _aToAdd;// Number of Archer   to add to a Team
-        int _bToAdd;// Number of Balista  to add to a Team
-        int _cToAdd;// Number of Catapult to add to a Team
-        int _dToAdd;// Number of Drake    to add to a Team
-        int _gToAdd;// Number of Goblin   to add to a Team
-        int _pToAdd;// Number of Paladin  to add to a Team
+        internal int _aToAdd;// Number of Archer   to add to a Team
+        internal int _bToAdd;// Number of Balista  to add to a Team
+        internal int _cToAdd;// Number of Catapult to add to a Team
+        internal int _dToAdd;// Number of Drake    to add to a Team
+        internal int _gToAdd;// Number of Goblin   to add to a Team
+        internal int _pToAdd;// Number of Paladin  to add to a Team
         
-        int _aCount; // Number of Archer   in a team
+        internal int _aCount; // Number of Archer   in a team
         int _bCount; // Number of Balista  in a team
         int _cCount; // Number of Catapult in a team
         int _dCount; // Number of Drake    in a team
@@ -33,11 +33,13 @@ namespace BirdHouse_Battle.Model
 
         bool _isWiped;
 
-        double _goldAmount; // Amount of gold given to the player in HistoryMode  
+        internal double _goldAmount; // Amount of gold given to the player in HistoryMode  
         readonly int _limitNbUnit; // unit limit by team
-        Arena _arena; // Adds team conttext which is the Arena
+        internal Arena _arena; // Adds team conttext which is the Arena
         internal Dictionary<int, Unit> _deadUnits; 
         internal Dictionary<int, Unit> _units;
+
+        internal double _health;
 
         Unit _goblinsTarget;
         Unit _archersTarget;
@@ -61,6 +63,7 @@ namespace BirdHouse_Battle.Model
 
             _units = new Dictionary<int, Unit>();
             _deadUnits = new Dictionary<int, Unit>();
+            _health = HealthCalculation();
         }
 
         #region relevent to serialization
@@ -175,6 +178,7 @@ namespace BirdHouse_Battle.Model
 
         #region Getters & Setters
 
+        public double Health => _health;
         public string Name => _name;
 
         public int TeamNumber => _teamNumber;
@@ -450,6 +454,54 @@ namespace BirdHouse_Battle.Model
                 }
                 else { _pCount--; }
             }
+        }
+
+        public double HealthCalculation()
+        {
+            double h = 0;
+            foreach (KeyValuePair<int, Unit> kv in _units)
+            {
+                h = kv.Value.Life + h;
+            }
+            return h;
+        }
+
+        public double AddWithGold(int unit)
+        {
+            double result = 0.0;
+            switch (unit)
+            {
+                case 1:
+                    result = GoldAmount - 10.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddArcher(1); return GoldAmount = result; }
+
+                case 2:
+                    result = GoldAmount - 30.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddBalista(1); return GoldAmount = result; }
+
+                case 3:
+                    result = GoldAmount - 40.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddCatapult(1); return GoldAmount = result; }
+
+                case 4:
+                    result = GoldAmount - 15.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddDrake(1); return GoldAmount = result; }
+
+                case 5:
+                    result = GoldAmount - 3.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddGoblin(1); return GoldAmount = result; }
+
+                case 6:
+                    result = GoldAmount - 12.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddPaladin(1); return GoldAmount = result; }
+            }
+            return GoldAmount;
         }
 
         /// <summary>
