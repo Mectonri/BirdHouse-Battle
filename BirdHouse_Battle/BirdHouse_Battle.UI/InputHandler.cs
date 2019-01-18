@@ -346,7 +346,7 @@ namespace BirdHouse_Battle.UI
             }//PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "game";
+                game.Status = "historyGame";
             }
         }
 
@@ -367,7 +367,7 @@ namespace BirdHouse_Battle.UI
             } // PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "game";
+                game.Status = "historyGame";
                 return teamComp;
             } // Add Archer
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))

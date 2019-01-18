@@ -27,17 +27,14 @@ namespace BirdHouse_Battle.Model
             _counter = 0;
             _field = new Field(this, -_height, _height, -_width, _width);
 
-            if (true) // Créer le bool de nouvelle partie / rejouer partie
-            {
-                _field.Init();
-            }
+            _field.Init();
         }
         
         /// <summary>
         /// Deserialize a Arena
         /// </summary>
         /// <param name="jToken"></param>
-        public Arena( JToken jToken)
+        public Arena(JToken jToken)
         {
             _teams = new Dictionary<string, Team>();
             _deadTeams = new Dictionary<string, Team>();
@@ -46,11 +43,6 @@ namespace BirdHouse_Battle.Model
             _height = 250;
             _width = 250;
             _counter = 0;
-
-            if (true) // Créer le bool de nouvelle partie / rejouer partie
-            {
-                _field.Init();
-            }
 
             JArray jTeams = (JArray)jToken["Teams"];
             JArray jUnits = (JArray)jToken["Units"];
@@ -83,6 +75,8 @@ namespace BirdHouse_Battle.Model
             }
             
             _field = new Field(this, -Height, Height, -Width, Width);
+            
+            _field.Init();
         }
 
         public JToken Serialize()

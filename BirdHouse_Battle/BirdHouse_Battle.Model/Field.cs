@@ -11,6 +11,7 @@ namespace BirdHouse_Battle.Model
         Arena _arena;
         Tile[,] _tiles;
         Dictionary<string, Tile> _elements;
+        Bitmap _picture;
 
         public Field(Arena arena, int startX, int endX, int startY, int endY)
         {
@@ -561,6 +562,12 @@ namespace BirdHouse_Battle.Model
             }
 
             pic.Save("../../../../res/DiamondBackground.png");
+            _picture = pic;
+        }
+
+        public void SavePicture(string path)
+        {
+            _picture.Save(path + "/BackGround.png");
         }
     }
 }

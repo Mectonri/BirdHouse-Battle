@@ -92,11 +92,12 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
-        public bool GameLoop(Arena arena, string mode)
+        public bool GameLoop(Arena arena, string mode, string path)
         {
-            if (mode == "replay")
+            if (mode == "play")
             {
-                SaveState();
+                path = SaveState();
+                Arena.Field.SavePicture(path);
             }
             _return = true;
             double previous = GetCurrentTime();
@@ -132,7 +133,19 @@ namespace BirdHouse_Battle.UI
             }
             //ListTeam(arena);
             _winner = FindWinner();
+            if (mode == "play")
+            {
+                JToken endGame = new JObject(
+                    new JProperty("winner", _winner),
+                    new JProperty("tour", _tour));
 
+                using (FileStream fs = File.OpenWrite(path + "/endGame.json"))
+                using (StreamWriter sw = new StreamWriter(fs))
+                using (JsonTextWriter jw = new JsonTextWriter(sw))
+                {
+                    endGame.WriteTo(jw);
+                }
+            }
             Status = "ended";
             arena.Teams.Clear();
             arena.Projectiles.Clear();
@@ -142,7 +155,7 @@ namespace BirdHouse_Battle.UI
             return true;
         }
 
-        public void SaveState()
+        public string SaveState()
         {
             string date = DateTime.Now.ToString("yyyy_MM_dd H mm");
             string pathString = $"../../../../saveStates/{date}";
@@ -155,6 +168,8 @@ namespace BirdHouse_Battle.UI
             {
                 save.WriteTo(jw);
             }
+
+            return pathString;
         }
 
         private void ListTeam(Arena arena)
@@ -205,20 +220,20 @@ namespace BirdHouse_Battle.UI
 
             string path = "../../../../res/HistoryMode.JSON";
 
-            Arena a = new Arena();
+            Arena a = new Arena("");
             Team t = a.CreateTeam("red");
             t.AddArcher(10);
             t.Acount = 10;
             arenas.Add(0, a);
             //JToken jToken = a.Serialize();
 
-            Arena a1 = new Arena();
+            Arena a1 = new Arena("");
             Team t1 = a1.CreateTeam("red");
             t1.AddGoblin(10);
             t.Gcount = 10;
             arenas.Add(1, a1);
 
-            Arena a2 = new Arena();
+            Arena a2 = new Arena("");
             Team t2 = a2.CreateTeam("red");
             t2.AddDrake(10);
             t2.Dcount = 10;
@@ -288,14 +303,14 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public void Run(string mode)
+        public void Run(string mode, string path)
         {
-            GameLoop(Arena, mode);
+            GameLoop(Arena, mode, path);
         }
 
-        public void RunHistory()
+        public void RunHistory(string path)
         {
-            GameLoop(Arena, "history");
+            GameLoop(Arena, "history", path);
         }
 
         public void Render(Arena arena)
@@ -397,7 +412,7 @@ namespace BirdHouse_Battle.UI
 
             arena.SpawnUnit();
 
-            Run("play");
+            Run("play", "");
         }
 
         /// <summary>

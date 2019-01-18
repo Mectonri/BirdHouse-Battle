@@ -8,6 +8,7 @@
             Game game = new Game();
             //game.ElderGame();
             string LastStatut = "";
+            string path = "";
             while (run == true)
             {
                 switch (game.Status)
@@ -29,20 +30,20 @@
                         
                         break;
                     case "game"://game screen
-                        game.Run("play");
+                        game.Run("play", path);
                         break;
 
                     case "elderGame":
                         LastStatut = "elderGame";
-                        game.ElderGame();
+                        /*path = */game.ElderGame();
                         break;
 
                     case "replay":
-                        game.Run("replay"/*, path*/);
+                        game.Run("replay", path);
                         break;
 
                     case "historyGame":
-                       game.RunHistory();
+                       game.RunHistory(path);
                         break; 
                     case "return"://close the window
                         LastStatut = "return";
