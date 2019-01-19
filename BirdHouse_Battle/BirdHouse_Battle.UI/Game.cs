@@ -306,6 +306,19 @@ namespace BirdHouse_Battle.UI
             Window.Display();
         }
 
+        internal double[] StartingHealth(Arena arena)
+        {
+            double[] healths = new double[4];
+            int i = 0;
+            foreach(KeyValuePair<string, Team> kv in arena.Teams)
+            {
+                healths[i] = kv.Value.HealthCalculation();
+                i++;
+            }
+
+            return healths;
+        }
+
         public void Switch(string input)
         {
             switch (input)

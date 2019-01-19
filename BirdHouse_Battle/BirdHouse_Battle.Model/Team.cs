@@ -6,11 +6,7 @@ using System.Linq;
 namespace BirdHouse_Battle.Model
 {
     public class Team
-    {
-        /// <summary>
-        /// Archer is a unit type same as Paladin and Goblin 
-        /// </summary>
-        
+    {         
         //Team number is associated with a color, so creating a team take the color as argument
         readonly string _name;
         readonly int _teamNumber; //number is used to assign a color to a team
@@ -431,31 +427,20 @@ namespace BirdHouse_Battle.Model
             {
                 u.DieNullContext();
                 _units.Remove(u.Name);
-                string s = u.GetType().ToString();
-                if (s == "BirdHouse_Battle.Model.Archer")
-                {
-                    _aCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Goblin")
-                {
-                    _gCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Drake")
-                {
-                    _dCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Catapult")
-                {
-                    _cCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Balista")
-                {
-                    _bCount--;
-                }
+                
+                if (u is Archer)        _aCount--;
+                else if (u is Goblin)   _gCount--;
+                else if (u is Drake)    _dCount--;
+                else if (u is Catapult) _cCount--;
+                else if (u is Balista)  _bCount--;
                 else { _pCount--; }
             }
         }
 
+        /// <summary>
+        /// Returns the total health of a team
+        /// </summary>
+        /// <returns></returns>
         public double HealthCalculation()
         {
             double h = 0;
@@ -525,7 +510,7 @@ namespace BirdHouse_Battle.Model
         {
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                if (unit.Value.GetType().ToString() != "BirdHouse_Battle.Model.Goblin")
+                if (unit.Value is Goblin)
                 {
                     return false;
                 }
@@ -540,7 +525,7 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                if (unit.Value.GetType().ToString() == "BirdHouse_Battle.Model.Goblin")
+                if (unit.Value is Goblin)
                 {
                     GlobalLocation.Add(unit.Value.Location);
                     Count++;
@@ -556,7 +541,7 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                if (unit.Value.GetType().ToString() == "BirdHouse_Battle.Model.Archer")
+                if (unit.Value is Archer)
                 {
                     GlobalLocation.Add(unit.Value.Location);
                     Count++;
@@ -572,15 +557,15 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                string type = unit.Value.GetType().ToString();
+                Unit u = unit.Value;
 
-                if (type == "BirdHouse_Battle.Model.Goblin" || type == "BirdHouse_Battle.Model.Archer")
+                if (u is Goblin || u is Archer)
                 {
                     Vector location = unit.Value.Location;
 
                     Vector globalLocation;
 
-                    if (type == "BirdHouse_Battle.Model.Goblin")
+                    if (u is Goblin)
                     {
                         globalLocation = Vector.Soustract(GoblinsTarget.Location, unit.Value.Location);
                     }
@@ -593,12 +578,12 @@ namespace BirdHouse_Battle.Model
                     {
                         location = Vector.Soustract(unit.Value.Target.Location, unit.Value.Location);
 
-                        if (location.Magnitude * 2 >= globalLocation.Magnitude && type == "BirdHouse_Battle.Model.Goblin")
+                        if (location.Magnitude * 2 >= globalLocation.Magnitude && u is Goblin)
                         {
                             _goblinsAttack += unit.Value.Strength;
                             unit.Value.TeamPlayOn();
                         }
-                        else if (location.Magnitude * 2 >= globalLocation.Magnitude && type == "BirdHouse_Battle.Model.Archer")
+                        else if (location.Magnitude * 2 >= globalLocation.Magnitude && u is Archer)
                         {
                             _archersAttack += unit.Value.Strength;
                             unit.Value.TeamPlayOn();

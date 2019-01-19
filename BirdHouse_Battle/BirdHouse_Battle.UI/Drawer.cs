@@ -31,12 +31,12 @@ namespace BirdHouse_Battle.UI
             _font = new Font("../../../../res/Overlock-Regular.ttf");//font for the text
 
             _window = Window;
-            
+
             _winnerButton = new RectangleShape()
             {
                 Size = new Vector2f(250, 100),
                 Position = new Vector2f(128, 374)
-            };         
+            };
             Window.Draw(CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
         }
 
@@ -45,17 +45,21 @@ namespace BirdHouse_Battle.UI
         /// </summary>
         public void BackGroundGame()
         {
-            _window.Draw( CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
-            _window.Draw( CreateShape(512,512, "../../../../res/DiamondBackground.png", 0, 0));
+            _window.Draw(CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
+            _window.Draw(CreateShape(512, 512, "../../../../res/DiamondBackground.png", 0, 0));
             _window.Draw(CreateShape(512, 200, "../../../../res/LEGEND.png", 0, 512));
         }
 
-        public void Healthbar( Arena arena)
+        public void Healthbar(double[] StartingHealth, Arena arena)
         {
-            foreach (KeyValuePair<string,Team> kv in  arena.Teams)
+            double[] healths = new double[4];
+            int i = 0;
+            foreach (KeyValuePair<string, Team> kv in arena.Teams)
             {
-               //Text health = WritteText()
+                healths[i] = kv.Value.Health / StartingHealth[1] * 100;
             }
+
+            Text health1 = WritteText($"healths[1]", 15, 128 , 200);
         }
 
         #region CreataShape & overloads
@@ -182,11 +186,11 @@ namespace BirdHouse_Battle.UI
         {
             Shape shape = null;
 
-            if ( unit is Archer) { shape = CreateShape(unit, 7, 3); }
-            else if ( unit is Balista ) { shape = CreateShape(unit, 8, 6); }
-            else if ( unit is Catapult ) { shape = CreateShape(unit, 8, 7); }
-            else if ( unit is Drake ) { shape = CreateShape(unit, 8, 5); }
-            else if ( unit is Goblin ) { shape = CreateShape(unit, 6, 0);}
+            if      ( unit is Archer)   { shape = CreateShape(unit, 7, 3);}
+            else if ( unit is Balista ) { shape = CreateShape(unit, 8, 6);}
+            else if ( unit is Catapult ){ shape = CreateShape(unit, 8, 7);}
+            else if ( unit is Drake )   { shape = CreateShape(unit, 8, 5);}
+            else if ( unit is Goblin )  { shape = CreateShape(unit, 6, 0);}
             else { shape  = DisplayPaladin(unit);}// case paladin
 
             return shape;
