@@ -76,9 +76,9 @@
 
                         break;
 
-                    //case "placement":
-                    //    game.Placement();
-                    //    break;
+                    case "placement":
+                        game.Placement();
+                        break;
 
                     default:
                         LastStatut = "MainMenu";

@@ -583,61 +583,37 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public Shape[] PlacementDisplay(Arena arena)
+        public Shape[] PlacementDisplay(Arena arena, string [] status)
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
 
+            RectangleShape font = new RectangleShape(new Vector2f(1000,1000));
+            RectangleShape redFont = new RectangleShape(new Vector2f(256, 512));
+            RectangleShape blueFont = new RectangleShape(new Vector2f(256, 512));    
 
 
-            Shape[] buttons = new Shape[9];
-            RenderStates rs = new RenderStates(); 
-            RectangleShape team1 = new RectangleShape(Bsize);
-            RectangleShape team2 = new RectangleShape(Bsize);
-            RectangleShape team3 = new RectangleShape(Bsize);
-            RectangleShape team4 = new RectangleShape(Bsize);
-            RectangleShape font = new RectangleShape(new Vector2f(560,200));
-            RectangleShape over1 = new RectangleShape(new Vector2f(512, 128));
-            RectangleShape over2 = new RectangleShape(new Vector2f(512, 128));
-            if (arena.FindTeam("green")==true)
-            {
-                over1 = new RectangleShape(new Vector2f(128, 128));
-                over2 = new RectangleShape(new Vector2f(128, 128));
-            }
-            RectangleShape over3 = new RectangleShape(new Vector2f(128,128));
-            RectangleShape over4 = new RectangleShape(new Vector2f(128,128));
-
-            team1.Position = new Vector2f(0, 0);
-            team2.Position = new Vector2f(0, 0);
-            font.Position = new Vector2f(0,510);
-
-            if (arena.FindTeam("green")==true)
-            {
-                team3.Position = new Vector2f(0, 0);
-            }
-            if (arena.FindTeam("yellow")==true)
-            {
-                team4.Position = new Vector2f(0, 0);
-
-            }
-
-            buttons[0] = team1;
-            buttons[1] = team2;
-            buttons[2] = team3;
-            buttons[3] = team4;
-            buttons[4] = font;
-            buttons[5] = over1;
-            buttons[6] = over2;
-            buttons[7] = over3;
-            buttons[8] = over4;
+            font.FillColor = new Color(255, 255, 255);
+            font.Position = new Vector2f(0, 512);
             
-            
-
-            for (int i = 0; i < buttons.Length; i++)
+            if (status[0]=="red")
             {
-                buttons[i].FillColor= new Color(250,250,250);
-                //buttons[i].Position = new Vector2f(0,300);
+                redFont.FillColor = new Color(255, 0, 0, 50);
+                blueFont.FillColor = new Color(50, 50, 50, 150);
+            }else if (status[0] == "blue")
+            {
+                redFont.FillColor = new Color(50, 50, 50, 150);
+                blueFont.FillColor = new Color(0, 0, 255, 50);
             }
+            
+            redFont.Position = new Vector2f(0, 0);
+            blueFont.Position = new Vector2f(256,0);
 
+            Shape[] buttons = new Shape[3];
+            RenderStates rs = new RenderStates();
+
+            buttons[0] = font;
+            buttons[1] = redFont;
+            buttons[2] = blueFont;
             foreach (var t in buttons)
             {
                 t.Draw(_window, rs);

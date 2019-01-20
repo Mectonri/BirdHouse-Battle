@@ -972,25 +972,46 @@ namespace BirdHouse_Battle.UI
                         }
                     }
                 }
-                Arena.SpawnUnit();
+                //Arena.SpawnUnit();
             }
         }
 
-        public void InitPlacement()
+
+
+
+
+        public Shape[] InitPlacement(string[] status)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            Shape[] buttons = draw.PlacementDisplay(Arena);
+            Shape [] buttons = draw.PlacementDisplay(Arena, status);
             Window.Display();
+            return buttons;
         }
 
         public void Placement()
         {
+            string[] status = new string[1];
+            status[0] = "red";
+            double previous = GetCurrentTime();
             while (Window.IsOpen && Status=="placement")
             {
-                InitPlacement();
+                
+                double current = GetCurrentTime();
+                if (current - previous >= 0.0000019)
+                {
+                    previous = current;
+                    Shape[] buttons  = InitPlacement(status);
+                    Window.DispatchEvents();
+                    status = _iHandler.HandlerPlacement(status, buttons);
+
+                }
             }
+
         }
+
+
+
         #endregion
 
         public bool IsValidToAddUnit(int[,] TeamCompo, int i, string[] status)
