@@ -991,8 +991,9 @@ namespace BirdHouse_Battle.UI
 
         public void Placement()
         {
-            string[] status = new string[1];
+            string[] status = new string[2];
             status[0] = "red";
+            status[1] = "1";
             double previous = GetCurrentTime();
             while (Window.IsOpen && Status=="placement")
             {

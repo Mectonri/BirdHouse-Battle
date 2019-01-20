@@ -586,34 +586,81 @@ namespace BirdHouse_Battle.UI
         public Shape[] PlacementDisplay(Arena arena, string [] status)
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
+            Font textfont = new Font("../../../../res/Overlock-Regular.ttf");
 
             RectangleShape font = new RectangleShape(new Vector2f(1000,1000));
+            font.Position = new Vector2f(0, 512);
             
             RectangleShape redFont = new RectangleShape(new Vector2f(256, 512));
             RectangleShape blueFont = new RectangleShape(new Vector2f(256, 512));
             RectangleShape yellowFont = new RectangleShape(new Vector2f(256, 512));
             RectangleShape greenFont = new RectangleShape(new Vector2f(256, 512));
-            
+
+            yellowFont.FillColor = new Color(0, 0, 0, 255);
+            greenFont.FillColor = new Color(0, 0, 0, 255);
+
+            RectangleShape button1 = new RectangleShape(new Vector2f(30,25));
+            RectangleShape button10 = new RectangleShape(new Vector2f(30,25));
+            RectangleShape button100 = new RectangleShape(new Vector2f(30,25));
+            Text txtButton1 = new Text("1",textfont,15);
+            Text txtButton10 = new Text("10",textfont,15);
+            Text txtButton100 = new Text("100",textfont,15);
 
             RectangleShape selectionRed = new RectangleShape(Bsize);    
             RectangleShape selectionBlue = new RectangleShape(Bsize);
-            RectangleShape selectionGreen = new RectangleShape(Bsize);
-            RectangleShape selectionYellow = new RectangleShape(Bsize);
+            RectangleShape selectionGreen = new RectangleShape(new Vector2f(0,0));
+            RectangleShape selectionYellow = new RectangleShape(new Vector2f(0,0));
+
+            button1.Position = new Vector2f(330,520);
+            button10.Position = new Vector2f(360,520);
+            button100.Position = new Vector2f(390,520);
+            txtButton1.Position = new Vector2f(340, 520);
+            txtButton10.Position = new Vector2f(360, 520);
+            txtButton100.Position = new Vector2f(390, 520);
+            txtButton1.FillColor = new Color(0, 0, 0);
+            txtButton10.FillColor = new Color(0, 0, 0);
+            txtButton100.FillColor = new Color(0, 0, 0);
 
             selectionRed.Position = new Vector2f(10,520);
             selectionRed.FillColor = new Color(255, 0, 0);
             selectionBlue.Position = new Vector2f(90, 520);
             selectionBlue.FillColor = new Color(0,0,255);
+
             if (arena.FindTeam("green"))
             {
-                selectionGreen.Position = new Vector2f(170,520);
+                selectionGreen = new RectangleShape(Bsize);
+                selectionGreen.Position = new Vector2f(170, 520);
                 selectionGreen.FillColor = new Color(0, 255, 0);
             }
             if (arena.FindTeam("yellow"))
             {
+                selectionYellow = new RectangleShape(Bsize);
                 selectionYellow.Position = new Vector2f(250, 520);
                 selectionYellow.FillColor = new Color(255, 255, 0);
             }
+
+
+
+            if (status[1] == "1")
+            {
+                button1.FillColor = new Color(100, 100, 100);
+                button10.FillColor = new Color(200, 200, 200);
+                button100.FillColor = new Color(200, 200, 200);
+            }
+            else if (status[1] == "10")
+            {
+                button1.FillColor = new Color(200, 200, 200);
+                button10.FillColor = new Color(100, 100, 100);
+                button100.FillColor = new Color(200, 200, 200);
+            }
+            else
+            {
+                button1.FillColor = new Color(200, 200, 200);
+                button10.FillColor = new Color(200, 200, 200);
+                button100.FillColor = new Color(100, 100, 100);
+            }
+
+          
 
 
             font.FillColor = new Color(255, 255, 255);
@@ -648,8 +695,11 @@ namespace BirdHouse_Battle.UI
                 greenFont.Position = new Vector2f(256, 0);
                 yellowFont.Position = new Vector2f(256, 256);
 
+                selectionGreen.FillColor = new Color(0, 255, 0);
+
                 if (arena.FindTeam("yellow"))
                 {
+                    selectionYellow.FillColor = new Color(255, 255, 0);
                     yellowFont.FillColor = new Color(50, 50, 50, 150);
                 }
 
@@ -678,7 +728,7 @@ namespace BirdHouse_Battle.UI
             }
             
 
-            Shape[] buttons = new Shape[9];
+            Shape[] buttons = new Shape[12];
             RenderStates rs = new RenderStates();
 
             buttons[0] = font;
@@ -690,11 +740,27 @@ namespace BirdHouse_Battle.UI
             buttons[6] = yellowFont;
             buttons[7] = selectionGreen;
             buttons[8] = selectionYellow;
-            
+            buttons[9] = button1;
+            buttons[10] = button10;
+            buttons[11] = button100;
+
+            Text[] text = new Text[3];
+
+            text[0] = txtButton1;
+            text[1] = txtButton10;
+            text[2] = txtButton100;
+
+
             foreach (var t in buttons)
             {
                 t.Draw(_window, rs);
                 _window.Draw(t);
+            }
+
+            foreach (var t2 in text)
+            {
+                t2.Draw(_window, rs);
+                _window.Draw(t2);
             }
 
             return buttons;
