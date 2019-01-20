@@ -588,32 +588,109 @@ namespace BirdHouse_Battle.UI
             Vector2f Bsize = new Vector2f(75, 25);//button size
 
             RectangleShape font = new RectangleShape(new Vector2f(1000,1000));
+            
             RectangleShape redFont = new RectangleShape(new Vector2f(256, 512));
-            RectangleShape blueFont = new RectangleShape(new Vector2f(256, 512));    
+            RectangleShape blueFont = new RectangleShape(new Vector2f(256, 512));
+            RectangleShape yellowFont = new RectangleShape(new Vector2f(256, 512));
+            RectangleShape greenFont = new RectangleShape(new Vector2f(256, 512));
+            
+
+            RectangleShape selectionRed = new RectangleShape(Bsize);    
+            RectangleShape selectionBlue = new RectangleShape(Bsize);
+            RectangleShape selectionGreen = new RectangleShape(Bsize);
+            RectangleShape selectionYellow = new RectangleShape(Bsize);
+
+            selectionRed.Position = new Vector2f(10,520);
+            selectionRed.FillColor = new Color(255, 0, 0);
+            selectionBlue.Position = new Vector2f(90, 520);
+            selectionBlue.FillColor = new Color(0,0,255);
+            if (arena.FindTeam("green"))
+            {
+                selectionGreen.Position = new Vector2f(170,520);
+                selectionGreen.FillColor = new Color(0, 255, 0);
+            }
+            if (arena.FindTeam("yellow"))
+            {
+                selectionYellow.Position = new Vector2f(250, 520);
+                selectionYellow.FillColor = new Color(255, 255, 0);
+            }
 
 
             font.FillColor = new Color(255, 255, 255);
             font.Position = new Vector2f(0, 512);
-            
-            if (status[0]=="red")
+
+
+            redFont.Position = new Vector2f(0, 0);
+            blueFont.Position = new Vector2f(256, 0);
+
+            if (!arena.FindTeam("green"))
             {
-                redFont.FillColor = new Color(255, 0, 0, 50);
-                blueFont.FillColor = new Color(50, 50, 50, 150);
-            }else if (status[0] == "blue")
+                if (status[0] == "red")
+                {
+                    redFont.FillColor = new Color(255, 0, 0, 50);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                }
+                else if (status[0] == "blue")
+                {
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    blueFont.FillColor = new Color(0, 0, 255, 50);
+                }
+            }
+            else
             {
-                redFont.FillColor = new Color(50, 50, 50, 150);
-                blueFont.FillColor = new Color(0, 0, 255, 50);
+                redFont = new RectangleShape(new Vector2f(256,256));
+                blueFont = new RectangleShape(new Vector2f(256,256));
+                greenFont = new RectangleShape(new Vector2f(256,256));
+                yellowFont = new RectangleShape(new Vector2f(256,256));
+
+                redFont.Position = new Vector2f(0,0);
+                blueFont.Position = new Vector2f(0, 256);
+                greenFont.Position = new Vector2f(256, 0);
+                yellowFont.Position = new Vector2f(256, 256);
+
+                if (arena.FindTeam("yellow"))
+                {
+                    yellowFont.FillColor = new Color(50, 50, 50, 150);
+                }
+
+                if (status[0] == "red")
+                {
+                    redFont.FillColor = new Color(255, 0, 0, 50);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                    greenFont.FillColor = new Color(50, 50, 50, 150);
+                }else if (status[0]=="blue")
+                {
+                    blueFont.FillColor = new Color(0, 0, 255, 50);
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    greenFont.FillColor = new Color(50, 50, 50, 150);
+                }else if (status[0] == "green")
+                {
+                    greenFont.FillColor = new Color(0, 255, 0, 50);
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                }else if (status[0]=="yellow")
+                {
+                    yellowFont.FillColor = new Color(255, 255, 0, 50);
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                    greenFont.FillColor = new Color(50, 50, 50, 150);
+                }
             }
             
-            redFont.Position = new Vector2f(0, 0);
-            blueFont.Position = new Vector2f(256,0);
 
-            Shape[] buttons = new Shape[3];
+            Shape[] buttons = new Shape[9];
             RenderStates rs = new RenderStates();
 
             buttons[0] = font;
             buttons[1] = redFont;
             buttons[2] = blueFont;
+            buttons[3]= selectionRed;
+            buttons[4] = selectionBlue;
+            buttons[5] = greenFont;
+            buttons[6] = yellowFont;
+            buttons[7] = selectionGreen;
+            buttons[8] = selectionYellow;
+            
             foreach (var t in buttons)
             {
                 t.Draw(_window, rs);
