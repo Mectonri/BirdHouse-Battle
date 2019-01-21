@@ -287,8 +287,9 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        public Shape[] ElderGameDisplay(string[] dossiers)
+        public Shape[] ElderGameDisplay(string[] dossiers, string[] winner, string[] tours)
         {
+            
             uint size = 20;
             Vector2f Bsize = new Vector2f(75, 25);
             Shape[] buttons = new RectangleShape[11];
@@ -301,12 +302,18 @@ namespace BirdHouse_Battle.UI
 
             for (int i =0; i < 10; i++)
             {
-                buttons[i] = CreateShape(Bsize, "../../../../res/button_replay.png", PosX1, PosY+i*50);
-                saves[i] = WritteText(dossiers[i], size, PosX2, PosY+i*50);
+
+                buttons[i] = CreateShape(Bsize, "../../../../res/button_replay.png", PosX1, PosY + i * 50);
+                saves[i] = WritteText(dossiers[i]+"\t" + winner[i] + "\t" + tours[i], size, PosX2, PosY + i * 50);
+                saves[i].FillColor = Color.White;
                 saves[i].Draw(_window, _rs);
 
-                _window.Draw(buttons[i]);
-                _window.Draw(saves[i]);
+                if (dossiers[i] != null)
+                {
+                    _window.Draw(buttons[i]);
+                    _window.Draw(saves[i]);
+                }
+
             }
             buttons[10] = CreateShape(Bsize, "../../../../res/button_main-menu.png", 206, 630);
             _window.Draw(buttons[10]);
@@ -606,7 +613,7 @@ namespace BirdHouse_Battle.UI
 
         internal Shape[] HistoryResultDisplay(int winner)
         {
-            if (winner == 0)
+            if (winner == 1)
             {
                 _window.Draw(CreateShape(512, 712, "../../../../res/victory.jpg", 0, 0)); //BG
             }
