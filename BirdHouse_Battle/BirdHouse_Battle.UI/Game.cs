@@ -1011,9 +1011,10 @@ namespace BirdHouse_Battle.UI
 
         public void Placement()
         {
-            string[] status = new string[2];
+            string[] status = new string[3];
             status[0] = "red";
             status[1] = "1";
+            status[2] = "archer";
             double previous = GetCurrentTime();
             int[,] teamCompo = TeamCompo;
             while (Window.IsOpen && Status=="placement")

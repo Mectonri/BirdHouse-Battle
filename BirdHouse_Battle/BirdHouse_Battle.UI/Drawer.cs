@@ -626,6 +626,28 @@ namespace BirdHouse_Battle.UI
             selectionBlue.Position = new Vector2f(90, 520);
             selectionBlue.FillColor = new Color(0,0,255);
 
+            Shape buttonUnitSelect = new CircleShape(5);
+            buttonUnitSelect.FillColor = new Color(255, 0, 0);
+
+            if (status[2] == "archer")
+            {
+                buttonUnitSelect.Position = new Vector2f(5,560);
+            }else if (status[2] == "drake")
+            {
+                buttonUnitSelect.Position = new Vector2f(5, 600);
+            }else if (status[2] == "goblin")
+            {
+                buttonUnitSelect.Position = new Vector2f(5, 640);
+            }else if (status[2] == "paladin")
+            {
+                buttonUnitSelect.Position = new Vector2f(120,560);
+            }else if (status[2] == "balista")
+            {
+                buttonUnitSelect.Position = new Vector2f(120, 600);
+            }else if (status[2] == "catapult")
+            {
+                buttonUnitSelect.Position = new Vector2f(120, 640);
+            }
 
             if (arena.FindTeam("green"))
             {
@@ -730,7 +752,7 @@ namespace BirdHouse_Battle.UI
             }
             
 
-            Shape[] buttons = new Shape[18];
+            Shape[] buttons = new Shape[19];
             RenderStates rs = new RenderStates();
 
             buttons[0] = font;
@@ -745,20 +767,68 @@ namespace BirdHouse_Battle.UI
             buttons[9] = button1;
             buttons[10] = button10;
             buttons[11] = button100;
-            buttons[12] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 30);
-            buttons[13] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 95);
-            buttons[14] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 160);
-            buttons[15] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
-            buttons[16] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
-            buttons[17] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
+            buttons[12] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 560);
+            buttons[13] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 600);
+            buttons[14] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 640);
+            buttons[15] = CreateShape(Bsize, "../../../../res/button_paladin.png", 125, 560);
+            buttons[16] = CreateShape(Bsize, "../../../../res/button_balista.png", 125, 600);
+            buttons[17] = CreateShape(Bsize, "../../../../res/button_catapult.png", 125, 640);
+            buttons[18] = buttonUnitSelect;
 
-            Text txtArcher = new Text( "*"+teamCompo[0, 0].ToString(),textfont , 15);
-            Text txtDrake = new Text("*" + teamCompo[0, 1].ToString(), textfont, 15);
-            Text txtGobelin = new Text("*" + teamCompo[0, 2].ToString(), textfont, 15);
-            Text txtPaladin = new Text("*" + teamCompo[0, 3].ToString(), textfont, 15);
-            Text txtBalista = new Text("*" + teamCompo[0, 4].ToString(), textfont, 15);
-            Text txtCatapult = new Text("*" + teamCompo[0, 5].ToString(), textfont, 15);
-   
+            Text txtArcher = new Text("*" , textfont, 15);
+            Text txtDrake = new Text("*", textfont, 15);
+            Text txtGobelin = new Text("*" , textfont, 15);
+            Text txtPaladin = new Text("*", textfont, 15);
+            Text txtBalista = new Text("*", textfont, 15);
+            Text txtCatapult = new Text("*", textfont, 15);
+
+            if (status[0] == "blue")
+            {
+                txtArcher = new Text("*" + teamCompo[0, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + teamCompo[0, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + teamCompo[0, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + teamCompo[0, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + teamCompo[0, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + teamCompo[0, 5].ToString(), textfont, 15);
+            }
+            else if (status[0] == "red")
+            {
+                txtArcher = new Text("*" + teamCompo[1, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + teamCompo[1, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + teamCompo[1, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + teamCompo[1, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + teamCompo[1, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + teamCompo[1, 5].ToString(), textfont, 15);
+
+            }
+            else if (status[0]=="green")
+            {
+                txtArcher = new Text("*" + teamCompo[2, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + teamCompo[2, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + teamCompo[2, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + teamCompo[2, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + teamCompo[2, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + teamCompo[2, 5].ToString(), textfont, 15);
+
+            }
+            else
+            {
+                txtArcher = new Text("*" + teamCompo[3, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + teamCompo[3, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + teamCompo[3, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + teamCompo[3, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + teamCompo[3, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + teamCompo[3, 5].ToString(), textfont, 15);
+
+            }
+
+
+            txtArcher.Position = new Vector2f(90,560);
+            txtDrake.Position = new Vector2f(90,600);
+            txtGobelin.Position = new Vector2f(90,640);
+            txtPaladin.Position = new Vector2f(205,560);
+            txtBalista.Position = new Vector2f(205,600);
+            txtCatapult.Position = new Vector2f(205,640);
 
             Text[] text = new Text[9];
 
