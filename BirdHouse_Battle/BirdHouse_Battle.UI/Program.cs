@@ -64,6 +64,9 @@
                         game.ResultWindow();
 
                         break;
+                    case "historyEnded":
+                        game.HistoryResultWindow();
+                        break;
 
                     case "credit"://credit
                         LastStatut = "credit";

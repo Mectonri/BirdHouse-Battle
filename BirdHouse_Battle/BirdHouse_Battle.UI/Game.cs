@@ -23,6 +23,7 @@ namespace BirdHouse_Battle.UI
         double _previousP;
         double _msPerUpdate = 0.0000006;
         string _status;
+        string _lastStatus;
         public int _winner = 0;
         public int _tour = 0;
 
@@ -83,6 +84,12 @@ namespace BirdHouse_Battle.UI
 
         private static double TimeP => 0.000002;
 
+        public string LastStatus
+        {
+            get { return _lastStatus; }
+            set { _lastStatus = value; }
+        }
+
         static double GetCurrentTime() => DateTime.Now.ToOADate();
 
         internal static void Update(Arena arena)
@@ -92,6 +99,12 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
+
+        public void StatusSwitch(string last, string present)
+        {
+            Status = present;
+            LastStatus = last;
+        }
         public bool GameLoop(Arena arena, string mode, string path)
         {
             if (mode == "play")
@@ -121,11 +134,11 @@ namespace BirdHouse_Battle.UI
 
                 if (!_window.IsOpen || !Return)
                 {
-                    Status = "ended";
-                    arena.Teams.Clear();
-                    arena.Projectiles.Clear();
-                    arena.DeadTeams.Clear();
-                    arena.DeadProjectiles.Clear();
+                    //Status = "historyEnded";
+                    //arena.Teams.Clear();
+                    //arena.Projectiles.Clear();
+                    //arena.DeadTeams.Clear();
+                    //arena.DeadProjectiles.Clear();
                 }
 
                 if (!Paused) Render(arena);
@@ -146,13 +159,22 @@ namespace BirdHouse_Battle.UI
                     endGame.WriteTo(jw);
                 }
             }
-            Status = "ended";
-            arena.Teams.Clear();
-            arena.Projectiles.Clear();
-            arena.DeadTeams.Clear();
-            arena.DeadProjectiles.Clear();
-
+            if (mode == "history") Status = "historyEnded";
+            else { Status = "ended" ; }
+            Clearer();
+           
             return true;
+        }
+
+        /// <summary>
+        /// Clears the Arena after a game.
+        /// </summary>
+        public void Clearer()
+        {
+            _arena.Teams.Clear();
+            _arena.Projectiles.Clear();
+            _arena.DeadTeams.Clear();
+            _arena.DeadProjectiles.Clear();
         }
 
         public string SaveState()
@@ -421,10 +443,9 @@ namespace BirdHouse_Battle.UI
         public int[,] FillRandom(int i, int[,] TeamComp)
         {
             Random rdm = new Random();
-            int f = 0;
             int max = 0;
 
-            for (f = 1; f < 6; f++)
+            for (int f = 0; f < 6; f++)
             {
                 TeamComp[i, f] = rdm.Next(125 - max);
                 max = max + TeamComp[i, f];
@@ -573,8 +594,9 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void ElderGame()
+        public string  ElderGame()
         {
+            string path = "";
             DirectoryInfo dir = new DirectoryInfo("../../../../saveStates");
             DirectoryInfo[] dossiers = dir.GetDirectories();
             string[] dNames = new string[10];
@@ -586,10 +608,13 @@ namespace BirdHouse_Battle.UI
             }
 
             Shape[] buttons = InitGUIElder(dNames);
-            while (Window.IsOpen && Status == "main")
+
+            while (Window.IsOpen && Status == "elderGame")
             {
-                _iHandler.HandlerElderGame(buttons);
+               _iHandler.HandlerElderGame( buttons);
             }
+
+            return path;
         }
 
         public Shape[] InitReturn()
@@ -642,8 +667,29 @@ namespace BirdHouse_Battle.UI
 
             while (Window.IsOpen && Status == "ended")
             {
-                _iHandler.HandlerResulsult(buttons);
+                _iHandler.HandlerResult(buttons);
             }
+        }
+
+        internal void HistoryResultWindow()
+        {
+            Shape[] buttons = InitHistoryResult();
+
+            while (Window.IsOpen && Status == "historyEnded")
+            {
+                _iHandler.HandlerHistoryResult(buttons);
+            }
+        }
+
+        private Shape[] InitHistoryResult()
+        {
+
+            Window.Clear();
+
+            Shape[] buttons = draw.HistoryResultDisplay(Winner);
+            Window.Display();
+
+            return buttons;
         }
 
         #endregion

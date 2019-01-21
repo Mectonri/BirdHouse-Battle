@@ -82,15 +82,15 @@ namespace BirdHouse_Battle.UI
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "main";
+                game.StatusSwitch("return", "main");
             }//YES
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "main";
+                game.StatusSwitch("return", "main");
             }//NO
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "return";
+                game.Status = game.LastStatus;
             }
         }
 
@@ -135,36 +135,59 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void HandlerElderGame(Shape[] buttons)
+        public void  HandlerElderGame(Shape[] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "quit";
-            }//play
+                //game.Status = "return";
+                game.StatusSwitch("elderGame", "return");
+            } //save1
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "preGame";
-            }//Quick game
+
+                //game.Status = "preGame";
+            } //save2
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "quickGame";
-            }
-            //history
+            } //save3
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "history";
-            }//settings
+            } //save4
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                //game.Status = "game";
-            }//credit
+               
+            } //save5
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "credit";
-            }//Quit
+            } //save6
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "quit";
+                game.Status = "preGame";
+            } //save7
+            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "quickGame";
+            }//save8
+            else if (buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "history";
+            }//save9
+            else if (buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                //game.Status = "game";
+            } //save10
+            else if (buttons[9].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "credit";
+            }
+            // Main menu
+            else if (buttons[10].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                //game.Status = "main";
+                game.StatusSwitch("elderGame", "main");
             }
         }
 
@@ -178,7 +201,7 @@ namespace BirdHouse_Battle.UI
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "close";
+                game.StatusSwitch("preGame", "return");
                 return status;
             }
             else if ((buttons[13].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "add"))
@@ -339,7 +362,8 @@ namespace BirdHouse_Battle.UI
             }//RETURN 
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "main";
+                //game.Status = "main";
+                game.StatusSwitch("history", "return");
             }// Level
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
@@ -364,7 +388,7 @@ namespace BirdHouse_Battle.UI
            //PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "game";
+                game.StatusSwitch("history", "game");
             }
         }
 
@@ -372,7 +396,7 @@ namespace BirdHouse_Battle.UI
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "close";
+                game.StatusSwitch("historyPreGame", "return");
                 return teamComp;
             } //
             //else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
@@ -385,7 +409,7 @@ namespace BirdHouse_Battle.UI
             //} // PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "game";
+                game.StatusSwitch ("historyPreGame","game");
                 return teamComp;
             } // Add Archer
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
@@ -437,6 +461,23 @@ namespace BirdHouse_Battle.UI
             else { return teamComp; }
         }
 
+        internal void HandlerHistoryResult(Shape[] buttons)
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+            {
+                game.StatusSwitch("historyEnded","history");
+
+            } // Return To LvSelection Menu
+            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.StatusSwitch("historyEnded", "history");
+            }
+            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.StatusSwitch("historyEnded", "main");
+            }
+        }
+
         /// <summary>
         /// Handler to Quit the game
         /// </summary>
@@ -481,7 +522,7 @@ namespace BirdHouse_Battle.UI
         /// Handler to End
         /// </summary>
         /// <param name="buttons"></param>
-        internal void HandlerResulsult(Shape[] buttons)
+        internal void HandlerResult(Shape[] buttons)
         {
             //play
             if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))

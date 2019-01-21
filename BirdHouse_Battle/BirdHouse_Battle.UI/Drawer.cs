@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
-using System.IO;
 
 namespace BirdHouse_Battle.UI
 {
@@ -32,11 +31,6 @@ namespace BirdHouse_Battle.UI
 
             _window = Window;
 
-            _winnerButton = new RectangleShape()
-            {
-                Size = new Vector2f(250, 100),
-                Position = new Vector2f(128, 374)
-            };
             Window.Draw(CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
         }
 
@@ -234,7 +228,7 @@ namespace BirdHouse_Battle.UI
 
         internal Shape[] ResultDisplay(int Winner)
         {
-            _window.Draw(CreateShape(512, 712, "../../../../res/end.png", 0, 0));
+            
             Shape[] buttons = new RectangleShape[2];
 
             buttons[0] = CreateShape(100, 25, "../../../../res/button_again.png", 100, 500); // take us to pregame screen
@@ -243,23 +237,22 @@ namespace BirdHouse_Battle.UI
             switch (Winner)
             {
                 case 0://blue won
-                    _winnerButton.Texture = _blueTeam;
+                    _window.Draw(CreateShape(512, 712, "../../../../res/winnerblue.png", 0, 0));
                     break;
 
                 case 1://red won
-                    _winnerButton.Texture = _redTeam;
+                    _window.Draw(CreateShape(512, 712, "../../../../res/winnerred.png", 0, 0));
                     break;
 
                 case 2: // Green won
-                    _winnerButton.Texture = _greenTeam;
+                    _window.Draw(CreateShape(512, 712, "../../../../res/winnergreen.png", 0, 0));
                     break;
 
                 case 3: // yellow won
-                    _winnerButton.Texture = _yellowTeam;
+                    _window.Draw(CreateShape(512, 712, "../../../../res/winneryellow.png", 0, 0));
                     break;
             }
 
-            _window.Draw(_winnerButton);
             foreach (var t in buttons)
             {
                 _window.Draw(t);
@@ -297,25 +290,27 @@ namespace BirdHouse_Battle.UI
         public Shape[] ElderGameDisplay(string[] dossiers)
         {
             uint size = 20;
-            Vector2f Bsize = new Vector2f(100, 25);
-            Shape[] buttons = new RectangleShape[10];
+            Vector2f Bsize = new Vector2f(75, 25);
+            Shape[] buttons = new RectangleShape[11];
             Text[] saves = new Text[10];
             Shape MenuBackground = CreateShape(512, 712, "../../../../res/main.png", 0, 0);
             _window.Draw(MenuBackground);
-            int PosX1 = 362;
-            int PosX2 = 100;
+            int PosX1 = 392;
+            int PosX2 = 75;
             int PosY = 150;
 
             for (int i =0; i < 10; i++)
             {
-                buttons[i] = CreateShape(Bsize, "../../../../res/button_start.png", PosX1, PosY+i*50);
+                buttons[i] = CreateShape(Bsize, "../../../../res/button_replay.png", PosX1, PosY+i*50);
                 saves[i] = WritteText(dossiers[i], size, PosX2, PosY+i*50);
                 saves[i].Draw(_window, _rs);
 
                 _window.Draw(buttons[i]);
                 _window.Draw(saves[i]);
             }
-           
+            buttons[10] = CreateShape(Bsize, "../../../../res/button_main-menu.png", 206, 630);
+            _window.Draw(buttons[10]);
+            
             return buttons;
         }
 
@@ -609,6 +604,25 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
+        internal Shape[] HistoryResultDisplay(int winner)
+        {
+            if (winner == 0)
+            {
+                _window.Draw(CreateShape(512, 712, "../../../../res/victory.jpg", 0, 0)); //BG
+            }
+            else { _window.Draw(CreateShape(512, 712, "../../../../res/defeat.jpg", 0, 0));}
+
+                Shape[] buttons = new RectangleShape[2];
+
+            buttons[0] = CreateShape(100, 25, "../../../../res/button_levels.png", 100, 500); // take us to LvSelection Menu
+            buttons[1] = CreateShape(100, 25, "../../../../res/button_main-menu.png", 300, 500); // take us to Main Menu
+
+            foreach (var t in buttons)
+            {
+                _window.Draw(t);
+            }
+            return buttons;
+        }
 
         public Shape[] PlacementDisplay(Arena arena)
         {
@@ -701,8 +715,6 @@ namespace BirdHouse_Battle.UI
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
             Vector2f Tsize = new Vector2f(246, 405); //team button  size
-
-            
 
             Shape[] buttons = new RectangleShape[9];
             Text[] messages = new Text[9];
