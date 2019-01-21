@@ -1004,7 +1004,7 @@ namespace BirdHouse_Battle.UI
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            Shape [] buttons = draw.PlacementDisplay(Arena, status);
+            Shape [] buttons = draw.PlacementDisplay(Arena, status, _teamComposition);
             Window.Display();
             return buttons;
         }

@@ -583,7 +583,7 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public Shape[] PlacementDisplay(Arena arena, string [] status)
+        public Shape[] PlacementDisplay(Arena arena, string [] status, int[,] teamCompo)
         {
             Vector2f Bsize = new Vector2f(75, 25);//button size
             Font textfont = new Font("../../../../res/Overlock-Regular.ttf");
@@ -625,6 +625,7 @@ namespace BirdHouse_Battle.UI
             selectionRed.FillColor = new Color(255, 0, 0);
             selectionBlue.Position = new Vector2f(90, 520);
             selectionBlue.FillColor = new Color(0,0,255);
+
 
             if (arena.FindTeam("green"))
             {
@@ -729,7 +730,7 @@ namespace BirdHouse_Battle.UI
             }
             
 
-            Shape[] buttons = new Shape[12];
+            Shape[] buttons = new Shape[18];
             RenderStates rs = new RenderStates();
 
             buttons[0] = font;
@@ -744,13 +745,37 @@ namespace BirdHouse_Battle.UI
             buttons[9] = button1;
             buttons[10] = button10;
             buttons[11] = button100;
+            buttons[12] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 30);
+            buttons[13] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 95);
+            buttons[14] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 160);
+            buttons[15] = CreateShape(Bsize, "../../../../res/button_paladin.png", 10, 225);
+            buttons[16] = CreateShape(Bsize, "../../../../res/button_balista.png", 105, 30);
+            buttons[17] = CreateShape(Bsize, "../../../../res/button_catapult.png", 105, 95);
 
-            Text[] text = new Text[3];
+            Text txtArcher = new Text( "*"+teamCompo[0, 0].ToString(),textfont , 15);
+            Text txtDrake = new Text("*" + teamCompo[0, 1].ToString(), textfont, 15);
+            Text txtGobelin = new Text("*" + teamCompo[0, 2].ToString(), textfont, 15);
+            Text txtPaladin = new Text("*" + teamCompo[0, 3].ToString(), textfont, 15);
+            Text txtBalista = new Text("*" + teamCompo[0, 4].ToString(), textfont, 15);
+            Text txtCatapult = new Text("*" + teamCompo[0, 5].ToString(), textfont, 15);
+   
+
+            Text[] text = new Text[9];
 
             text[0] = txtButton1;
             text[1] = txtButton10;
             text[2] = txtButton100;
+            text[3] = txtArcher ;
+            text[4] = txtDrake;
+            text[5] = txtGobelin;
+            text[6] = txtPaladin;
+            text[7] = txtBalista;
+            text[8] = txtCatapult;
 
+            for (int i = 3; i < text.Length; i++)
+            {
+                text[i].FillColor = new Color(0, 0, 0);
+            }
 
             foreach (var t in buttons)
             {
