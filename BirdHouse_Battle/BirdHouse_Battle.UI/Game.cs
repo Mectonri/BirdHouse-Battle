@@ -25,7 +25,13 @@ namespace BirdHouse_Battle.UI
         string _status;
         public int _winner = 0;
         public int _tour = 0;
-
+        public int[,] _teamComposition =
+             {
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0}
+            };
         #endregion
 
         public Game()
@@ -37,12 +43,25 @@ namespace BirdHouse_Battle.UI
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
-           
-        }
+            int[,] _teamComposition =
+             {
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0}
+            };
+
+    }
 
         #region Getter
 
         public int Winner => _winner;
+
+      public int[,] TeamCompo
+        {
+            get { return _teamComposition; }
+            set {_teamComposition=value; }
+        }
 
         public string Status
         {
@@ -972,6 +991,7 @@ namespace BirdHouse_Battle.UI
                         }
                     }
                 }
+                TeamCompo = teamComposition;
                 //Arena.SpawnUnit();
             }
         }
@@ -995,6 +1015,7 @@ namespace BirdHouse_Battle.UI
             status[0] = "red";
             status[1] = "1";
             double previous = GetCurrentTime();
+            int[,] teamCompo = TeamCompo;
             while (Window.IsOpen && Status=="placement")
             {
                 

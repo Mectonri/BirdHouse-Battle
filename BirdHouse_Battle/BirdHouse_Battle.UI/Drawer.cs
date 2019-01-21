@@ -593,8 +593,8 @@ namespace BirdHouse_Battle.UI
             
             RectangleShape redFont = new RectangleShape(new Vector2f(256, 512));
             RectangleShape blueFont = new RectangleShape(new Vector2f(256, 512));
-            RectangleShape yellowFont = new RectangleShape(new Vector2f(256, 512));
-            RectangleShape greenFont = new RectangleShape(new Vector2f(256, 512));
+            RectangleShape yellowFont = new RectangleShape(new Vector2f(0, 0));
+            RectangleShape greenFont = new RectangleShape(new Vector2f(0, 0));
 
             yellowFont.FillColor = new Color(0, 0, 0, 255);
             greenFont.FillColor = new Color(0, 0, 0, 255);
@@ -688,17 +688,18 @@ namespace BirdHouse_Battle.UI
                 redFont = new RectangleShape(new Vector2f(256,256));
                 blueFont = new RectangleShape(new Vector2f(256,256));
                 greenFont = new RectangleShape(new Vector2f(256,256));
-                yellowFont = new RectangleShape(new Vector2f(256,256));
 
                 redFont.Position = new Vector2f(0,0);
                 blueFont.Position = new Vector2f(0, 256);
                 greenFont.Position = new Vector2f(256, 0);
-                yellowFont.Position = new Vector2f(256, 256);
 
                 selectionGreen.FillColor = new Color(0, 255, 0);
 
                 if (arena.FindTeam("yellow"))
                 {
+
+                    yellowFont = new RectangleShape(new Vector2f(256, 256));
+                    yellowFont.Position = new Vector2f(256, 256);
                     selectionYellow.FillColor = new Color(255, 255, 0);
                     yellowFont.FillColor = new Color(50, 50, 50, 150);
                 }
