@@ -613,14 +613,17 @@ namespace BirdHouse_Battle.UI
 
             DirectoryInfo[] dossiers = dir.GetDirectories();
             string[] dNames = new string[10];
-            //string[,] info = new string[2,10];
-            //List<FileInfo> EndSaves = new List<FileInfo>();
 
             int[]    winner = new int   [10];
             string[] winningTeam = new string[10];
             string[] tours  = new string[10];
             
             string[] paths = new  string[10];
+
+           
+            {
+                // folder has no files and also sub folders have no files...
+            }
 
             for (int i = 0; i < dossiers.Length && i < 9 ; i++)
             {
@@ -630,25 +633,32 @@ namespace BirdHouse_Battle.UI
             for (int i = 0; i < dNames.Length; i++)
             {
                 paths[i] = "../../../../saveStates/" + dNames[i] + "/endGame.JSON";
-                if (dNames[i] != null)
-                {
-                    using (FileStream fs = File.OpenRead(paths[i]))
-                    using (StreamReader sr = new StreamReader(fs))
-                    using (JsonTextReader jr = new JsonTextReader(sr))
-                    {
-                        JToken token = JToken.ReadFrom(jr);
 
-                        winner[i] = token["winner"].Value<int>();
-                        tours[i] = token["tour"].Value<int>().ToString();
+                if (File.Exists(paths[i]) == true)
+                {
+
+                    if (dNames[i] != null)
+                    {
+                        using (FileStream fs = File.OpenRead(paths[i]))
+                        using (StreamReader sr = new StreamReader(fs))
+                        using (JsonTextReader jr = new JsonTextReader(sr))
+                        {
+                            JToken token = JToken.ReadFrom(jr);
+
+                            winner[i] = token["winner"].Value<int>();
+                            tours[i] = token["tour"].Value<int>().ToString();
+                        }
+                        if (winner[i] == 0) winningTeam[i] = "Blue";
+                        else if (winner[i] == 1) winningTeam[i] = "Red";
+                        else if (winner[i] == 2) winningTeam[i] = "Green";
+                        else winningTeam[i] = "Yellow";
                     }
-                    if (winner[i] == 0) winningTeam[i] = "Blue";
-                    else if (winner[i] == 1) winningTeam[i] = "Red";
-                    else if (winner[i] == 2) winningTeam[i] = "Green";
-                    else winningTeam[i] = "Yellow";
                 }
-            }
-            for (int i = 0; i < dNames.Length; i++)
-            {
+                else
+                {
+                    winningTeam[i] = "Terminated";
+                    tours[i] = "";
+                }
             }
 
             Shape[] buttons = InitGUIElder(dNames, winningTeam, tours);
