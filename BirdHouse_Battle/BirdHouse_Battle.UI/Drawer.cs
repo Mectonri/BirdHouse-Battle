@@ -1256,7 +1256,7 @@ namespace BirdHouse_Battle.UI
                 _window.Draw(t2);
             }
 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 800; i++)
             {
                 if (!(unitToDraw[i] is null))
                 {
