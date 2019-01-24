@@ -26,24 +26,38 @@ namespace BirdHouse_Battle.UI
         string _lastStatus;
         public int _winner = 0;
         public int _tour = 0;
-
+        public int[,] _teamComposition =
+             {
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0}
+            };
         #endregion
 
         public Game()
         {
             Load();
-
+           
             _iHandler = new InputHandler(this);
             _window = new RenderWindow(new VideoMode(512, 712), "BirdHouseBattle", Styles.Default);
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
-
+           
         }
+
+    }
 
         #region Getter
 
         public int Winner => _winner;
+
+      public int[,] TeamCompo
+        {
+            get { return _teamComposition; }
+            set {_teamComposition=value; }
+        }
 
         public string Status
         {
@@ -802,7 +816,7 @@ namespace BirdHouse_Battle.UI
             while (Window.IsOpen && Status == "preGame")
             {
                 double current = GetCurrentTime();
-                if (current - previous >= 0.0000019)
+                if (current - previous >= 0.0000025)
                 {
                     previous = current;
                     Shape[] buttons = InitPreGame(status, teamComposition);
@@ -975,22 +989,22 @@ namespace BirdHouse_Battle.UI
                     switch (i)
                     {
                         case 0:
-                            blue.AddArcher(teamComposition[0, i]);
+                            red.AddArcher(teamComposition[0, i]);
                             break;
                         case 1:
-                            blue.AddDrake(teamComposition[0, i]);
+                            red.AddDrake(teamComposition[0, i]);
                             break;
                         case 2:
-                            blue.AddGoblin(teamComposition[0, i]);
+                            red.AddGoblin(teamComposition[0, i]);
                             break;
                         case 3:
-                            blue.AddPaladin(teamComposition[0, i]);
+                            red.AddPaladin(teamComposition[0, i]);
                             break;
                         case 4:
-                            blue.AddBalista(teamComposition[0, i]);
+                            red.AddBalista(teamComposition[0, i]);
                             break;
                         case 5:
-                            blue.AddCatapult(teamComposition[0, i]);
+                            red.AddCatapult(teamComposition[0, i]);
                             break;
 
                         default:
@@ -1003,22 +1017,22 @@ namespace BirdHouse_Battle.UI
                     switch (i)
                     {
                         case 0:
-                            red.AddArcher(teamComposition[1, i]);
+                            blue.AddArcher(teamComposition[1, i]);
                             break;
                         case 1:
-                            red.AddDrake(teamComposition[1, i]);
+                            blue.AddDrake(teamComposition[1, i]);
                             break;
                         case 2:
-                            red.AddGoblin(teamComposition[1, i]);
+                            blue.AddGoblin(teamComposition[1, i]);
                             break;
                         case 3:
-                            red.AddPaladin(teamComposition[1, i]);
+                            blue.AddPaladin(teamComposition[1, i]);
                             break;
                         case 4:
-                            red.AddBalista(teamComposition[1, i]);
+                            blue.AddBalista(teamComposition[1, i]);
                             break;
                         case 5:
-                            red.AddCatapult(teamComposition[1, i]);
+                            blue.AddCatapult(teamComposition[1, i]);
                             break;
 
                         default:
@@ -1087,25 +1101,219 @@ namespace BirdHouse_Battle.UI
                         }
                     }
                 }
-                Arena.SpawnUnit();
+                TeamCompo = teamComposition;
+                //Arena.SpawnUnit();
             }
         }
 
-        public void InitPlacement()
+
+
+
+
+        public Shape[] InitPlacement(string[] status, int[,]compoLeft, Unit[] unitToDraw)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            Shape[] buttons = draw.PlacementDisplay(Arena);
+            Shape [] buttons = draw.PlacementDisplay(Arena, status, _teamComposition, compoLeft, unitToDraw);
             Window.Display();
+            return buttons;
         }
 
         public void Placement()
         {
+            string[] status = new string[8];
+            status[0] = "red ";
+            status[1] = "10";
+            status[2] = "archer";
+            status[3] = "NA";
+            status[4] = "NA";
+            status[5] = "NA";
+            status[6] = "NA";
+            status[7] = "?";
+            double previous = GetCurrentTime();
+            int[,] compoLeft = TeamCompo;
+            int[,] actualCompo = (int[,])TeamCompo.Clone();
+            Unit[] unitToDraw = new Unit[800];
+
+            for (int i = 0; i < 800; i++)
+            {
+                unitToDraw[i] = null;
+            }
+
             while (Window.IsOpen && Status=="placement")
             {
-                InitPlacement();
+                
+                double current = GetCurrentTime();
+                if (current - previous >= 0.000002)
+                {
+                    status[7] = "?";
+                    for (int i = 0; i < compoLeft.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < compoLeft.GetLength(1); j++)
+                        {
+                            if (compoLeft[i, j] != 0)
+                            {
+                                status[7] = "false";
+                            }
+                        }
+                    }
+                    if (status[7]!="false")
+                    {
+                        status[7] = "true";
+                    }
+                    previous = current;
+                    Shape[] buttons  = InitPlacement(status, compoLeft, unitToDraw);
+                    Window.DispatchEvents();
+                    status = _iHandler.HandlerPlacement(status, buttons);
+                    if (status[6]!="NA")
+                    {
+                        double x = Int32.Parse(status[3]);
+                        double y = Int32.Parse(status[4]);
+                        double x2 = Int32.Parse(status[5]);
+                        double y2 = Int32.Parse(status[6]);
+                        x = ((x-256)*250)/256;
+                        x2 =((x2-256)*250)/256;
+                        y =((y-256)*250)/256;
+                        y2 = ((y2-256)*250)/256;
+
+                        double xLength = x - x2;
+                        double yLength = y - y2;
+
+                        int unitNumberToSpawn = 0;
+                        int unitIndice=0;
+                        int activeTeam=0;
+                        Team team = null;
+                        switch (status[0])
+                        {
+                            case "red":
+                                activeTeam = 0;
+                                team = Arena.GetTeam("red");
+                                break;
+                            case "blue":
+                                team = Arena.GetTeam("blue");
+                                activeTeam = 1;
+                                break;
+                            case "green":
+                                activeTeam = 2;
+                                team = Arena.GetTeam("green");
+                                break;
+                            case "yellow":
+                                team = Arena.GetTeam("yellow");
+                                activeTeam = 3;
+                                break;
+                        }
+
+                        switch (status[2])
+                        {
+                            case "archer":
+                                unitIndice = actualCompo[activeTeam, 0] - compoLeft[activeTeam, 0];
+                                if (compoLeft[activeTeam,0]>=Int32.Parse(status[1]))
+                                {
+                                    unitNumberToSpawn = Int32.Parse(status[1]);
+                                }
+                                else
+                                {
+                                    unitNumberToSpawn = compoLeft[activeTeam, 0];
+                                }
+                                compoLeft[activeTeam, 0] -= unitNumberToSpawn;
+                                break;
+                            case "drake":
+                                unitIndice =actualCompo[activeTeam,0] +actualCompo[activeTeam, 1] - compoLeft[activeTeam, 1];
+                                if (compoLeft[activeTeam, 1] >= Int32.Parse(status[1]))
+                                {
+                                    unitNumberToSpawn = Int32.Parse(status[1]);
+                                }
+                                else
+                                {
+                                    unitNumberToSpawn = compoLeft[activeTeam, 1];
+                                }
+                                compoLeft[activeTeam, 1] -= unitNumberToSpawn;
+                                break;
+                            case "goblin":
+                                unitIndice =actualCompo[activeTeam,0]+ actualCompo[activeTeam, 1] + actualCompo[activeTeam, 2] - compoLeft[activeTeam, 2];
+                                if (compoLeft[activeTeam, 2] >= Int32.Parse(status[1]))
+                                {
+                                    unitNumberToSpawn = Int32.Parse(status[1]);
+                                }
+                                else
+                                {
+                                    unitNumberToSpawn = compoLeft[activeTeam, 2];
+                                }
+                                compoLeft[activeTeam, 2] -= unitNumberToSpawn;
+                                break;
+                            case "paladin":
+                                unitIndice =actualCompo[activeTeam,0]+ actualCompo[activeTeam, 1] + actualCompo[activeTeam, 2] + actualCompo[activeTeam, 3] - compoLeft[activeTeam, 3];
+                                if (compoLeft[activeTeam, 3] >= Int32.Parse(status[1]))
+                                {
+                                    unitNumberToSpawn = Int32.Parse(status[1]);
+                                }
+                                else
+                                {
+                                    unitNumberToSpawn = compoLeft[activeTeam, 3];
+                                }
+                                compoLeft[activeTeam, 3] -= unitNumberToSpawn;
+                                break;
+                            case "balista":
+                                unitIndice =actualCompo[activeTeam,0]+ actualCompo[activeTeam, 1] + actualCompo[activeTeam, 2] + actualCompo[activeTeam, 3] + actualCompo[activeTeam, 4] - compoLeft[activeTeam, 4];
+                                if (compoLeft[activeTeam, 4] >= Int32.Parse(status[1]))
+                                {
+                                    unitNumberToSpawn = Int32.Parse(status[1]);
+                                }
+                                else
+                                {
+                                    unitNumberToSpawn = compoLeft[activeTeam, 4];
+                                }
+                                compoLeft[activeTeam, 4] -= unitNumberToSpawn;
+                                break;
+                            case "catapult":
+                                unitIndice =actualCompo[activeTeam,0]+ actualCompo[activeTeam, 1] + actualCompo[activeTeam, 2] + actualCompo[activeTeam, 3] + actualCompo[activeTeam, 4] + actualCompo[activeTeam, 5] - compoLeft[activeTeam, 5];
+                                if (compoLeft[activeTeam, 5] >= Int32.Parse(status[1]))
+                                {
+                                    unitNumberToSpawn = Int32.Parse(status[1]);
+                                }
+                                else
+                                {
+                                    unitNumberToSpawn = compoLeft[activeTeam, 5];
+                                }
+                                compoLeft[activeTeam, 5] -= unitNumberToSpawn;
+                                break;
+                        }
+
+                        double xSpacing = xLength / unitNumberToSpawn; 
+                        double ySpacing = yLength / unitNumberToSpawn;
+
+                        for (int i = unitIndice; i < unitIndice+unitNumberToSpawn; i++)
+                        {
+
+                            Unit unit = team.FindUnitByName(i);
+                            Arena.SpawnUnit(unit, x, y);
+                            for (int j = 0; j < 800; j++)
+                            {
+                                if (unitToDraw[j]==null)
+                                {
+                                    unitToDraw[j] = unit;
+                                    break;
+                                }
+                            }
+                            x -= xSpacing;
+                            y -= ySpacing;
+                        }
+                       
+
+                        for (int i = 3; i < status.Length; i++)
+                        {
+                            status[i] = "NA";
+                        }
+                    }
+                }
             }
+
+
+
         }
+
+
+
         #endregion
 
         #endregion
@@ -1126,3 +1334,12 @@ namespace BirdHouse_Battle.UI
         }
     }
 }
+
+            draw = new Drawer(_window);
+            int[,] _teamComposition =
+             {
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0}
+            };

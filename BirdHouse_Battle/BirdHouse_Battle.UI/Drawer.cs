@@ -16,8 +16,6 @@ namespace BirdHouse_Battle.UI
         readonly Texture _blueTeam;
         readonly Texture _yellowTeam;
         readonly Texture _greenTeam;
-        readonly RenderStates _rs;
-        internal Font _font;
 
         public Drawer(RenderWindow Window)
         {
@@ -489,7 +487,7 @@ namespace BirdHouse_Battle.UI
             {
                 Position = new Vector2f(5, 317),
                 OutlineThickness = 5,
-                OutlineColor = new Color(0, 0, 250)
+                OutlineColor = new Color(250, 0, 0)
             };
             if (status[0]== "selected")
             {
@@ -502,7 +500,7 @@ namespace BirdHouse_Battle.UI
             RectangleShape buttonAddTeam2 = new RectangleShape(Tsize);
             buttonAddTeam2.Position = new Vector2f(132, 317);
             buttonAddTeam2.OutlineThickness = 5;
-            buttonAddTeam2.OutlineColor = new Color(250, 0, 0);
+            buttonAddTeam2.OutlineColor = new Color(0, 0, 250);
             
             if (status[1] == "selected")
             {
@@ -637,6 +635,7 @@ namespace BirdHouse_Battle.UI
             }
             return buttons;
         }
+
 
         public Shape[] PlacementDisplay(Arena arena)
         {
@@ -862,3 +861,317 @@ namespace BirdHouse_Battle.UI
         #endregion
     }
 }
+
+using SFML.System;
+using System;
+
+        readonly RenderStates _rs;
+        internal Font _font;
+
+
+        public Shape[] PlacementDisplay(Arena arena, string [] status, int[,] teamCompo, int[,]compoLeft, Unit[] unitToDraw )
+        {
+           
+
+            Vector2f Bsize = new Vector2f(75, 25);//button size
+            Font textfont = new Font("../../../../res/Overlock-Regular.ttf");
+
+            RectangleShape font = new RectangleShape(new Vector2f(1000,1000));
+            font.Position = new Vector2f(0, 512);
+            
+            RectangleShape blueFont = new RectangleShape(new Vector2f(256, 512));
+            RectangleShape redFont = new RectangleShape(new  Vector2f(256, 512));
+            RectangleShape yellowFont = new RectangleShape(new Vector2f(0, 0));
+            RectangleShape greenFont = new RectangleShape(new Vector2f(0, 0));
+
+            yellowFont.FillColor = new Color(0, 0, 0, 255);
+            greenFont.FillColor = new Color(0, 0, 0, 255);
+
+            RectangleShape button1 = new RectangleShape(new Vector2f(30,25));
+            RectangleShape button10 = new RectangleShape(new Vector2f(30,25));
+            RectangleShape button100 = new RectangleShape(new Vector2f(30,25));
+            Text txtButton1 = new Text("10",textfont,15);
+            Text txtButton10 = new Text("30",textfont,15);
+            Text txtButton100 = new Text("50",textfont,15);
+
+            RectangleShape selectionRed = new RectangleShape(Bsize);    
+            RectangleShape selectionBlue = new RectangleShape(Bsize);
+            RectangleShape selectionGreen = new RectangleShape(new Vector2f(0,0));
+            RectangleShape selectionYellow = new RectangleShape(new Vector2f(0,0));
+
+            button1.Position = new Vector2f(330,520);
+            button10.Position = new Vector2f(360,520);
+            button100.Position = new Vector2f(390,520);
+            txtButton1.Position = new Vector2f(340, 520);
+            txtButton10.Position = new Vector2f(360, 520);
+            txtButton100.Position = new Vector2f(390, 520);
+            txtButton1.FillColor = new Color(0, 0, 0);
+            txtButton10.FillColor = new Color(0, 0, 0);
+            txtButton100.FillColor = new Color(0, 0, 0);
+
+            selectionRed.Position = new Vector2f(90,520);
+            selectionRed.FillColor = new Color(255, 0, 0);
+            selectionBlue.Position = new Vector2f(10, 520);
+            selectionBlue.FillColor = new Color(0,0,255);
+
+            Shape buttonUnitSelect = new CircleShape(5);
+            buttonUnitSelect.FillColor = new Color(255, 0, 0);
+
+            if (status[2] == "archer")
+            {
+                buttonUnitSelect.Position = new Vector2f(5,560);
+            }else if (status[2] == "drake")
+            {
+                buttonUnitSelect.Position = new Vector2f(5, 600);
+            }else if (status[2] == "goblin")
+            {
+                buttonUnitSelect.Position = new Vector2f(5, 640);
+            }else if (status[2] == "paladin")
+            {
+                buttonUnitSelect.Position = new Vector2f(120,560);
+            }else if (status[2] == "balista")
+            {
+                buttonUnitSelect.Position = new Vector2f(120, 600);
+            }else if (status[2] == "catapult")
+            {
+                buttonUnitSelect.Position = new Vector2f(120, 640);
+            }
+
+            if (arena.FindTeam("green"))
+            {
+                selectionGreen = new RectangleShape(Bsize);
+                selectionGreen.Position = new Vector2f(170, 520);
+                selectionGreen.FillColor = new Color(0, 255, 0);
+            }
+            if (arena.FindTeam("yellow"))
+            {
+                selectionYellow = new RectangleShape(Bsize);
+                selectionYellow.Position = new Vector2f(250, 520);
+                selectionYellow.FillColor = new Color(255, 255, 0);
+            }
+
+
+
+            if (status[1] == "10")
+            {
+                button1.FillColor = new Color(100, 100, 100);
+                button10.FillColor = new Color(200, 200, 200);
+                button100.FillColor = new Color(200, 200, 200);
+            }
+            else if (status[1] == "30")
+            {
+                button1.FillColor = new Color(200, 200, 200);
+                button10.FillColor = new Color(100, 100, 100);
+                button100.FillColor = new Color(200, 200, 200);
+            }
+            else
+            {
+                button1.FillColor = new Color(200, 200, 200);
+                button10.FillColor = new Color(200, 200, 200);
+                button100.FillColor = new Color(100, 100, 100);
+            }
+
+          
+
+
+            font.FillColor = new Color(255, 255, 255);
+            font.Position = new Vector2f(0, 512);
+
+
+            redFont.Position = new Vector2f(256, 0);
+            blueFont.Position = new Vector2f(0, 0);
+
+            if (!arena.FindTeam("green"))
+            {
+                if (status[0] == "red")
+                {
+                    redFont.FillColor = new Color(255, 0, 0, 50);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                }
+                else if (status[0] == "blue")
+                {
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    blueFont.FillColor = new Color(0, 0, 255, 50);
+                }
+            }
+            else
+            {
+                redFont = new RectangleShape(new Vector2f(256,256));
+                blueFont = new RectangleShape(new Vector2f(256,256));
+                greenFont = new RectangleShape(new Vector2f(256,256));
+
+                redFont.Position = new Vector2f(0,256);
+                blueFont.Position = new Vector2f(0, 0);
+                greenFont.Position = new Vector2f(256, 0);
+
+                selectionGreen.FillColor = new Color(0, 255, 0);
+
+                if (arena.FindTeam("yellow"))
+                {
+
+                    yellowFont = new RectangleShape(new Vector2f(256, 256));
+                    yellowFont.Position = new Vector2f(256, 256);
+                    selectionYellow.FillColor = new Color(255, 255, 0);
+                    yellowFont.FillColor = new Color(50, 50, 50, 150);
+                }
+
+                if (status[0] == "red")
+                {
+                    redFont.FillColor = new Color(255, 0, 0, 50);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                    greenFont.FillColor = new Color(50, 50, 50, 150);
+                }else if (status[0]=="blue")
+                {
+                    blueFont.FillColor = new Color(0, 0, 255, 50);
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    greenFont.FillColor = new Color(50, 50, 50, 150);
+                }else if (status[0] == "green")
+                {
+                    greenFont.FillColor = new Color(0, 255, 0, 50);
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                }else if (status[0]=="yellow")
+                {
+                    yellowFont.FillColor = new Color(255, 255, 0, 50);
+                    redFont.FillColor = new Color(50, 50, 50, 150);
+                    blueFont.FillColor = new Color(50, 50, 50, 150);
+                    greenFont.FillColor = new Color(50, 50, 50, 150);
+                }
+            }
+
+            RectangleShape aPoint = new RectangleShape(new Vector2f(0,0));
+            RectangleShape bPoint = new RectangleShape(new Vector2f(0,0));
+
+            if (status[3] != "NA" )
+            {
+                aPoint = new RectangleShape(new Vector2f(4,4));
+                aPoint.Position = new Vector2f(Int32.Parse(status[3]),Int32.Parse(status[4]));
+                aPoint.FillColor = new Color(0, 0, 0);
+            }
+            if (status[5]!="NA")
+            {
+                bPoint = new RectangleShape(new Vector2f(4, 4));
+                bPoint.Position = new Vector2f(Int32.Parse(status[5]), Int32.Parse(status[6]));
+                bPoint.FillColor = new Color(0, 0, 0);
+            }
+            
+
+            Shape[] buttons = new Shape[22];
+            RenderStates rs = new RenderStates();
+
+            buttons[0] = font;
+            buttons[1] = redFont;
+            buttons[2] = blueFont;
+            buttons[3]= selectionRed;
+            buttons[4] = selectionBlue;
+            buttons[5] = greenFont;
+            buttons[6] = yellowFont;
+            buttons[7] = selectionGreen;
+            buttons[8] = selectionYellow;
+            buttons[9] = button1;
+            buttons[10] = button10;
+            buttons[11] = button100;
+            buttons[12] = CreateShape(Bsize, "../../../../res/button_archer.png", 10, 560);
+            buttons[13] = CreateShape(Bsize, "../../../../res/button_drake.png", 10, 600);
+            buttons[14] = CreateShape(Bsize, "../../../../res/button_goblin.png", 10, 640);
+            buttons[15] = CreateShape(Bsize, "../../../../res/button_paladin.png", 125, 560);
+            buttons[16] = CreateShape(Bsize, "../../../../res/button_balista.png", 125, 600);
+            buttons[17] = CreateShape(Bsize, "../../../../res/button_catapult.png", 125, 640);
+            buttons[18] = buttonUnitSelect;
+            buttons[19] = aPoint;
+            buttons[20] = bPoint;
+            buttons[21] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 640);
+
+
+            Text txtArcher = new Text("*" , textfont, 15);
+            Text txtDrake = new Text("*", textfont, 15);
+            Text txtGobelin = new Text("*" , textfont, 15);
+            Text txtPaladin = new Text("*", textfont, 15);
+            Text txtBalista = new Text("*", textfont, 15);
+            Text txtCatapult = new Text("*", textfont, 15);
+
+            if (status[0] == "red")
+            {
+                txtArcher = new Text("*" + compoLeft[0, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[0, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[0, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[0, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[0, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[0, 5].ToString(), textfont, 15);
+            }
+            else if (status[0] == "blue")
+            {
+                txtArcher = new Text("*" + compoLeft[1, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[1, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[1, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[1, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[1, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[1, 5].ToString(), textfont, 15);
+
+            }
+            else if (status[0]=="green")
+            {
+                txtArcher = new Text("*" + compoLeft[2, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[2, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[2, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[2, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[2, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[2, 5].ToString(), textfont, 15);
+
+            }
+            else
+            {
+                txtArcher = new Text("*" + compoLeft[3, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[3, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[3, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[3, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[3, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[3, 5].ToString(), textfont, 15);
+
+            }
+
+
+            txtArcher.Position = new Vector2f(90,560);
+            txtDrake.Position = new Vector2f(90,600);
+            txtGobelin.Position = new Vector2f(90,640);
+            txtPaladin.Position = new Vector2f(205,560);
+            txtBalista.Position = new Vector2f(205,600);
+            txtCatapult.Position = new Vector2f(205,640);
+
+            Text[] text = new Text[9];
+
+            text[0] = txtButton1;
+            text[1] = txtButton10;
+            text[2] = txtButton100;
+            text[3] = txtArcher ;
+            text[4] = txtDrake;
+            text[5] = txtGobelin;
+            text[6] = txtPaladin;
+            text[7] = txtBalista;
+            text[8] = txtCatapult;
+
+            for (int i = 3; i < text.Length; i++)
+            {
+                text[i].FillColor = new Color(0, 0, 0);
+            }
+
+            foreach (var t in buttons)
+            {
+                _window.Draw(t);
+            }
+
+            foreach (var t2 in text)
+            {
+                t2.Draw(_window, rs);
+                _window.Draw(t2);
+            }
+            for (int i = 0; i < 200; i++)
+            {
+                if (!(unitToDraw[i] is null))
+                {
+                    Shape shape;
+                    _window.Draw(shape = DisplayUnit(unitToDraw[i]));
+                }
+            }
+            return buttons;
+        }

@@ -343,7 +343,7 @@ namespace BirdHouse_Battle.Model
             {
                 foreach (KeyValuePair<int, Unit> kv2 in kv.Value._units)
                 {
-                    if (kv2.Value.Location.X == vector.X && kv2.Value.Location.Y == vector.Y || vector.X == 0 && vector.Y == 0 || vector.X > _width || vector.Y > _height)
+                    if (kv2.Value.Location.X == vector.X && kv2.Value.Location.Y == vector.Y || vector.X == 0 && vector.Y == 0 || vector.X > _width || vector.Y > _height ||  vector.X < -1*_width || vector.Y < -1*_height)
                     {
                         return false;
                     }
