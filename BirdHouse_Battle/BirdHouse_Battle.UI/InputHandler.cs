@@ -474,33 +474,49 @@ namespace BirdHouse_Battle.UI
 
         public string[] HandlerPlacement(string[] status, Shape[] buttons)
         {
-            if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) || buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "red" || buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "red")
             {
                 status[0] = "red";
+                for (int i = 3; i < status.Length; i++)
+                {
+                    status[i] = "NA";
+                }
             }
-            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) || buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "blue" || buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "blue")
             {
                 status[0] = "blue";
+                for (int i = 3; i < status.Length; i++)
+                {
+                    status[i] = "NA";
+                }
             }
-            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) || buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "green" || buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "green")
             {
                 status[0] = "green";
+                for (int i = 3; i < status.Length; i++)
+                {
+                    status[i] = "NA";
+                }
             }
-            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) || buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "yellow" || buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "yellow")
             {
                 status[0] = "yellow";
+                for (int i = 3; i < status.Length; i++)
+                {
+                    status[i] = "NA";
+                }
             }
             else if (buttons[9].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                status[1] = "1";
+                status[1] = "10";
             }
             else if (buttons[10].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                status[1] = "10";
+                status[1] = "30";
             }
             else if (buttons[11].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                status[1] = "100";
+                status[1] = "50";
             }
             else if (buttons[12].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
@@ -525,6 +541,64 @@ namespace BirdHouse_Battle.UI
             else if (buttons[17].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 status[2] = "catapult";
+            }
+            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y )==true && status[0]=="red" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3]=="NA")
+            {
+                status[3] = Mouse.GetPosition(game.Window).X.ToString();
+                status[4] = Mouse.GetPosition(game.Window).Y.ToString();
+            }
+            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && status[0] == "red" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "NA")
+            {
+                if (Math.Abs(Int32.Parse(status[3])-Mouse.GetPosition(game.Window).X)>5|| Math.Abs(Int32.Parse(status[4]) - Mouse.GetPosition(game.Window).Y )> 5)
+                {
+                    status[5] = Mouse.GetPosition(game.Window).X.ToString();
+                    status[6] = Mouse.GetPosition(game.Window).Y.ToString();
+                }
+               
+            }
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && status[0] == "blue" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "NA")
+            {
+                status[3] = Mouse.GetPosition(game.Window).X.ToString();
+                status[4] = Mouse.GetPosition(game.Window).Y.ToString();
+            }
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && status[0] == "blue" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "NA")
+            {
+                if (Math.Abs(Int32.Parse(status[3]) - Mouse.GetPosition(game.Window).X) > 5 || Math.Abs(Int32.Parse(status[4]) - Mouse.GetPosition(game.Window).Y )> 5)
+                {
+
+                    status[5] = Mouse.GetPosition(game.Window).X.ToString();
+                    status[6] = Mouse.GetPosition(game.Window).Y.ToString();
+                }
+            }
+            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && status[0] == "green" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "NA")
+            {
+                status[3] = Mouse.GetPosition(game.Window).X.ToString();
+                status[4] = Mouse.GetPosition(game.Window).Y.ToString();
+            }
+            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && status[0] == "green" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "NA")
+            {
+                if (Math.Abs(Int32.Parse(status[3]) - Mouse.GetPosition(game.Window).X) > 5 || Math.Abs(Int32.Parse(status[4]) - Mouse.GetPosition(game.Window).Y) > 5)
+                {
+                    status[5] = Mouse.GetPosition(game.Window).X.ToString();
+                    status[6] = Mouse.GetPosition(game.Window).Y.ToString();
+                }
+            }
+            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && status[0] == "yellow" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[3] == "NA")
+            {
+                status[3] = Mouse.GetPosition(game.Window).X.ToString();
+                status[4] = Mouse.GetPosition(game.Window).Y.ToString();
+            }
+            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && status[0] == "yellow" && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "NA")
+            {
+                if (Math.Abs(Int32.Parse(status[3]) - Mouse.GetPosition(game.Window).X) > 5 || Math.Abs(Int32.Parse(status[4]) - Mouse.GetPosition(game.Window).Y) > 5)
+                {
+                    status[5] = Mouse.GetPosition(game.Window).X.ToString();
+                    status[6] = Mouse.GetPosition(game.Window).Y.ToString();
+                }
+            }
+            else if (buttons[21].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[7]=="true")
+            {
+                game.Status = "game";
             }
             return status;
         }

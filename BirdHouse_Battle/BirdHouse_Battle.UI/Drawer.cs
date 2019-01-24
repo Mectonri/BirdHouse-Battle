@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using SFML.Graphics;
 using SFML.System;
+using System;
 
 namespace BirdHouse_Battle.UI
 {
@@ -16,7 +17,6 @@ namespace BirdHouse_Battle.UI
         readonly Texture _blueTeam;
         readonly Texture _yellowTeam;
         readonly Texture _greenTeam;
-
         public Drawer(RenderWindow Window)
         {
             _redTeam = new Texture("../../../../res/RedTeam.png");
@@ -453,7 +453,7 @@ namespace BirdHouse_Battle.UI
             {
                 Position = new Vector2f(5, 317),
                 OutlineThickness = 5,
-                OutlineColor = new Color(0, 0, 250)
+                OutlineColor = new Color(250, 0, 0)
             };
             if (status[0]== "selected")
             {
@@ -466,7 +466,7 @@ namespace BirdHouse_Battle.UI
             RectangleShape buttonAddTeam2 = new RectangleShape(Tsize);
             buttonAddTeam2.Position = new Vector2f(132, 317);
             buttonAddTeam2.OutlineThickness = 5;
-            buttonAddTeam2.OutlineColor = new Color(250, 0, 0);
+            buttonAddTeam2.OutlineColor = new Color(0, 0, 250);
             
             if (status[1] == "selected")
             {
@@ -583,16 +583,18 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public Shape[] PlacementDisplay(Arena arena, string [] status, int[,] teamCompo)
+        public Shape[] PlacementDisplay(Arena arena, string [] status, int[,] teamCompo, int[,]compoLeft, Unit[] unitToDraw )
         {
+           
+
             Vector2f Bsize = new Vector2f(75, 25);//button size
             Font textfont = new Font("../../../../res/Overlock-Regular.ttf");
 
             RectangleShape font = new RectangleShape(new Vector2f(1000,1000));
             font.Position = new Vector2f(0, 512);
             
-            RectangleShape redFont = new RectangleShape(new Vector2f(256, 512));
             RectangleShape blueFont = new RectangleShape(new Vector2f(256, 512));
+            RectangleShape redFont = new RectangleShape(new  Vector2f(256, 512));
             RectangleShape yellowFont = new RectangleShape(new Vector2f(0, 0));
             RectangleShape greenFont = new RectangleShape(new Vector2f(0, 0));
 
@@ -602,9 +604,9 @@ namespace BirdHouse_Battle.UI
             RectangleShape button1 = new RectangleShape(new Vector2f(30,25));
             RectangleShape button10 = new RectangleShape(new Vector2f(30,25));
             RectangleShape button100 = new RectangleShape(new Vector2f(30,25));
-            Text txtButton1 = new Text("1",textfont,15);
-            Text txtButton10 = new Text("10",textfont,15);
-            Text txtButton100 = new Text("100",textfont,15);
+            Text txtButton1 = new Text("10",textfont,15);
+            Text txtButton10 = new Text("30",textfont,15);
+            Text txtButton100 = new Text("50",textfont,15);
 
             RectangleShape selectionRed = new RectangleShape(Bsize);    
             RectangleShape selectionBlue = new RectangleShape(Bsize);
@@ -621,9 +623,9 @@ namespace BirdHouse_Battle.UI
             txtButton10.FillColor = new Color(0, 0, 0);
             txtButton100.FillColor = new Color(0, 0, 0);
 
-            selectionRed.Position = new Vector2f(10,520);
+            selectionRed.Position = new Vector2f(90,520);
             selectionRed.FillColor = new Color(255, 0, 0);
-            selectionBlue.Position = new Vector2f(90, 520);
+            selectionBlue.Position = new Vector2f(10, 520);
             selectionBlue.FillColor = new Color(0,0,255);
 
             Shape buttonUnitSelect = new CircleShape(5);
@@ -664,13 +666,13 @@ namespace BirdHouse_Battle.UI
 
 
 
-            if (status[1] == "1")
+            if (status[1] == "10")
             {
                 button1.FillColor = new Color(100, 100, 100);
                 button10.FillColor = new Color(200, 200, 200);
                 button100.FillColor = new Color(200, 200, 200);
             }
-            else if (status[1] == "10")
+            else if (status[1] == "30")
             {
                 button1.FillColor = new Color(200, 200, 200);
                 button10.FillColor = new Color(100, 100, 100);
@@ -690,8 +692,8 @@ namespace BirdHouse_Battle.UI
             font.Position = new Vector2f(0, 512);
 
 
-            redFont.Position = new Vector2f(0, 0);
-            blueFont.Position = new Vector2f(256, 0);
+            redFont.Position = new Vector2f(256, 0);
+            blueFont.Position = new Vector2f(0, 0);
 
             if (!arena.FindTeam("green"))
             {
@@ -712,8 +714,8 @@ namespace BirdHouse_Battle.UI
                 blueFont = new RectangleShape(new Vector2f(256,256));
                 greenFont = new RectangleShape(new Vector2f(256,256));
 
-                redFont.Position = new Vector2f(0,0);
-                blueFont.Position = new Vector2f(0, 256);
+                redFont.Position = new Vector2f(0,256);
+                blueFont.Position = new Vector2f(0, 0);
                 greenFont.Position = new Vector2f(256, 0);
 
                 selectionGreen.FillColor = new Color(0, 255, 0);
@@ -750,9 +752,25 @@ namespace BirdHouse_Battle.UI
                     greenFont.FillColor = new Color(50, 50, 50, 150);
                 }
             }
+
+            RectangleShape aPoint = new RectangleShape(new Vector2f(0,0));
+            RectangleShape bPoint = new RectangleShape(new Vector2f(0,0));
+
+            if (status[3] != "NA" )
+            {
+                aPoint = new RectangleShape(new Vector2f(4,4));
+                aPoint.Position = new Vector2f(Int32.Parse(status[3]),Int32.Parse(status[4]));
+                aPoint.FillColor = new Color(0, 0, 0);
+            }
+            if (status[5]!="NA")
+            {
+                bPoint = new RectangleShape(new Vector2f(4, 4));
+                bPoint.Position = new Vector2f(Int32.Parse(status[5]), Int32.Parse(status[6]));
+                bPoint.FillColor = new Color(0, 0, 0);
+            }
             
 
-            Shape[] buttons = new Shape[19];
+            Shape[] buttons = new Shape[22];
             RenderStates rs = new RenderStates();
 
             buttons[0] = font;
@@ -774,6 +792,10 @@ namespace BirdHouse_Battle.UI
             buttons[16] = CreateShape(Bsize, "../../../../res/button_balista.png", 125, 600);
             buttons[17] = CreateShape(Bsize, "../../../../res/button_catapult.png", 125, 640);
             buttons[18] = buttonUnitSelect;
+            buttons[19] = aPoint;
+            buttons[20] = bPoint;
+            buttons[21] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 640);
+
 
             Text txtArcher = new Text("*" , textfont, 15);
             Text txtDrake = new Text("*", textfont, 15);
@@ -782,43 +804,43 @@ namespace BirdHouse_Battle.UI
             Text txtBalista = new Text("*", textfont, 15);
             Text txtCatapult = new Text("*", textfont, 15);
 
-            if (status[0] == "blue")
+            if (status[0] == "red")
             {
-                txtArcher = new Text("*" + teamCompo[0, 0].ToString(), textfont, 15);
-                txtDrake = new Text("*" + teamCompo[0, 1].ToString(), textfont, 15);
-                txtGobelin = new Text("*" + teamCompo[0, 2].ToString(), textfont, 15);
-                txtPaladin = new Text("*" + teamCompo[0, 3].ToString(), textfont, 15);
-                txtBalista = new Text("*" + teamCompo[0, 4].ToString(), textfont, 15);
-                txtCatapult = new Text("*" + teamCompo[0, 5].ToString(), textfont, 15);
+                txtArcher = new Text("*" + compoLeft[0, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[0, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[0, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[0, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[0, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[0, 5].ToString(), textfont, 15);
             }
-            else if (status[0] == "red")
+            else if (status[0] == "blue")
             {
-                txtArcher = new Text("*" + teamCompo[1, 0].ToString(), textfont, 15);
-                txtDrake = new Text("*" + teamCompo[1, 1].ToString(), textfont, 15);
-                txtGobelin = new Text("*" + teamCompo[1, 2].ToString(), textfont, 15);
-                txtPaladin = new Text("*" + teamCompo[1, 3].ToString(), textfont, 15);
-                txtBalista = new Text("*" + teamCompo[1, 4].ToString(), textfont, 15);
-                txtCatapult = new Text("*" + teamCompo[1, 5].ToString(), textfont, 15);
+                txtArcher = new Text("*" + compoLeft[1, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[1, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[1, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[1, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[1, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[1, 5].ToString(), textfont, 15);
 
             }
             else if (status[0]=="green")
             {
-                txtArcher = new Text("*" + teamCompo[2, 0].ToString(), textfont, 15);
-                txtDrake = new Text("*" + teamCompo[2, 1].ToString(), textfont, 15);
-                txtGobelin = new Text("*" + teamCompo[2, 2].ToString(), textfont, 15);
-                txtPaladin = new Text("*" + teamCompo[2, 3].ToString(), textfont, 15);
-                txtBalista = new Text("*" + teamCompo[2, 4].ToString(), textfont, 15);
-                txtCatapult = new Text("*" + teamCompo[2, 5].ToString(), textfont, 15);
+                txtArcher = new Text("*" + compoLeft[2, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[2, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[2, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[2, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[2, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[2, 5].ToString(), textfont, 15);
 
             }
             else
             {
-                txtArcher = new Text("*" + teamCompo[3, 0].ToString(), textfont, 15);
-                txtDrake = new Text("*" + teamCompo[3, 1].ToString(), textfont, 15);
-                txtGobelin = new Text("*" + teamCompo[3, 2].ToString(), textfont, 15);
-                txtPaladin = new Text("*" + teamCompo[3, 3].ToString(), textfont, 15);
-                txtBalista = new Text("*" + teamCompo[3, 4].ToString(), textfont, 15);
-                txtCatapult = new Text("*" + teamCompo[3, 5].ToString(), textfont, 15);
+                txtArcher = new Text("*" + compoLeft[3, 0].ToString(), textfont, 15);
+                txtDrake = new Text("*" + compoLeft[3, 1].ToString(), textfont, 15);
+                txtGobelin = new Text("*" + compoLeft[3, 2].ToString(), textfont, 15);
+                txtPaladin = new Text("*" + compoLeft[3, 3].ToString(), textfont, 15);
+                txtBalista = new Text("*" + compoLeft[3, 4].ToString(), textfont, 15);
+                txtCatapult = new Text("*" + compoLeft[3, 5].ToString(), textfont, 15);
 
             }
 
@@ -858,7 +880,14 @@ namespace BirdHouse_Battle.UI
                 t2.Draw(_window, rs);
                 _window.Draw(t2);
             }
-
+            for (int i = 0; i < 200; i++)
+            {
+                if (!(unitToDraw[i] is null))
+                {
+                    Shape shape;
+                    _window.Draw(shape = DisplayUnit(unitToDraw[i]));
+                }
+            }
             return buttons;
         }
 
