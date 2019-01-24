@@ -135,50 +135,71 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void  HandlerHistoric(Shape[] buttons)
+        public string  HandlerHistoric(Shape[] buttons, string[] dNames)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
                 game.StatusSwitch("elderGame", "return");
+                return "";
             } //save1
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "replay";
+                return dNames[0];
+                
             } //save2
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
+                game.Status = "replay";
+                return dNames[1];
             } //save3
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
+                game.Status = "replay";
+                return dNames[2];
             } //save4
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-               
+                game.Status = "replay";
+                return dNames[3];
             } //save5
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
+                game.Status = "replay";
+                return dNames[4];
             } //save6
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
+                game.Status = "replay";
+                return dNames[5];
             } //save7
             else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
+                game.Status = "replay";
+                return dNames[6];
             }//save8
             else if (buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
+                game.Status = "replay";
+                return dNames[7];
             }//save9
             else if (buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
+                game.Status = "replay";
+                return dNames[8];
             } //save10
             else if (buttons[9].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-
+                game.Status = "replay";
+                return dNames[9];
             }
             // Main menu
             else if (buttons[10].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.StatusSwitch("elderGame", "main");
+                return "";
             }
+            else { return ""; }
         }
 
         /// <summary>

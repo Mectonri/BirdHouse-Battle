@@ -15,18 +15,10 @@ namespace BirdHouse_Battle.Model
         }
 
 
-        public Vector(JToken jToken)
+        public Vector(JToken jTokenX, JToken jTokenY)
         {
-            _x = jToken["X"].Value<double>();
-            _y = jToken["Y"].Value<double>();
-        }
-
-        public JToken Serialization()
-        {
-            return new JObject(
-                 new JProperty("X", _x),
-                 new JProperty("Y", _y)
-                 );
+            _x = jTokenX.Value<double>();
+            _y = jTokenY.Value<double>();
         }
 
         public double X

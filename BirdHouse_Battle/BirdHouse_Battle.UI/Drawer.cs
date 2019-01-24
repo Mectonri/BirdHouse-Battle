@@ -37,10 +37,17 @@ namespace BirdHouse_Battle.UI
         /// <summary>
         /// Displays the game background
         /// </summary>
-        public void BackGroundGame()
+        public void BackGroundGame(string mode, string path)
         {
             _window.Draw(CreateShape(512, 512, "../../../../res/terrain1.jpeg", 0, 0));
-            _window.Draw(CreateShape(512, 512, "../../../../res/DiamondBackground.png", 0, 0));
+            if (mode != "replay")
+            {
+                _window.Draw(CreateShape(512, 512, "../../../../res/DiamondBackground.png", 0, 0));
+            }
+            else
+            {
+                _window.Draw(CreateShape(512, 512, "../../../../saveStates/" + path + "/BackGround.png", 0, 0));
+            }
             _window.Draw(CreateShape(512, 200, "../../../../res/LEGEND.png", 0, 512));
         }
 
@@ -272,18 +279,18 @@ namespace BirdHouse_Battle.UI
             Shape MenuBackground = CreateShape(512, 712, "../../../../res/main.png", 0, 0);
             _window.Draw(MenuBackground);
 
-            buttons[0] = CreateShape(Bsize, "../../../../res/button_start.png", 200, 150); // take us to pregame sreen
-            buttons[1] = CreateShape(Bsize, "../../../../res/button_quick-game.png", 200, 200); //quick game
-            buttons[2] = CreateShape(Bsize, "../../../../res/button_historic.png", 200, 250); // Historic
-            buttons[3] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 300); // to history mode
+            _window.Draw(buttons[0] = CreateShape(Bsize, "../../../../res/button_start.png", 200, 150)); // take us to pregame sreen
+            _window.Draw(buttons[1] = CreateShape(Bsize, "../../../../res/button_quick-game.png", 200, 200)); //quick game
+            _window.Draw(buttons[2] = CreateShape(Bsize, "../../../../res/button_historic.png", 200, 250)); // Historic
+            _window.Draw(buttons[3] = CreateShape(Bsize, "../../../../res/button_history.png", 200, 300)); // to history mode
             buttons[4] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 350); // to settings
-            buttons[5] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 400); // to credits
-            buttons[6] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 500); //take us to exit screen
+            _window.Draw(buttons[5] = CreateShape(Bsize, "../../../../res/button_credits.png", 200, 350)); // to credits
+            _window.Draw(buttons[6] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 500)); //take us to exit screen
 
-            foreach (var t in buttons)
-            {
-                _window.Draw(t);
-            }
+            //foreach (var t in buttons)
+            //{
+            //    _window.Draw(t);
+            //}
             return buttons;
         }
 
@@ -393,16 +400,16 @@ namespace BirdHouse_Battle.UI
             Shape[] button = new RectangleShape[4];
 
             Vector2f Bsize = new Vector2f(100, 25);
-           
-            button[0] = CreateShape(Bsize, "../../../../res/button_continue.png", 200, 50);//take us to the game screen
+
+            _window.Draw(button[0] = CreateShape(Bsize, "../../../../res/button_continue.png", 200, 50));//take us to the game screen
             button[1] = CreateShape(Bsize, "../../../../res/button_restart.png", 200, 100); // take us to pregame screen
             button[2] = CreateShape(Bsize, "../../../../res/button_setting.png", 200, 150); // to settings
             button[3] = CreateShape(Bsize, "../../../../res/button_quit.png", 200, 200); // take us to exist screen
 
-            foreach (var t in button)
-            {
-                _window.Draw(t);
-            }
+            //foreach (var t in button)
+            //{
+            //    _window.Draw(t);
+            //}
             return button;
         }
 

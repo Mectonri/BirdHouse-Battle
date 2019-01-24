@@ -139,7 +139,7 @@ namespace BirdHouse_Battle.UI
                     Clearer();
                 }
 
-                if (!Paused) Render(arena);
+                if (!Paused) Render(arena, mode, path);
                 else PauseMenu();
             }
             //ListTeam(arena);
@@ -177,7 +177,7 @@ namespace BirdHouse_Battle.UI
 
         public string SaveState()
         {
-            string date = DateTime.Now.ToString("yyyy_MM_dd H mm");
+            string date = DateTime.Now.ToString("yyyy_MM_dd HH mm");
             string pathString = $"../../../../saveStates/{date}";
             Directory.CreateDirectory(pathString);
 
@@ -329,11 +329,11 @@ namespace BirdHouse_Battle.UI
             GameLoop(Arena, "history", path);
         }
 
-        public void Render(Arena arena)
+        public void Render(Arena arena, string mode, string path)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            draw.BackGroundGame();
+            draw.BackGroundGame(mode, path);
             draw.UnitDisplay(arena);
             Window.Display();
         }
@@ -625,9 +625,12 @@ namespace BirdHouse_Battle.UI
                 // folder has no files and also sub folders have no files...
             }
 
-            for (int i = 0; i < dossiers.Length && i < 9 ; i++)
+            int j = 0;
+
+            for (int i = dossiers.Length - 1; i >= 0 && i > dossiers.Length - 11 ; i--)
             {
-                dNames[i] = dossiers[i].Name;
+                dNames[j] = dossiers[i].Name;
+                j++;
             }
 
             for (int i = 0; i < dNames.Length; i++)
@@ -656,7 +659,7 @@ namespace BirdHouse_Battle.UI
                 }
                 else
                 {
-                    winningTeam[i] = "Terminated";
+                    winningTeam[i] = "Unfinished";
                     tours[i] = "";
                 }
             }
@@ -665,7 +668,7 @@ namespace BirdHouse_Battle.UI
 
             while (Window.IsOpen && Status == "elderGame")
             {
-               _iHandler.HandlerHistoric( buttons);
+               path = _iHandler.HandlerHistoric( buttons, dNames);
             }
 
             return path;
