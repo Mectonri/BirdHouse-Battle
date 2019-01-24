@@ -23,6 +23,7 @@ namespace BirdHouse_Battle.UI
         double _previousP;
         double _msPerUpdate = 0.0000006;
         string _status;
+        string _lastStatus;
         public int _winner = 0;
         public int _tour = 0;
 
@@ -37,7 +38,7 @@ namespace BirdHouse_Battle.UI
             _status = "main";
             _previousP = GetCurrentTime();
             draw = new Drawer(_window);
-           
+
         }
 
         #region Getter
@@ -53,7 +54,7 @@ namespace BirdHouse_Battle.UI
         {
             get { return _arena; }
         }
-        
+
         public RenderWindow Window => _window;
 
         public bool Paused { get; set; }
@@ -83,6 +84,12 @@ namespace BirdHouse_Battle.UI
 
         private static double TimeP => 0.000002;
 
+        public string LastStatus
+        {
+            get { return _lastStatus; }
+            set { _lastStatus = value; }
+        }
+
         static double GetCurrentTime() => DateTime.Now.ToOADate();
 
         internal static void Update(Arena arena)
@@ -92,6 +99,12 @@ namespace BirdHouse_Battle.UI
 
         #endregion
 
+
+        public void StatusSwitch(string last, string present)
+        {
+            Status = present;
+            LastStatus = last;
+        }
         public bool GameLoop(Arena arena, string mode, string path)
         {
             if (mode == "play")
@@ -121,14 +134,12 @@ namespace BirdHouse_Battle.UI
 
                 if (!_window.IsOpen || !Return)
                 {
-                    Status = "ended";
-                    arena.Teams.Clear();
-                    arena.Projectiles.Clear();
-                    arena.DeadTeams.Clear();
-                    arena.DeadProjectiles.Clear();
+                    if (mode == "history") Status = "historyEnded";
+                    else { Status = "ended"; }
+                    Clearer();
                 }
 
-                if (!Paused) Render(arena);
+                if (!Paused) Render(arena, mode, path);
                 else PauseMenu();
             }
             //ListTeam(arena);
@@ -146,18 +157,27 @@ namespace BirdHouse_Battle.UI
                     endGame.WriteTo(jw);
                 }
             }
-            Status = "ended";
-            arena.Teams.Clear();
-            arena.Projectiles.Clear();
-            arena.DeadTeams.Clear();
-            arena.DeadProjectiles.Clear();
+            if (mode == "history") Status = "historyEnded";
+            else { Status = "ended"; }
+            Clearer();
 
             return true;
         }
 
+        /// <summary>
+        /// Clears the Arena after a game.
+        /// </summary>
+        public void Clearer()
+        {
+            _arena.Teams.Clear();
+            _arena.Projectiles.Clear();
+            _arena.DeadTeams.Clear();
+            _arena.DeadProjectiles.Clear();
+        }
+
         public string SaveState()
         {
-            string date = DateTime.Now.ToString("yyyy_MM_dd H mm");
+            string date = DateTime.Now.ToString("yyyy_MM_dd HH mm");
             string pathString = $"../../../../saveStates/{date}";
             Directory.CreateDirectory(pathString);
 
@@ -188,26 +208,11 @@ namespace BirdHouse_Battle.UI
         /// <returns></returns>
         public int FindWinner()
         {
-            if (_arena.FindTeam("blue") == true || _arena.FindTeam("Team1"))
+            foreach (KeyValuePair<string, Team> kv in Arena.Teams)
             {
-                Console.WriteLine("Blue team won");
-                return _winner = 1;
+                return _winner = kv.Value.TeamNumber;
             }
-            else if (_arena.FindTeam("red") == true || _arena.FindTeam("Team2"))
-            {
-                Console.WriteLine("Red team won");
-                return _winner = 2;
-            }
-            else if (_arena.FindTeam("green") == true || _arena.FindTeam("Team3"))
-            {
-                Console.WriteLine("Green team won");
-                return _winner = 3;
-            }
-            else
-            {
-                Console.WriteLine("Yellow team won");
-                return _winner = 4;
-            }
+            return _winner;
         }
 
         /// <summary>
@@ -238,8 +243,8 @@ namespace BirdHouse_Battle.UI
             t2.AddDrake(10);
             t2.Dcount = 10;
             arenas.Add(2, a2);
-           
-           
+
+
             {
                 JToken jToken = Serialize(arenas);
                 using (FileStream fs = File.OpenWrite(path))
@@ -252,7 +257,7 @@ namespace BirdHouse_Battle.UI
             Console.WriteLine("serilization ended");
         }
 
-        public JToken Serialize(Dictionary<int,Arena> arenas)
+        public JToken Serialize(Dictionary<int, Arena> arenas)
         {
             return new JObject(
                 new JProperty("Arenas", arenas.Select(kv => kv.Value.Serialize())));
@@ -273,14 +278,13 @@ namespace BirdHouse_Battle.UI
                 JToken jToken = JToken.ReadFrom(jr);
                 JArray jArena = (JArray)jToken["Arenas"];
 
-                
+
                 _arena = new Arena(jArena[Level], true);
 
                 Status = "historyPreGame";
-                HistoryPreGame(_arena); //should take arena
 
             }
-            
+
         }
 
         void CreateTeam(object value1, object value2, object value3, object value4, object value5, object value6)
@@ -299,9 +303,21 @@ namespace BirdHouse_Battle.UI
         /// <param name="PToAdd"></param>
         private void FillTeam(Team team)
         {
-            throw  new NotImplementedException();
+            throw new NotImplementedException();
         }
 
+        public void Run(string mode, string path, bool useless)
+        {
+            JToken save = "";
+            using (FileStream fs = File.OpenRead("../../../../saveStates/" + path + "/saveState.json"))
+            using (StreamReader sr = new StreamReader(fs))
+            using (JsonTextReader jr = new JsonTextReader(sr))
+            {
+                save = JToken.ReadFrom(jr);
+            }
+            _arena = new Arena(save);
+            GameLoop(Arena, mode, path);
+        }
 
         public void Run(string mode, string path)
         {
@@ -313,13 +329,26 @@ namespace BirdHouse_Battle.UI
             GameLoop(Arena, "history", path);
         }
 
-        public void Render(Arena arena)
+        public void Render(Arena arena, string mode, string path)
         {
             Window.Clear();
             Drawer draw = new Drawer(Window);
-            draw.BackGroundGame();
+            draw.BackGroundGame(mode, path);
             draw.UnitDisplay(arena);
             Window.Display();
+        }
+
+        internal double[] StartingHealth(Arena arena)
+        {
+            double[] healths = new double[4];
+            int i = 0;
+            foreach (KeyValuePair<string, Team> kv in arena.Teams)
+            {
+                healths[i] = kv.Value.HealthCalculation();
+                i++;
+            }
+
+            return healths;
         }
 
         public void Switch(string input)
@@ -424,10 +453,9 @@ namespace BirdHouse_Battle.UI
         public int[,] FillRandom(int i, int[,] TeamComp)
         {
             Random rdm = new Random();
-            int f = 0;
             int max = 0;
 
-            for (f = 1; f < 6; f++)
+            for (int f = 0; f < 6; f++)
             {
                 TeamComp[i, f] = rdm.Next(125 - max);
                 max = max + TeamComp[i, f];
@@ -451,15 +479,16 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        public Shape[] InitGUIElder()
+        public Shape[] InitGUIElder(string[] dNames, string[] winner, string[] tours)
         {
             Window.Clear();
-            Shape[] buttons = draw.ElderGameDisplay();
+            Shape[] buttons = draw.ElderGameDisplay(dNames, winner, tours);
             Window.Display();
 
             return buttons;
         }
 
+        #region Credit
         public void CreditPage()
         {
             Shape[] buttons = InitCredit();
@@ -477,6 +506,7 @@ namespace BirdHouse_Battle.UI
             Window.Display();
             return buttons;
         }
+        #endregion
 
         #region pause
         public Shape[] InitPause()
@@ -576,23 +606,72 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-        public void ElderGame()
+        public string ElderGame()
         {
+            string path = "";
             DirectoryInfo dir = new DirectoryInfo("../../../../saveStates");
+
             DirectoryInfo[] dossiers = dir.GetDirectories();
             string[] dNames = new string[10];
-            int i = 0;
 
-            for (i = 0; i < dossiers.Length && i < 9 ; i++)
+            int[]    winner = new int   [10];
+            string[] winningTeam = new string[10];
+            string[] tours  = new string[10];
+            
+            string[] paths = new  string[10];
+
+           
             {
-                dNames[i] = dossiers[i].Name;
+                // folder has no files and also sub folders have no files...
             }
 
-            Shape[] buttons = InitGUIElder();
-            while (Window.IsOpen && Status == "main")
+            int j = 0;
+
+            for (int i = dossiers.Length - 1; i >= 0 && i > dossiers.Length - 11 ; i--)
             {
-                _iHandler.HandlerElderGame(buttons);
+                dNames[j] = dossiers[i].Name;
+                j++;
             }
+
+            for (int i = 0; i < dNames.Length; i++)
+            {
+                paths[i] = "../../../../saveStates/" + dNames[i] + "/endGame.JSON";
+
+                if (File.Exists(paths[i]) == true)
+                {
+
+                    if (dNames[i] != null)
+                    {
+                        using (FileStream fs = File.OpenRead(paths[i]))
+                        using (StreamReader sr = new StreamReader(fs))
+                        using (JsonTextReader jr = new JsonTextReader(sr))
+                        {
+                            JToken token = JToken.ReadFrom(jr);
+
+                            winner[i] = token["winner"].Value<int>();
+                            tours[i] = token["tour"].Value<int>().ToString();
+                        }
+                        if (winner[i] == 0) winningTeam[i] = "Blue";
+                        else if (winner[i] == 1) winningTeam[i] = "Red";
+                        else if (winner[i] == 2) winningTeam[i] = "Green";
+                        else winningTeam[i] = "Yellow";
+                    }
+                }
+                else
+                {
+                    winningTeam[i] = "Unfinished";
+                    tours[i] = "";
+                }
+            }
+
+            Shape[] buttons = InitGUIElder(dNames, winningTeam, tours);
+
+            while (Window.IsOpen && Status == "elderGame")
+            {
+               path = _iHandler.HandlerHistoric( buttons, dNames);
+            }
+
+            return path;
         }
 
         public Shape[] InitReturn()
@@ -622,7 +701,7 @@ namespace BirdHouse_Battle.UI
             return buttons;
         }
 
-        #endregion
+        
 
         #region Result Pages
         internal Shape[] InitResult()
@@ -645,8 +724,29 @@ namespace BirdHouse_Battle.UI
 
             while (Window.IsOpen && Status == "ended")
             {
-                _iHandler.HandlerResulsult(buttons);
+                _iHandler.HandlerResult(buttons);
             }
+        }
+
+        internal void HistoryResultWindow()
+        {
+            Shape[] buttons = InitHistoryResult();
+
+            while (Window.IsOpen && Status == "historyEnded")
+            {
+                _iHandler.HandlerHistoryResult(buttons);
+            }
+        }
+
+        private Shape[] InitHistoryResult()
+        {
+
+            Window.Clear();
+
+            Shape[] buttons = draw.HistoryResultDisplay(Winner);
+            Window.Display();
+
+            return buttons;
         }
 
         #endregion
@@ -1006,6 +1106,8 @@ namespace BirdHouse_Battle.UI
                 InitPlacement();
             }
         }
+        #endregion
+
         #endregion
 
         public bool IsValidToAddUnit(int[,] TeamCompo, int i, string[] status)

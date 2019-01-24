@@ -6,24 +6,20 @@ using System.Linq;
 namespace BirdHouse_Battle.Model
 {
     public class Team
-    {
-        /// <summary>
-        /// Archer is a unit type same as Paladin and Goblin 
-        /// </summary>
-        
+    {         
         //Team number is associated with a color, so creating a team take the color as argument
         readonly string _name;
         readonly int _teamNumber; //number is used to assign a color to a team
         int _unitCount; // Le nombre total d'unites  dans une equipes
 
-        int _aToAdd;// Number of Archer   to add to a Team
-        int _bToAdd;// Number of Balista  to add to a Team
-        int _cToAdd;// Number of Catapult to add to a Team
-        int _dToAdd;// Number of Drake    to add to a Team
-        int _gToAdd;// Number of Goblin   to add to a Team
-        int _pToAdd;// Number of Paladin  to add to a Team
+        internal int _aToAdd;// Number of Archer   to add to a Team
+        internal int _bToAdd;// Number of Balista  to add to a Team
+        internal int _cToAdd;// Number of Catapult to add to a Team
+        internal int _dToAdd;// Number of Drake    to add to a Team
+        internal int _gToAdd;// Number of Goblin   to add to a Team
+        internal int _pToAdd;// Number of Paladin  to add to a Team
         
-        int _aCount; // Number of Archer   in a team
+        internal int _aCount; // Number of Archer   in a team
         int _bCount; // Number of Balista  in a team
         int _cCount; // Number of Catapult in a team
         int _dCount; // Number of Drake    in a team
@@ -33,11 +29,13 @@ namespace BirdHouse_Battle.Model
 
         bool _isWiped;
 
-        double _goldAmount; // Amount of gold given to the player in HistoryMode  
+        internal double _goldAmount; // Amount of gold given to the player in HistoryMode  
         readonly int _limitNbUnit; // unit limit by team
-        Arena _arena; // Adds team conttext which is the Arena
+        internal Arena _arena; // Adds team conttext which is the Arena
         internal Dictionary<int, Unit> _deadUnits; 
         internal Dictionary<int, Unit> _units;
+
+        internal double _health;
 
         Unit _goblinsTarget;
         Unit _archersTarget;
@@ -61,6 +59,7 @@ namespace BirdHouse_Battle.Model
 
             _units = new Dictionary<int, Unit>();
             _deadUnits = new Dictionary<int, Unit>();
+            _health = HealthCalculation();
         }
 
         #region relevent to serialization
@@ -175,6 +174,7 @@ namespace BirdHouse_Battle.Model
 
         #region Getters & Setters
 
+        public double Health => _health;
         public string Name => _name;
 
         public int TeamNumber => _teamNumber;
@@ -427,29 +427,66 @@ namespace BirdHouse_Battle.Model
             {
                 u.DieNullContext();
                 _units.Remove(u.Name);
-                string s = u.GetType().ToString();
-                if (s == "BirdHouse_Battle.Model.Archer")
-                {
-                    _aCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Goblin")
-                {
-                    _gCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Drake")
-                {
-                    _dCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Catapult")
-                {
-                    _cCount--;
-                }
-                else if (s == "BirdHouse_Battle.Model.Balista")
-                {
-                    _bCount--;
-                }
+                
+                if (u is Archer)        _aCount--;
+                else if (u is Goblin)   _gCount--;
+                else if (u is Drake)    _dCount--;
+                else if (u is Catapult) _cCount--;
+                else if (u is Balista)  _bCount--;
                 else { _pCount--; }
             }
+        }
+
+        /// <summary>
+        /// Returns the total health of a team
+        /// </summary>
+        /// <returns></returns>
+        public double HealthCalculation()
+        {
+            double h = 0;
+            foreach (KeyValuePair<int, Unit> kv in _units)
+            {
+                h = kv.Value.Life + h;
+            }
+            return h;
+        }
+
+        public double AddWithGold(int unit)
+        {
+            double result = 0.0;
+            switch (unit)
+            {
+                case 1:
+                    result = GoldAmount - 10.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddArcher(1); return GoldAmount = result; }
+
+                case 2:
+                    result = GoldAmount - 30.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddBalista(1); return GoldAmount = result; }
+
+                case 3:
+                    result = GoldAmount - 40.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddCatapult(1); return GoldAmount = result; }
+
+                case 4:
+                    result = GoldAmount - 15.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddDrake(1); return GoldAmount = result; }
+
+                case 5:
+                    result = GoldAmount - 3.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddGoblin(1); return GoldAmount = result; }
+
+                case 6:
+                    result = GoldAmount - 12.0;
+                    if (result < 0) return GoldAmount;
+                    else { AddPaladin(1); return GoldAmount = result; }
+            }
+            return GoldAmount;
         }
 
         /// <summary>
@@ -473,7 +510,7 @@ namespace BirdHouse_Battle.Model
         {
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                if (unit.Value.GetType().ToString() != "BirdHouse_Battle.Model.Goblin")
+                if (unit.Value is Goblin)
                 {
                     return false;
                 }
@@ -488,7 +525,7 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                if (unit.Value.GetType().ToString() == "BirdHouse_Battle.Model.Goblin")
+                if (unit.Value is Goblin)
                 {
                     GlobalLocation.Add(unit.Value.Location);
                     Count++;
@@ -504,7 +541,7 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                if (unit.Value.GetType().ToString() == "BirdHouse_Battle.Model.Archer")
+                if (unit.Value is Archer)
                 {
                     GlobalLocation.Add(unit.Value.Location);
                     Count++;
@@ -520,15 +557,15 @@ namespace BirdHouse_Battle.Model
 
             foreach (KeyValuePair<int, Unit> unit in Units)
             {
-                string type = unit.Value.GetType().ToString();
+                Unit u = unit.Value;
 
-                if (type == "BirdHouse_Battle.Model.Goblin" || type == "BirdHouse_Battle.Model.Archer")
+                if (u is Goblin || u is Archer)
                 {
                     Vector location = unit.Value.Location;
 
                     Vector globalLocation;
 
-                    if (type == "BirdHouse_Battle.Model.Goblin")
+                    if (u is Goblin)
                     {
                         globalLocation = Vector.Soustract(GoblinsTarget.Location, unit.Value.Location);
                     }
@@ -541,12 +578,12 @@ namespace BirdHouse_Battle.Model
                     {
                         location = Vector.Soustract(unit.Value.Target.Location, unit.Value.Location);
 
-                        if (location.Magnitude * 2 >= globalLocation.Magnitude && type == "BirdHouse_Battle.Model.Goblin")
+                        if (location.Magnitude * 2 >= globalLocation.Magnitude && u is Goblin)
                         {
                             _goblinsAttack += unit.Value.Strength;
                             unit.Value.TeamPlayOn();
                         }
-                        else if (location.Magnitude * 2 >= globalLocation.Magnitude && type == "BirdHouse_Battle.Model.Archer")
+                        else if (location.Magnitude * 2 >= globalLocation.Magnitude && u is Archer)
                         {
                             _archersAttack += unit.Value.Strength;
                             unit.Value.TeamPlayOn();

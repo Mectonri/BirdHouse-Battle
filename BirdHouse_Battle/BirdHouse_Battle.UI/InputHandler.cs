@@ -82,15 +82,15 @@ namespace BirdHouse_Battle.UI
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "main";
+                game.StatusSwitch("return", "main");
             }//YES
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "main";
+                game.StatusSwitch("return", "main");
             }//NO
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "return";
+                game.Status = game.LastStatus;
             }
         }
 
@@ -98,7 +98,7 @@ namespace BirdHouse_Battle.UI
         /// Handler to MainMenu
         /// </summary>
         /// <param name="buttons"></param>
-        public void HandlerMain(Shape [] buttons)
+        public void HandlerMain(Shape[] buttons)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
@@ -111,57 +111,95 @@ namespace BirdHouse_Battle.UI
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "quickGame";
+            } // Historic
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "elderGame";
             }
             //history
-            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "history";
             }//settings
-            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                //game.Status = "preGame";
-            }//credit
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+
+            }//credit
+            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "credit";
             }//Quit
-            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.Status = "quit";
             }
         }
 
-        public void HandlerElderGame(Shape[] buttons)
+        public string  HandlerHistoric(Shape[] buttons, string[] dNames)
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "quit";
-            }//play
+                game.StatusSwitch("elderGame", "return");
+                return "";
+            } //save1
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "preGame";
-            }//Quick game
+                game.Status = "replay";
+                return dNames[0];
+                
+            } //save2
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "quickGame";
-            }
-            //history
+                game.Status = "replay";
+                return dNames[1];
+            } //save3
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "history";
-            }//settings
+                game.Status = "replay";
+                return dNames[2];
+            } //save4
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                //game.Status = "game";
-            }//credit
+                game.Status = "replay";
+                return dNames[3];
+            } //save5
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "credit";
-            }//Quit
+                game.Status = "replay";
+                return dNames[4];
+            } //save6
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "quit";
+                game.Status = "replay";
+                return dNames[5];
+            } //save7
+            else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "replay";
+                return dNames[6];
+            }//save8
+            else if (buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "replay";
+                return dNames[7];
+            }//save9
+            else if (buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "replay";
+                return dNames[8];
+            } //save10
+            else if (buttons[9].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "replay";
+                return dNames[9];
             }
+            // Main menu
+            else if (buttons[10].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.StatusSwitch("elderGame", "main");
+                return "";
+            }
+            else { return ""; }
         }
 
         /// <summary>
@@ -174,7 +212,7 @@ namespace BirdHouse_Battle.UI
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "close";
+                game.StatusSwitch("preGame", "return");
                 return status;
             }
             else if ((buttons[13].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[5] == "add"))
@@ -326,7 +364,7 @@ namespace BirdHouse_Battle.UI
         /// History Page Handler
         /// </summary>
         /// <param name="buttons"></param>
-        internal void HandlerLVSelection(Shape[] buttons)
+       internal void HandlerLVSelection(Shape[] buttons)
         {
             //ESC Key 
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
@@ -335,18 +373,33 @@ namespace BirdHouse_Battle.UI
             }//RETURN 
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "main";
+                //game.Status = "main";
+                game.StatusSwitch("history", "return");
             }// Level
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-
                 game.LevelLoad(0);
-                
-                
-            }//PLAY
+            }
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "historyGame";
+                game.LevelLoad(1);
+            }
+            else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.LevelLoad(2);
+            }
+            else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.LevelLoad(3);
+            }
+            else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.LevelLoad(4);
+            }
+           //PLAY
+            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.StatusSwitch("history", "game");
             }
         }
 
@@ -354,64 +407,86 @@ namespace BirdHouse_Battle.UI
         {
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "close";
+                game.StatusSwitch("historyPreGame", "return");
                 return teamComp;
             } //
-            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                return teamComp;
-            } // 
-            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                return teamComp;
-            } // PLAY
+            //else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            //{
+            //    return teamComp;
+            //} // 
+            //else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            //{
+            //    return teamComp;
+            //} // PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                game.Status = "historyGame";
+                game.StatusSwitch ("historyPreGame", "historyGame");
                 return teamComp;
             } // Add Archer
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddArcher(1);
-                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
-
-                teamComp[0, 0]++;
+                team.AddWithGold(1);
+                teamComp[0, 6] = (int)team.GoldAmount;
+                teamComp[0, 0] = team.Acount;
                 return teamComp;
+
             } // Add Drake
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddDrake(1);
-                teamComp[0, 3]++;
+                team.AddWithGold(4);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 3] = team.Bcount;
                 return teamComp;
             } // Add Goblin
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddGoblin(1);
-                teamComp[0, 4]++;
+                team.AddWithGold(5);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 4] = team.Gcount;
                 return teamComp;
             } // Add Paladin
             else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddPaladin(1);
+                team.AddWithGold(6);
                 teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
-
-                teamComp[0, 5]++;
+                teamComp[0, 5] = team.Pcount;
                 return teamComp;
+
             }// Add Balista
             else if (buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddBalista(1);
-                teamComp[0, 1]++;
+                team.AddWithGold(2);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 1] = team.Bcount;
                 return teamComp;
+
             } //Add Catapult
             else if (buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                team.AddCatapult(1);
-                teamComp[0, 2]++;
+                team.AddWithGold(3);
+                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 2] = team.Ccount;
                 return teamComp;
 
             }
-            else { return teamComp;  }
+            else { return teamComp; }
+        }
+
+        internal void HandlerHistoryResult(Shape[] buttons)
+        {
+            if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
+            {
+                game.StatusSwitch("historyEnded","history");
+
+            } // Return To LvSelection Menu
+            else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.StatusSwitch("historyEnded", "history");
+            }
+            else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.StatusSwitch("historyEnded", "main");
+            }
         }
 
         /// <summary>
@@ -458,7 +533,7 @@ namespace BirdHouse_Battle.UI
         /// Handler to End
         /// </summary>
         /// <param name="buttons"></param>
-        internal void HandlerResulsult(Shape[] buttons)
+        internal void HandlerResult(Shape[] buttons)
         {
             //play
             if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))

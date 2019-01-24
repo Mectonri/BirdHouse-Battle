@@ -7,7 +7,7 @@
             bool run = true;
             Game game = new Game();
             //game.ElderGame();
-            string LastStatut = "";
+            //string LastStatut = "";
             string path = "";
             while (run == true)
             {
@@ -15,16 +15,16 @@
                 {
                     //main menu
                     case "main":
-                        LastStatut = "main";
+                        //LastStatut = "main";
                         game.MainMenu();
                         break;
                     case "preGame":
-                        LastStatut = "preGame";
+                        //LastStatut = "preGame";
                         game.NewArena();
                         game.PreGame();
                         break;
                     case "quickGame":
-                        LastStatut = "quickGame";
+                        //LastStatut = "quickGame";
                         game.NewArena();
                         game.FillRandom(game.Arena);
                         
@@ -34,45 +34,48 @@
                         break;
 
                     case "elderGame":
-                        LastStatut = "elderGame";
-                        /*path = */game.ElderGame();
+                        //LastStatut = "elderGame";
+                        path = game.ElderGame();
                         break;
 
                     case "replay":
-                        game.Run("replay", path);
+                        game.Run("replay", path, true);
                         break;
 
                     case "historyGame":
                        game.RunHistory(path);
                         break; 
                     case "return"://close the window
-                        LastStatut = "return";
+                        //LastStatut = "return";
                         game.ReturnMenu();
                         break;
                         
                     case "history"://history mode
-                        LastStatut = "history";
+                        //LastStatut = "history";
                         game.LevelSelectionMenu();
                         break;
                     case "historyPreGame":
-                        //game.HistoryPreGame();
+                        game.HistoryPreGame(game.Arena);//should take arena
 
                         break;
 
                     case "ended"://when the game has ended
-                        LastStatut = "ended";
+                        // LastStatut = "ended";
                         game.ResultWindow();
 
                         break;
+                    case "historyEnded":
+                        game.HistoryResultWindow();
+                        break;
 
                     case "credit"://credit
-                        LastStatut = "credit";
+                        //LastStatut = "credit";
                         game.CreditPage();
 
                         break;
 
                     case "quit":
-                        LastStatut = "quit";
+                        //LastStatut = "quit";
                         game.QuitPage();
 
                         break;
@@ -82,7 +85,7 @@
                     //    break;
 
                     default:
-                        LastStatut = "MainMenu";
+                        //LastStatut = "MainMenu";
                         game.MainMenu();
                         break;
                 }

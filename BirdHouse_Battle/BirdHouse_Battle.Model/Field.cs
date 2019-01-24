@@ -24,6 +24,7 @@ namespace BirdHouse_Battle.Model
         public Field(Arena arena, JToken jToken)
         {
             _arena = arena;
+            _tiles = new Tile[501, 501];
 
             _elements = new Dictionary<string, Tile>();
             JArray jElements = (JArray)jToken["Elements"];
@@ -35,9 +36,9 @@ namespace BirdHouse_Battle.Model
                 _elements.Add($"{tile.X}:{tile.Y}", tile);
             }
 
-            for (int x = 0; x < 500; x++)
+            for (int x = 0; x < 501; x++)
             {
-                for (int y = 0; y < 500; y++)
+                for (int y = 0; y < 501; y++)
                 {
                     _tiles[x, y] = new Tile(x - 250, y - 250);
                 }

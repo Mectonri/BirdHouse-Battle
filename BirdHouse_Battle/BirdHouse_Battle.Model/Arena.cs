@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 namespace BirdHouse_Battle.Model
@@ -15,6 +16,7 @@ namespace BirdHouse_Battle.Model
         readonly int _width;
         int _counter;
         readonly Field _field;
+         
 
         public Arena()
         {
