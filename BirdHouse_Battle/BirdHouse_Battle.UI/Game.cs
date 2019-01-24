@@ -47,7 +47,7 @@ namespace BirdHouse_Battle.UI
            
         }
 
-    }
+    
 
         #region Getter
 
@@ -1106,10 +1106,6 @@ namespace BirdHouse_Battle.UI
             }
         }
 
-
-
-
-
         public Shape[] InitPlacement(string[] status, int[,]compoLeft, Unit[] unitToDraw)
         {
             Window.Clear();
@@ -1334,12 +1330,3 @@ namespace BirdHouse_Battle.UI
         }
     }
 }
-
-            draw = new Drawer(_window);
-            int[,] _teamComposition =
-             {
-                {0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0}
-            };
