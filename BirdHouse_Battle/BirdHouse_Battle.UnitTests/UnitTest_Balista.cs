@@ -34,6 +34,7 @@ namespace BirdHouse_Battle.UnitTests
             Arena arena = new Arena();
             Team team = arena.CreateTeam("blue");
 
+
             Balista sut = new Balista(arena, team, 1);
 
             JToken jToken = sut.Serialize();

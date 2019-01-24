@@ -713,8 +713,6 @@ namespace BirdHouse_Battle.UI
         {
             Vector2f Bsize = new Vector2f(75, 25); //button size
 
-
-
             Shape[] buttons = new Shape[9];
             RenderStates rs = new RenderStates();
             RectangleShape team1 = new RectangleShape(Bsize);
@@ -745,7 +743,6 @@ namespace BirdHouse_Battle.UI
             if (arena.FindTeam("yellow") == true)
             {
                 team4.Position = new Vector2f(0, 0);
-
             }
 
             buttons[0] = team1;
@@ -757,8 +754,6 @@ namespace BirdHouse_Battle.UI
             buttons[6] = over2;
             buttons[7] = over3;
             buttons[8] = over4;
-
-
 
             for (int i = 0; i < buttons.Length; i++)
             {
