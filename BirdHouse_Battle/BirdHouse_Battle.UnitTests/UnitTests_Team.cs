@@ -26,13 +26,10 @@ namespace BirdHouse_Battle.UnitTests
             Assert.That(u, Is.SameAs(tab[0]));
         }
 
-        /// <summary>
-        /// Goblin is actually added to the team 
-        /// </summary>
+       
         [Test]
         public void add_a_goblin()
         {
-
             Arena arena = new Arena();
             Team t1 = arena.CreateTeam("RED");
 
@@ -47,7 +44,6 @@ namespace BirdHouse_Battle.UnitTests
         [Test]
         public void add_a_paladin()
         {
-
             Arena arena = new Arena();
             Team t = arena.CreateTeam("RED");
 
@@ -103,8 +99,6 @@ namespace BirdHouse_Battle.UnitTests
         [Test]
         public void gold_calculation()
         {
-            //prices archer = 10.0, Gob = 3.0, pal = 12.5
-
             Arena ag = new Arena();
             Team tb = ag.CreateTeam("Blue");
             Team tr = ag.CreateTeam("RED");
@@ -113,12 +107,6 @@ namespace BirdHouse_Battle.UnitTests
             tr.AddArcher(5);//50.0
             tr.AddGoblin(10);//30.0
             tr.AddPaladin(6);//75.0
-            double r1 = tb.GoldCalculation(50.0);
-            double r2 = tr.GoldCalculation(200.0);
-            double r3 = tb.GoldCalculation(0.0);
-
-            Assert.That(r1, Is.EqualTo(0.0));
-            Assert.That(r2, Is.EqualTo(45.0));
         }
 
         [Test]

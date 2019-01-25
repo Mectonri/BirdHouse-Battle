@@ -254,12 +254,12 @@ namespace BirdHouse_Battle.UnitTests
                 Assert.That(b1.UnitPrice == b2.UnitPrice && b2.UnitPrice == 30.0);
                 Assert.That(b1.Strength == b2.Strength && b1.Strength == 15);
                 Assert.That(b1.Armor == b2.Armor && b1.Armor == 2);
-                Assert.That(b1.Disposition == b2.Disposition && b1.Disposition == "order");
+                Assert.That(b1.Disposition == b2.Disposition && b1.Disposition == "Order");
                 Assert.That(b1.Fly == b2.Fly && b1.Fly == false);
                 Assert.That(b1.Distance == b2.Distance && b2.Distance == false);
                 Assert.That(b1.DistanceOnly == b2.DistanceOnly && b1.DistanceOnly == true);
                 Assert.That(b1.Name == b2.Name);
-                Assert.That(b1.Troop == b2.Troop && b2.Troop == "archer");
+                Assert.That(b1.Troop == b2.Troop && b2.Troop == "balista");
             }
             else if (u1 is Catapult c1 && u2 is Catapult c2)
             {
@@ -273,7 +273,7 @@ namespace BirdHouse_Battle.UnitTests
                 Assert.That(c1.UnitPrice == c2.UnitPrice && c2.UnitPrice == 40.0);
                 Assert.That(c1.Strength == c2.Strength && c1.Strength == 20);
                 Assert.That(c1.Armor == c2.Armor && c1.Armor == 3);
-                Assert.That(c1.Disposition == c2.Disposition && c1.Disposition == "order");
+                Assert.That(c1.Disposition == c2.Disposition && c1.Disposition == "Order");
                 Assert.That(c1.Fly == c2.Fly && c1.Fly == false);
                 Assert.That(c1.Distance == c2.Distance && c2.Distance == false);
                 Assert.That(c1.DistanceOnly == c2.DistanceOnly && c1.DistanceOnly == false);

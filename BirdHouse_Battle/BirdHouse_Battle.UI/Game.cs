@@ -206,16 +206,6 @@ namespace BirdHouse_Battle.UI
             return pathString;
         }
 
-        private void ListTeam(Arena arena)
-        {
-            foreach (KeyValuePair<string, Team> team in arena.Teams)
-            {
-                Console.WriteLine(team.Key);
-                Console.WriteLine(team.Value.Name);
-
-            }
-        }
-
         /// <summary>
         /// Find the winning team
         /// </summary>
@@ -239,25 +229,35 @@ namespace BirdHouse_Battle.UI
 
             string path = "../../../../res/HistoryMode.JSON";
 
-            Arena a = new Arena("");
+            Arena a = new Arena();
             Team t = a.CreateTeam("red");
             t.AddArcher(10);
             t.Acount = 10;
             arenas.Add(0, a);
-            //JToken jToken = a.Serialize();
 
-            Arena a1 = new Arena("");
+            Arena a1 = new Arena();
             Team t1 = a1.CreateTeam("red");
             t1.AddGoblin(10);
             t.Gcount = 10;
             arenas.Add(1, a1);
 
-            Arena a2 = new Arena("");
+            Arena a2 = new Arena();
             Team t2 = a2.CreateTeam("red");
             t2.AddDrake(10);
             t2.Dcount = 10;
             arenas.Add(2, a2);
 
+            Arena a3 = new Arena();
+            Team t3 = a3.CreateTeam("red");
+            t3.AddPaladin(10);
+            t3.Pcount = 10;
+            arenas.Add(3, a3);
+
+            Arena a4 = new Arena();
+            Team t4 = a4.CreateTeam("red");
+            t4.AddCatapult(10);
+            t4.Ccount = 10;
+            arenas.Add(4, a4);
 
             {
                 JToken jToken = Serialize(arenas);
@@ -292,32 +292,8 @@ namespace BirdHouse_Battle.UI
                 JToken jToken = JToken.ReadFrom(jr);
                 JArray jArena = (JArray)jToken["Arenas"];
 
-
                 _arena = new Arena(jArena[Level], true);
-
-                Status = "historyPreGame";
-
             }
-
-        }
-
-        void CreateTeam(object value1, object value2, object value3, object value4, object value5, object value6)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Fills a team read from the JSON
-        /// </summary>
-        /// <param name="AToAdd"></param>
-        /// <param name="BToAdd"></param>
-        /// <param name="CToAdd"></param>
-        /// <param name="DToAdd"></param>
-        /// <param name="GToAdd"></param>
-        /// <param name="PToAdd"></param>
-        private void FillTeam(Team team)
-        {
-            throw new NotImplementedException();
         }
 
         public void Run(string mode, string path, bool useless)
@@ -583,7 +559,7 @@ namespace BirdHouse_Battle.UI
         {
             Team team1 = arena.GetTeam("red"); //computer team 
             Team team2 = arena.CreateTeam("blue"); //player team
-            team2.GoldAmount = 24.0;
+            team2.GoldAmount = 500.0;
 
             int[,] teamComposition =
             {
@@ -604,7 +580,6 @@ namespace BirdHouse_Battle.UI
                 }
                 Arena.SpawnUnit();
             }
-
         }
         #endregion
 
@@ -633,12 +608,7 @@ namespace BirdHouse_Battle.UI
             string[] tours  = new string[10];
             
             string[] paths = new  string[10];
-
-           
-            {
-                // folder has no files and also sub folders have no files...
-            }
-
+            
             int j = 0;
 
             for (int i = dossiers.Length - 1; i >= 0 && i > dossiers.Length - 11 ; i--)
@@ -771,7 +741,6 @@ namespace BirdHouse_Battle.UI
             Shape[] buttons = InitReturn();
             while (Window.IsOpen && Status == "return")
             {
-
                 _iHandler.HandlerReturn(buttons);
             }
         }

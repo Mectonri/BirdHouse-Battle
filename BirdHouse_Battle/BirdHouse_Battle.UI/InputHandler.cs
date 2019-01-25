@@ -369,39 +369,38 @@ namespace BirdHouse_Battle.UI
             //ESC Key 
             if (Keyboard.IsKeyPressed(Keyboard.Key.Escape))
             {
-                game.Status = "main";
-            }//RETURN 
+                game.StatusSwitch("history", "return");
+            } //Main Menu
             else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
-                //game.Status = "main";
-                game.StatusSwitch("history", "return");
-            }// Level
+                game.StatusSwitch("history", "main");
+            }// Level 1
             else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.LevelLoad(0);
-            }
+                game.StatusSwitch("history", "historyPreGame");
+            } //Level 2 
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.LevelLoad(1);
+                game.StatusSwitch("history", "historyPreGame");
             }
             else if (buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.LevelLoad(2);
+                game.StatusSwitch("history", "historyPreGame");
             }
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.LevelLoad(3);
+                game.StatusSwitch("history", "historyPreGame");
             }
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.LevelLoad(4);
+                game.StatusSwitch("history", "historyPreGame");
             }
-           //PLAY
-            else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            {
-                game.StatusSwitch("history", "game");
-            }
-        }
+       }
 
         internal int[,] HandlerHistoryPreGame(int[,] teamComp, Team team, Shape[] buttons)
         {
@@ -409,15 +408,7 @@ namespace BirdHouse_Battle.UI
             {
                 game.StatusSwitch("historyPreGame", "return");
                 return teamComp;
-            } //
-            //else if (buttons[0].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            //{
-            //    return teamComp;
-            //} // 
-            //else if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
-            //{
-            //    return teamComp;
-            //} // PLAY
+            } // PLAY
             else if (buttons[2].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 game.StatusSwitch ("historyPreGame", "historyGame");
@@ -434,29 +425,29 @@ namespace BirdHouse_Battle.UI
             else if (buttons[4].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 team.AddWithGold(4);
-                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
-                teamComp[0, 3] = team.Bcount;
+                teamComp[0, 6] = (int)team.GoldAmount;
+                teamComp[0, 3] = team.Dcount;
                 return teamComp;
             } // Add Goblin
             else if (buttons[5].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 team.AddWithGold(5);
-                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 6] = (int)team.GoldAmount;
                 teamComp[0, 4] = team.Gcount;
                 return teamComp;
             } // Add Paladin
             else if (buttons[6].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 team.AddWithGold(6);
-                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 6] = (int)team.GoldAmount;
                 teamComp[0, 5] = team.Pcount;
                 return teamComp;
 
-            }// Add Balista
+            } // Add Balista
             else if (buttons[7].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 team.AddWithGold(2);
-                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 6] = (int)team.GoldAmount;
                 teamComp[0, 1] = team.Bcount;
                 return teamComp;
 
@@ -464,7 +455,7 @@ namespace BirdHouse_Battle.UI
             else if (buttons[8].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
             {
                 team.AddWithGold(3);
-                teamComp[0, 6] = (int)team.GoldCalculation(teamComp[0, 6]);
+                teamComp[0, 6] = (int)team.GoldAmount;
                 teamComp[0, 2] = team.Ccount;
                 return teamComp;
 
