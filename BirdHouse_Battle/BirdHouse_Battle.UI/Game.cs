@@ -1117,7 +1117,7 @@ namespace BirdHouse_Battle.UI
 
         public void Placement()
         {
-            string[] status = new string[8];
+            string[] status = new string[9];
             status[0] = "red ";
             status[1] = "10";
             status[2] = "archer";
@@ -1126,6 +1126,7 @@ namespace BirdHouse_Battle.UI
             status[5] = "NA";
             status[6] = "NA";
             status[7] = "?";
+            status[8] = "false";
             double previous = GetCurrentTime();
             int[,] compoLeft = TeamCompo;
             int[,] actualCompo = (int[,])TeamCompo.Clone();
@@ -1160,7 +1161,7 @@ namespace BirdHouse_Battle.UI
                     previous = current;
                     Shape[] buttons  = InitPlacement(status, compoLeft, unitToDraw);
                     Window.DispatchEvents();
-                    status = _iHandler.HandlerPlacement(status, buttons);
+                    status = _iHandler.HandlerPlacement(status, buttons, Arena);
                     if (status[6]!="NA")
                     {
                         double x = Int32.Parse(status[3]);
@@ -1304,7 +1305,11 @@ namespace BirdHouse_Battle.UI
                 }
             }
 
-
+            if (status[8]=="true")
+            {
+                Arena.SpawnUnit();
+            }
+  
 
         }
 
