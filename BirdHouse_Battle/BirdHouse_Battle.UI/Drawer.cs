@@ -1146,8 +1146,11 @@ namespace BirdHouse_Battle.UI
             }
 
 
-            Shape[] buttons = new Shape[22];
+            Shape[] buttons = new Shape[23];
             RenderStates rs = new RenderStates();
+            RectangleShape randomPlacement = new RectangleShape(Bsize);
+            randomPlacement.FillColor = new Color(90, 90, 90);
+            randomPlacement.Position = new Vector2f(380, 600);
 
             buttons[0] = font;
             buttons[1] = redFont;
@@ -1171,7 +1174,7 @@ namespace BirdHouse_Battle.UI
             buttons[19] = aPoint;
             buttons[20] = bPoint;
             buttons[21] = CreateShape(Bsize, "../../../../res/button_play.png", 380, 640);
-
+            buttons[22] = randomPlacement;
 
             Text txtArcher = new Text("*", textfont, 15);
             Text txtDrake = new Text("*", textfont, 15);
@@ -1179,6 +1182,8 @@ namespace BirdHouse_Battle.UI
             Text txtPaladin = new Text("*", textfont, 15);
             Text txtBalista = new Text("*", textfont, 15);
             Text txtCatapult = new Text("*", textfont, 15);
+            Text random = new Text("random", textfont, 15);
+            random.Position = new Vector2f(390, 600);
 
             if (status[0] == "red")
             {
@@ -1228,7 +1233,7 @@ namespace BirdHouse_Battle.UI
             txtBalista.Position = new Vector2f(205, 600);
             txtCatapult.Position = new Vector2f(205, 640);
 
-            Text[] text = new Text[9];
+            Text[] text = new Text[10];
 
             text[0] = txtButton1;
             text[1] = txtButton10;
@@ -1239,6 +1244,7 @@ namespace BirdHouse_Battle.UI
             text[6] = txtPaladin;
             text[7] = txtBalista;
             text[8] = txtCatapult;
+            text[9] = random;
 
             for (int i = 3; i < text.Length; i++)
             {

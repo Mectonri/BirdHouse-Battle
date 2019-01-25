@@ -547,7 +547,7 @@ namespace BirdHouse_Battle.UI
         }
 
 
-        public string[] HandlerPlacement(string[] status, Shape[] buttons)
+        public string[] HandlerPlacement(string[] status, Shape[] buttons, Arena arena)
         {
             if (buttons[1].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "red" || buttons[3].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[0] != "red")
             {
@@ -670,6 +670,12 @@ namespace BirdHouse_Battle.UI
                     status[5] = Mouse.GetPosition(game.Window).X.ToString();
                     status[6] = Mouse.GetPosition(game.Window).Y.ToString();
                 }
+            }
+            else if (buttons[22].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left))
+            {
+                game.Status = "game";
+
+                status[8] = "true";
             }
             else if (buttons[21].GetGlobalBounds().Contains(Mouse.GetPosition(game.Window).X, Mouse.GetPosition(game.Window).Y) == true && Mouse.IsButtonPressed(Mouse.Button.Left) && status[7]=="true")
             {
